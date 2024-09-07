@@ -1,6 +1,8 @@
-import {useState, useEffect} from "react";
+import {createContext, useContext ,useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom"
 import { USER_DATA_KEY, USER_NAME, GUEST_NAME} from "../../config";
+const AuthContext = createContext()
+export const useAuth = () => useContext(AuthContext)
 const AuthProvider = ({children}) =>{
     const [isAuth, setIsAuth] = useState(false);
     const navigate = useNavigate();
@@ -8,11 +10,11 @@ const AuthProvider = ({children}) =>{
     useEffect(()=>{
         const token = localStorage.getItem('token')
         if (token) setIsAuth(true)
-    }, [])
+    }, []);
 
     useEffect(()=>{
         if (isAuth) navigate('/home')
-    }, [isAuth])
+    }, [isAuth]);
 
     const login = (token) => {
         localStorage.setItem('token', token);
@@ -24,16 +26,18 @@ const AuthProvider = ({children}) =>{
         setIsAuth(false)
         navigate('/login')
     }
-    const saveUserName = (name) => {
+    const saveUsername = (name) => {
         localStorage.setItem(USER_NAME, name)
     }
-    const getUserName = () => {
+    const getUsername = () => {
         if (isAuth) return localStorage.getItem(USER_NAME)
         return GUEST_NAME
     }
     return (
-        <AuthProvider.Provider value = {{isAuth, login, logout, saveUserName, getUserName}}>
+        <AuthContext.Provider value = {{isAuth, login, logout, saveUsername, getUsername}}>
             {children}
-        </AuthProvider.Provider>
+        </AuthContext.Provider>
     )
 }
+
+export default AuthProvider
