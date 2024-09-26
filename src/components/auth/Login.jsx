@@ -1,5 +1,7 @@
 import { useState } from "react"
 import {useAuth} from "../../modules/auth/AuthProvider"
+import { serverLogin } from "../../modules/auth/AuthAPI"
+import "./login.css"
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -11,30 +13,32 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            //Заглушка
-            setTimeout(()=>{
-                if(username == 'userTest' && password == 'pass')
-                    collectDataByToken('testToken')
-            }, 1000)
-        } catch (err){
-            setError(err.message)
+            const response = await serverLogin(username, password)
+            collectDataByToken(response.data.token)
+        } catch(error) {
+            if (error.response) setError(error.response.data.error)
+            console.error("Login failed", error)
         }
     }
     const collectDataByToken = async (token) =>{
         //Заглушка получения данных по токену аутендификации
-        const userData = {username : "userTest", subscribtionPlan:"free"}
-        saveUsername(userData.username)
+        saveUsername(username)
         login(token)
     }
 
     return (
         <div className="login-container">
+            {error && 
+                <div className="error-container">
+                    <p>{error}</p>
+                </div>
+            }
+            
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Логин" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
                 <input type="password" placeholder="Пароль" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
                 <button type="submit">Войти</button>
             </form>
-            {error && <p>{error}</p>}
         </div>
     )
 
