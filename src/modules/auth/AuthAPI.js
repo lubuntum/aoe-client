@@ -1,7 +1,8 @@
 import axios from "axios"
 import { API_LOGIN, API_REGISTRATION, API_VALIDATE_CREDENTIAL_BY_KEY, SERVER_API_URL} from "../../config"
 //Логин данные для входа и получения токена
-export const login = async (username, password) => {
+export const serverLogin = async (username, password) => {
+    console.log(`${SERVER_API_URL}${API_LOGIN}`)
     return axios.post(`${SERVER_API_URL}${API_LOGIN}`, {username, password});
 }
 //Регистрация (Данные юзера)
