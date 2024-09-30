@@ -43,7 +43,7 @@ const Header = () => {
                         <a className="btn loginBtn" style={{width:'150px', fontWeight: '500'}} onClick={{}}>Войти</a>
                         <a className="btn hiddenLoginBtn" style={{display: 'none'}} onClick={{}}><LoginIcon className="svgIcon"/></a>
                     </div>
-                </>)} 
+                </>)}
 
                 {(isAuth && location.pathname === ACCOUNT) && (<>
                     <div className="headerMenuContainer">
