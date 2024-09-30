@@ -7,21 +7,32 @@ import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_E8EAED_F
 
 export const Options = () => {
     const {logout, isAuth, getUsername} = useAuth()
-    return (
-    <div className="accWrapper">
-        {!isAuth && (<>        
-        <a className="btn loginBtn" style={{width:'150px', fontWeight: '500'}} onClick={{}}>Войти</a>
-        <a className="btn hiddenLoginBtn" style={{display: 'none'}} onClick={{}}><LoginIcon className="svgIcon"/></a></>)}
+    return (<>
+        <div className="headerOptions">
+            {isAuth && (<>
+                <div className="divider"></div>
 
-        {isAuth && (<>
-        <div className="divider"></div>
-        <a className="btn tokenBtn" style={{width:'100px'}} onClick={{}}><BoltIcon className="svgIcon"/> <span>00</span> <AddIcon className="svgIcon"/></a>
-        <a className="btn tokenBtn" style={{width:'100px'}} onClick={{}}><FaceIcon className="svgIcon"/> <span>00</span> <AddIcon className="svgIcon"/></a>
-        <p className="userName">{getUsername()}</p>
-        <div className="logoutBtnContainer">
-            <a className="btn" onClick={()=>{logout()}}><LogoutIcon className="svgIcon"/></a>
+                <div className="optionsTokens">
+                    <a href="#" className="btn"><BoltIcon className="svgIcon"/> <span>00</span> <AddIcon className="svgIcon"/></a>
+                    <a href="#" className="btn"><FaceIcon className="svgIcon"/> <span>00</span> <AddIcon className="svgIcon"/></a>
+                </div>
+
+                <div className="optionsUsername">
+                    <a href="#">{getUsername()}</a>
+                </div>
+
+                <div className="optionsLogout">
+                    <a className="btn" onClick={() => {logout()}}><LogoutIcon className="svgIcon"/></a>
+                </div>
+            </>)}
+
+            {!isAuth && (<>
+                <div className="optionsLogin">
+                    <a className="btn" onClick={() => {}}>Войти</a>
+                    <a className="btn" onClick={() => {}}><LoginIcon className="svgIcon"/></a>
+                </div>
+            </>)}
+
         </div>
-        </>)}
-    </div>
-    )
+    </>)
 }
