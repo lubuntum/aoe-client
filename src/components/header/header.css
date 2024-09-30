@@ -3,9 +3,6 @@
     position: sticky;
     top: 0;
     margin-top: 40px;
-}
-
-.headerWrapper{
     background-color: var(--header-bg-cl);
     box-shadow: 0 2px 10px var(--header-shadow-cl);
     border-radius: 10px;
@@ -24,214 +21,165 @@
     align-items: center;
 }
 
-/*Стили для логотипа в шапке сайта*/
-.headerLogoContainer {
+.logo {
     display: flex;
-    align-items: center;
-    justify-content: start;
+    font-size: 38px;
+    font-weight: 700;
 }
 
-.headerLogoContainer p {
-    font-weight: bold;
-    font-size: 32px;
-    cursor: pointer;
-}
-
-/*Стили для меню навигации в шапке НЕавторизированного пользователя*/
-.headerNavContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.headerNavbarContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.headerNavbarContainer a {
-    color: var(--nav-link-cl);
-    border-bottom: 1px solid transparent;
-    transition: all .2s ease;
-}
-
-.headerNavbarContainer a:hover {
-    color: var(--nav-link-hover-cl);
-    border-bottom: 1px solid var(--nav-link-hover-cl);
-}
-
-/*Стили для меню навигации в шапке Авторизированного пользователя*/
-.headerMenuContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    width: 100%;
-}
-
-.menuOptions {
+.nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    font-size: 18px;
 }
 
-.menuOptions a {
-    font-weight: 500;
+.nav a {
     color: var(--nav-link-cl);
+    font-size: 18px;
+    font-weight: 500;
     border-bottom: 1px solid transparent;
-    transition: all .2s ease;
+    transition: all .1s ease;
 }
 
-.menuOptions a:hover {
+.nav a:hover {
     color: var(--nav-link-hover-cl);
     border-bottom: 1px solid var(--nav-link-hover-cl);
 }
 
-
-
-/*Стили для разделителя между навигацией и кнопками личного аккаунта в шапке Авторизированного пользователя*/
-.dividerOptionsAccount {
-    border-right: 1px solid var(--divider-cl);
-    color: var(--divider-cl);
-    height: 50px;
+.authNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
-/*Стили для кнопок личного аккаунта в шапке Авторизированного пользователя*/
-.headerAccountContainer, .headerUnAuthBurger, .headerAuthBurger {
+.collapseAuthNav {
+    position: fixed;
+    top: -140px;
+    left: 115px;
+    align-items: center;
+    display: none;
+    flex-direction: row;
+    background-color: var(--header-bg-cl);
+    box-shadow: 0 2px 10px var(--header-shadow-cl);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.collapseNav {
+    position: fixed;
+    top: 140px;
+    left: -300px;
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--header-bg-cl);
+    box-shadow: 0 2px 10px var(--header-shadow-cl);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.menuHidden {
+    display: none;
+}
+
+.menuVisible {
+    display: flex;
+}
+
+.accWrapper {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    max-height: 40px;
+    justify-content: center;
     align-items: center;
 }
 
-.headerAccountContainer p {
-    display: flex;
-    color: black;
-    font-size: 18px;
-    font-weight: 500;
-    justify-content: center;
+.divider {
+    border-right: 1px solid var(--divider-cl);
+    height: 50px;
 }
 
+.tokenBtn {
+    display: flex;
+    flex-direction: row;
+    width: 120px;
+}
 
-/*Медиа для 1346 пикселей*/
-@media (max-width: 1346px) {
-    /*Шапка НЕавторизованного пользователя*/
-    .headerNavbarContainer {
-        gap: 20px;
-    }
-    .headerNavbarContainer a {
-        font-size: 16px;
-    }
-    .headerAccountContainer .loginBtn {
+.userName {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.logoutBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Медиа для 1380 пикселей*/
+@media (max-width: 1380px) {
+    .loginBtn {
         width: 100px !important;
         font-size: 16px !important;
     }
-
-    /*Шапка Авторизованного пользователя*/
-    .menuOptions {
-        gap: 20px;
-    }
-    .menuOptions a {
-        font-size: 16px;
-    }
-    .headerAccountContainer p {
-        font-size: 16px;
-    }
-    .tokensBtn {
-        font-size: 16px;
-        gap: 3px !important;
-        width: 85px !important;
-    }
-    .tokensBtn .svgIcon {
-        width: 22px !important;
-        height: 22px !important;
+    .nav a {
+        font-size: 16px !important;
     }
 }
 
-/*Медиа для 1224 пикселей*/
-@media (max-width: 1224px) {
-    /*Шапка НЕавторизованного пользователя*/
-    .headerNavbarContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        position: fixed;
-        gap: 30px;
-        background-color: var(--header-bg-cl);
-        box-shadow: 0 2px 10px var(--header-shadow-cl);
-        padding: 20px;
-        border-radius: 10px;
-        top: 140px;
-        left: -400px;
-        z-index: 999;
+/*Медиа для 1230 пикселей*/
+@media (max-width: 1230px) {
+    .nav {
+        display: none;
     }
-    .unAuthBurger {
+    .hiddenNavBurger {
         display: flex !important;
+        order: -1;
     }
-
-    /*Шапка Авторизованного пользователя*/
-    .menuOptions {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        position: fixed;
-        gap: 30px;
-        background-color: var(--header-bg-cl);
-        box-shadow: 0 2px 10px var(--header-shadow-cl);
-        padding: 20px;
-        border-radius: 10px;
-        top: 140px;
-        left: -400px;
-        z-index: 999;
+    .divider {
+        display: none !important;
     }
-    .authBurger {
-        display: flex !important;
+    .authNav {
+        display: none !important;
     }
-
+    .navMenuBurger {
+        display: none !important;
+    }
+    .tokenBtn {
+        font-size: 16px !important;
+        width: 90px !important;
+    }
+    .tokenBtn .svgIcon {
+        transform: scale(90%) !important;
+    }
+    .userName {
+        font-size: 16px !important;
+    }
 }
 
 /*Медиа для 768 пикселей*/
 @media (max-width: 768px) {
-    /*Шапка НЕавторизованного пользователя*/
-    .loginBtn {
-        display: none;
-    }
-    .hiddenLoginBtn {
-        display: flex;
-    }
-    .headerUnAuthBurger {
-        order: -1;
-    }
-
-    /*Шапка Авторизованного пользователя*/
-    .dividerOptionsAccount {
-        display: none;
-    }
-    .accountName {
+    .tokenBtn {
         display: none !important;
     }
-    .headerAuthBurger {
-        order: -1;
+    .userName {
+        display: none !important;
     }
 }
 
 /*Медиа для 573 пикселей*/
 @media (max-width: 573px) {
-    /*Шапка Авторизованного пользователя*/
-    .tokensBtn {
+    .logo {
+        font-size: 30px !important;
+    }
+    .loginBtn {
         display: none !important;
     }
-    .authBurger {
-        order: 2;
-    }
-    .logoutBtn {
-        order: 1;
+    .hiddenLoginBtn {
+        display: flex !important;
     }
 }
