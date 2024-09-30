@@ -1,9 +1,17 @@
 import {createContext, useContext ,useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom"
+
 import { USER_DATA_KEY, USER_NAME, GUEST_NAME} from "../../config";
+import { ACCOUNT } from "../../config";
+import { LOGIN } from "../../config";
+import { HOME } from "../../config";
+
 const AuthContext = createContext()
+
 export const useAuth = () => useContext(AuthContext)
+
 const AuthProvider = ({children}) =>{
+
     const [isAuth, setIsAuth] = useState(false);
     const navigate = useNavigate();
 
@@ -13,7 +21,7 @@ const AuthProvider = ({children}) =>{
     }, []);
 
     useEffect(()=>{
-        if (isAuth) navigate('/home')
+        if (!isAuth) navigate(HOME)
     }, [isAuth]);
 
     const login = (token) => {

@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './modules/auth/ProtectedRoute';
 import AccountInfo from './components/account/AccountInfo';
 import MainPage from './components/MainPage';
-import Header from './components/header/Header';
+
+
 function App() {
   return (
     
@@ -22,13 +23,12 @@ const Main = () => {
   return (
     <div className='pageWrapper'>
       <div className='contentWrapper'>
-        <Header/>
-      </div>     
-      <Routes>
-        <Route path='*' element = {<Login/>} />
-        <Route path='/account' element = {<ProtectedRoute component={<AccountInfo/>}/>}/>
-        <Route path='/home' element = {<ProtectedRoute component={<MainPage/>}/>} />
-      </Routes>
+        <Routes>
+          <Route path='*' element = {<MainPage/>} />
+          <Route path='/account' element = {<ProtectedRoute component={<AccountInfo/>}/>}/>
+          <Route path='/home' element = {<ProtectedRoute component={<MainPage/>}/>} />
+        </Routes>
+      </div>
     </div>
   )
 }

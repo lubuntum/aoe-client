@@ -64,10 +64,6 @@
     border-bottom: 1px solid var(--nav-link-hover-cl);
 }
 
-.hiddenLoginBtn {
-    display: none;
-}
-
 /*Стили для меню навигации в шапке Авторизированного пользователя*/
 .headerMenuContainer {
     display: flex;
