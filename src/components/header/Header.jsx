@@ -45,7 +45,7 @@ const Header = () => {
                     </div>
                 </>)}
 
-                {(isAuth && location.pathname === ACCOUNT) && (<>
+                {isAuth && (<>
                     <div className="headerMenuContainer">
                         <nav className="menuOptions">
                             <a href="#">Главная</a>
