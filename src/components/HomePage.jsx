@@ -1,7 +1,7 @@
 import { useAuth } from "../modules/auth/AuthProvider"
-import Header from '../components/header/Header';
+import Header from './header/Header';
 
-const MainPage = () => {
+const HomePage = () => {
     const {isAuth, getUsername} = useAuth()
     return (
         <>
@@ -13,4 +13,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default HomePage
