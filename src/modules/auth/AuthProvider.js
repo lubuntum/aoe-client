@@ -19,10 +19,11 @@ const AuthProvider = ({children}) =>{
         const token = localStorage.getItem('token')
         if (token) setIsAuth(true)
     }, []);
-
+    /*
     useEffect(()=>{
         if (!isAuth) navigate(HOME)
     }, [isAuth]);
+    */
 
     const login = (token) => {
         localStorage.setItem('token', token);
