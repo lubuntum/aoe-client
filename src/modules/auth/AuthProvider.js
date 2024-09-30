@@ -16,8 +16,9 @@ const AuthProvider = ({children}) =>{
     const navigate = useNavigate();
 
     useEffect(()=>{
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token')//обращение к серверу
         if (token) setIsAuth(true)
+        console.log(`${isAuth} -> ${token}`)
     }, []);
     /*
     useEffect(()=>{

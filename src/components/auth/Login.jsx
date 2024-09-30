@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {useAuth} from "../../modules/auth/AuthProvider"
 import { serverLogin } from "../../modules/auth/AuthAPI"
+import Header from '../header/Header';
 import "./login.css"
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -27,6 +28,8 @@ const Login = () => {
     }
 
     return (
+        <>
+        <Header/>
         <div className="login-container">
             {error && 
                 <div className="error-container">
@@ -40,6 +43,8 @@ const Login = () => {
                 <button type="submit">Войти</button>
             </form>
         </div>
+        </>
+
     )
 
 }
