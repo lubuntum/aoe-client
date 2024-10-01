@@ -1,27 +1,30 @@
 import { useState } from "react"
+import { checkPsdStrength } from "../../modules/psdStrength/checkPsdStrength"
 
 const PsdStrengthContainer = ({psdStyle}) => {
-    return (<div className={`passwordStrength`}></div>)
+    return (<div className={`passwordStrength ${psdStyle}`}></div>)
 }
 
 export const RecoverPass = () => {
+    //Сами пароли
     const [pass, setPass] = useState("")
     const [repeatPass, setRepeatPass] = useState("")
-    const [psdStrength, setPsdStrength] = useState("colorStrength")
-    //Событие клика
+    //Индикатор пароля стиль
+    const [psdStrength, setPsdStrength] = useState("")
+    const [psdRepeatStrength, setPsdRepeatStrength] = useState("")
+
+    const [error, setError] = useState('')
+    //Событие клика смены пароля
     const changePass = ()=>{
-        console.log(pass, repeatPass)
-        //Сравнивать пароле при клике
-        //Сложность пароля 
+        if(!(pass === repeatPass)) console.error("Пароли не равны")
+        if(pass.length < 5) console.error("Длинна смол")
     }
     //Событие ввода пароля и проверка сложности + изменение цвета
-    const psdStrengthCheck = (passValue, valueChaneFn) => {
+    const psdStrengthCheck = (passValue, valueChangeFn, psdStrengthStyle) => {
         //Вызвать функцию из module
-        //const colorStyle = checkPsdStrength(passValue)
-        //setPsdStrength(colorStyle)
-        //setPass(passValue)
-        valueChaneFn(passValue)
-        console.log(passValue)
+        const colorStyle = checkPsdStrength(passValue)
+        psdStrengthStyle(colorStyle)
+        valueChangeFn(passValue)
     }
     return (<>
     <div className="accountRecoverPassCardWrapper">
@@ -29,18 +32,17 @@ export const RecoverPass = () => {
         <div className="horizontalDivider"></div>
         <div className="accountRecoverPassCardInputs">
             <div className="inputContainer">
-                <input type="password" placeholder="Старый пароль" required></input>
+                <input className="passInput" type="password" placeholder="Старый пароль" required></input>
                 <div className="passwordStrength" style={{display: "none"}}></div>
             </div>
             <div className="inputContainer">
-                <input type="password" placeholder="Новый пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setPass)}}></input>
+                <input className="passInput" type="password" placeholder="Новый пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setPass, setPsdStrength)}}></input>
                 <PsdStrengthContainer psdStyle = {psdStrength}/>
             </div>
             <div className="inputContainer">
-                <input type="password" placeholder="Повторите пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setRepeatPass)}}></input>
-                <div className="passwordStrength"></div>
+                <input className="passInput" type="password" placeholder="Повторите пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setRepeatPass, setPsdRepeatStrength)}}></input>
+                <PsdStrengthContainer psdStyle = {psdRepeatStrength}/>
             </div>
-            <div className="inputError">Error</div>
             <a className="btn" style={{width: "100%"}} onClick={() => {changePass()}}>Обновить пароль</a>
         </div>
     </div>
