@@ -56,6 +56,8 @@
 	fill: var(--btn-text-hover-cl);
 }
 
+
+
 .inputContainer {
   position: relative;
   width: 100%;
@@ -67,36 +69,44 @@
   width: 10px;
   height: 20px;
   border-radius: 4px;
-  background-color: red;
+  background-color: transparent;
   z-index: 3;
   top: 10px;
   left: 10px;
   opacity: 0;
-  transition: all .1s ease;
+  transition: all .50s ease;
 }
-.inputContainer input {
+.inputContainer .passInput {
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 0 30px;
+  padding-left: 30px;
   font-size: 16px;
   outline: none;
   border-radius: 7px;
   border: 1px solid #ADADAD;
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 }
-.inputContainer input:focus,
-.inputContainer input:valid {
+.inputContainer .passInput:focus,
+.inputContainer .passInput:valid {
   border: 1px solid #2276F4;
   box-shadow: 0 0 10px #2276F4;
 }
-.inputContainer input:focus + .passwordStrength,
-.inputContainer input:valid + .passwordStrength {
+.inputContainer .passInput:valid + .passwordStrength {
   opacity: 1;
 }
-
-
-
+.badPassStyle {
+  background-color: #ef476f;
+  box-shadow: 0 0 5px #ef476f;
+}
+.middlePassStyle {
+  background-color: #ffd166;
+  box-shadow: 0 0 5px #ffd166;
+}
+.goodPassStyle {
+  background-color: #06d6a0;
+  box-shadow: 0 0 5px #06d6a0;
+}
 
 
 
