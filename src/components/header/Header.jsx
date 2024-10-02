@@ -1,9 +1,9 @@
 import "./header.css"
 
-import { Logo } from "./Logo";
+import { Logo } from "./Logo"
 import { Burger } from "./Burger"
-import { Navbar } from "./Navbar";
-import { Options } from "./Options";
+import { Navbar } from "./Navbar"
+import { Options } from "./Options"
 
 export const Header = () => {
     return(

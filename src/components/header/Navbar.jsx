@@ -1,6 +1,7 @@
 import { useAuth } from "../../modules/auth/AuthProvider"
 import { useLocation } from "react-router-dom"
 import routes from '../../routes'
+
 import { Collapse } from "./Collapse"
 
 export const Navbar = () => {
