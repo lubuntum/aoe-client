@@ -23,8 +23,8 @@ const Main = () => {
       <div className='contentWrapper'>
         <Routes>
           <Route path='/*' element = {<p>404 NOT FOUND</p>} />
-          <Route path= {routes.LOGIN} element = {<Login/>}/>
-          <Route path= {routes.REGISTER} element = {<p>REGISTRATION</p>}/>
+          <Route path= {routes.LOGIN} element = {<ProtectedRoute component={<Login/>}/>}/>
+          <Route path= {routes.REGISTER} element = {<ProtectedRoute component={<p>REGISTRATION</p>}/>}/>
 
           <Route path= {routes.ACCOUNT} element = {<ProtectedRoute component={<AccountInfo/>}/>}/>
           <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>} />
