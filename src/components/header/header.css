@@ -59,8 +59,6 @@ nav a:hover {
 .authHeaderNav nav {
     display: flex;
     flex-direction: row;
-    justify-content: end;
-    width: 100%;
     gap: 30px;
 }
 
