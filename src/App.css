@@ -26,6 +26,18 @@
 	--divider-cl: #808080;
 }
 
+.pageWrapper {
+  margin: 20px;
+  border-radius: 20px;
+  background-color: var(--temp-bg-cl);
+  padding: 20px;
+}
+
+.contentWrapper {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
 .btn {
 	display: flex;
 	flex-direction: row;
@@ -76,7 +88,7 @@
   opacity: 0;
   transition: all .50s ease;
 }
-.inputContainer .passInput {
+.inputContainer .customInput {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -87,12 +99,12 @@
   border: 1px solid #ADADAD;
   transition: all .2s ease-in-out;
 }
-.inputContainer .passInput:focus,
-.inputContainer .passInput:valid {
+.inputContainer .customInput:focus,
+.inputContainer .customInput:valid {
   border: 1px solid #2276F4;
   box-shadow: 0 0 10px #2276F4;
 }
-.inputContainer .passInput:valid + .passwordStrength {
+.inputContainer .customInput:valid + .passwordStrength {
   opacity: 1;
 }
 .badPassStyle {
@@ -106,58 +118,4 @@
 .goodPassStyle {
   background-color: #06d6a0;
   box-shadow: 0 0 5px #06d6a0;
-}
-
-
-
-
-.pageWrapper {
-  margin: 20px;
-  border-radius: 20px;
-  background-color: var(--temp-bg-cl);
-  padding: 20px;
-}
-
-.contentWrapper {
-  margin: 0 auto;
-  max-width: 1440px;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
