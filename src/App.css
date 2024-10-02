@@ -119,3 +119,11 @@
   background-color: #06d6a0;
   box-shadow: 0 0 5px #06d6a0;
 }
+
+
+
+@media (max-width: 425px) {
+  .pageWrapper {
+    margin: 0;
+  }
+}
