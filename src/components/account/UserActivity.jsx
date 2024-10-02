@@ -1,12 +1,7 @@
 export const UserActivity = () => {
     return (<>
-    <div className="userActivityCardWrapper">
-        <div className="cardTitle">
-            <p className="userActivityCardTitle">Ваша активность</p>
-            <div className="horizontalDivider"></div>
+        <div className="activityContainerWrapper gridItem5">
+            <p>Активность</p>
         </div>
-        <div className="userActivityCardInfo">
-        </div>
-    </div>
     </>)
 }

@@ -1,0 +1,189 @@
+/*Стили для данных пользователя в личном кабинете*/
+.userContainerWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    height: 250px;
+}
+
+.userDataColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.userDataContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.userDataContainer p:first-child {
+    font-weight: 700;
+}
+.tokensWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    top: -40px;
+    right: 40px;
+}
+.tokenContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #2276f4;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #2276f4;
+    width: 250px;
+    height: 250px;
+}
+.tokenTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.tokenSvg {
+    width: 85%;
+    height: auto;
+}
+.tokenTitle p {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: right;
+}
+.tokenRemain {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+    padding-right: 20px;
+}
+.tokenContainer a {
+    background-color: white !important;
+    color: black !important;
+    box-shadow: 0 0 10px white !important;
+    transition: all .1s ease;
+}
+.tokenContainer a:hover {
+    background-color: #FDCE26 !important;
+    box-shadow: 0 0 10px #FDCE26 !important;
+}
+
+
+
+@media (max-width: 1450px) {
+    .userContainerWrapper {
+        height: 200px;
+    }
+    .userDataContainer {
+        font-size: 18px;
+        gap: 10px;
+    }
+    .userDataColumn {
+        gap: 20px;
+    }
+    .tokenContainer {
+        width: 200px;
+        height: 200px;
+    }
+    .tokenTitle p {
+        font-size: 16px;
+    }
+    .tokenRemain {
+        font-size: 30px;
+    }
+    .tokenContainer a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .userContainerWrapper {
+        flex-direction: column;
+        align-items: start;
+        height: auto;
+    }
+}
+
+@media (max-width: 870px) {
+    .userContainerWrapper {
+        width: auto;
+    }
+    .tokensWrapper {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .userContainerWrapper {
+        position: initial;
+        gap: 15px;
+    }
+    .userDataColumn {
+        gap: 15px;
+    }
+    .tokensWrapper {
+        position: initial;
+        width: 100%;
+        gap: 15px;
+    }
+    .tokenContainer {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        height: 80px;
+        width: auto;
+    }
+    .tokenTitle {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .tokenSvg {
+        width: 60px;
+        height: 60px;
+    }
+    .tokenTitle p {
+        text-align: right;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        padding-right: 0;
+    }
+    .tokenRemain {
+        width: auto;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 610px) {
+    .userContainerWrapper {
+        gap: 10px;
+    }
+    .tokensWrapper {
+        display: none;
+    }
+    .tokensMini {
+        display: flex !important;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .tokensMini a {
+        width: 100px;
+    }
+}
