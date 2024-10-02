@@ -1,8 +1,10 @@
 export const PersonalData = () => {
     return (<>
     <div className="accountDataCardWrapper">
-        <p className="accountDataCardTitle">Данные аккаунта</p>
-        <div className="horizontalDivider"></div>
+        <div className="cardTitle">
+            <p className="accountDataCardTitle">Данные аккаунта</p>
+            <div className="horizontalDivider"></div>
+        </div>
         <div className="accountDataCardInfo">
             <p>Почта: <span>Почта</span></p>
             <p>Имя пользователя: <span>Имя пользователя</span></p>

@@ -1,3 +1,4 @@
+/*Стили для данных пользователя и сброса пароля в личном кабинете*/
 .accountWrapper {
     display: flex;
     flex-direction: column;
@@ -5,12 +6,11 @@
     align-items: center;
     gap: 20px;
 }
-
 .accountsDataContainer {
     padding: 20px;
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto 550px 300px;
     gap: 20px;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
@@ -20,17 +20,24 @@
     border: 1px solid rgba(255, 255, 255, 0.35);
     z-index: 0;
 }
-
 .accountDataCardWrapper, .accountRecoverPassCardWrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    max-height: 340px;
+    height: 340px;
+    justify-content: space-between;
     padding: 20px;
-    max-width: 555px;
     background-color: white;
     border-radius: 7px;
 }
-.accountDataCardTitle, .accountRecoverPassCardTitle {
+.cardTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.accountDataCardTitle, .accountRecoverPassCardTitle,
+.subscriptionCardTitle, .partnerProgrammCardTitle,
+.userActivityCardTitle {
     font-size: 24px;
     font-weight: 600;
 }
@@ -50,4 +57,100 @@
 .accountDataCardInfo p span {
     font-weight: 500;
     color: #2276F4;
+}
+
+
+/*Стили для подписки в личном кабинете*/
+.subscriptionCardWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    max-height: 340px;
+    height: 340px;
+    background-color: white;
+    border-radius: 7px;
+    max-width: 300px;
+}
+.subscriptionCardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.subscriptionCardInfo p {
+    font-size: 18px;
+}
+.subscriptionCardInfo p span {
+    font-weight: 500;
+    color: #2276F4;
+}
+.progressBarWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.progressBarOuter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    box-shadow: 0 0 10px #2276F4;
+    border-radius: 50%;
+}
+.progressBarInner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+    box-shadow: inset 0 0 10px #2276F4;
+    border-radius: 50%;
+}
+.remainDays {
+    font-size: 18px;
+    font-weight: 600;
+}
+.progressBarWrapper svg {
+    position: absolute;
+}
+.progressBarWrapper svg circle {
+    fill: none;
+    stroke: #2276F4;
+    stroke-width: 10px;
+    stroke-linecap: round;
+}
+
+
+/*Стили для партнерской программы в личном кабинете*/
+.partnerProgrammCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 7px;
+}
+.partnerProgrammInputWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/*Стили для активности пользователя в личном кабинете*/
+.userActivityCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 7px;
 }

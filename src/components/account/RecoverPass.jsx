@@ -28,19 +28,21 @@ export const RecoverPass = () => {
     }
     return (<>
     <div className="accountRecoverPassCardWrapper">
-        <p className="accountRecoverPassCardTitle">Сброс пароля</p>
-        <div className="horizontalDivider"></div>
+        <div className="cardTitle">
+            <p className="accountRecoverPassCardTitle">Сброс пароля</p>
+            <div className="horizontalDivider"></div>
+        </div>
         <div className="accountRecoverPassCardInputs">
             <div className="inputContainer">
-                <input className="passInput" type="password" placeholder="Старый пароль" required></input>
+                <input className="customInput" type="password" placeholder="Старый пароль" required></input>
                 <div className="passwordStrength" style={{display: "none"}}></div>
             </div>
             <div className="inputContainer">
-                <input className="passInput" type="password" placeholder="Новый пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setPass, setPsdStrength)}}></input>
+                <input className="customInput" type="password" placeholder="Новый пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setPass, setPsdStrength)}}></input>
                 <PsdStrengthContainer psdStyle = {psdStrength}/>
             </div>
             <div className="inputContainer">
-                <input className="passInput" type="password" placeholder="Повторите пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setRepeatPass, setPsdRepeatStrength)}}></input>
+                <input className="customInput" type="password" placeholder="Повторите пароль" required onChange={(e)=>{psdStrengthCheck(e.target.value, setRepeatPass, setPsdRepeatStrength)}}></input>
                 <PsdStrengthContainer psdStyle = {psdRepeatStrength}/>
             </div>
             <a className="btn" style={{width: "100%"}} onClick={() => {changePass()}}>Обновить пароль</a>
