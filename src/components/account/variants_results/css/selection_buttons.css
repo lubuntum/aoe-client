@@ -1,0 +1,60 @@
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+}
+.buttonContainer input[type="checkbox"] {
+    display: none;
+}
+.buttonContainer label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2276F4;
+    color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 10px #2276F4;
+    transition: all .1s ease;
+}
+.buttonContainer label:hover {
+    background-color: #FDCE26;
+    box-shadow: 0 0 10px #FDCE26;
+    color: black;
+}
+.buttonContainer input[type="checkbox"]:checked ~ label {
+    background-color: #FDCE26;
+    box-shadow: 0 0 10px #FDCE26;
+    color: black;
+}
+
+
+@media (max-width: 1450px) {
+    .buttonContainer {
+        height: 60px;
+    }
+    .buttonContainer label {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 870px) {
+    .buttonContainer label p {
+        display: none;
+    }
+    .buttonContainer label span {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .buttonContainer {
+        height: 50px;
+    }
+}

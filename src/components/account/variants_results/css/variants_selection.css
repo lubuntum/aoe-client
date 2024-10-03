@@ -1,0 +1,18 @@
+.variantsContainerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .variantsContainerWrapper {
+        gap: 10px;
+        padding: 0;
+        background-color: transparent;
+    }
+}
