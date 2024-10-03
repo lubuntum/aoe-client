@@ -1,3 +1,5 @@
+import "./css/user_activity.css"
+
 export const UserActivity = () => {
     return (<>
         <div className="activityContainerWrapper gridItem5">

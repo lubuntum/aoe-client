@@ -1,5 +1,7 @@
 import { useState } from "react"
-import { checkPsdStrength } from "../../modules/psdStrength/checkPsdStrength"
+import { checkPsdStrength } from "../../../modules/psdStrength/checkPsdStrength.js"
+
+import "./css/change_pass.css"
 
 const PsdStrengthContainer = ({psdStyle}) => {
     return (<div className={`passwordStrength ${psdStyle}`}></div>)

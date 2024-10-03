@@ -1,3 +1,5 @@
+import "./css/sub_data.css"
+
 export const SubData = () => {
     return (<>
         <div className="subContainerWrapper gridItem2">

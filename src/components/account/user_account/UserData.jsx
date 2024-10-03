@@ -1,6 +1,8 @@
-import { ReactComponent as BoltIcon } from "../../res/icons/bolt_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-import { ReactComponent as FaceIcon } from "../../res/icons/face_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-import { ReactComponent as AddIcon } from "../../res/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as BoltIcon } from "../../../res/icons/bolt_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as FaceIcon } from "../../../res/icons/face_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as AddIcon } from "../../../res/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+
+import "./css/user_data.css"
 
 export const UserData = () => {
     return (<>

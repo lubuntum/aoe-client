@@ -1,3 +1,5 @@
+import "./css/partner_prog.css"
+
 export const PartnerProg = () => {
     return (<>
         <div className="partnerContainerWrapper gridItem3">
