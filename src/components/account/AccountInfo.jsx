@@ -1,40 +1,20 @@
-import { useAuth } from "../../modules/auth/AuthProvider"
-import Header from '../header/Header'
-
 import "./account.css"
-import "./userData.css"
-import "./subData.css"
-import "./partnerProg.css"
-import "./changePass.css"
-import "./userActivity.css"
 
-import { UserData } from "./UserData"
-import { SubData } from "./SubData"
-import { PartnerProg } from "./PartnerProg"
-import { ChangePass } from "./ChangePass"
-import { UserActivity } from "./UserActivity"
+import { Header } from '../header/Header'
+import { UserAccount } from "./user_account/UserAccount"
+import { VariantsResults } from "./variants_results/VariantsResults"
+
+import { useAuth } from "../../modules/auth/AuthProvider"
 
 const AccountInfo = () =>{
     const {isAuth, getUsername} = useAuth()
 
     return (<>
-    <div className="accountWrapper">
-        <Header/>
-
-        <div className="accountTitle">Личный кабинет</div>
-
-        <div className="accountContainer">
-            <UserData/>
-            <SubData/>
-            <PartnerProg/>
-            <ChangePass/>
-            <UserActivity/>
+        <div className="accountWrapper">
+            <Header/>
+            <UserAccount/>
+            <VariantsResults/>
         </div>
-
-        <div className="accountTitle">Пройденные варианты</div>
-
-        
-    </div>
     </>)
 }
 
