@@ -1,15 +1,23 @@
 import "./css/tasks_selection.css"
 
-import { SelectionButtons } from "./SelectionButtons"
-
-export const TaskSelection = () => {
+import { TaskSelectionBtn } from "./TaskSelectionBtn"
+import {ExamSelectionBtn} from "./ExamSelectionBtn"
+export const TaskSelection = ({showContentByTaskClick, currentVariant, showContentByExamClick}) => {
+   let idleComponent = undefined
+   if (currentVariant === undefined) {
+     idleComponent = <div className="tasksContainerWrapper"><p>Вариант не выбран</p></div>
+   }
     return (<>
-        <div className="tasksContainerWrapper">
-            <SelectionButtons type={"task"} id={1} theme={"Задание 1"}/>
-            <SelectionButtons type={"task"} id={2} theme={"Задание 2"}/>
-            <SelectionButtons type={"task"} id={3} theme={"Задание 3"}/>
-            <SelectionButtons type={"task"} id={4} theme={"Задание 4"}/>
-            <SelectionButtons type={"task"} id={5} theme={"Эказмен"}/>
+    <div className="tasksContainerWrapper">
+        {idleComponent && idleComponent}
+        {idleComponent === undefined &&
+        <>
+            {currentVariant.tasks.map((task, i)=>(
+                <TaskSelectionBtn type={"task"} id = {i} task = {task} showContentByTaskClick={showContentByTaskClick} />
+            ))}
+            <ExamSelectionBtn showContentByExamClick = {showContentByExamClick}/>
+        </>
+        }
         </div>
     </>)
 }

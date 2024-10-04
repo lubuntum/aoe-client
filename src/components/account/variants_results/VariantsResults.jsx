@@ -1,11 +1,15 @@
 import "./css/variants_result.css"
-
+import { useState } from "react"
 import { VariantsSelection } from "./VariantsSelection"
 import { TaskSelection } from "./TasksSelection"
-import { ContentViewer } from "./ContentViewer"
+import { TaskContentViewer } from "./TaskContentViewer"
+import { ExamContentViewer } from "./ExamContentViewer"
 
 export const VariantsResults = () =>{
-    /**
+    const [currentVariant, setCurrentVariant] = useState()
+    const [currentTask, setCurrentTask] = useState()
+    const [examPicked, setExamPicked] = useState()
+    /** TEST
      * Данные которые будут подсасываться через useEffect
      */
     const testResponse = {
@@ -39,18 +43,43 @@ export const VariantsResults = () =>{
                                             "task_content":{"task_guide":"Aboba guide4", "task_text":"Aboba Text4"}}]},]
         }
     }
+    /**
+     * Функция клика на вариант задания,
+     * необходима для получения варианта и работы с ним по клику
+     * @param {*} i Индекс текущего варианта
+     */
     const showTasksClick = (i) =>{
         const chosenVariant = testResponse.data.variants[i]
         console.log(chosenVariant.theme)
-        //Дописать в хуке
+        setCurrentVariant(chosenVariant)
     }
+    /**
+     * Функция необходимая для отображения
+     * контента отдельной задачи по клику
+     * на кнопку задания
+     * @param {*} task Задание
+     * 
+     */
+    const showContentByTaskClick = (task) => {
+        console.log(task.id)//exam false hook
+        console.info("set false")
+        setExamPicked(false)
+        setCurrentTask(task)
+    }
+    const showContentByExamClick = () =>{
+        //account token, currentVariant.id
+        setExamPicked(true)
+        console.info("set true")
+    } 
     //Сделать отдельным компонентом дофига логики
     return (<>
         <div className="resultTitle">Пройденные варианты</div>
         <div className="resultContainer">
-            <VariantsSelection variants={testResponse.data.variants}/>
-            <TaskSelection/>
-            <ContentViewer/>
+            <VariantsSelection variants={testResponse.data.variants} showTasksClick = {showTasksClick}/>
+            <TaskSelection  currentVariant = {currentVariant} showContentByTaskClick= {showContentByTaskClick} 
+            showContentByExamClick = {showContentByExamClick} />
+            {examPicked ? <ExamContentViewer variant={currentVariant} exams={undefined}/> :  <TaskContentViewer task={currentTask}/>}
+           
         </div>
     </>)
 }
