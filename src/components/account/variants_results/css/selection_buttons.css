@@ -5,10 +5,15 @@
     width: 100%;
     height: 80px;
 }
-.buttonContainer input[type="checkbox"] {
+.radioContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.buttonContainer input[type="radio"] {
     display: none;
 }
-.buttonContainer label {
+.buttonContainer .radioContainer label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,12 +28,12 @@
     box-shadow: 0 0 10px #2276F4;
     transition: all .1s ease;
 }
-.buttonContainer label:hover {
+.buttonContainer .radioContainer label:hover {
     background-color: #FDCE26;
     box-shadow: 0 0 10px #FDCE26;
     color: black;
 }
-.buttonContainer input[type="checkbox"]:checked ~ label {
+.buttonContainer .radioContainer input[type="radio"]:checked ~ label {
     background-color: #FDCE26;
     box-shadow: 0 0 10px #FDCE26;
     color: black;

@@ -5,6 +5,7 @@ export const TaskContentViewer = ({task}) => {
     if(task === undefined) {
         idleComponent = <p>Задача не выбрана</p>
     }
+    
     return (<>
         <div className="viewerContainerWrapper">
             {idleComponent && idleComponent}

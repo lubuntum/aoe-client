@@ -1,10 +1,12 @@
 import "./css/selection_buttons.css"
 
 export const ExamSelectionBtn = ({showContentByExamClick}) => {
-    return (
+    return (<>
         <div className="buttonContainer">
-                <input type="checkbox" id='examBtn'></input>
+            <fieldset id="tasksGroup" className="radioContainer">
+                <input type="radio" id='examBtn'></input>
                 <label for='examBtn' onClick={()=>{showContentByExamClick()}}><p>Экзамен</p></label>
-            </div>
-    )
+            </fieldset>
+        </div>
+    </>)
 }

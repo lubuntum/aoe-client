@@ -75,11 +75,16 @@ export const VariantsResults = () =>{
     return (<>
         <div className="resultTitle">Пройденные варианты</div>
         <div className="resultContainer">
-            <VariantsSelection variants={testResponse.data.variants} showTasksClick = {showTasksClick}/>
-            <TaskSelection  currentVariant = {currentVariant} showContentByTaskClick= {showContentByTaskClick} 
-            showContentByExamClick = {showContentByExamClick} />
+            <VariantsSelection 
+                variants={testResponse.data.variants} 
+                showTasksClick = {showTasksClick}/>
+
+            <TaskSelection  
+                currentVariant = {currentVariant} 
+                showContentByTaskClick = {showContentByTaskClick} 
+                showContentByExamClick = {showContentByExamClick}/>
+
             {examPicked ? <ExamContentViewer variant={currentVariant} exams={undefined}/> :  <TaskContentViewer task={currentTask}/>}
-           
         </div>
     </>)
 }
