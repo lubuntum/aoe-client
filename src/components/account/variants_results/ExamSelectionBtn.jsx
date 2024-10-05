@@ -4,7 +4,7 @@ export const ExamSelectionBtn = ({showContentByExamClick}) => {
     return (<>
         <div className="buttonContainer">
             <fieldset id="tasksGroup" className="radioContainer">
-                <input type="radio" id='examBtn'></input>
+                <input type="radio" id='examBtn' name="tasksGroup"></input>
                 <label for='examBtn' onClick={()=>{showContentByExamClick()}}><p>Экзамен</p></label>
             </fieldset>
         </div>
