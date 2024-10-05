@@ -3,13 +3,14 @@ import "./css/content_viewer.css"
 export const TaskContentViewer = ({task}) => {
     let idleComponent = undefined
     if(task === undefined) {
-        idleComponent = <p>Задача не выбрана</p>
+        idleComponent = <div className="viewerContainerWrapper"><p>Задача не выбрана</p></div>
     }
     
     return (<>
-        <div className="viewerContainerWrapper">
-            {idleComponent && idleComponent}
-            {idleComponent === undefined && <p>{task.task_content.task_guide}</p>}
-        </div>
+        {idleComponent && idleComponent}
+        {idleComponent === undefined && 
+            <div className="viewerContainerWrapper">
+                <p>{task.task_content.task_guide}</p>
+            </div>}
     </>)
 }

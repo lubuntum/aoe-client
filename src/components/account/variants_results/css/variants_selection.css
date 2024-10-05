@@ -1,3 +1,10 @@
+.selectVariantsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+}
+
 .variantsContainerWrapper {
     display: flex;
     flex-direction: column;
@@ -5,13 +12,29 @@
     padding: 20px;
     background-color: white;
     border-radius: 20px;
+    max-height: 740px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.variantsContainerWrapper::-webkit-scrollbar {
+    display: none;
 }
 
 @media (max-width: 1024px) {
     .variantsContainerWrapper {
         flex-direction: row;
         justify-content: start;
-        overflow-x: auto;
+        overflow: auto;
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .selectVariantsContainer .title {
+        display: flex !important;
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 20px;
     }
 }
