@@ -9,7 +9,7 @@ export const TaskContentViewer = ({task}) => {
     return (<>
         <div className="viewerContainerWrapper">
             {idleComponent && idleComponent}
-            {idleComponent === undefined && <p>{task.id}</p>}
+            {idleComponent === undefined && <p>{task.task_content.task_guide}</p>}
         </div>
     </>)
 }

@@ -1,9 +1,16 @@
 .viewerContainerWrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     padding: 20px;
     border-radius: 20px;
     height: 900px;
     max-height: 900px;
+}
+
+.viewerContainerWrapper p {
+    font-size: 20px;
+    font-weight: 700;
 }

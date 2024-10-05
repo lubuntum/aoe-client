@@ -7,6 +7,12 @@
     background-color: white;
     border-radius: 20px;
     padding: 20px;
+    height: 120px;
+}
+
+.tasksContainerWrapper p {
+    font-size: 20px;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
