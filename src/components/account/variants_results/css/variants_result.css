@@ -11,6 +11,9 @@
 .gridItem6 {
     grid-row: span 2 ;
 }
+.gridItem7 {
+    grid-row: span 1;
+}
 
 @media (max-width: 1440px) {
     .resultContainer {
@@ -33,6 +36,9 @@
         overflow: hidden;
     }
     .gridItem6 {
+        grid-row: span 1;
+    }
+    .gridItem7 {
         grid-row: span 1;
     }
 }

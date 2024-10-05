@@ -10,7 +10,7 @@ export const TaskSelection = ({showContentByTaskClick, currentVariant, showConte
     }
    
     return (<>
-        <div className="selectTasksContainer">
+        <div className="selectTasksContainer gridItem7">
             <p className="title" style={{display: "none"}}>Задания</p>
             {idleComponent && idleComponent}
             {idleComponent === undefined && (<>
