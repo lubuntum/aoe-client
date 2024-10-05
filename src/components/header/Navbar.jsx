@@ -7,6 +7,7 @@ import { Collapse } from "./Collapse"
 export const Navbar = () => {
     const {logout, isAuth, getUsername} = useAuth()
     const location = useLocation()
+    
     return (<>
         {!isAuth && (
             <nav className="unAuthHeaderNav">

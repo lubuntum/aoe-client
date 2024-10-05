@@ -248,3 +248,9 @@ nav a:hover {
         display: none;
     }
 }
+
+@media (max-width: 425px) {
+    .navBurger input[type="checkbox"]:checked ~ nav {
+        top: 120px;
+    }
+}
