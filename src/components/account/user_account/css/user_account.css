@@ -15,7 +15,7 @@
     grid-column: span 3;
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 1440px) {
     .accountContainer {
         grid-template-columns: 350px 300px auto;
     }
@@ -26,7 +26,7 @@
 
 @media (max-width: 1280px) {
     .accountContainer {
-        grid-template-columns: auto auto;
+        grid-template-columns: 400px auto;
     }
     .gridItem1 {
         grid-column: span 2;

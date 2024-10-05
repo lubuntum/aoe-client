@@ -40,26 +40,32 @@
 }
 
 
-@media (max-width: 1450px) {
+@media (max-width: 1440px) {
     .buttonContainer {
         height: 60px;
     }
-    .buttonContainer label {
+    .buttonContainer label p {
         font-size: 16px;
     }
 }
 
-@media (max-width: 870px) {
-    .buttonContainer label p {
-        display: none;
-    }
-    .buttonContainer label span {
-        display: flex !important;
+@media (max-width: 1024px) {
+    .variantButton {
+        min-width: 200px;
     }
 }
 
 @media (max-width: 768px) {
-    .buttonContainer {
-        height: 50px;
+    .variantButton {
+        min-width: 150px;
+    }
+    .taskButton label p, 
+    .examButton label p {
+        display: none;
+    }
+    .taskButton label span,
+    .examButton label span {
+        display: flex !important;
+        font-size: 16px;
     }
 }
