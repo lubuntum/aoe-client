@@ -1,22 +1,21 @@
 .viewerContainerWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: white;
     padding: 20px;
     border-radius: 20px;
-    height: 600px;
 }
-
-@media (max-width: 1440px) { 
-    .viewerContainerWrapper {
-        height: 620px;
-    }
+.taskContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-
-@media (max-width: 1024px) { 
-    .viewerContainerWrapper {
-        height: 600px;
-    }
+.taskContent p {
+    text-align: justify;
+    font-size: 16px;
+    font-weight: 600;
+}
+.taskContent p span {
+    color: #2276F4;
+    font-weight: 700;
 }

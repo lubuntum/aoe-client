@@ -1,4 +1,4 @@
-import "./css/content_viewer.css"
+import "../../css/content_viewer.css"
 import {FirstTaskContent} from "./tasks_types/FirstTaskContent"
 import {SecondTaskContent} from "./tasks_types/SecondTaskContent"
 import {ThirdTaskContent} from "./tasks_types/ThirdTaskContent"
@@ -24,7 +24,6 @@ export const TaskContentViewer = ({task}) => {
         {idleComponent === undefined && 
             <div className="viewerContainerWrapper">
                 {TaskContent ? <TaskContent task = {task}/> : <p>Unknown task type</p>}
-                
             </div>}
     </>)
 }

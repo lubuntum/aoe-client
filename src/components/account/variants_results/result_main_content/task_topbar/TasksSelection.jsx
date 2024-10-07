@@ -1,7 +1,7 @@
-import "./css/tasks_selection.css"
+import "../../css/tasks_selection.css"
 
 import { TaskSelectionBtn } from "./TaskSelectionBtn"
-import {ExamSelectionBtn} from "./ExamSelectionBtn"
+import { ExamSelectionBtn } from "./ExamSelectionBtn"
 
 export const TaskSelection = ({showContentByTaskClick, currentVariant, showContentByExamClick}) => {
     let idleComponent = undefined

@@ -1,4 +1,4 @@
-import "./css/selection_buttons.css"
+import "../../css/selection_buttons.css"
 
 export const TaskSelectionBtn = ({type, id, task, showContentByTaskClick}) => {
     return (<>

@@ -1,4 +1,4 @@
-import "./css/selection_buttons.css"
+import "../css/selection_buttons.css"
 
 export const VariantSelectionBtn = ({type, id, theme, showTasksClick, index}) => {
     return (<>

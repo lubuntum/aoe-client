@@ -1,4 +1,4 @@
-import "./css/content_viewer.css"
+import "../../css/content_viewer.css"
 /**
  * 
  * @variant {object} Текущий выбранный вариант
