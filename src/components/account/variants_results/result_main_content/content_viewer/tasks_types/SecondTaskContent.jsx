@@ -1,7 +1,20 @@
+import "../../../css/content_viewer.css"
 
 export const SecondTaskContent = ({task}) => {
     return (<>
-            <p>{task.task_type}</p>
-        </>
-    )
+        <div className="taskContent">
+            <p><span>GUIDE:</span> {task.task_content.task_guide}</p>
+            <div className="dividerHr"></div>
+            <div className="taskTopicContainer">
+                <div>
+                    {task.task_content.task_topics.map((topic, i) => (
+                            <p>{`${i+1}. ${topic}`}</p>
+                    ))}
+                </div>
+                <div className="taskImg">
+                    <img src={task.task_content.task_img} alt=""/>
+                </div>
+            </div>
+        </div>
+    </>)
 }

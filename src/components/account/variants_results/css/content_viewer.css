@@ -1,14 +1,21 @@
 .viewerContainerWrapper {
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-items: start;
     background-color: white;
     padding: 20px;
     border-radius: 20px;
+    overflow: auto;
 }
 .taskContent {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.dividerHr {
+    width: 100%;
+    border-bottom: 1px solid #bbbbbb;
 }
 .taskContent p {
     text-align: justify;
@@ -18,4 +25,35 @@
 .taskContent p span {
     color: #2276F4;
     font-weight: 700;
+}
+.taskContent p:last-child {
+    font-weight: 500;
+}
+.taskTopicContainer p,
+.taskQuestionContainer p,
+.taskSubContainer p {
+    font-weight: 500;
+}
+.taskTopicContainer,
+.taskSubContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.taskImgs {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.taskImg {
+    display: flex;
+    max-width: 500px;
+    max-height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.taskImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

@@ -6,13 +6,11 @@
     width: 100%;
     display: grid;
     grid-template-columns: 300px auto;
+    grid-template-rows: 120px auto 420px;
     gap: 20px;
 }
 .gridItem6 {
     grid-row: span 3 ;
-}
-.gridItem7 {
-    grid-row: span 1;
 }
 
 @media (max-width: 1440px) {
@@ -36,9 +34,6 @@
         overflow: hidden;
     }
     .gridItem6 {
-        grid-row: span 1;
-    }
-    .gridItem7 {
         grid-row: span 1;
     }
 }
