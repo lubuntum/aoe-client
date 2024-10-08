@@ -1,0 +1,9 @@
+.resultVariantSelectionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: auto;
+}

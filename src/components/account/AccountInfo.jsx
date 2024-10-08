@@ -1,19 +1,19 @@
 import "./account.css"
 
 import { Header } from '../header/Header'
-import { UserAccount } from "./user_account/UserAccount"
-import { VariantsResults } from "./variants_results/VariantsResults"
-
-import { useAuth } from "../../modules/auth/AuthProvider"
+import { AccountUserGrid } from "./user/AccountUserGrid"
+import { AccountResultsGrid } from "./variants_results/AccountResultsGrid"
 
 const AccountInfo = () =>{
-    const {isAuth, getUsername} = useAuth()
 
     return (<>
         <div className="accountWrapper">
             <Header/>
-            <UserAccount/>
-            <VariantsResults/>
+            <div className="accountContainer">
+                <p className="accountUserTitle">Личный кабинет</p>
+                <AccountUserGrid/>
+                <AccountResultsGrid/>
+            </div>
         </div>
     </>)
 }

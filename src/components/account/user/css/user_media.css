@@ -1,0 +1,205 @@
+@media (max-width: 1440px) {
+    /*1440 медиа для UserGrid*/
+    .accountUserGrid {
+        grid-template-columns: 400px 300px auto;
+    }
+
+    /*1440 медиа для UserInfo*/
+    .userInfoContainer {
+        height: 200px;
+    }
+    .userInfoFirstColumn,
+    .userInfoSecondColumn,
+    .userInfoThirdColumn {
+        gap: 20px;
+    }
+    .userInfoBioContainer {
+        font-size: 18px;
+        gap: 10px;
+    }
+    .userInfoToken {
+        width: 200px;
+        height: 200px;
+    }
+    .userInfoToken a {
+        font-size: 16px;
+    }
+    .tokenTitle p {
+        font-size: 16px;
+    }
+    .tokenCount {
+        font-size: 30px;
+    }
+
+    /*1440 медиа для UserSubscription*/
+    .userSubscriptionContainer p:first-child {
+        font-size: 18px;
+    }
+    .userSubscriptionContainer a {
+        font-size: 16px;
+    }
+
+    /*1440 медиа для UserPromocode*/
+    .userPromocodeContainer p {
+        font-size: 18px;
+    }
+    .userPromocodeContainer a {
+        font-size: 16px;
+    }
+
+    /*1440 медиа для UserPassword*/
+    .userPasswordContainer p {
+        font-size: 18px;
+    }
+    .newPasswordContainer a,
+    .oldPasswordContainer a {
+        font-size: 16px;
+    }
+
+    /*1440 медиа для UserActivity*/
+    .userActivityContainer p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1280px) {
+    /*1280 медиа для UserGrid*/
+    .accountUserGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gridItem1 {
+        grid-column: span 2;
+    }
+    .gridItem2 {
+        grid-column: span 1;
+    }
+    .gridItem3 {
+        grid-column: span 1;
+    }
+    .gridItem4 {
+        grid-column: span 2;
+    }
+    .gridItem5 {
+        grid-column: span 2;
+    }
+
+    /*1280 медиа для UserInfo*/
+    .userInfoContainer {
+        flex-direction: column;
+        align-items: start;
+        height: auto;
+    }
+
+    /*1280 медиа для UserPassword*/
+    .newPasswordContainer,
+    .oldPasswordContainer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 870px) {
+    /*870 медиа для UserGrid*/
+    .accountUserGrid {
+        grid-template-columns: auto;
+    }
+    .gridItem1 {
+        grid-column: span 1;
+    }
+    .gridItem2 {
+        grid-column: span 1;
+    }
+    .gridItem3 {
+        grid-column: span 1;
+    }
+    .gridItem4 {
+        grid-column: span 1;
+    }
+    .gridItem5 {
+        grid-column: span 1;
+    }
+
+    /*870 медиа для UserInfo*/
+    .userInfoContainer {
+        width: auto;
+    }
+    .userInfoTokensContainer {
+        flex-direction: column;
+    }
+
+    /*870 медиа для UserPromocode*/
+    .userPromocodeContainer {
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    /*768 медиа для UserInfo*/
+    .userInfoContainer {
+        position: initial;
+        gap: 15px;
+    }
+    .userInfoFirstColumn,
+    .userInfoSecondColumn,
+    .userInfoThirdColumn {
+        gap: 15px;
+    }
+    .userInfoTokensContainer {
+        position: initial;
+        width: 100%;
+        gap: 15px;
+    }
+    .userInfoToken {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        height: 80px;
+        width: auto;
+    }
+    .tokenTitle {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .tokenSvg {
+        width: 60px;
+        height: 60px;
+    }
+    .tokenTitle p {
+        text-align: right;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        padding-right: 0;
+    }
+    .tokenCount {
+        width: auto;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 610px) {
+    /*610 медиа для UserInfo*/
+    .userInfoContainer {
+        gap: 10px;
+    }
+    .userInfoTokensContainer {
+        display: none;
+    }
+    .userInfoTokensMini {
+        display: flex !important;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .userInfoTokensMini a {
+        width: 100px;
+    }
+
+    /*610 медиа для UserSubscription*/
+    .userSubscriptionContainer {
+        gap: 10px;
+    }
+    .userSubscriptionDateEnd {
+        display: flex;
+        flex-direction: column;
+    }
+}

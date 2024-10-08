@@ -1,0 +1,14 @@
+/*Стили для активности пользователя в личном кабинете*/
+.userActivityContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    height: 150px;
+}
+.userActivityContainer p {
+    font-size: 20px;
+    font-weight: 700;
+}

@@ -1,0 +1,21 @@
+/*Стили для сетки*/
+.accountUserGrid {
+    display: grid;
+    grid-template-columns: 400px 400px auto;
+    gap: 20px;
+}
+.gridItem1 {
+    grid-column: span 3;
+}
+.gridItem2 {
+    grid-column: span 1;
+}
+.gridItem3 {
+    grid-column: span 1;
+}
+.gridItem4 {
+    grid-column: span 1;
+}
+.gridItem5 {
+    grid-column: span 3;
+}

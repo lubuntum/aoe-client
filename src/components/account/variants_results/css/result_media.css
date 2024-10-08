@@ -1,0 +1,111 @@
+@media (max-width: 1440px) {
+    /*1440 медиа для ResultGrid*/
+    .accountResultGrid {
+        grid-template-columns: 250px auto;
+        grid-template-rows: 100px 370px 370px;
+    }
+
+    /*1440 медиа для SelectionBtn*/
+    .buttonContainer {
+        height: 60px;
+    }
+    .buttonContainer label p {
+        font-size: 16px;
+    }
+
+    /*1440 медиа для TaskSelectionBtn*/
+
+}
+
+@media (max-width: 1280px) {
+    /*1280 медиа для ResultGrid*/
+    .accountResultGrid {
+        grid-template-columns: 200px auto;
+    }
+
+    /*1280 медиа для SelectionBtn*/
+    .buttonContainer label p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1024px) {
+    /*1024 медиа для ResultGrid*/
+    .accountResultGrid {
+        grid-template-columns: auto;
+        grid-template-rows: 100px 100px 300px 370px;
+    }
+    .gridItem6 {
+        grid-row: span 1;
+    }
+    .gridItem7 {
+        grid-row: span 1;
+    }
+    .gridItem8 {
+        grid-row: span 1;
+    }
+    .gridItem9 {
+        grid-row: span 1;
+    }
+
+    /*1024 медиа для SideBar*/
+    .resultVariantSelectionContainer {
+        flex-direction: row;
+        justify-content: start;
+        overflow: auto;
+        width: 100%;
+    }
+
+    /*1024 медиа для SelectionBtn*/
+    .buttonContainer {
+        height: 60px;
+    }
+    .buttonContainer label p {
+        font-size: 16px;
+    }
+
+    /*1024 медиа для VariantSelectionBtn*/
+    .variantBtn {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 870px) {
+    /*870 медиа для ResultGrid*/
+    .accountResultGrid {
+        grid-template-rows: 100px 100px 300px 370px;
+    }
+
+    /*870 медиа для SelectionBtn*/
+    .buttonContainer {
+        height: 60px;
+    }
+    .buttonContainer label p {
+        font-size: 16px;
+    }
+
+    /*870 медиа для VariantSelectionBtn*/
+    .variantBtn {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    /*768 медиа для VariantSelectionBtn*/
+    .variantBtn {
+        min-width: 150px;
+    }
+    .taskBtn label p, 
+    .examBtn label p {
+        display: none;
+    }
+    .taskBtn label span,
+    .examBtn label span {
+        display: flex !important;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 610px) {
+
+}

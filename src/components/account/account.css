@@ -3,10 +3,23 @@
     flex-direction: column;
     gap: 40px;
 }
+.accountContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.accountUserTitle {
+    font-size: 44px;
+    font-weight: 700;
+    margin-left: 40px;
+}
 
 @media (max-width: 1440px) {
     .accountWrapper {
         gap: 20px;
     }
-
+    .accountUserTitle {
+        font-size: 34px;
+        margin-left: 20px;
+    }
 }

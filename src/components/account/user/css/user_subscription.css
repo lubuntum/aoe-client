@@ -1,0 +1,57 @@
+/*Стили для подписки в личном кабинете*/
+.userSubscriptionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 10px;
+    background-color: white;
+    border-radius: 20px;
+}
+.userSubscriptionContainer p {
+    font-size: 18px;
+    font-weight: 500;
+}
+.userSubscriptionContainer p:first-child {
+    font-size: 20px;
+    font-weight: 700;
+}
+.userSubscriptionDateEnd {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.userSubscriptionDateEnd p:first-child {
+    font-size: 18px;
+    font-weight: 500;
+}
+.userSubscriptionDateEnd p:last-child {
+    font-weight: 700;
+}
+.userSubscriptionProgressBar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.userSubscriptionProgressBar p {
+    font-size: 18px;
+    font-weight: 700;
+}
+.progressBarBackground {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #D2D2D2;
+}
+.progressBarLine {
+    border-radius: 50px;
+    background-color: #2276f4;
+    box-shadow: 0 0 10px #2276f4;
+}
+.userSubscriptionContainer a {
+    width: 100%;
+}

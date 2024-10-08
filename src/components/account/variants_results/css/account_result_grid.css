@@ -1,0 +1,21 @@
+.accountResultGrid {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 120px 370px 370px;
+    gap: 20px;
+}
+.gridItem6 {
+    grid-column: span 1;
+    grid-row: span 3;
+}
+.gridItem7 {
+    grid-column: span 1;
+}
+.gridItem8 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+.gridItem9 {
+    grid-column: span 1;
+    grid-row: span 1;
+}

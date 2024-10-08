@@ -1,0 +1,17 @@
+/*Стили для партнерской программы в личном кабинете*/
+.userPromocodeContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+.userPromocodeContainer p {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.userPromocodeContainer a {
+    width: 100%;
+}
