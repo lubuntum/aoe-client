@@ -14,7 +14,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = {data : {'username':username, 'token':"test"}} //await serverLogin(username, password)
+            //const response = {data : {'username':username, 'token':"test"}} //await serverLogin(username, password)
+            const response = await serverLogin(username, password)
             collectDataByToken(response.data.token)
         } catch(error) {
             if (error.response) setError(error.response.data.error)
