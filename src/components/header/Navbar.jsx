@@ -1,5 +1,6 @@
 import { useAuth } from "../../modules/auth/AuthProvider"
 import { useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import routes from '../../routes'
 
 import { Collapse } from "./Collapse"
@@ -7,6 +8,7 @@ import { Collapse } from "./Collapse"
 export const Navbar = () => {
     const {logout, isAuth, getUsername} = useAuth()
     const location = useLocation()
+    const navigate = useNavigate()
     
     return (<>
         {!isAuth && (
@@ -18,7 +20,7 @@ export const Navbar = () => {
                 <a href="#">Отзывы</a>
                 <a href="#">Партнеры</a>
                 <a href="#">FAQ</a>
-                <a href="#">Задания</a>
+                <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
             </nav>
         )}
 
@@ -28,7 +30,7 @@ export const Navbar = () => {
                 <nav>
                     <a href="#">Главная</a>
                     <a href="#">Тарифы</a>
-                    <a href="#">Задания</a>
+                    <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
                 </nav>
             </div>
         </>)}

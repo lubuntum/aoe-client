@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './modules/auth/ProtectedRoute';
 import AccountInfo from './components/account/AccountInfo';
 import HomePage from './components/HomePage';
+import TasksPage from './components/tasks/TasksPage'
 import routes from './routes';
 
 function App() {
@@ -28,6 +29,7 @@ const Main = () => {
 
           <Route path= {routes.ACCOUNT} element = {<ProtectedRoute component={<AccountInfo/>}/>}/>
           <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>} />
+          <Route path={routes.TASK} element = {<ProtectedRoute component={<TasksPage/>}/>}/>
         </Routes>
       </div>
     </div>

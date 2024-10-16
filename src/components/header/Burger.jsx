@@ -1,5 +1,6 @@
 import { useAuth } from "../../modules/auth/AuthProvider"
 import { useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import routes from '../../routes'
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
@@ -7,6 +8,7 @@ import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_E8EAED_FIL
 export const Burger = () => {
     const {isAuth, getUsername} = useAuth()
     const location = useLocation()
+    const navigate = useNavigate()
 
     return (<>
         <div className="navBurger" style={{display: "none"}}>
@@ -20,7 +22,7 @@ export const Burger = () => {
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Отзывы</a>}
                 {(location.pathname !== routes.ACCOUNT) &&  <a href="#">Партнеры</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">FAQ</a>}
-                <a href="#">Задания</a>
+                <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
                 {(isAuth && (location.pathname !== routes.ACCOUNT)) && <a href="#">Личный кабинет</a>}
             </nav>
         </div>
