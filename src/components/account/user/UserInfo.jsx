@@ -36,7 +36,7 @@ export const UserInfo = ({customer}) => {
                 </div>
                 <div className="userInfoBioContainer">
                     <p>Партнерская программа</p>
-                    <p>{customer.promocode ? "Активна" : "Неактивна"}</p>
+                    <p>{customer.partnerName ? customer.partnerName : "Неактивна"}</p>
                 </div>
             </div>
             
