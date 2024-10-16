@@ -12,6 +12,7 @@ const AccountInfo = () =>{
             <div className="accountContainer">
                 <p className="accountUserTitle">Личный кабинет</p>
                 <AccountUserGrid/>
+                <p className="accountResultsTitle">Пройденные варианты</p>
                 <AccountResultsGrid/>
             </div>
         </div>

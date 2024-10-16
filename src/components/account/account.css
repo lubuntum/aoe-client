@@ -1,14 +1,15 @@
 .accountWrapper {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
 }
 .accountContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.accountUserTitle {
+.accountUserTitle,
+.accountResultsTitle {
     font-size: 44px;
     font-weight: 700;
     margin-left: 40px;
@@ -18,7 +19,8 @@
     .accountWrapper {
         gap: 20px;
     }
-    .accountUserTitle {
+    .accountUserTitle,
+    .accountResultsTitle {
         font-size: 34px;
         margin-left: 20px;
     }
