@@ -11,10 +11,10 @@ import { TasksContent } from './TasksContent'
 
 const TasksPage = () => {
     return (<>
-    <div className='tasksWrapper'>
-        <Header/>
-        <TasksContent/>
-    </div>
+        <div className='tasksWrapper'>
+            <Header/>
+            <TasksContent/>
+        </div>
     </>)
 }
 
