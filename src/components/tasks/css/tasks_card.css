@@ -1,0 +1,82 @@
+.cardContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all .2s ease;
+}
+
+.cardImg {
+    width: 100%;
+    height: 100%;
+}
+
+.cardImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardContent {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 30%);
+    backdrop-filter: blur(3px);
+    transition: all .2s ease;
+}
+
+.cardTitle p {
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+}
+
+.cardBtns {
+    display: none;
+}
+
+.cardBtns .cardTasks {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.cardBtns .cardTasks a {
+    width: calc(100% / 4);
+}
+
+.cardBtns .cardExam a {
+    width: 100%;
+}
+
+.cardContainer:hover > .cardContent {
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.cardContainer:hover > .cardContent .cardBtns {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px 20px 20px;
+    opacity: 0;
+    animation: btnAppears .2s ease .2s 1 normal forwards;
+}
+
+@keyframes btnAppears {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

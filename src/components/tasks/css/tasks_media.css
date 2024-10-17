@@ -1,0 +1,102 @@
+@media (max-width: 1440px) {
+    /*1440 медиа для TasksTitle*/
+    .tasksTitleContainer {
+        height: 80px;
+    }
+    .tasksTitleContainer p {
+        font-size: 30px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 1362px) {
+    /*1362 медиа для TaskBtns*/
+    .cardBtns a {
+        font-size: 16px;
+    }
+
+    /*1362 медиа для TaskMoreBtn*/
+    .tasksMoreBtn a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1300px) {
+    /*1300 медиа для TaskGrid*/
+    .tasksCardsGrid {
+        grid-auto-rows: minmax(250px, auto);
+    }
+
+    /*1300 медиа для CardContent*/
+    .cardTitle p {
+        font-size: 20px;
+        font-weight: 500;
+        color: white;
+    }
+    .cardContainer:hover > .cardContent {
+        padding-top: 60px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    /*1024 медиа для TasksTitle*/
+    .tasksTitleContainer p {
+        font-size: 26px;
+        margin-left: 20px;
+    }
+
+    /*1024 медиа для TaskGrid*/
+    .tasksCardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(250px, auto);
+    }
+
+}
+
+@media (max-width: 768px) {
+    /*768 медиа для TasksTitle*/
+    .tasksTitleContainer {
+        height: 60px;
+    }
+    .tasksTitleContainer p {
+        font-size: 22px;
+        margin-left: 20px;
+    }
+
+    /*768 медиа для CardContent*/
+    .cardTitle p {
+        font-size: 18px;
+        font-weight: 500;
+        color: white;
+    }
+}
+
+@media (max-width: 670px) {
+    /*670 медиа для TaskGrid*/
+    .tasksCardsGrid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: minmax(300px, 300px);
+    }
+
+    /*670 медиа для CardContent*/
+    .cardTitle p {
+        font-size: 20px;
+        font-weight: 500;
+        color: white;
+    }
+    .cardContainer:hover > .cardContent {
+        padding-top: 80px !important;
+    }
+}
+
+
+@media (max-width: 536px) {
+    /*536 медиа для TasksTitle*/
+    .tasksTitleContainer {
+        height: 80px;
+    }
+    .tasksTitleContainer p {
+        font-size: 22px;
+        margin-left: 20px;
+    }
+}
