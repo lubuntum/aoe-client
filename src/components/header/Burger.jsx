@@ -23,7 +23,7 @@ export const Burger = () => {
                 {(location.pathname !== routes.ACCOUNT) &&  <a href="#">Партнеры</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">FAQ</a>}
                 <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
-                {(isAuth && (location.pathname !== routes.ACCOUNT)) && <a href="#">Личный кабинет</a>}
+                {(isAuth && (location.pathname !== routes.ACCOUNT)) && <a href="" onClick={() => navigate(routes.ACCOUNT)}>Личный кабинет</a>}
             </nav>
         </div>
     </>)

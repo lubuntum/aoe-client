@@ -13,7 +13,7 @@ export const Navbar = () => {
     return (<>
         {!isAuth && (
             <nav className="unAuthHeaderNav">
-                <a href="#">Главная</a>
+                <a href="" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 <a href="#">Преимущества</a>
                 <a href="#">Как начать учиться</a>
                 <a href="#">Тарифы</a>
@@ -28,7 +28,7 @@ export const Navbar = () => {
             <div className="authHeaderNav">
                 {(location.pathname !== routes.ACCOUNT) && (<Collapse/>)}
                 <nav>
-                    <a href="#">Главная</a>
+                    <a href="" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                     <a href="#">Тарифы</a>
                     <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
                 </nav>

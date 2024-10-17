@@ -4,9 +4,11 @@ import { ReactComponent as AddIcon } from "../../res/icons/add_24dp_E8EAED_FILL0
 import { ReactComponent as FaceIcon } from "../../res/icons/face_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as LogoutIcon } from "../../res/icons/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-
+import { useNavigate } from "react-router-dom"
+import routes from '../../routes'
 export const Options = ({headerData}) => {
     const {logout, isAuth, getUsername} = useAuth()
+    const navigate = useNavigate()
     let loadingComponent = <p>Анимация загрузки</p>
     let attemptsAI = undefined;
     let attemptsExpert = undefined;
@@ -26,7 +28,7 @@ export const Options = ({headerData}) => {
                 </div>
                 }
                 <div className="optionsUsername">
-                    <a href="#">{getUsername()}</a>
+                    <a href="" onClick={()=>{navigate(routes.ACCOUNT)}}>{getUsername()}</a>
                 </div>
                 
                 <div className="optionsLogout">
@@ -36,8 +38,8 @@ export const Options = ({headerData}) => {
 
             {!isAuth && (<>
                 <div className="optionsLogin">
-                    <a className="btn" onClick={() => {}}>Войти</a>
-                    <a className="btn" onClick={() => {}}><LoginIcon className="svgIcon"/></a>
+                    <a className="btn" onClick={() => {navigate(routes.LOGIN)}}>Войти</a>
+                    <a className="btn" onClick={() => {navigate(routes.LOGIN)}}><LoginIcon className="svgIcon"/></a>
                 </div>
             </>)}
 
