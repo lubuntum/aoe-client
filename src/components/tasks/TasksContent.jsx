@@ -6,12 +6,16 @@ export const TasksContent = ({variants}) => {
     return (<>
         <div className='tasksContentWrapper'>
             <TasksTitle/>
-            {variants ? <div className='tasksCardsGrid'>
-                {variants.map((variant, i)=>(
-                    <TasksCard variant={variant} index={i+1}/>
-                ))}
-                <TasksMore/>
-            </div>
+            
+            {variants ? 
+            (<>
+                <div className='tasksCardsGrid'>
+                    {variants.map((variant, i)=>(
+                        <TasksCard variant={variant} index={i+1}/>
+                    ))}
+                </div>
+                <TasksMore/> 
+            </>)
              : <p>Ошибка загрузки вариантов, обновите страницу</p>}
         </div>
     </>)
