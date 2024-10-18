@@ -1,4 +1,4 @@
-export const TasksCard = () => {
+export const TasksCard = ({variant, index}) => {
     return (<>
         <div className="cardContainer">
             <div className="cardImg">
@@ -6,7 +6,7 @@ export const TasksCard = () => {
             </div>
             <div className="cardContent">
                 <div className="cardTitle">
-                    <p><span>1 </span>Ecology and Environment</p>
+                    <p><span>{index} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
                 </div>
                 <div className="cardBtns">
                     <div className="cardTasks">

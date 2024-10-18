@@ -2,22 +2,17 @@ import { TasksTitle } from './TasksTitile'
 import { TasksCard } from './TasksCard'
 import { TasksMore } from './TasksMore'
 
-export const TasksContent = () => {
+export const TasksContent = ({variants}) => {
     return (<>
         <div className='tasksContentWrapper'>
             <TasksTitle/>
-            <div className='tasksCardsGrid'>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
-                <TasksCard/>
+            {variants ? <div className='tasksCardsGrid'>
+                {variants.map((variant, i)=>(
+                    <TasksCard variant={variant} index={i+1}/>
+                ))}
+                <TasksMore/>
             </div>
-            <TasksMore/>
+             : <p>Ошибка загрузки вариантов, обновите страницу</p>}
         </div>
     </>)
 }
