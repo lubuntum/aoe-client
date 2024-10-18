@@ -13,14 +13,14 @@ export const Navbar = () => {
     return (<>
         {!isAuth && (
             <nav className="unAuthHeaderNav">
-                <a href="" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
+                <a onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 <a href="#">Преимущества</a>
                 <a href="#">Как начать учиться</a>
                 <a href="#">Тарифы</a>
                 <a href="#">Отзывы</a>
                 <a href="#">Партнеры</a>
                 <a href="#">FAQ</a>
-                <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
+                <a onClick={() => navigate(routes.TASK)}>Задания</a>
             </nav>
         )}
 

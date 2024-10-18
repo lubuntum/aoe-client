@@ -15,14 +15,14 @@ export const Burger = () => {
             <input type="checkbox" id="navBurgerCheckbox"></input>
             <label className="btn" for="navBurgerCheckbox"><MenuIcon className="svgIcon"/></label>
             <nav>
-                <a href="#">Главная</a>
+                <a href="/home" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Преимущества</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Как начать учиться</a>}
                 <a href="#">Тарифы</a>
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Отзывы</a>}
                 {(location.pathname !== routes.ACCOUNT) &&  <a href="#">Партнеры</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">FAQ</a>}
-                <a href="" onClick={() => navigate(routes.TASK)}>Задания</a>
+                <a href="/tasks" >Задания</a>
                 {(isAuth && (location.pathname !== routes.ACCOUNT)) && <a href="" onClick={() => navigate(routes.ACCOUNT)}>Личный кабинет</a>}
             </nav>
         </div>
