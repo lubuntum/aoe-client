@@ -7,6 +7,7 @@ import AccountInfo from './components/account/AccountInfo';
 import HomePage from './components/HomePage';
 import TasksPage from './components/tasks/TasksPage'
 import routes from './routes';
+import { Registration } from './components/auth/Registration';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ const Main = () => {
         <Routes>
           <Route path='/*' element = {<p>404 NOT FOUND</p>} />
           <Route path= {routes.LOGIN} element = {<ProtectedRoute component={<Login/>}/>}/>
-          <Route path= {routes.REGISTER} element = {<ProtectedRoute component={<p>REGISTRATION</p>}/>}/>
+          <Route path= {routes.REGISTER} element = {<ProtectedRoute component={<Registration/>}/>}/>
 
           <Route path= {routes.ACCOUNT} element = {<ProtectedRoute component={<AccountInfo/>}/>}/>
           <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>} />
