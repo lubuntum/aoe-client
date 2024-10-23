@@ -14,7 +14,11 @@ export const LessonSessionPage = () => {
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
             const response = await getTasksByVariantId(variant.id)
+            response.data.forEach(task => {
+                task.taskContent = JSON.parse(task.taskContent)
+            })
             setTasks(response.data)
+            console.log(response.data)
         }
         loadTasksByVariantId()
     }, [])
@@ -23,7 +27,14 @@ export const LessonSessionPage = () => {
         <>
         <div className="lessonWrapper">
             <Header/>
-            {!microCheck && <MicroPerfomance/>}
+            {!microCheck && 
+            (<>
+                <MicroPerfomance/>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <a className="btn" style={{width:'auto',padding:'0px 15px'}} >Приступить</a>
+                </div>
+            </>)
+            }
         </div>
         </>
     )

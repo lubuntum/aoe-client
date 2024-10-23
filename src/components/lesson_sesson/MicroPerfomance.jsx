@@ -14,11 +14,6 @@ export const MicroPerfomance = () => {
                         Ваш браузер не поддерживает audio тег
                     </audio>}
             </div>
-            
-            <div style={{display:'flex', justifyContent:'center'}}>
-                <a className="btn" style={{width:'auto',padding:'0px 15px'}} >Преступить</a>
-            </div>
-            
         </>
     )
 }
