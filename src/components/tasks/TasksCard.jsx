@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+import routes from '../../routes';
 export const TasksCard = ({variant, index}) => {
+    const navigate = useNavigate()
     return (<>
         <div className="cardContainer">
             <div className="cardImg">
@@ -16,7 +19,7 @@ export const TasksCard = ({variant, index}) => {
                         <a className="btn" onClick={() => {}}>4</a>
                     </div>
                     <div className="cardExam">
-                        <a className="btn" onClick={() => {}}>Экзамен</a>
+                        <a className="btn" onClick={() => {navigate(routes.LESSON_SESSION, {state: variant})}}>Экзамен</a>
                     </div>
                 </div>
             </div>
