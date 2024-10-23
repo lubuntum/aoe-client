@@ -17,8 +17,8 @@ export const TaskContentViewer = ({task}) => {
         idleComponent = <div className="viewerContainerWrapper gridItem8"><p>Задача не выбрана</p></div>
     }
     else 
-        TaskContent = taskContentComponents[task.task_type]
-    
+        TaskContent = taskContentComponents[task.taskType]
+    console.info(task)
     return (<>
         {idleComponent && idleComponent}
         {idleComponent === undefined && 

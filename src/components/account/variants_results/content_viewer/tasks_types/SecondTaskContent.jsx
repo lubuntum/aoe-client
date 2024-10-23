@@ -6,7 +6,7 @@ export const SecondTaskContent = ({task}) => {
             <p>{task.taskContent.taskText[0]}</p>
             <div className="taskTopicContainer">
                 <div>
-                    {task.taskContent.taskTopics.map((topic, i) => (
+                    {task.taskContent.topics.map((topic, i) => (
                             <p>{`${i+1}. ${topic}`}</p>
                     ))}
                 </div>
