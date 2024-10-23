@@ -39,7 +39,7 @@ export const AccountResultsGrid = () =>{
                                         {"id":2, 
                                             "taskContent":{
                                                 "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "taskTopics": ["Aboba", "Aboba 2", "Aboba: Revenge", "Aboba: Endgame"],
+                                                "topics": ["Aboba", "Aboba 2", "Aboba: Revenge", "Aboba: Endgame"],
                                                 "imgTitle" : "Image title",
                                                 "img": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
                                                 "taskText": ["You are considering go to some place. In 1.5 minutes you are to ask this questions", "You have 20 second for each question"]},
@@ -47,14 +47,15 @@ export const AccountResultsGrid = () =>{
                                         {"id":3, 
                                             "taskContent":{
                                                 "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "taskQuestions":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']}, 
+                                                "questions":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']}, 
                                                 "taskType":3},
                                         {"id":4, 
                                             "taskContent":{
-                                                "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "taskSub":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet'],
-                                                "taskImg1": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
-                                                "taskImg2": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51"}, 
+                                                "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.",
+                                                "taskText" : ["In 2.5 minutes be ready to", "You will speak for not more than 3 minutes (12-15 sentences). You have to talk continuously."], 
+                                                "subTasks":['Lorems ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet'],
+                                                "firstImg": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
+                                                "secondImg": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51"}, 
                                                 "taskType":4}]},]
                         
         }
