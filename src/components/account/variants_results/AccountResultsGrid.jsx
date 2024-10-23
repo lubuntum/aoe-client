@@ -25,74 +25,38 @@ export const AccountResultsGrid = () =>{
     /** TEST
      * Данные которые будут подсасываться через useEffect
      */
+    const testResponse2 = {
+
+    }
     const testResponse = {
         "data" : {
             "variants": [{"id":1, "theme":"someTheme1", 
                             "tasks": [{"id":1, 
-                                        "task_content":{
-                                            "task_guide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                            "task_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar mollis odio sem faucibus consectetur sed dignissim ullamcorper. Torquent fames fringilla laoreet diam ultricies posuere nibh dictum conubia. Tempus aenean at venenatis vitae proin neque ipsum inceptos nibh senectus class iaculis. Aliquam eros mauris magna urna tortor nostra vestibulum id amet.Iaculis euismod nostra duis bibendum dolor duis nibh dictumst nunc donec egestas. Vestibulum tortor consectetur dapibus consequat pellentesque adipiscing tempus facilisis praesent sodales porttitor posuere porta feugiat. Fames consequat fames elementum scelerisque duis per litora augue lacinia. Ante eget eleifend laoreet mollis nec vel sapien pharetra neque convallis id lobortis. Primis adipiscing luctus aenean dictum rhoncus quam donec litora cubilia aenean ultricies aenean sodales.Platea nostra sem sagittis lectus lobortis ipsum cras class senectus sapien. Facilisis luctus ut purus senectus himenaeos curabitur id nostra elementum congue. Hac faucibus rutrum lorem consectetur consequat consequat felis vivamus lectus diam placerat. Senectus eu dictum curabitur ex ac tristique elementum adipiscing curae dignissim auctor mauris enim. Mauris conubia libero vitae aptent sapien placerat fermentum consectetur ante sodales fermentum ultricies semper dictum."}, 
-                                            "task_type":1},
+                                        "taskContent":{
+                                            "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
+                                            "taskText":["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar mollis odio sem faucibus consectetur sed dignissim ullamcorper. Torquent fames fringilla laoreet diam ultricies posuere nibh dictum conubia. Tempus aenean at venenatis vitae proin neque ipsum inceptos nibh senectus class iaculis. Aliquam eros mauris magna urna tortor nostra vestibulum id amet.Iaculis euismod nostra duis bibendum dolor duis nibh dictumst nunc donec egestas. Vestibulum tortor consectetur dapibus consequat pellentesque adipiscing tempus facilisis praesent sodales porttitor posuere porta feugiat. Fames consequat fames elementum scelerisque duis per litora augue lacinia. Ante eget eleifend laoreet mollis nec vel sapien pharetra neque convallis id lobortis. Primis adipiscing luctus aenean dictum rhoncus quam donec litora cubilia aenean ultricies aenean sodales.Platea nostra sem sagittis lectus lobortis ipsum cras class senectus sapien. Facilisis luctus ut purus senectus himenaeos curabitur id nostra elementum congue. Hac faucibus rutrum lorem consectetur consequat consequat felis vivamus lectus diam placerat. Senectus eu dictum curabitur ex ac tristique elementum adipiscing curae dignissim auctor mauris enim. Mauris conubia libero vitae aptent sapien placerat fermentum consectetur ante sodales fermentum ultricies semper dictum."]}, 
+                                            "taskType":1, "task_results":[]},
                                         {"id":2, 
-                                            "task_content":{
-                                                "task_guide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "task_topics": ["Aboba", "Aboba 2", "Aboba: Revenge", "Aboba: Endgame"],
-                                                "task_img": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51"},
-                                                "task_type":2},
+                                            "taskContent":{
+                                                "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
+                                                "taskTopics": ["Aboba", "Aboba 2", "Aboba: Revenge", "Aboba: Endgame"],
+                                                "imgTitle" : "Image title",
+                                                "img": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
+                                                "taskText": ["You are considering go to some place. In 1.5 minutes you are to ask this questions", "You have 20 second for each question"]},
+                                                "taskType":2},
                                         {"id":3, 
-                                            "task_content":{
-                                                "task_guide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "task_questions":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']}, 
-                                                "task_type":3},
+                                            "taskContent":{
+                                                "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
+                                                "taskQuestions":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']}, 
+                                                "taskType":3},
                                         {"id":4, 
-                                            "task_content":{
-                                                "task_guide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
-                                                "task_sub":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet'],
-                                                "task_img1": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
-                                                "task_img2": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51"}, 
-                                                "task_type":4}]},
-                        {"id":5, "theme":"someTheme5", 
-                            "tasks": [{"id":7, 
-                                        "task_content":{
-                                            "task_guide":"Aboba guide1 theme", 
-                                            "task_text":"Aboba Text11"}, 
-                                            "task_type":1},
-                                        {"id":8, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide2", 
-                                                "task_text":"Aboba Text2"}, 
-                                                "task_type":2},
-                                        {"id":9, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide3", 
-                                                "task_text":"Aboba Text3"}, 
-                                                "task_type":3},
-                                        {"id":10, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide4", 
-                                                "task_text":"Aboba Text4"}, 
-                                                "task_type":4}]},
-                        {"id":7, "theme":"someTheme7", 
-                            "tasks": [{"id":15, 
-                                        "task_content":{
-                                            "task_guide":"Aboba guide1", 
-                                            "task_text":"Aboba Text111"}, 
-                                            "task_type":1},
-                                        {"id":16, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide2", 
-                                                "task_text":"Aboba Text2"}, 
-                                                "task_type":2},
-                                        {"id":17, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide3", 
-                                                "task_text":"Aboba Text3"}, 
-                                                "task_type":3},
-                                        {"id":18, 
-                                            "task_content":{
-                                                "task_guide":"Aboba guide4", 
-                                                "task_text":"Aboba Text4"}, 
-                                                "task_type":4}]},]
+                                            "taskContent":{
+                                                "taskGuide":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin tortor purus platea sit eu id nisi litora libero. Neque vulputate consequat ac amet augue blandit maximus aliquet congue. Pharetra vestibulum posuere ornare faucibus fusce dictumst orci aenean eu facilisis ut volutpat commodo senectus purus himenaeos fames primis convallis nisi.", 
+                                                "taskSub":['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet'],
+                                                "taskImg1": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51",
+                                                "taskImg2": "https://img.freepik.com/free-photo/beautiful-young-woman-posing-kitchen_1153-5078.jpg?w=1380&t=st=1728291068~exp=1728291668~hmac=6399b7be61f4a46b74ea2568dcc46bc713fa1ca6fd49ac5637a93aa853d27f51"}, 
+                                                "taskType":4}]},]
+                        
         }
     }
     const findTaskByTaskTypeInVariant = (taskType, variant) =>{

@@ -1,20 +1,20 @@
 export const FourthTaskContent = ({task}) => {
     return (<>
         <div className="taskContent">
-            <p><span>GUIDE:</span> {task.task_content.task_guide}</p>
+            <p><span>GUIDE:</span> {task.taskContent.taskGuide}</p>
             <div className="dividerHr"></div>
             <div className="taskSubContainer">
                 <div>
-                    {task.task_content.task_sub.map(sub => (
+                    {task.taskContent.taskSub.map(sub => (
                         <p>{`- ${sub}`}</p>
                     ))}
                 </div>
                 <div className="taskImgs">
                     <div className="taskImg">
-                        <img src={task.task_content.task_img1} alt=""/>
+                        <img src={task.taskContent.taskImg1} alt=""/>
                     </div>
                     <div className="taskImg">
-                        <img src={task.task_content.task_img2} alt=""/>
+                        <img src={task.taskContent.taskImg2} alt=""/>
                     </div>
                 </div>
             </div>

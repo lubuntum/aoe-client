@@ -1,9 +1,9 @@
 export const FirstTaskContent = ({task}) => {
     return (<>
         <div className="taskContent">
-            <p><span>GUIDE:</span> {task.task_content.task_guide}</p>
+            <p><span>GUIDE:</span> {task.taskContent.taskGuide}</p>
             <div className="dividerHr"></div>
-            <p>{task.task_content.task_text}</p>
+            <p>{task.taskContent.taskText[0]}</p>
         </div>
     </>)
 }
