@@ -1,3 +1,5 @@
+import { SERVER_API_URL } from "../../../../../config"
+
 export const SecondTaskContent = ({task}) => {
     return (<>
         <div className="taskContent">
@@ -13,7 +15,7 @@ export const SecondTaskContent = ({task}) => {
                 <p>{task.taskContent.taskText[1]}</p>
                 <p>{task.taskContent.imgTitle}</p>
                 <div className="taskImg">
-                    <img src={task.taskContent.img} alt=""/>
+                    <img src={`${SERVER_API_URL}/${task.taskContent.img}`} alt=""/>
                 </div>
             </div>
             
