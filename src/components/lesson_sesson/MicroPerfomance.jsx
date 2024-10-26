@@ -1,7 +1,7 @@
 import useMediaRecorder from "../../hooks/useMediaRecorder"
 
 export const MicroPerfomance = () => {
-    const {mediaBlobUrl, isRecording, startRecording, stopRecording} = useMediaRecorder(true)
+    const {mediaBlobUrl, isRecording, startRecording, stopRecording} = useMediaRecorder(false)
     return (
         <>
             <div className="checkMicroContainer">
