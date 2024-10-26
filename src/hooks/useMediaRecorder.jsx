@@ -3,14 +3,22 @@ import { concatenateAudioBlobs } from '../modules/audio/audioBlobs'
 const useMediaRecorder = (isOneChunck) => {
     //Object for working with micro (all stages)
     const mediaRecorderRef = useRef(null)
+    //audio/wav file
+    const audioBlobRef = useRef(null)
     //Raw data from micro output
     const audioChunksRef = useRef([])
     //Dynamic link for listening
     const [mediaBlobUrl, setMediaBlobUrl] = useState(null)
     const [isRecording, setIsRecording] = useState(false)
-
+    const reset = () => {
+        mediaRecorderRef.current = null
+        audioBlobRef.current = null
+        audioChunksRef.current = []
+        setMediaBlobUrl(null)
+        setIsRecording(false)
+    }
     const stopRecording = () => {
-        mediaRecorderRef.current.stop();
+        if (mediaRecorderRef.current != null) mediaRecorderRef.current.stop();
         setIsRecording(false);
     }
     const startRecording = async () => {
@@ -22,15 +30,13 @@ const useMediaRecorder = (isOneChunck) => {
         };
         //console.log('add stop handler for recorder')
         recorder.onstop = async () => {
-            let audioBlob = undefined
-            
             isOneChunck 
-                ? audioBlob = new Blob(audioChunksRef.current, {type: 'audio/wav'}) 
-                : audioBlob = await concatenateAudioBlobs(audioChunksRef.current)
+                ? audioBlobRef.current = new Blob(audioChunksRef.current, {type: 'audio/wav'}) 
+                : audioBlobRef.current = await concatenateAudioBlobs(audioChunksRef.current)
             //const audioBlob = new Blob(audioChunksRef.current, {type: 'audio/wav'})
             //const audioBlob = await concatenateAudioBlobs(audioChunksRef.current)
-            console.log(audioBlob)
-            const audioUrl = URL.createObjectURL(audioBlob)
+            console.log(audioBlobRef.current)
+            const audioUrl = URL.createObjectURL(audioBlobRef.current)
             setMediaBlobUrl(audioUrl)
             //Если не нужно сохранять прошлую запись, то обнуляем после создания ссылки
             if (isOneChunck) audioChunksRef.current = []
@@ -48,7 +54,7 @@ const useMediaRecorder = (isOneChunck) => {
                 URL.revokeObjectURL(mediaBlobUrl)
         }
     }, [mediaBlobUrl]);
-    return {mediaBlobUrl, isRecording, startRecording, stopRecording }
+    return {audioBlobRef, mediaBlobUrl, isRecording, startRecording, stopRecording, reset }
 }
 
 
