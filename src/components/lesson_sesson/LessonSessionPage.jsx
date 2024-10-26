@@ -6,12 +6,29 @@ import "./css/micro_perfomance.css"
 import { useLocation } from "react-router-dom"
 import {getTasksByVariantId} from "../../modules/api/variant/VariantApi"
 import { TaskContentViewer } from "../account/variants_results/content_viewer/TaskContentViewer"
+import { createExam } from "../../modules/api/voice/LessonSessionAPI"
+import { LessonSessionPanel } from "./LessonSessionPanel"
+/*
+TODO фишка сделать массив stages где будут хранится все стадии 
+прохождения экзамена, помимо стадии выделить текущее задания
+и имея стадию и задания можно легко задать то, что нужно сделать
+к примеру speak, stop, next, prepare_timer, prepare, end, start 
+первое задание стадии 
+task1 - prepare_timer, prepare, prepare_timer, speak, stop,  next
+task2 - prepare_timer, prepare, prepare_timer, speak, stop, speak, stop ...2, stop, next
+Также тут return можно обернуть в компонент диктора, который принимает
+task и stage и в зависимости от типа экзамена и этапа читает контент speaker:[...]
+*/ 
+export const stages = {"end" : "exam_end", "start": "start_exam"}
 export const LessonSessionPage = () => {
     const [tasks, setTasks] = useState([])
-    const [currentTaskType, setCurrentTaskType] = useState(1)
+    const [currentTask, setCurrentTask] = useState()
+
     const location = useLocation()
     const variant = location.state || {}
     const [microCheck, setMicroCheck] = useState(false)
+
+    const [examStage, setExamStage] = useState(stages.start)
 
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
@@ -19,16 +36,23 @@ export const LessonSessionPage = () => {
             response.data.forEach(task => {
                 task.taskContent = JSON.parse(task.taskContent)
             })
+            //await createExam(variant.id, localStorage.getItem("token"))
             setTasks(response.data)
-            console.log(response.data)
+            setCurrentTask(response.data.find((t)=>t.taskType === 1))
+            //console.log(response.data)
         }
         loadTasksByVariantId()
     }, [])
 
     const handleNextTask = () => {
-        if (currentTaskType >= 4 || currentTaskType <= 0) return;
-        setCurrentTaskType(currentTaskType+1)
+        if (currentTask.taskType >= 4) return;
+        //setCurrentTaskType(currentTaskType+1)
+        setCurrentTask(tasks.find((t)=>t.taskType === currentTask.taskType+1))
     }
+    const handleNextExamStage = (stage) => {
+        setExamStage(stage)
+    }
+    
 
     return (
         <>
@@ -44,10 +68,10 @@ export const LessonSessionPage = () => {
             }
             {microCheck && 
             (<>
-                <TaskContentViewer task={tasks.find((t)=>t.taskType === currentTaskType)}/>
-                <div style={{display:'flex', justifyContent:'center'}}>
-                    <a onClick={()=> {handleNextTask()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Далее</a>
-                </div>
+                <TaskContentViewer task={currentTask}/>
+                <LessonSessionPanel 
+                    currentTask={currentTask} handleNextTask={handleNextTask} 
+                    examStage={examStage} handleNextExamStage={handleNextExamStage} variantId={variant.id} />
             </>)
                 
             }
