@@ -19,7 +19,8 @@ export const saveUserTaskRequest = async (examId = null, taskId, audioBlob, sess
     form.append("file", audioBlob, `${username}_${taskId}_${Date.now()}.wav`);
     form.append("customerTask", new Blob([JSON.stringify(userTask)], {type:"application/json"}))
     const response = await axios.post(`${SERVER_API_URL}${API_SEND_USER_TASK_DATA}`,
-        form, {headers: {Authorization:sessionKey ,"Content-Type":"multipart/form-data"}})
+        form, {headers: {Authorization:sessionKey ,"Content-Type":"multipart/form-data"}, 
+        maxContentLength:"infinity", maxBodyLength:"infinity"})
     return response;
 }
 
