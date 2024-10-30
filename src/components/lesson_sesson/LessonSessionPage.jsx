@@ -3,11 +3,12 @@ import Header from "../header/Header"
 import { MicroPerfomance } from "./MicroPerfomance"
 import "./css/lesson.css"
 import "./css/micro_perfomance.css"
-import { useLocation } from "react-router-dom"
+import { createPath, useLocation } from "react-router-dom"
 import {getTasksByVariantId} from "../../modules/api/variant/VariantApi"
 import { TaskContentViewer } from "../account/variants_results/content_viewer/TaskContentViewer"
 import { createExam } from "../../modules/api/voice/LessonSessionAPI"
 import { LessonSessionPanel } from "./LessonSessionPanel"
+import { PrepareTimer } from "./PrepareTimer"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -19,7 +20,7 @@ task2 - prepare_timer, prepare, prepare_timer, speak, stop, speak, stop ...2, st
 Также тут return можно обернуть в компонент диктора, который принимает
 task и stage и в зависимости от типа экзамена и этапа читает контент speaker:[...]
 */ 
-export const stages = {"end" : "exam_end", "start": "start_exam"}
+export const stages = {"reading" : 1, "speak": 2,"prepare_reading": 3, "prepare_speak": 4, "next": 5}
 export const LessonSessionPage = () => {
     const [tasks, setTasks] = useState([])
     const [currentTask, setCurrentTask] = useState()
@@ -28,7 +29,7 @@ export const LessonSessionPage = () => {
     const variant = location.state || {}
     const [microCheck, setMicroCheck] = useState(false)
 
-    const [examStage, setExamStage] = useState(stages.start)
+    const [examStage, setExamStage] = useState(stages.prepare_reading)
 
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
@@ -68,10 +69,15 @@ export const LessonSessionPage = () => {
             }
             {microCheck && 
             (<>
-                <TaskContentViewer task={currentTask}/>
-                <LessonSessionPanel 
-                    currentTask={currentTask} handleNextTask={handleNextTask} 
-                    examStage={examStage} handleNextExamStage={handleNextExamStage} variantId={variant.id} />
+                {(examStage === stages.prepare_reading || examStage === stages.prepare_speak) ?
+                    <PrepareTimer sec={5} stage={examStage} setStage={setExamStage} task={currentTask}/> : 
+                 (<>
+                    <TaskContentViewer task={currentTask}/>
+                    <LessonSessionPanel 
+                        currentTask={currentTask} handleNextTask={handleNextTask} 
+                        examStage={examStage} handleNextExamStage={handleNextExamStage} variantId={variant.id} />
+                 </>)}
+                
             </>)
                 
             }
