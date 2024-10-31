@@ -5,7 +5,7 @@ import routes from "../../routes"
 import { stages } from "./LessonSessionPage"
 import { createExamRequest, saveTaskResultRequest, saveUserTaskRequest } from "../../modules/api/voice/LessonSessionAPI"
 export const LessonSessionPanel = ({currentTask, handleNextTask, 
-                                    examStage, handleNextExamStage, variantId}) => {
+                                    examStage, variantId}) => {
     const navigation = useNavigate()
     const audioResultsRef = useRef([])
     const {audioBlobRef, mediaBlobUrl, isRecording, startRecording, stopRecording, reset} = useMediaRecorder(false)
