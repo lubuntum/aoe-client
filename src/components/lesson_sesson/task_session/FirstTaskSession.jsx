@@ -9,6 +9,7 @@
  */
 import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskContentViewer"
 import {stages} from "../LessonSessionPage"
+import { TaskSessionPanel } from "./TaskSessionPanel"
 export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { //blobRef + micro hook
 
     console.log(task)
@@ -16,9 +17,10 @@ export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { /
         <>
             {(stage === stages.reading || stage === stages.speak) && <TaskContentViewer task={task} />}
             {stage === stages.reading && 
-                <a onClick={()=> {setStage(stages.prepare_speak)}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Skip</a>}
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={90} />}
             {stage === stages.speak && 
-                <a onClick={()=> {handleNextTask()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Next</a>}
+                <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTask()}} sec={90} />
+                }
         </>
     )
 }
