@@ -8,9 +8,12 @@ export const SecondTaskContent = ({task}) => {
             <p>{task.taskContent.taskText[0]}</p>
             <div className="taskTopicContainer">
                 <div>
-                    {task.taskContent.topics.map((topic, i) => (
+                    {task.topicNumber === undefined && 
+                    task.taskContent.topics.map((topic, i) => (
                             <p>{`${i+1}. ${topic}`}</p>
                     ))}
+                    {task.topicNumber !== undefined && <p>{`${task.topicNumber+1}. ${task.taskContent.topics[task.topicNumber]}`}</p>}
+                    
                 </div>
                 <p>{task.taskContent.taskText[1]}</p>
                 <p>{task.taskContent.imgTitle}</p>
