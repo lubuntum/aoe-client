@@ -1,4 +1,4 @@
-export const useLessonSpeaker = (task, stage, setNextStage) => {
+export const useLessonSpeaker = () => {
     
     const speak = (text, onEndCallback) => {
         const speechTemp = new SpeechSynthesisUtterance(text)
