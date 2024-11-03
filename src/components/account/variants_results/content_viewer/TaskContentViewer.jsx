@@ -1,7 +1,7 @@
-import { FirstTaskContent } from "./tasks_types/FirstTaskContent"
-import { SecondTaskContent } from "./tasks_types/SecondTaskContent"
-import { ThirdTaskContent } from "./tasks_types/ThirdTaskContent"
-import { FourthTaskContent } from "./tasks_types/FourthTaskContent"
+import { FirstTaskContent } from "../../../item_task_content/FirstTaskContent"
+import { SecondTaskContent } from "../../../item_task_content/SecondTaskContent"
+import { ThirdTaskContent } from "../../../item_task_content/ThirdTaskContent"
+import { FourthTaskContent } from "../../../item_task_content/FourthTaskContent"
 
 export const TaskContentViewer = ({task}) => {
     const taskContentComponents = {

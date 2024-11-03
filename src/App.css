@@ -28,14 +28,37 @@
 
 .pageWrapper {
   margin: 20px;
+}
+
+.sectionWrapper {
+  padding: 20px;
   border-radius: 20px;
   background-color: var(--temp-bg-cl);
-  padding: 20px;
 }
 
 .contentWrapper {
   margin: 0 auto;
   max-width: 1440px;
+}
+
+.titleContainer {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.titleContainer p {
+  font-size: 36px;
+  margin-left: 40px;
+  font-weight: 500;
+}
+
+.titleContainer p span {
+  font-weight: 700;
+  color: #F6705E;
 }
 
 .btn {

@@ -1,4 +1,5 @@
 import "./header.css"
+
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth/AuthProvider"
 import { Logo } from "./Logo"

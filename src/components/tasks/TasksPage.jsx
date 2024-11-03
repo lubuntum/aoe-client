@@ -1,7 +1,6 @@
+import '../../App.css'
 import './css/tasks.css'
-
 import './css/tasks_content.css'
-import './css/tasks_title.css'
 import './css/tasks_card.css'
 import './css/tasks_media.css'
 import './css/tasks_more.css'
@@ -20,11 +19,17 @@ const TasksPage = () => {
         }
         fetchData()
     },[])
+
     return (<>
-        <div className='tasksWrapper'>
-            <Header/>
-            <TasksContent variants={variants}/>
+        <div className='sectionWrapper'>
+            <div className='contentWrapper'>
+                <div className='tasksWrapper'>
+                    <Header/>
+                    <TasksContent variants={variants}/>
+                </div>
+            </div>
         </div>
+
     </>)
 }
 

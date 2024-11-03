@@ -1,13 +1,14 @@
-import { useAuth } from "../modules/auth/AuthProvider"
-import Header from './header/Header';
+import '../App.css'
+
+import { Header } from './header/Header';
 
 const HomePage = () => {
-    const {isAuth, getUsername} = useAuth()
     return (<>
-        <Header/>
-        {isAuth && <p> Привет {getUsername()}</p>}
-        {!isAuth && <p> Гость </p>}
-        <p>Main content</p>
+        <div className='sectionWrapper'>
+            <div className='contentWrapper'>
+                <Header/>
+            </div>
+        </div>
     </>)
 }
 

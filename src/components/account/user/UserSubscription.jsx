@@ -6,14 +6,16 @@ export const UserSubscription = ({customer}) => {
     let endSubDateStr = undefined
     let daysRemain = undefined
     let daysRemainPersent = undefined
+
     if (customer.actualSubscriptionDate === undefined || customer.actualSubscriptionDate === null) {
-        subscriptionPurchase = <p>Подписьки нет</p>
+        subscriptionPurchase = <p>Подписки нет</p>
     } else {
         endSubDate = subscriptionEndDate(customer.actualSubscriptionDate);
         endSubDateStr = endSubDate.toLocaleDateString('en-GB').replace(/\//g,'.') //DD.MM.YYYY
         daysRemain = subscriptionRemain(endSubDate)
         daysRemainPersent = `${(daysRemain / 30) * 100}%`
     }
+    
     return (<>
         <div className="userSubscriptionContainer gridItem2">
             <p>Подписка</p>

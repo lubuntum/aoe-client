@@ -1,6 +1,5 @@
-.checkMicroContainer {
+.microCheckWrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
+    flex-direction: column;
+    gap: 20px;
 }

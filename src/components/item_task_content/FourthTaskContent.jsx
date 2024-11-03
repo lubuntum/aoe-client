@@ -1,4 +1,4 @@
-import { SERVER_API_URL } from "../../../../../config"
+import { SERVER_API_URL } from "../../config"
 
 export const FourthTaskContent = ({task}) => {
     return (<>

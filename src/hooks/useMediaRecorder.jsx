@@ -57,5 +57,4 @@ const useMediaRecorder = (isOneChunck) => {
     return {audioBlobRef, mediaBlobUrl, isRecording, startRecording, stopRecording, reset }
 }
 
-
 export default useMediaRecorder

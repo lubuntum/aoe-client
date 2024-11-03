@@ -1,6 +1,8 @@
+import '../../App.css'
+
 import { useEffect, useRef, useState } from "react"
 import Header from "../header/Header"
-import { MicroPerfomance } from "./MicroPerfomance"
+import { MicroPerfomance } from "./micro_perfomance/MicroPerfomance"
 import "./css/lesson.css"
 import "./css/micro_perfomance.css"
 import { createPath, useLocation } from "react-router-dom"
@@ -64,31 +66,34 @@ export const LessonSessionPage = () => {
     let CurrentTaskSessionComponent = undefined
     if(currentTask !== undefined)
         CurrentTaskSessionComponent = taskSessionsComponents[currentTask.taskType]
-    return (
-        <>
-        <div className="lessonWrapper">
-            <Header/>
-            {!microCheck && 
-            (<>
-                <MicroPerfomance/>
-                <div style={{display:'flex', justifyContent:'center'}}>
-                    <a onClick={()=> {setMicroCheck(true)}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Приступить</a>
+
+    return (<>
+        <div className="sectionWrapper">
+            <div className="contentWrapper">
+                <div className="lessonWrapper">
+                    <Header/>
+
+                    {!microCheck && (<>
+                        <MicroPerfomance/>
+
+                        <div style={{display:'flex', justifyContent:'center'}}>
+                            <a onClick={()=> {setMicroCheck(true)}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Приступить</a>
+                        </div>
+                    </>)}
+                    {microCheck && 
+                    (<>
+                        {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
+                            <PrepareTimer sec={5} stage={stage} setStage={setStage} task={currentTask}/> : 
+                        (<>
+                            <CurrentTaskSessionComponent task = {currentTask} stage = {stage} 
+                                setStage = {setStage} handleNextTask = {handleNextTask} />
+                        </>)}
+                        
+                    </>)
+                        
+                    }
                 </div>
-            </>)
-            }
-            {microCheck && 
-            (<>
-                {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
-                    <PrepareTimer sec={5} stage={stage} setStage={setStage} task={currentTask}/> : 
-                 (<>
-                    <CurrentTaskSessionComponent task = {currentTask} stage = {stage} 
-                        setStage = {setStage} handleNextTask = {handleNextTask} />
-                 </>)}
-                
-            </>)
-                
-            }
+            </div>
         </div>
-        </>
-    )
+    </>)
 }
