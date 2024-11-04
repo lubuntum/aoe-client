@@ -68,12 +68,8 @@
     display: none;
 }
 
-.microRecord input[type="checkbox"]:checked ~ .microOn {
+.microAnim {
     animation: microPulse 1.5s infinite;
-}
-
-.microNotFound {
-    display: none;
 }
 
 audio {

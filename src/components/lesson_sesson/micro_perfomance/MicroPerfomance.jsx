@@ -5,11 +5,11 @@ import '../css/micro_perfomance_media.css'
 import { MicroPerfomanceTitle } from './MicroPerfomanceTitle'
 import { MicroPerfomanceCheck } from "./MicroPerfomanceCheck"
 
-export const MicroPerfomance = () => {
+export const MicroPerfomance = ({setMicroCheck}) => {
     return (<>
         <div className="microCheckWrapper">
             <MicroPerfomanceTitle/>
-            <MicroPerfomanceCheck/>
+            <MicroPerfomanceCheck setMicroCheck = {setMicroCheck}/>
         </div>
     </>)
 }

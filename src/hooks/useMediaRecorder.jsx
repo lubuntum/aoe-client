@@ -10,6 +10,8 @@ const useMediaRecorder = (isOneChunck) => {
     //Dynamic link for listening
     const [mediaBlobUrl, setMediaBlobUrl] = useState(null)
     const [isRecording, setIsRecording] = useState(false)
+    const [microphonePermission, setMicrophonePermission] = useState(null);
+
     const reset = () => {
         mediaRecorderRef.current = null
         audioBlobRef.current = null
@@ -22,31 +24,53 @@ const useMediaRecorder = (isOneChunck) => {
         setIsRecording(false);
     }
     const startRecording = async () => {
-        const stream = await navigator.mediaDevices.getUserMedia({audio:true})
-        const recorder = new MediaRecorder(stream)
-        recorder.ondataavailable = (event) => {
-            audioChunksRef.current.push(event.data)
-            console.log(audioChunksRef.current)
-        };
-        //console.log('add stop handler for recorder')
-        recorder.onstop = async () => {
-            isOneChunck 
-                ? audioBlobRef.current = new Blob(audioChunksRef.current, {type: 'audio/wav'}) 
-                : audioBlobRef.current = await concatenateAudioBlobs(audioChunksRef.current)
-            //const audioBlob = new Blob(audioChunksRef.current, {type: 'audio/wav'})
-            //const audioBlob = await concatenateAudioBlobs(audioChunksRef.current)
-            console.log(audioBlobRef.current)
-            const audioUrl = URL.createObjectURL(audioBlobRef.current)
-            setMediaBlobUrl(audioUrl)
-            //Если не нужно сохранять прошлую запись, то обнуляем после создания ссылки
-            if (isOneChunck) audioChunksRef.current = []
-            //audioChunksRef.current = []
-        };
-        mediaRecorderRef.current = recorder;
+        try{
+            const stream = await navigator.mediaDevices.getUserMedia({audio:true})
+            const recorder = new MediaRecorder(stream)
+            recorder.ondataavailable = (event) => {
+                audioChunksRef.current.push(event.data)
+                console.log(audioChunksRef.current)
+            };
+            //console.log('add stop handler for recorder')
+            recorder.onstop = async () => {
+                isOneChunck 
+                    ? audioBlobRef.current = new Blob(audioChunksRef.current, {type: 'audio/wav'}) 
+                    : audioBlobRef.current = await concatenateAudioBlobs(audioChunksRef.current)
+                //const audioBlob = new Blob(audioChunksRef.current, {type: 'audio/wav'})
+                //const audioBlob = await concatenateAudioBlobs(audioChunksRef.current)
+                console.log(audioBlobRef.current)
+                const audioUrl = URL.createObjectURL(audioBlobRef.current)
+                setMediaBlobUrl(audioUrl)
+                //Если не нужно сохранять прошлую запись, то обнуляем после создания ссылки
+                if (isOneChunck) audioChunksRef.current = []
+                //audioChunksRef.current = []
+            };
+            mediaRecorderRef.current = recorder;
 
-        mediaRecorderRef.current.start();
-        setIsRecording(true)
+            mediaRecorderRef.current.start();
+            setIsRecording(true)
+
+        } catch(err) {
+            reset();
+        }
+        
     }
+    const checkMicrophonePermission = async () => {
+        try {
+            const permissionStatus = await navigator.permissions.query({ name: 'microphone' });
+            setMicrophonePermission(permissionStatus.state);
+            permissionStatus.onchange = () => {
+                setMicrophonePermission(permissionStatus.state);
+            };
+        } catch (error) {
+            console.error("Error checking microphone permission.", error);
+            setMicrophonePermission('denied'); // Default to denied if there's an error
+        }
+    };
+    useEffect(() => {
+        checkMicrophonePermission();
+    }, []);
+    
     //side effect for clear dynamic link
     useEffect(() => {
         return () => {
@@ -54,7 +78,7 @@ const useMediaRecorder = (isOneChunck) => {
                 URL.revokeObjectURL(mediaBlobUrl)
         }
     }, [mediaBlobUrl]);
-    return {audioBlobRef, mediaBlobUrl, isRecording, startRecording, stopRecording, reset }
+    return {audioBlobRef, mediaBlobUrl, isRecording, startRecording, stopRecording, reset, microphonePermission}
 }
 
 export default useMediaRecorder

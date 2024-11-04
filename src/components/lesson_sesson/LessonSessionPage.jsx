@@ -73,13 +73,9 @@ export const LessonSessionPage = () => {
                 <div className="lessonWrapper">
                     <Header/>
 
-                    {!microCheck && (<>
-                        <MicroPerfomance/>
-
-                        <div style={{display:'flex', justifyContent:'center'}}>
-                            <a onClick={()=> {setMicroCheck(true)}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Приступить</a>
-                        </div>
-                    </>)}
+                    {!microCheck && 
+                        <MicroPerfomance setMicroCheck = {setMicroCheck}/>
+                    }
                     {microCheck && 
                     (<>
                         {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
