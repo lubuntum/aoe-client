@@ -3,16 +3,17 @@ import { TaskContentViewer } from "../../account/variants_results/content_viewer
 import { stages } from "../LessonSessionPage";
 import { TaskSessionPanel } from "./TaskSessionPanel";
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
+import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder";
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [studentAnswering, setStudentAnswering] = useState(false)
-    //Хранить записи всех ответов на вопросы(затем в один файл)
-    const questionAudioRef = useRef([])
+    const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
     const {speak} = useLessonSpeaker();
-    const handleNextQuestion = () => {
+    const handleNextQuestion = async () => {
+        await stopRecording()
         if (questionNumber+1 >= task.taskContent.questions.length){
-            handleNextTask()
+            handleNextTask({"audio": audioBlobRef.current, "taskId": task.id})
             return
         }
         setQuestionNumber(prev=>prev+1)
@@ -30,7 +31,7 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     // Если этап ответа и студент еще не должен отвечать, задать вопрос и дать студентку сказать
     if(stage === stages.speak && !studentAnswering) speak(task.taskContent.questions[questionNumber], handleStudentAnswer)
     // Если этап ответа и студент уже отвечает, начать запись его голоса
-    //if(stage === stages.speak && studentAnswering) Запись голоса студента
+    if(stage === stages.speak && studentAnswering) startRecording()
     return (
         <>
             <TaskContentViewer task={task} />
