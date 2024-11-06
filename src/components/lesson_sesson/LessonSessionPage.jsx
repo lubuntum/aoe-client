@@ -5,8 +5,12 @@ import Header from "../header/Header"
 import { MicroPerfomance } from "./micro_perfomance/MicroPerfomance"
 import "./css/lesson.css"
 import "./css/micro_perfomance.css"
+<<<<<<< HEAD
 import "./css/prepare_timer.css"
 import { createPath, useLocation } from "react-router-dom"
+=======
+import { createPath, useLocation, useNavigate } from "react-router-dom"
+>>>>>>> 5169b85848ff591f5d67211fec95de567c1f193e
 import {getTasksByVariantId} from "../../modules/api/variant/VariantApi"
 import { TaskContentViewer } from "../account/variants_results/content_viewer/TaskContentViewer"
 import { createExam } from "../../modules/api/voice/LessonSessionAPI"
@@ -16,6 +20,9 @@ import { FirstTaskSession } from "./task_session/FirstTaskSession"
 import { SecondTaskSession } from "./task_session/SecondTaskSession"
 import { FourthTaskSession } from "./task_session/FourthTaskSession"
 import { ThirdTaskSession } from "./task_session/ThirdTaskSession"
+import { useLessonSpeaker } from '../../hooks/speech/useLessonSpeaker'
+import { createExamRequest, saveUserTaskRequest } from "../../modules/api/voice/LessonSessionAPI"
+import routes from '../../routes'
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -37,33 +44,66 @@ export const LessonSessionPage = () => {
     }
     const [tasks, setTasks] = useState([])
     const [currentTask, setCurrentTask] = useState()
+    const audioResultsRef = useRef([])
 
+    const navigate = useNavigate()
     const location = useLocation()
     const variant = location.state || {}
     const [microCheck, setMicroCheck] = useState(false)
 
     const [stage, setStage] = useState(stages.prepare_reading)
 
+    const {speak} = useLessonSpeaker();
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
             const response = await getTasksByVariantId(variant.id)
             response.data.forEach(task => {
                 task.taskContent = JSON.parse(task.taskContent)
             })
-            //await createExam(variant.id, localStorage.getItem("token"))
+            //TODO 
+            //Что бы можно было проходить только одно задание перед вызовом 
+            //этого компонента добавить в variant.pickedTaskType
+            //Наличие данного поля означает что юзер выбрал пройти только 1 задание в тек. варианте
+            //Далее если это поле есть ищем так t.taskType === variant.pickedTaskType
+            //и ниже условие currentTask.taskType >= 4 || variant.pickedTaskType
             setTasks(response.data)
             setCurrentTask(response.data.find((t)=>t.taskType === 1))
-            //console.log(response.data)
         }
         loadTasksByVariantId()
     }, [])
 
-    const handleNextTask = () => {
-        if (currentTask.taskType >= 4) return;//Потом если == 4 или 1 задача закончить тест
+    const handleNextTask = (audioResult) => {
+        audioResultsRef.current.push(audioResult)
+        audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
+        if (currentTask.taskType >= 4) {
+            speak("This is the end of the test", async ()=>{
+                navigate(routes.TASK)
+                await endLessonSession()
+            })
+            return;
+        }//Потом если == 4 или 1 задача закончить тест
         //TaskType всегда больше на единицу чем индекс сессии соотв. задания
         setCurrentTask(tasks.find((t)=>t.taskType === currentTask.taskType+1))
         setStage(stages.prepare_reading)
     }
+
+    const endLessonSession = async () => {
+        const sessionKey = localStorage.getItem("token")
+        const exam = await createExam(sessionKey)
+        await saveTasksResults(sessionKey, exam)
+        navigate(routes.TASK)
+    }
+    const createExam = async (sessionKey) => {
+        const response = await createExamRequest(variant.id, sessionKey)
+        return await response.data
+    }
+    const saveTasksResults = async (sessionKey, exam) => {
+        for (const audioBlobData of audioResultsRef.current) {
+            const response = await saveUserTaskRequest(exam.id, audioBlobData.taskId, audioBlobData.audio, sessionKey)
+            //if (!response.ok) throw new Error(`Error uploading ${audioBlob}`)
+        }
+    }
+
     let CurrentTaskSessionComponent = undefined
     if(currentTask !== undefined)
         CurrentTaskSessionComponent = taskSessionsComponents[currentTask.taskType]
