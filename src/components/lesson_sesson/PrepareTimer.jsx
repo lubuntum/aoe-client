@@ -14,6 +14,23 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
     const {time, resetTimer} = useTimer(sec,speakStageText)
 
     return (<>
-        <div className="Timer">{time} sec</div>
+        <div className="prepareTimerContent">
+            <div className="progressBarContainer">
+                <svg xmlns="http://www.w3.org/200/svg" version="1.1">
+                    <circle className="progressBarBack" cx={"50%"} cy={"50%"} r={"45%"}/>
+                </svg>
+                <svg xmlns="http://www.w3.org/200/svg" version="1.1">
+                    <circle className="progressBar" cx={"50%"} cy={"50%"} r={"45%"} 
+                            strokeLinecap="round"
+                            strokeDasharray={"300%"}
+                            strokeDashoffset={"250%"}/> //Тут надо менять проценты для убавления прогресс бара "0 секунд - 300%, 5 секунд - 0%"
+                </svg>
+                <div className="progressBarShadow" style={{background: "conic-gradient(#2276f4 18%, transparent 0)"}}> // тут надо менять проценты для убавления тени у прогресс бара "от 0 до 100%"
+                    <div className="progressBarShadowBack"></div>
+                </div>
+                <p className="prepareTimer"><span>0{time}</span> sec.</p>
+            </div>
+            <p className="prepareWarning">Get ready for the task!</p>
+        </div>  
     </>)
 }

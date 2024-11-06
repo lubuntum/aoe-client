@@ -1,0 +1,75 @@
+.prepareTimerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 180px);
+    background-color: white;
+    border-radius: 20px;
+}
+
+.progressBarContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 350px;
+}
+
+.progressBarContainer svg {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    transform: rotate(-90deg);
+}
+
+.progressBarBack {
+    fill: none;
+    stroke: #D2D2D2;
+    stroke-width: 10px;
+}
+
+.progressBar {
+    fill: none;
+    stroke: #2276f4;
+    stroke-width: 11px;
+}
+
+.progressBarShadow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 87%;
+    height: 87%;
+    border-radius: 50%;
+    opacity: .3;
+    filter: blur(5px);
+}
+
+.progressBarShadowBack {
+    position: absolute;
+    width: 86%;
+    height: 86%;
+    border-radius: 50%;
+    background: white;
+    filter: blur(5px);
+}
+
+.prepareTimer {
+    font-size: 56px;
+    z-index: 999;
+}
+
+.prepareTimer span {
+    font-weight: 600;
+}
+
+.prepareWarning {
+    font-size: 44px;
+}

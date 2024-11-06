@@ -23,6 +23,7 @@ export const AccountUserGrid = () => {
             try{
                 const token = localStorage.getItem("token")
                 const response = await getCustomerData(token)
+                console.log(`customer => ${response.data}`)
                 setCustomer(response.data)
             } catch(err){
                 setError("Ошибка при загрузке данных")

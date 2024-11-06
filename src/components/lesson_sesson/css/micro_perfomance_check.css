@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 50px;
+    height: calc(100vh - 300px);
     padding: 20px;
     background-color: white;
     border-radius: 20px;
@@ -74,6 +74,15 @@
 
 audio {
     width: 500px;
+    height: 40px;
+}
+
+.microActions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
 
 @keyframes microPulse {
