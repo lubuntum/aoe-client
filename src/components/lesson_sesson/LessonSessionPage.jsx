@@ -5,12 +5,8 @@ import Header from "../header/Header"
 import { MicroPerfomance } from "./micro_perfomance/MicroPerfomance"
 import "./css/lesson.css"
 import "./css/micro_perfomance.css"
-<<<<<<< HEAD
 import "./css/prepare_timer.css"
-import { createPath, useLocation } from "react-router-dom"
-=======
-import { createPath, useLocation, useNavigate } from "react-router-dom"
->>>>>>> 5169b85848ff591f5d67211fec95de567c1f193e
+import { createPath, useLocation , useNavigate} from "react-router-dom"
 import {getTasksByVariantId} from "../../modules/api/variant/VariantApi"
 import { TaskContentViewer } from "../account/variants_results/content_viewer/TaskContentViewer"
 import { createExam } from "../../modules/api/voice/LessonSessionAPI"
