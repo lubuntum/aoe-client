@@ -1,4 +1,4 @@
-const REGISTER = "/register";
+const REGISTER = "/registration";
 const LOGIN = "/login";
 const HOME = "/home";
 const ACCOUNT = "/account";
