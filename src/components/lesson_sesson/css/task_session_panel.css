@@ -1,0 +1,65 @@
+.sessionBottomPanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    height: 80px;
+    padding: 20px;
+}
+
+.panelDescription {
+    display: flex;
+    text-wrap: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.panelRecordIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.panelRecordIconSvg {
+    fill: #ef476f;
+    animation: rotation 5s infinite linear;
+}
+
+.panelProgressBarBackground {
+    display: flex;
+    width: 100%;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #D2D2D2;
+}
+
+.panelProgressBarLine {
+    border-radius: 50px;
+    background-color: #2276f4;
+    box-shadow: 0 0 10px #2276f4;
+}
+
+.panelTimer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 55px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sessionBottomPanel a {
+    min-width: 100px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -40,7 +40,7 @@ export const LessonSessionPanel = ({currentTask, handleNextTask,
     <>
         <div style={{display:'flex', justifyContent:'center', gap: '15px'}}>
             {isRecording 
-                ?  <a onClick={()=> {stopRecording()}} className="btn" style={{width:'auto',padding:'0px 15px', backgroundColor:'red'}} >Стоп</a>
+                ? <a onClick={()=> {stopRecording()}} className="btn" style={{width:'auto',padding:'0px 15px', backgroundColor:'red'}} >Стоп</a>
                 : <a onClick={()=> {startRecording()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Ответить</a>}
             {currentTask.taskType !== 4 
                 ? <a onClick={()=> {nextTask()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Далее</a>

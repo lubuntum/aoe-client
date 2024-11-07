@@ -30,9 +30,9 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
                     <circle className="progressBar" cx={"50%"} cy={"50%"} r={"45%"} 
                             strokeLinecap="round"
                             strokeDasharray={"300%"}
-                            strokeDashoffset={`${currentProgress.current}%`}/> //Тут надо менять проценты для убавления прогресс бара "0 секунд - 300%, 5 секунд - 0%"
+                            strokeDashoffset={`${currentProgress.current}%`}/>
                 </svg>
-                <div className="progressBarShadow" style={{background: `conic-gradient(#2276f4 ${shadowProgress.current}%, transparent 0)`}}> // тут надо менять проценты для убавления тени у прогресс бара "от 0 до 100%"
+                <div className="progressBarShadow" style={{background: `conic-gradient(#2276f4 ${shadowProgress.current}%, transparent 0)`}}>
                     <div className="progressBarShadowBack"></div>
                 </div>
                 <p className="prepareTimer"><span>0{time}</span> sec.</p>
