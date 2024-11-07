@@ -31,13 +31,13 @@ export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
         <>
             <TaskContentViewer task={task}/>
             {stage === stages.reading &&
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={90} />
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={90} stage={stage}/>
             }
             {(stage === stages.speak && !studentAnswering) && 
-                <TaskSessionPanel btnText={"Next"} nextAction={()=> {}} sec={0} />
+                <TaskSessionPanel btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/>
             }
             {(stage === stages.speak && studentAnswering) &&
-                <TaskSessionPanel key={topicNumber} btnText={"Next"} nextAction={()=> {handleNextTopicNumber()}} sec={5} />
+                <TaskSessionPanel key={topicNumber} btnText={"Next"} nextAction={()=> {handleNextTopicNumber()}} sec={5} stage={stage}/>
             }
         </>
     )

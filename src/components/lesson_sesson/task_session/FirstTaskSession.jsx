@@ -27,9 +27,9 @@ export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { /
         <>
             {(stage === stages.reading || stage === stages.speak) && <TaskContentViewer task={task}/>}
             {stage === stages.reading && 
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={1000}/>}
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={1000} stage={stage}/>}
             {stage === stages.speak && 
-                <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={90}/>
+                <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={90} stage={stage}/>
             }
         </>
     )

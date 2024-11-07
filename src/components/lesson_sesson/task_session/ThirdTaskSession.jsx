@@ -37,17 +37,17 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
             <TaskContentViewer task={task} />
             {stage === stages.reading &&
             (<>
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={0} />
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={0} stage={stage}/>
             </>)}
 
             {(stage === stages.speak && !studentAnswering) && 
             (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={0} />
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/>
             </>)}
 
             {(stage === stages.speak && studentAnswering) &&
             (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={5} />
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={5} stage={stage}/>
             </>)}
         </>
     )

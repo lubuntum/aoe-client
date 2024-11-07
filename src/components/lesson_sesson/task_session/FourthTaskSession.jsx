@@ -15,10 +15,10 @@ export const FourthTaskSession = ({task, stage, setStage, handleNextTask}) => {
         <>
             <TaskContentViewer task={task} />
             {stage === stages.reading &&
-                <TaskSessionPanel nextAction={()=>{setStage(stages.prepare_speak)}} btnText={"Skip"} sec={5} />
+                <TaskSessionPanel nextAction={()=>{setStage(stages.prepare_speak)}} btnText={"Skip"} sec={5} stage={stage}/>
             }
             {stage === stages.speak &&
-                <TaskSessionPanel nextAction={()=>{handleNextTaskWithSaveAudio()}} btnText={"Next"} sec={5} />
+                <TaskSessionPanel nextAction={()=>{handleNextTaskWithSaveAudio()}} btnText={"Next"} sec={5} stage={stage}/>
             }
         </>
     )
