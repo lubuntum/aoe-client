@@ -3,8 +3,9 @@ import { ReactComponent as FaceIcon } from "../../../res/icons/face_24dp_E8EAED_
 import { ReactComponent as AddIcon } from "../../../res/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 export const UserInfo = ({customer}) => {
-    let attemptsAI = customer.attemptsAI / 10 >= 1 ? `${customer.attemptsAI}` : `0${customer.attemptsAI}` 
-    let attemptsExpert = customer.attemptsExpert / 10 >= 1 ? `${customer.attemptsExpert}` : `0${customer.attemptsExpert}` 
+    let attemptsAI = customer.attemptsAI ? customer.attemptsAI / 10 >= 1 ? `${customer.attemptsAI}` : `0${customer.attemptsAI}` : "00";
+    let attemptsExpert = customer.attemptsExpert ? customer.attemptsExpert / 10 >= 1 ? `${customer.attemptsExpert}` : `0${customer.attemptsExpert}` : "00"
+  
     return (<>
         <div className="userInfoContainer gridItem1">
             <div className="userInfoFirstColumn">

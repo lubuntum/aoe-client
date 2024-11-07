@@ -13,8 +13,8 @@ export const Options = ({headerData}) => {
     let attemptsAI = undefined;
     let attemptsExpert = undefined;
     if (headerData !== undefined){
-        attemptsAI = headerData.attemptsAI / 10 >= 1 ? `${headerData.attemptsAI}` : `0${headerData.attemptsAI}` 
-        attemptsExpert = headerData.attemptsExpert / 10 >= 1 ? `${headerData.attemptsExpert}` : `0${headerData.attemptsExpert}`
+        attemptsAI = headerData.attemptsAI ? headerData.attemptsAI / 10 >= 1 ? `${headerData.attemptsAI}` : `0${headerData.attemptsAI}` : "00";
+        attemptsExpert = headerData.attemptsExpert ? headerData.attemptsExpert / 10 >= 1 ? `${headerData.attemptsExpert}` : `0${headerData.attemptsExpert}` : "00"
     }
     
     return (<>
