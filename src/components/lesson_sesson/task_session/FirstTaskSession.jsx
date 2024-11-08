@@ -9,28 +9,27 @@
  */
 import { useEffect } from "react"
 import useMediaRecorder from "../../../hooks/useMediaRecorder"
-import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskContentViewer"
 import {stages} from "../LessonSessionPage"
 import { TaskSessionPanel } from "./TaskSessionPanel"
 import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder"
+
+import { TasksContentWrapper } from "../../item_task_content/TasksContentWrapper"
+
 export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { //blobRef + micro hook
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(true)
     const handleNextTaskWithSaveAudio =  async () => {
         await stopRecording()
         console.log({"audio": audioBlobRef.current, "taskId": task.id})
         handleNextTask({"audio": audioBlobRef.current, "taskId": task.id})
-        
     }
+    
     if (stage === stages.speak) startRecording();
-    console.log('first task render')
-    return (
-        <>
-            {(stage === stages.reading || stage === stages.speak) && <TaskContentViewer task={task}/>}
-            {stage === stages.reading && 
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={1000} stage={stage}/>}
-            {stage === stages.speak && 
-                <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={90} stage={stage}/>
-            }
-        </>
-    )
+
+    return (<>
+        {(stage === stages.reading || stage === stages.speak) && <TasksContentWrapper task={task}/>}
+
+        {stage === stages.reading && <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={1000} stage={stage}/>}
+
+        {stage === stages.speak && <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={90} stage={stage}/>}
+    </>)
 }

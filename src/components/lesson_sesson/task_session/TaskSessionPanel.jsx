@@ -14,7 +14,7 @@ export const TaskSessionPanel = ({nextAction, btnText, sec, stage}) => {
             <p className="panelDescription">{description}</p>
             <div className="panelRecordIcon" style={{display: record}}><Record className="panelRecordIconSvg"/></div>
             <div className="panelProgressBarBackground">
-                <div className="panelProgressBarLine" style={{width: "80%"}}></div> {/*Здесь надо менять ширину прогресс бара в зависимости от таймера*/}
+                <div className="panelProgressBarLine" style={{width: "80%"}}></div> {/*TODO Здесь надо менять ширину прогресс бара в зависимости от таймера*/}
             </div>
             <p className="panelTimer">{secondsToMinutes(time)}</p>
             <a onClick={()=> {nextAction()}} className="btn">{btnText}</a>

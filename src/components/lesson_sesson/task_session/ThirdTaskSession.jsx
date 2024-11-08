@@ -1,9 +1,10 @@
 import { useRef, useState } from "react"
-import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskContentViewer";
 import { stages } from "../LessonSessionPage";
 import { TaskSessionPanel } from "./TaskSessionPanel";
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
 import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder";
+
+import { TasksContentWrapper } from "../../item_task_content/TasksContentWrapper"
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)
@@ -32,23 +33,16 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     if(stage === stages.speak && !studentAnswering) speak(task.taskContent.questions[questionNumber], handleStudentAnswer)
     // Если этап ответа и студент уже отвечает, начать запись его голоса
     if(stage === stages.speak && studentAnswering) startRecording()
-    return (
-        <>
-            <TaskContentViewer task={task} />
-            {stage === stages.reading &&
-            (<>
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={0} stage={stage}/>
-            </>)}
+    return (<>
+            <TasksContentWrapper task={task}/>
 
-            {(stage === stages.speak && !studentAnswering) && 
-            (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/>
-            </>)}
+            {stage === stages.reading &&(<>
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={0} stage={stage}/></>)}
 
-            {(stage === stages.speak && studentAnswering) &&
-            (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={5} stage={stage}/>
-            </>)}
-        </>
-    )
+            {(stage === stages.speak && !studentAnswering) && (<>
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/></>)}
+
+            {(stage === stages.speak && studentAnswering) && (<>
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={5} stage={stage}/></>)}
+    </>)
 }

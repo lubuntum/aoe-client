@@ -1,10 +1,11 @@
-import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskContentViewer"
 import { TaskSessionPanel } from "./TaskSessionPanel"
 import { stages } from "../LessonSessionPage"
 import { useRef, useState } from "react"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 import useMediaRecorder from "../../../hooks/useMediaRecorder"
 import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder"
+
+import { TasksContentWrapper } from "../../item_task_content/TasksContentWrapper"
 
 export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [topicNumber, setTopicNumber] = useState(0)
@@ -21,24 +22,19 @@ export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
         setStudentAnswering(false)
         setTopicNumber(topicNumber + 1)
     }
-    if (stage === stages.speak) task.topicNumber = topicNumber;
-    if (stage === stages.speak && !studentAnswering){
-        console.log(`speaking ${topicNumber}`)
-        speak(`Question ${topicNumber+1}`,()=>{setStudentAnswering(true)})
-    }
+    if (stage === stages.speak) task.topicNumber = topicNumber
+
+    if (stage === stages.speak && !studentAnswering) speak(`Question ${topicNumber+1}`,()=>{setStudentAnswering(true)})
+
     if (stage === stages.speak && studentAnswering) startRecording()
-    return (
-        <>
-            <TaskContentViewer task={task}/>
-            {stage === stages.reading &&
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={90} stage={stage}/>
-            }
-            {(stage === stages.speak && !studentAnswering) && 
-                <TaskSessionPanel btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/>
-            }
-            {(stage === stages.speak && studentAnswering) &&
-                <TaskSessionPanel key={topicNumber} btnText={"Next"} nextAction={()=> {handleNextTopicNumber()}} sec={5} stage={stage}/>
-            }
-        </>
-    )
+
+    return (<>
+        <TasksContentWrapper task={task}/>
+
+        {stage === stages.reading && <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={1000} stage={stage}/>}
+
+        {(stage === stages.speak && !studentAnswering) && <TaskSessionPanel btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/>}
+
+        {(stage === stages.speak && studentAnswering) && <TaskSessionPanel key={topicNumber} btnText={"Next"} nextAction={()=> {handleNextTopicNumber()}} sec={5} stage={stage}/>}
+    </>)
 }

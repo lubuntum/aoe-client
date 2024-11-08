@@ -1,0 +1,7 @@
+.taskContentWrapper {
+    width: 100%;
+    height: calc(100vh - 280px);
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}

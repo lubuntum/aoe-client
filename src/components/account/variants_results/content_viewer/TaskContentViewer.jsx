@@ -23,6 +23,7 @@ export const TaskContentViewer = ({task}) => {
         {idleComponent && idleComponent}
         {idleComponent === undefined && 
             <div className="viewerContainerWrapper gridItem8">
+                <p>СТАРАЯ ОБЕРТКА</p>
                 {TaskContent ? <TaskContent task = {task}/> : <p>Unknown task type</p>}
             </div>}
     </>)
