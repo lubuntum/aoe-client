@@ -1,16 +1,20 @@
 import { useRef, useState } from "react"
-import { stages } from "../LessonSessionPage";
-import { TaskSessionPanel } from "./TaskSessionPanel";
-import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
+
 import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder";
 
-import { TasksContentWrapper } from "../../item_task_content/TasksContentWrapper"
+import { stages } from "../lesson_session_page/LessonSessionPage";
+import { TaskSessionPanel } from "./TaskBottomPanel";
+import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
+import { TasksContentWrapper } from "./TasksContentWrapper"
+
+import timersConfig from "../../../timersConfig"
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [studentAnswering, setStudentAnswering] = useState(false)
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
     const {speak} = useLessonSpeaker();
+
     const handleNextQuestion = async () => {
         await stopRecording()
         if (questionNumber+1 >= task.taskContent.questions.length){
@@ -19,8 +23,8 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
         }
         setQuestionNumber(prev=>prev+1)
         setStudentAnswering(false)
-        //stop recording if it was
     }
+
     const handleStudentAnswer  = () => {
         setStudentAnswering(true)
     }
@@ -33,16 +37,14 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     if(stage === stages.speak && !studentAnswering) speak(task.taskContent.questions[questionNumber], handleStudentAnswer)
     // Если этап ответа и студент уже отвечает, начать запись его голоса
     if(stage === stages.speak && studentAnswering) startRecording()
+        
     return (<>
             <TasksContentWrapper task={task}/>
-
             {stage === stages.reading &&(<>
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={0} stage={stage}/></>)}
-
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={timersConfig.THIRD_TASK_READING_TIMER} stage={stage}/></>)}
             {(stage === stages.speak && !studentAnswering) && (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={0} stage={stage}/></>)}
-
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={timersConfig.THIRD_TASK_CHANGE_QUESTION} stage={stage}/></>)}
             {(stage === stages.speak && studentAnswering) && (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={5} stage={stage}/></>)}
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={timersConfig.THIRD_TASK_SPEAKING_TIMER} stage={stage}/></>)}
     </>)
 }

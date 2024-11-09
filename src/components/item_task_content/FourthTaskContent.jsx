@@ -1,18 +1,26 @@
+import { useLocation } from "react-router-dom"
+import routes from "../../routes"
+
 import { SERVER_API_URL } from "../../config"
 
 export const FourthTaskContent = ({task}) => {
+    const location = useLocation()
+
+    let taskGuide = location.pathname === routes.ACCOUNT ? "taskGuideAccount" : "taskGudieSession"
+    let taskText = location.pathname === routes.ACCOUNT ? "taskTextAccount" : "taskTextSession"
+    let taskSubQuestion = location.pathname === routes.ACCOUNT ? "taskSubQuestionAccount" : "taskSubQuestionSession"
+
     return (<>
         <div className="taskContent">
-            <p><span>GUIDE:</span> {task.taskContent.taskGuide}</p>
+            <p className={taskGuide}><span>GUIDE:</span> {task.taskContent.taskGuide} ({task.taskContent.taskText[1]})</p>
             <div className="dividerHr"></div>
-            <p>{task.taskContent.taskText[0]}</p>
+            <p className={taskText}>{task.taskContent.taskText[0]}</p>
             <div className="taskSubContainer">
-                <div>
+                <div className={taskSubQuestion}>
                     {task.taskContent.subTasks.map(sub => (
                         <p>{`- ${sub}`}</p>
                     ))}
                 </div>
-            <p>{task.taskContent.taskText[1]}</p>
                 <div className="taskImgs">
                     <div className="taskImg">
                         <img src={`${SERVER_API_URL}/${task.taskContent.firstImg}`} alt=""/>

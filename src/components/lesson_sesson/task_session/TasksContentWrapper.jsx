@@ -1,10 +1,11 @@
-import { FirstTaskContent } from "./FirstTaskContent"
-import { SecondTaskContent } from "./SecondTaskContent"
-import { ThirdTaskContent } from "./ThirdTaskContent"
-import { FourthTaskContent } from "./FourthTaskContent"
+import "./css/task_content_wrapper.css"
+import "./css/task_content.css"
+import "./css/task_content_media.css"
 
-import "./css/task_session_content.css"
-import "./css/task_session_media.css"
+import { FirstTaskContent } from "../../item_task_content/FirstTaskContent"
+import { SecondTaskContent } from "../../item_task_content/SecondTaskContent"
+import { ThirdTaskContent } from "../../item_task_content/ThirdTaskContent"
+import { FourthTaskContent } from "../../item_task_content/FourthTaskContent"
 
 export const TasksContentWrapper = ({task}) => {
     const taskContentWrapperComponents = {
@@ -18,7 +19,6 @@ export const TasksContentWrapper = ({task}) => {
 
     return (<>
         <div className="taskContentWrapper">
-            <p>НОВАЯ ОБЕРТКА</p>
             {TaskContent ? <TaskContent task={task}/> : <p>Aboba</p>}
         </div>
     </>)

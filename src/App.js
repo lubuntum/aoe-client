@@ -6,7 +6,7 @@ import ProtectedRoute from './modules/auth/ProtectedRoute';
 import Account from './components/account/Account';
 import HomePage from './components/HomePage';
 import TasksPage from './components/tasks/TasksPage'
-import { LessonSessionPage } from './components/lesson_sesson/LessonSessionPage';
+import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage';
 import routes from './routes';
 import { Registration } from './components/auth/Registration';
 

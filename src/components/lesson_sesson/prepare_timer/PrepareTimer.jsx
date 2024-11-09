@@ -1,10 +1,12 @@
+import "./css/prepare_timer.css"
+import "./css/prepare_timer_media.css"
+
 import { useState, useEffect, useRef } from "react"
-import { useLessonSpeaker } from "../../hooks/speech/useLessonSpeaker"
-import {stages} from "./LessonSessionPage"
-import { useTimer } from "../../hooks/useTimer"
+import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
+import { stages } from "../lesson_session_page/LessonSessionPage"
+import { useTimer } from "../../../hooks/useTimer"
 
 export const PrepareTimer = ({sec, stage, setStage, task}) => {
-    //const [time, setTime] = useState(sec)
     const {speak} = useLessonSpeaker()
     const speakStageText = () => {
         stage === stages.prepare_reading ?
@@ -12,6 +14,7 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
         speak("Start speaking please",() => {setStage(stages.speak)})
     }
     const {time, resetTimer} = useTimer(sec,speakStageText)
+
     return (<>
         <div className="prepareTimerContent">
             <div className="progressBarContainer">

@@ -5,7 +5,7 @@ import "./css/account_result_grid.css"
 import "./css/result_selection_btn.css"
 import "./css/result_variants_selection.css"
 import "./css/result_tasks_selection.css"
-import "./css/result_content_viewer.css"
+
 import "./css/result_audio_viewer.css"
 import "./css/result_media.css"
 

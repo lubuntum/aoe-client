@@ -1,27 +1,26 @@
-import '../../App.css'
+import "../../../App.css"
+import "./css/lesson.css"
 
 import { useEffect, useRef, useState } from "react"
-import Header from "../header/Header"
-import { MicroPerfomance } from "./micro_perfomance/MicroPerfomance"
-import "./css/lesson.css"
-import "./css/micro_perfomance.css"
-import "./css/prepare_timer.css"
-import "./css/task_session_panel.css"
-import "./css/task_content_wrapper.css"
+import Header from "../../header/Header"
+import { MicroPerfomance } from "../micro_perfomance/MicroPerfomance"
 import { createPath, useLocation , useNavigate} from "react-router-dom"
-import {getTasksByVariantId} from "../../modules/api/variant/VariantApi"
-import { TaskContentViewer } from "../account/variants_results/content_viewer/TaskContentViewer"
-import { createExam } from "../../modules/api/voice/LessonSessionAPI"
+import {getTasksByVariantId} from "../../../modules/api/variant/VariantApi"
+import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskContentViewer"
+import { createExam } from "../../../modules/api/voice/LessonSessionAPI"
 import { LessonSessionPanel } from "./LessonSessionPanel"
-import { PrepareTimer } from "./PrepareTimer"
+import { PrepareTimer } from "../prepare_timer/PrepareTimer"
 
-import { FirstTaskSession } from "./task_session/FirstTaskSession"
-import { SecondTaskSession } from "./task_session/SecondTaskSession"
-import { FourthTaskSession } from "./task_session/FourthTaskSession"
-import { ThirdTaskSession } from "./task_session/ThirdTaskSession"
-import { useLessonSpeaker } from '../../hooks/speech/useLessonSpeaker'
-import { createExamRequest, saveUserTaskRequest } from "../../modules/api/voice/LessonSessionAPI"
-import routes from '../../routes'
+import { FirstTaskSession } from "../task_session/FirstTaskSession"
+import { SecondTaskSession } from "../task_session/SecondTaskSession"
+import { FourthTaskSession } from "../task_session/FourthTaskSession"
+import { ThirdTaskSession } from "../task_session/ThirdTaskSession"
+
+import { useLessonSpeaker } from '../../../hooks/speech/useLessonSpeaker'
+import { createExamRequest, saveUserTaskRequest } from "../../../modules/api/voice/LessonSessionAPI"
+import routes from '../../../routes'
+
+import timersConfig from "../../../timersConfig"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -119,7 +118,7 @@ export const LessonSessionPage = () => {
                     {microCheck && 
                     (<>
                         {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
-                            <PrepareTimer sec={5} stage={stage} setStage={setStage} task={currentTask}/> : 
+                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} stage={stage} setStage={setStage} task={currentTask}/> : 
                         (<>
                             <CurrentTaskSessionComponent task = {currentTask} stage = {stage} 
                                 setStage = {setStage} handleNextTask = {handleNextTask} />
