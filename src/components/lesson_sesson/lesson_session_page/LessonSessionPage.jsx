@@ -21,6 +21,7 @@ import { createExamRequest, saveUserTaskRequest } from "../../../modules/api/voi
 import routes from '../../../routes'
 
 import timersConfig from "../../../timersConfig"
+import { USER_NAME } from "../../../config"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -89,7 +90,8 @@ export const LessonSessionPage = () => {
         const sessionKey = localStorage.getItem("token")
         const exam = await createExam(sessionKey)
         await saveTasksResults(sessionKey, exam)
-        navigate(routes.TASK)
+        const resultsUrl = `/results?userId=${localStorage.getItem(USER_NAME)}&variantId=${variant.id}&examId=${exam.id}`
+        navigate(resultsUrl)
     }
     const createExam = async (sessionKey) => {
         const response = await createExamRequest(variant.id, sessionKey)
