@@ -90,7 +90,7 @@ export const LessonSessionPage = () => {
         const sessionKey = localStorage.getItem("token")
         const exam = await createExam(sessionKey)
         await saveTasksResults(sessionKey, exam)
-        const resultsUrl = `/results?userId=${localStorage.getItem(USER_NAME)}&variantId=${variant.id}&examId=${exam.id}`
+        const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
         navigate(resultsUrl)
     }
     const createExam = async (sessionKey) => {
