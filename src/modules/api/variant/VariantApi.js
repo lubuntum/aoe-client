@@ -9,5 +9,8 @@ export const getVariantsData = async () => {
 export const getTasksByVariantId = async (variantId) => {
     const url = API_VARIANT_TASKS_DATA.replace("%d", variantId)
     const response = await axios.get(`${SERVER_API_URL}${url}`);
+    response.data.forEach(task => {
+        task.taskContent = JSON.parse(task.taskContent)
+    })
     return response;
 }

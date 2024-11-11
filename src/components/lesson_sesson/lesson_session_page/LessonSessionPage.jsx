@@ -56,9 +56,7 @@ export const LessonSessionPage = () => {
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
             const response = await getTasksByVariantId(variant.id)
-            response.data.forEach(task => {
-                task.taskContent = JSON.parse(task.taskContent)
-            })
+            
             //TODO 
             //Что бы можно было проходить только одно задание перед вызовом 
             //этого компонента добавить в variant.pickedTaskType
