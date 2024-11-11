@@ -9,6 +9,7 @@ import TasksPage from './components/tasks/TasksPage'
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage';
 import routes from './routes';
 import { Registration } from './components/auth/Registration';
+import { Results } from './components/lesson_sesson/lesson_session_result/Results';
 
 function App() {
     return (
@@ -34,6 +35,7 @@ const Main = () => {
 
                 <Route path={routes.TASK} element = {<ProtectedRoute component={<TasksPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
+                <Route path={routes.RESULTS} element = {<ProtectedRoute component={<Results/>}/>}/>
             </Routes>
         </div>
     )
