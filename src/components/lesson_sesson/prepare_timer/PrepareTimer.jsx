@@ -5,7 +5,10 @@ import { useState, useEffect, useRef } from "react"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 import { stages } from "../lesson_session_page/LessonSessionPage"
 import { useTimer } from "../../../hooks/useTimer"
-
+const stagesText = {
+    [stages.prepare_reading]: "Get ready for the task!",
+    [stages.prepare_speak] : "Get ready to the answer!"
+}
 export const PrepareTimer = ({sec, stage, setStage, task}) => {
     const {speak} = useLessonSpeaker()
     const speakStageText = () => {
@@ -14,7 +17,6 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
         speak("Start speaking please",() => {setStage(stages.speak)})
     }
     const {time, resetTimer} = useTimer(sec,speakStageText)
-
     return (<>
         <div className="prepareTimerContent">
             <div className="progressBarContainer">
@@ -31,7 +33,7 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
                 </div>
                 <p className="prepareTimer"><span>0{time}</span> sec.</p>
             </div>
-            <p className="prepareWarning">Get ready for the task!</p>
+            <p className="prepareWarning">{stagesText[stage]}</p>
         </div>  
     </>)
 }
