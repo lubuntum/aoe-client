@@ -5,11 +5,12 @@ import { useState, useEffect, useRef } from "react"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 import { stages } from "../lesson_session_page/LessonSessionPage"
 import { useTimer } from "../../../hooks/useTimer"
-const stagesText = {
-    [stages.prepare_reading]: "Get ready for the task!",
-    [stages.prepare_speak] : "Get ready to the answer!"
-}
+
 export const PrepareTimer = ({sec, stage, setStage, task}) => {
+    const stagesText = {
+        [stages.prepare_reading]: "Get ready for the task!",
+        [stages.prepare_speak] : "Get ready to the answer!"
+    }
     const {speak} = useLessonSpeaker()
     const speakStageText = () => {
         stage === stages.prepare_reading ?
