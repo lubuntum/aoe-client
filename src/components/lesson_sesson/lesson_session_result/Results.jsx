@@ -11,35 +11,37 @@ export const Results = () => {
     const variantId = query.get('variantId')
     const [tasks, setTasks] = useState()
     const [customerTasks, setCustomerTasks] = useState()
-    // Тут будут подгружаться ответы пользователя на задания
-    const [userTasks, setUserTasks] = useState([]) 
+    const [customerResults, setCustomerResults] = useState()
     useEffect(()=>{
         const loadTaskByVariantId = async () => {
             const taskResonse = await getTasksByVariantId(variantId)
             const customerTaskResponse = await getCustomerTaskByExamId(examId)
-            console.log(customerTaskResponse.data[0].audioPath)
-
+            setCustomerResults(mergeData(taskResonse.data, customerTaskResponse.data))
             setCustomerTasks(customerTaskResponse.data)
             setTasks(taskResonse.data)
         }
         loadTaskByVariantId()
     }, [])
+
+    const mergeData = (tasks,customerTasks) => {
+        const result = tasks.map((task) => {
+            const customerTask = customerTasks.find(cT => cT.taskId === task.id)
+            return {task, customerTask}
+        }) 
+        result.sort((a,b) => a.task.taskType - b.task.taskType)
+        return result;
+    }
+    
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (
         <>
             <Header/>
-            <p>{`examId = ${examId},  variantId = ${variantId}`}</p>
-            
-            {customerTasks && 
-            <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
-                {customerTasks.map((customerTask)=>(
-                    <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>
-                ))}
-            </div>}
             {tasks && 
             <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
-                {tasks.map((task)=>(
-                    <TasksContentWrapper task={task} />
+                {customerResults.map((result)=>(<>
+                        <audio controls src={`${SERVER_API_URL}/${result.customerTask.audioPath}`}></audio>
+                        <TasksContentWrapper task={result.task} />
+                    </>
                 ))}
             </div>}
         </>
