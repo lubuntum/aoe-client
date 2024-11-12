@@ -1,0 +1,185 @@
+.resultsViewerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+}
+
+.resultsViewerDescription {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.resultsViewerDescription p {
+    font-weight: 600;
+    background-color: #E8F4FF;
+    border-radius: 10px;
+    padding: 5px 20px 5px 20px;
+}
+
+.resultsViewerTable {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.resultsViewerTable thead tr,
+.resultsViewerTable tbody tr {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.resultsViewerTable tbody tr {
+    padding-bottom: 20px;
+}
+.resultsViewerTable tbody tr:last-child {
+    padding-bottom: 0;
+}
+.resultsViewerTable thead tr th:first-child,
+.resultsViewerTable tbody tr td:first-child {
+    width: 40px;
+}
+.resultsViewerTable thead tr th:nth-child(2),
+.resultsViewerTable tbody tr td:nth-child(2) {
+    width: 130px;
+}
+.resultsViewerTable thead tr th:nth-child(3),
+.resultsViewerTable tbody tr td:nth-child(3) {
+    width: 350px;
+}
+.resultsViewerTable thead tr th:nth-child(4),
+.resultsViewerTable thead tr th:nth-child(5),
+
+.resultsViewerTable tbody tr td:nth-child(4),
+.resultsViewerTable tbody tr td:nth-child(5) {
+    width: 310px;
+}
+.resultsViewerTable thead tr th:last-child,
+.resultsViewerTable tbody tr td:last-child {
+    width: 160px;
+}
+.resultsViewerTable thead tr p {
+    font-weight: 600;
+}
+.resultsViewerTable tbody tr p {
+    font-weight: 500;
+}
+
+.resultsViewerSendBtns,
+.resultsViewerSendDate,
+.resultsViewerResults {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.resultsViewerUsefullBtns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resultsViewerSendBtns a {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.resultsViewerSendBtns a:first-child {
+    padding-right: 30px;
+}
+
+.resultsViewerSendBtns a:last-child {
+    padding-left: 30px;
+}
+
+.resultsViewerTableHeaderItem,
+.resultsViewerTableBodyItem {
+    height: 40px;
+    background-color: #E8F4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.resultsViewerResults .resultsViewerTableBodyItem {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: end;
+    align-items: center;
+}
+
+.resultsViewerTableBodyItem a {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+}
+
+.resultsViewerTableBodyItem a .svgIcon {
+    fill: #2276F4;
+}
+
+.itemWithIcons {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.svgIconTableHeaderItem {
+    fill: black;
+}
+
+.resultsViewerIconsPresenation {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.svgIconPresentation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: black;
+}
+
+.resultsViewerTablePagination {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.resultsViewerTablePagination a {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+    color: #2276F4;
+    font-size: 18px;
+}
+
+.resultsViewerUsefullBtns a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.resultsViewerSendBtns a:hover > .sendBtnType {
+    display: none;
+}
+
+.resultsViewerSendBtns a:hover > .sendBtnCost {
+    display: flex !important;
+}
