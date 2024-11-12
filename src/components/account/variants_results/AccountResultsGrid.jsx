@@ -106,7 +106,7 @@ export const AccountResultsGrid = () =>{
 
             {examPicked ? <ExamContentViewer variant={currentVariant} exams={undefined}/> : <TaskContentViewer task={currentTask}/>}
 
-            <TaskResultsViewer/>
+            <ExamResultsViewer/>
         </div>
     </>)
 }

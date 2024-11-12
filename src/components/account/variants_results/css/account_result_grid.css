@@ -1,12 +1,12 @@
 .accountResultGrid {
     display: grid;
     grid-template-columns: 300px auto;
-    grid-template-rows: 120px 370px 370px;
+    grid-template-rows: 120px 370px auto;
     gap: 20px;
 }
 .gridItem6 {
     grid-column: span 1;
-    grid-row: span 3;
+    grid-row: span 2;
 }
 .gridItem7 {
     grid-column: span 1;
@@ -16,6 +16,6 @@
     grid-row: span 1;
 }
 .gridItem9 {
-    grid-column: span 1;
+    grid-column: span 2;
     grid-row: span 1;
 }
