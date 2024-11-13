@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import "./css/account_result_grid.css"
 
@@ -17,17 +17,22 @@ import { ExamContentViewer } from "./content_viewer/ExamContentViewer"
 
 import { TaskResultsViewer } from "./result_viewer/TaskResultsViewer"
 import { ExamResultsViewer } from "./result_viewer/ExamResultsViewer"
+import { getCustomerCompletedVariants } from "../../../modules/api/account/AccountApi"
 
 export const AccountResultsGrid = () =>{
     const [currentVariant, setCurrentVariant] = useState()
     const [currentTask, setCurrentTask] = useState()
     const [examPicked, setExamPicked] = useState()
+    useEffect(()=>{
+        const variantsRequest = async () => {
+            const response = await getCustomerCompletedVariants(localStorage.getItem("token"))
+            console.log(response)
+        }
+        variantsRequest()
+    },[])
     /** TEST
      * Данные которые будут подсасываться через useEffect
      */
-    const testResponse2 = {
-
-    }
     const testResponse = {
         "data" : {
             "variants": [{"id":1, "theme":"someTheme1", 
@@ -61,7 +66,7 @@ export const AccountResultsGrid = () =>{
         }
     }
     const findTaskByTaskTypeInVariant = (taskType, variant) =>{
-        return variant.tasks.find(t => t.task_type === taskType)
+        return variant.tasks.find(t => t.taskType === taskType)
     }
     /**
      * Функция клика на вариант задания,
@@ -70,9 +75,8 @@ export const AccountResultsGrid = () =>{
      */
     const showTasksClick = (i) =>{
         const chosenVariant = testResponse.data.variants[i]
-        console.log(chosenVariant.theme)
         setCurrentVariant(chosenVariant)
-        if(currentTask !== undefined) setCurrentTask(findTaskByTaskTypeInVariant(currentTask.task_type, chosenVariant))
+        if(currentTask !== undefined) setCurrentTask(findTaskByTaskTypeInVariant(currentTask.taskType, chosenVariant))
     }
     /**
      * Функция необходимая для отображения
