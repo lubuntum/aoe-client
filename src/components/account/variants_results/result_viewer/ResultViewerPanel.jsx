@@ -10,7 +10,7 @@ import { ReactComponent as DownloadIcon } from "../../../../res/icons/download_2
 import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_long_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
-export const ExamResultsViewer = ({variant}) => {
+export const ResultViewerPanel = ({variant, examPicked}) => {
     const data = Array.from({length: 19}, (_, index) => ({
         id: index + 1,
         complete: getCurrentDate(),
@@ -57,7 +57,7 @@ export const ExamResultsViewer = ({variant}) => {
             <div className="resultsViewerDescription">
                 <p>Ваши попытки</p>
                 <p>{variant ? variant.theme : "Тема не найдена"}</p>
-                <p>Экзамен</p>
+                <p>{examPicked ? "Экзамен" : "Задание"}</p>
             </div>
             
             <table className="resultsViewerTable">

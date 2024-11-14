@@ -74,7 +74,6 @@ export const LessonSessionPage = () => {
         audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
         if (currentTask.taskType >= 4) {
             speak("This is the end of the test", async ()=>{
-                navigate(routes.TASK)
                 await endLessonSession()
             })
             return;
