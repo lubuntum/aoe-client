@@ -23,10 +23,12 @@ export const AccountResultsGrid = () =>{
     const [currentVariant, setCurrentVariant] = useState()
     const [currentTask, setCurrentTask] = useState()
     const [examPicked, setExamPicked] = useState()
+    const [variants, setVariants] = useState()
     useEffect(()=>{
         const variantsRequest = async () => {
             const response = await getCustomerCompletedVariants(localStorage.getItem("token"))
             console.log(response)
+            setVariants(response.data)
         }
         variantsRequest()
     },[])
@@ -74,7 +76,8 @@ export const AccountResultsGrid = () =>{
      * @param {*} i Индекс текущего варианта
      */
     const showTasksClick = (i) =>{
-        const chosenVariant = testResponse.data.variants[i]
+        //const chosenVariant = testResponse.data.variants[i]
+        const chosenVariant = variants[i]
         setCurrentVariant(chosenVariant)
         if(currentTask !== undefined) setCurrentTask(findTaskByTaskTypeInVariant(currentTask.taskType, chosenVariant))
     }
@@ -86,7 +89,7 @@ export const AccountResultsGrid = () =>{
      * 
      */
     const showContentByTaskClick = (task) => {
-        console.log(task.id)//exam false hook
+        console.log(task)//exam false hook
         console.info("set false")
         setExamPicked(false)
         setCurrentTask(task)
@@ -100,7 +103,7 @@ export const AccountResultsGrid = () =>{
     return (<>
         <div className="accountResultGrid">
             <VariantsSelection 
-                variants={testResponse.data.variants} 
+                variants={variants} 
                 showTasksClick = {showTasksClick}/>
 
             <TaskSelection  
@@ -110,7 +113,7 @@ export const AccountResultsGrid = () =>{
 
             {examPicked ? <ExamContentViewer variant={currentVariant} exams={undefined}/> : <TaskContentViewer task={currentTask}/>}
 
-            <ExamResultsViewer/>
+            <ExamResultsViewer variant={currentVariant}/>
         </div>
     </>)
 }
