@@ -25,6 +25,8 @@
 
 .panelRecordIconSvg {
     fill: #ef476f;
+    width: 30px;
+    height: 30px;
     animation: rotation 5s infinite linear;
 }
 

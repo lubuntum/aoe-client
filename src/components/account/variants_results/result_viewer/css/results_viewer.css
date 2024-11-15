@@ -8,6 +8,19 @@
     padding: 20px;
 }
 
+.emptyResultsViewerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+    min-height: 120px;
+}
+
 .resultsViewerDescription {
     display: flex;
     flex-direction: row;

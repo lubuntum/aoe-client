@@ -1,0 +1,27 @@
+.taskViewerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.taskViewerEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.taskIterator {
+    font-weight: 600;
+    font-size: 16px;
+    color: #2276F4;
+    margin-bottom: 10px;
+}

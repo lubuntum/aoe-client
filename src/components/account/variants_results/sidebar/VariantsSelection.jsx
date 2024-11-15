@@ -1,3 +1,7 @@
+import "../../../../App.css"
+import "./css/sidebar.css"
+import "./css/sidebar_media.css"
+
 import { VariantSelectionBtn } from "./VariantSelectionBtn"
 
 export const VariantsSelection = ({variants, showTasksClick}) => {

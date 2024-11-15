@@ -1,5 +1,7 @@
-import { useState, useRef } from "react"
 import "./css/results_viewer.css"
+import "./css/result_viewer_media.css"
+
+import { useState, useRef } from "react"
 import { getCurrentDate } from "../../../../modules/date/currentDate"
 
 import { ReactComponent as BoltIcon } from "../../../../res/icons/bolt_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
@@ -21,7 +23,7 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
     }))
 
     const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 5
+    const itemsPerPage = 3
     const indexOfLastItem = currentPage * itemsPerPage
     const indexOfFirstItem = indexOfLastItem - itemsPerPage
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)

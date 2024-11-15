@@ -1,11 +1,11 @@
-import "../../App.css"
-import "./account.css"
+import "../../../App.css"
+import "./css/account.css"
 
-import { Header } from '../header/Header'
-import { AccountUserGrid } from "./user/AccountUserGrid"
-import { AccountResultsGrid } from "./variants_results/AccountResultsGrid"
+import { Header } from "../../header/Header"
+import { AccountUserGrid } from "../user/AccountUserGrid"
+import { AccountResultsGrid } from "../variants_results/AccountResultsGrid"
 
-const Account = () =>{
+const AccountPage = () =>{
 
     return (<>
         <div className="sectionWrapper">
@@ -24,4 +24,4 @@ const Account = () =>{
     </>)
 }
 
-export default Account
+export default AccountPage

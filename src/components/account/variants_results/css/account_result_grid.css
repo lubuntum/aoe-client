@@ -1,7 +1,7 @@
 .accountResultGrid {
     display: grid;
     grid-template-columns: 300px auto;
-    grid-template-rows: 120px 370px auto;
+    grid-template-rows: 120px 380px auto;
     gap: 20px;
 }
 .gridItem6 {

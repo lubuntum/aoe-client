@@ -1,58 +1,52 @@
 /*Общие стили*/
-.taskContentSession {
+.taskContentAccount {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    font-size: 20px;
+    font-size: 16px;
     text-align: justify;
 }
 
-.taskGudieSession {
+.taskGuideAccount {
     font-weight: 600;
 }
 
-.taskGudieSession span {
+.taskGuideAccount span {
     color: #2276F4;
 }
 
-.taskDividerSession {
+.taskDividerAccount {
     width: 100%;
     border-bottom: 1px solid #bbbbbb;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.taskTextSession {
+.taskTextAccount {
     font-weight: 500;
-    line-height: 40px;
+    line-height: 25px;
 }
-
-
 
 /*Стили для 1 таска*/
 /*----------*/
 
-
-
 /*Стили для 2 таска*/
-.taskTopicSession {
+.taskTopicAccount {
     display: flex;
     flex-direction: column;
     font-weight: 500;
-    margin-top: 40px;
 }
 
-.taskUnderTopicSession {
+.taskUnderTopicAccount {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 35px;
+    margin-top: 10px;
 }
 
-.taskImgSession {
-    width: 500px;
-    height: 300px;
+.taskImgAccount {
+    width: 400px;
+    height: 250px;
     overflow: hidden;
     border-radius: 10px;
     display: flex;
@@ -60,13 +54,13 @@
     align-items: center;
 }
 
-.taskImgSession img {
+.taskImgAccount img {
     width: 100%;
     height: auto;
     object-fit: cover;
 }
 
-.taskUnderTopicSession p {
+.taskUnderTopicAccount p {
     font-size: 16px;
     font-weight: 500;
     font-style: italic;
@@ -75,34 +69,30 @@
 
 
 /*Стили для 3 таска*/
-.taskIconSession {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+.taskIconAccount {
+    display: none;
 }
 
-.taskIconsSvg {
-    fill: #bbbbbb;
-    width: 200px;
-    height: 200px;
-}
-
-
-
-/*Стили для 4 таска*/
-.taskSubQuestionSession {
+.taskQuestionAccount {
     display: flex;
     flex-direction: column;
     font-weight: 500;
 }
 
-.taskImgsContainerSession {
+
+
+/*Стили для 4 таска*/
+.taskSubQuestionAccount {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+.taskImgsContainerAccount {
     display: flex;
     flex-direction: row;
     gap: 40px;
-    margin-top: 40px;
+    margin-top: 10px;
     justify-content: center;
     align-items: center;
 }

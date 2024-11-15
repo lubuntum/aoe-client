@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react"
-
 import "./css/account_result_grid.css"
-
-import "./css/result_selection_btn.css"
-import "./css/result_variants_selection.css"
-import "./css/result_tasks_selection.css"
-
-import "./css/result_audio_viewer.css"
 import "./css/result_media.css"
+
+import { useEffect, useState } from "react"
 
 import { VariantsSelection } from "./sidebar/VariantsSelection"
 import { TaskSelection } from "./topbar/TasksSelection"
 
-import { TaskContentViewer } from "./content_viewer/TaskContentViewer"
-import { ExamContentViewer } from "./content_viewer/ExamContentViewer"
+import { TaskViewerWrapper } from "./content_viewer/TaskViewerWrapper"
+import { ExamViewerWrapper } from "./content_viewer/ExamViewerWrapper"
 
 import { ResultViewerPanel } from "./result_viewer/ResultViewerPanel"
 import { ResultViewerEmpty } from "./result_viewer/ResultViewerEmpty"
@@ -45,6 +39,7 @@ export const AccountResultsGrid = () =>{
     const showTasksClick = (i) =>{
         //const chosenVariant = testResponse.data.variants[i]
         const chosenVariant = variants[i]
+        chosenVariant.variantTasks.sort((a,b) => a.taskType - b.taskType)
         setCurrentVariant(chosenVariant)
         if(currentTask !== undefined) setCurrentTask(findTaskByTaskTypeInVariant(currentTask.taskType, chosenVariant))
     }
@@ -78,9 +73,9 @@ export const AccountResultsGrid = () =>{
                 showContentByTaskClick = {showContentByTaskClick} 
                 showContentByExamClick = {showContentByExamClick}/>
 
-            {examPicked ? <ExamContentViewer variant={currentVariant} exams={undefined}/> : <TaskContentViewer task={currentTask}/>}
+            {examPicked ? <ExamViewerWrapper variant={currentVariant} exams={undefined}/> : <TaskViewerWrapper task={currentTask}/>}
 
-            {(currentTask !== undefined || examPicked) ? <ResultViewerPanel variant={currentVariant} examPicked={examPicked}/> : <ResultViewerEmpty/>}
+            {currentTask !== undefined || examPicked ? <ResultViewerPanel variant={currentVariant} examPicked={examPicked}/> : <ResultViewerEmpty/>}
             
         </div>
     </>)
