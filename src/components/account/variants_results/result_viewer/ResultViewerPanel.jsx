@@ -20,22 +20,37 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
         expertResult: "12" 
     }))
 
-    const [hoveredButton, setHoveredButton] = useState(null)
-    const timeoutRef = useRef(null)
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 5
+    const indexOfLastItem = currentPage * itemsPerPage
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
+    const paginate = (pageNum) => setCurrentPage(pageNum)
 
-    const handleMouseEnter = (index) => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current)
+    const [hoveredButton, setHoveredButton] = useState(Array(currentItems.length).fill(null))
+    const timeoutRef = useRef(Array(currentItems.length).fill(null))
+
+    const handleMouseEnter = (rowIndex, buttonIndex) => {
+        if (timeoutRef.current[rowIndex]) {
+            clearTimeout(timeoutRef.current[rowIndex])
         }
-        timeoutRef.current = setTimeout(() => {
-            setHoveredButton(index)
+        timeoutRef.current[rowIndex] = setTimeout(() => {
+            setHoveredButton(prev => {
+                const newHoveredButton = [...prev]
+                newHoveredButton[rowIndex] = buttonIndex
+                return newHoveredButton
+            })
         }, 300)
     }
     
-    const handleMouseLeave = () => {
-        clearTimeout(timeoutRef.current)
-        timeoutRef.current = setTimeout(() => {
-            setHoveredButton(null)
+    const handleMouseLeave = (rowIndex) => {
+        clearTimeout(timeoutRef.current[rowIndex])
+        timeoutRef.current[rowIndex] = setTimeout(() => {
+            setHoveredButton(prev => {
+                const newHoveredButton = [...prev]
+                newHoveredButton[rowIndex] = null
+                return newHoveredButton
+            })
         }, 400)
     }
 
@@ -44,13 +59,6 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
         {id: 2, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>},
         {id: 3, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>},
     ]
-
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 5
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
-    const paginate = (pageNum) => setCurrentPage(pageNum)
 
     return (<>
         <div className="resultsViewerContainer gridItem9">
@@ -97,13 +105,13 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                 </thead>
 
                 <tbody>
-                    {currentItems.map(i => (
-                        <tr key={i.id}>
+                    {currentItems.map((item, rowIndex) => (
+                        <tr key={item.id}>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{i.id}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{item.id}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{i.complete}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{item.complete}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
@@ -121,33 +129,33 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendDate">
-                                    <div className="resultsViewerTableBodyItem"><p>{i.expressSend}</p></div>
-                                    <div className="resultsViewerTableBodyItem"><p>{i.expertSend}</p></div>
+                                    <div className="resultsViewerTableBodyItem"><p>{item.expressSend}</p></div>
+                                    <div className="resultsViewerTableBodyItem"><p>{item.expertSend}</p></div>
                                 </div>
                             </td>
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p>{i.expressResult} / 20</p>
+                                        <p>{item.expressResult} / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
-                                        <p>{i.expertResult} / 20</p>
+                                        <p>{item.expertResult} / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                 </div>
                             </td>
                             <td>
-                                <div className="resultsViewerUsefullBtns" style={{gap: hoveredButton === null ? "20px" : "10px"}}>
-                                    {usefullBtns.map((button, index) => (
+                                <div className="resultsViewerUsefullBtns" style={{gap: hoveredButton[rowIndex] === null ? "20px" : "10px"}}>
+                                    {usefullBtns.map((button, buttonIndex) => (
                                         <a key={button.id} className="btn"
-                                        style={{width: hoveredButton === index ? "120px" : hoveredButton === null ? "40px" : "10px"}}
-                                        onMouseEnter={() => handleMouseEnter(index)}
-                                        onMouseLeave={handleMouseLeave}>
-                                            <div className="svgIconPresentation" style={{display: hoveredButton === null ? "flex" : "none"}}>{button.icon}</div>
-                                            <p style={{display: hoveredButton === index ? "flex" : "none", fontWeight: "600"}}>{button.text}</p>
+                                        style={{width: hoveredButton[rowIndex] === buttonIndex ? "120px" : hoveredButton[rowIndex] === null ? "40px" : "10px"}}
+                                        onMouseEnter={() => handleMouseEnter(rowIndex, buttonIndex)}
+                                        onMouseLeave={() => handleMouseLeave(rowIndex)}>
+                                            <div className="svgIconPresentation" style={{display: hoveredButton[rowIndex] === null ? "flex" : "none"}}>{button.icon}</div>
+                                            <p style={{display: hoveredButton[rowIndex] === buttonIndex ? "flex" : "none", fontWeight: "600"}}>{button.text}</p>
                                         </a>
                                     ))}
                                 </div>
