@@ -18,8 +18,8 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
         complete: getCurrentDate(),
         expressSend: getCurrentDate(),
         expertSend: getCurrentDate(),
-        expressResult: "06",
-        expertResult: "12" 
+        expressResult: "6",
+        expertResult: "16" 
     }))
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -61,6 +61,17 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
         {id: 2, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>},
         {id: 3, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>},
     ]
+
+    const getColorClass = (score) => {
+        const numericScore = parseInt(score, 10)
+        if (numericScore >= 1 && numericScore <= 7) {return "scoreRed"}
+        else if (numericScore >= 8 && numericScore <= 14) {return "scoreYellow"}
+        else {return "scoreGreen"}
+    }
+
+    const formatScore = (score) => {
+        return score.padStart(2, "0")
+    }
 
     return (<>
         <div className="resultsViewerContainer gridItem9">
@@ -138,15 +149,14 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p>{item.expressResult} / 20</p>
+                                        <p><span className={getColorClass(item.expressResult)}>{formatScore(item.expressResult)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
-                                        <p>{item.expertResult} / 20</p>
+                                        <p><span className={getColorClass(item.expertResult)}>{formatScore(item.expertResult)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
-                                    
                                 </div>
                             </td>
                             <td>

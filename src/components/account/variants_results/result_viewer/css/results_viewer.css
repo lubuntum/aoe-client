@@ -132,6 +132,22 @@
     align-items: center;
 }
 
+.resultsViewerResults .resultsViewerTableBodyItem p {
+    font-weight: 600 !important;
+}
+
+.scoreRed {
+    color: #ef476f;
+}
+
+.scoreYellow {
+    color: #ffd166;
+}
+
+.scoreGreen {
+    color: #06d6a0;
+}
+
 .resultsViewerTableBodyItem a {
     background-color: transparent;
     box-shadow: 0 0 0 transparent;
