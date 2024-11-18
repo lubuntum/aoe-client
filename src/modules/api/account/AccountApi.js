@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SERVER_API_URL,  API_CUSTOMER_DATA, API_HEADER_DATA, API_CUSTOMER_COMPLETED_VARIANTS} from "../../../config";
+import { SERVER_API_URL,  API_CUSTOMER_DATA, API_HEADER_DATA, API_CUSTOMER_COMPLETED_VARIANTS, API_CUSTOMER_EXAMS_BY_VARIANT} from "../../../config";
 
 export const getCustomerData = async (token) => {
     const response =  await axios.get(`${SERVER_API_URL}${API_CUSTOMER_DATA}`,  {
@@ -33,3 +33,4 @@ export const getCustomerCompletedVariants = async (token) => {
     })
     return response;
 }
+

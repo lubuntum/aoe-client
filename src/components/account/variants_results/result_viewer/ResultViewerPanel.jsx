@@ -1,7 +1,7 @@
 import "./css/results_viewer.css"
 import "./css/result_viewer_media.css"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { getCurrentDate } from "../../../../modules/date/currentDate"
 
 import { ReactComponent as BoltIcon } from "../../../../res/icons/bolt_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
@@ -11,7 +11,14 @@ import { ReactComponent as LinkIcon } from "../../../../res/icons/link_24dp_E8EA
 import { ReactComponent as DownloadIcon } from "../../../../res/icons/download_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_long_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-
+import { getCustomerCompletedVariants } from "../../../../modules/api/account/AccountApi"
+import { getCustomerExamsByVariant } from "../../../../modules/api/result/ResultAPI"
+/*TODO
+    --Сделать две панельки для экзамена и для тасков
+    --Они слишком сильно отличаются и имеют разную во многом бизнес логику
+    --Будет лучше, проще и практичнее сделать два отдельных компонента 
+    которые будут отображать экзамены по варианту и задания отдельно
+*/
 export const ResultViewerPanel = ({variant, examPicked}) => {
     const data = Array.from({length: 19}, (_, index) => ({
         id: index + 1,
@@ -21,16 +28,36 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
         expressResult: "6",
         expertResult: "16" 
     }))
+    const [exams, setExams] = useState([])
 
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 3
     const indexOfLastItem = currentPage * itemsPerPage
     const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
+    const currentItems = exams.slice(indexOfFirstItem, indexOfLastItem)
     const paginate = (pageNum) => setCurrentPage(pageNum)
 
     const [hoveredButton, setHoveredButton] = useState(Array(currentItems.length).fill(null))
     const timeoutRef = useRef(Array(currentItems.length).fill(null))
+
+    useEffect(()=>{
+        const getExamsData = async () => {
+            const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
+            response.data.sort((a,b)=>{
+                // Split the date strings into components
+                const [dayA, monthA, yearA] = a.examCompleteDate.split('.').map(Number);
+                const [dayB, monthB, yearB] = b.examCompleteDate.split('.').map(Number);
+                
+                // Create Date objects for comparison
+                const dateA = new Date(yearA, monthA - 1, dayA); // month is 0-indexed
+                const dateB = new Date(yearB, monthB - 1, dayB);
+                
+                // Compare the Date objects
+                return dateB - dateA})
+            setExams(response.data)
+        }
+        getExamsData()
+    },[])
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
@@ -70,6 +97,7 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
     }
 
     const formatScore = (score) => {
+        if (!score) return "00"
         return score.padStart(2, "0")
     }
 
@@ -118,13 +146,13 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                 </thead>
 
                 <tbody>
-                    {currentItems.map((item, rowIndex) => (
-                        <tr key={item.id}>
+                    {currentItems?.map((exam, rowIndex) => (
+                        <tr key={exam.id}>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{item.id}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{rowIndex+1}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{item.complete}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{exam.examCompleteDate}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
@@ -142,19 +170,19 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendDate">
-                                    <div className="resultsViewerTableBodyItem"><p>{item.expressSend}</p></div>
-                                    <div className="resultsViewerTableBodyItem"><p>{item.expertSend}</p></div>
+                                    <div className="resultsViewerTableBodyItem"><p>{exam.expressSendDate ? exam.expressSendDate : '--.--.----'}</p></div>
+                                    <div className="resultsViewerTableBodyItem"><p>{exam.expertSendDate ? exam.expertSendDate : '--.--.----'}</p></div>
                                 </div>
                             </td>
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(item.expressResult)}>{formatScore(item.expressResult)}</span> / 20</p>
+                                        <p><span className={getColorClass(exam?.expressResult)}>{formatScore(exam.expressTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(item.expertResult)}>{formatScore(item.expertResult)}</span> / 20</p>
+                                        <p><span className={getColorClass(exam?.expertResult)}>{formatScore(exam.expertTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                 </div>
@@ -177,7 +205,7 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                 </tbody>
 
                 <div className="resultsViewerTablePagination">
-                    {Array.from({ length: Math.ceil(data.length / itemsPerPage) }, (_, index) => (
+                    {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
                         <a className="btn" key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                     ))}
                 </div>
