@@ -12,7 +12,9 @@ import { ReactComponent as DownloadIcon } from "../../../../res/icons/download_2
 import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_long_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { getCustomerCompletedVariants } from "../../../../modules/api/account/AccountApi"
+import { OptionsButtons } from "./OptionsButtons"
 import { getCustomerExamsByVariant } from "../../../../modules/api/result/ResultAPI"
+import { useNavigate, useNavigation } from "react-router-dom"
 /*TODO
     --Сделать две панельки для экзамена и для тасков
     --Они слишком сильно отличаются и имеют разную во многом бизнес логику
@@ -20,30 +22,30 @@ import { getCustomerExamsByVariant } from "../../../../modules/api/result/Result
     которые будут отображать экзамены по варианту и задания отдельно
 */
 export const ResultViewerPanel = ({variant, examPicked}) => {
-    const data = Array.from({length: 19}, (_, index) => ({
-        id: index + 1,
-        complete: getCurrentDate(),
-        expressSend: getCurrentDate(),
-        expertSend: getCurrentDate(),
-        expressResult: "6",
-        expertResult: "16" 
-    }))
     const [exams, setExams] = useState([])
+    const [currentItems, setCurrentItems] = useState([])
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const [hoveredButton, setHoveredButton] = useState()
+    const timeoutRef = useRef()
+
     const itemsPerPage = 3
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentItems = exams.slice(indexOfFirstItem, indexOfLastItem)
-    const paginate = (pageNum) => setCurrentPage(pageNum)
+    const [currentPage, setCurrentPage] = useState(1)
+    const paginate = (pageNum) => {
+        
+        const indexOfLastItem = currentPage * itemsPerPage
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage
+        const currentItemsTemp = exams.slice(indexOfFirstItem, indexOfLastItem)
+        
+        setCurrentPage(pageNum)
+        setCurrentItems(currentItemsTemp)
+    }
 
-    const [hoveredButton, setHoveredButton] = useState(Array(currentItems.length).fill(null))
-    const timeoutRef = useRef(Array(currentItems.length).fill(null))
 
     useEffect(()=>{
         const getExamsData = async () => {
             const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
-            response.data.sort((a,b)=>{
+            const examsTemp = response.data
+            examsTemp.sort((a,b)=>{
                 // Split the date strings into components
                 const [dayA, monthA, yearA] = a.examCompleteDate.split('.').map(Number);
                 const [dayB, monthB, yearB] = b.examCompleteDate.split('.').map(Number);
@@ -54,7 +56,16 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                 
                 // Compare the Date objects
                 return dateB - dateA})
-            setExams(response.data)
+            
+            const indexOfLastItem = currentPage * itemsPerPage
+            const indexOfFirstItem = indexOfLastItem - itemsPerPage
+            const currentItemsTemp = examsTemp.slice(indexOfFirstItem, indexOfLastItem)
+            setCurrentItems(currentItemsTemp)
+
+            setHoveredButton(Array(currentItemsTemp.length).fill(null))
+            timeoutRef.current = Array(currentItemsTemp.length).fill(null)
+            
+            setExams(examsTemp)
         }
         getExamsData()
     },[])
@@ -90,15 +101,16 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
     ]
 
     const getColorClass = (score) => {
-        const numericScore = parseInt(score, 10)
-        if (numericScore >= 1 && numericScore <= 7) {return "scoreRed"}
-        else if (numericScore >= 8 && numericScore <= 14) {return "scoreYellow"}
-        else {return "scoreGreen"}
+        if (!score) return ""
+        if (score >= 1 && score <= 7) {return "scoreRed"}
+        if (score >= 8 && score <= 14) {return "scoreYellow"}
+        return "scoreGreen"
     }
 
     const formatScore = (score) => {
-        if (!score) return "00"
-        return score.padStart(2, "0")
+        if (!score) return "--"
+        const stringScore = score.toString()
+        return stringScore.padStart(2, "0")
     }
 
     return (<>
@@ -177,38 +189,57 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(exam?.expressResult)}>{formatScore(exam.expressTotalGrade)}</span> / 20</p>
+                                        <p><span className={getColorClass(exam?.expressTotalGrade)}>{formatScore(exam.expressTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(exam?.expertResult)}>{formatScore(exam.expertTotalGrade)}</span> / 20</p>
+                                        <p><span className={getColorClass(exam?.expertTotalGrade)}>{formatScore(exam.expertTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div className="resultsViewerUsefullBtns" style={{gap: hoveredButton[rowIndex] === null ? "20px" : "10px"}}>
-                                    {usefullBtns.map((button, buttonIndex) => (
-                                        <a key={button.id} className="btn"
-                                        style={{width: hoveredButton[rowIndex] === buttonIndex ? "120px" : hoveredButton[rowIndex] === null ? "40px" : "10px"}}
-                                        onMouseEnter={() => handleMouseEnter(rowIndex, buttonIndex)}
-                                        onMouseLeave={() => handleMouseLeave(rowIndex)}>
-                                            <div className="svgIconPresentation" style={{display: hoveredButton[rowIndex] === null ? "flex" : "none"}}>{button.icon}</div>
-                                            <p style={{display: hoveredButton[rowIndex] === buttonIndex ? "flex" : "none", fontWeight: "600"}}>{button.text}</p>
-                                        </a>
-                                    ))}
+                                    <OptionsButtons buttonId={0} 
+                                                    buttonIndex={0}
+                                                    buttonText={"Подробнее"}
+                                                    buttonIcon={<ExpandIcon className="svgIcon"/>}
+                                                    buttonFnc={() => console.log("1")}
+                                                    hoveredButton={hoveredButton}
+                                                    rowIndex={rowIndex}
+                                                    handleMouseEnter={handleMouseEnter}
+                                                    handleMouseLeave={handleMouseLeave}/>
+                                    <OptionsButtons buttonId={1} 
+                                                    buttonIndex={1}
+                                                    buttonText={"Ссылка"}
+                                                    buttonIcon={<LinkIcon className="svgIcon"/>}
+                                                    buttonFnc={() => console.log("2")}
+                                                    hoveredButton={hoveredButton}
+                                                    rowIndex={rowIndex}
+                                                    handleMouseEnter={handleMouseEnter}
+                                                    handleMouseLeave={handleMouseLeave}/>
+                                    <OptionsButtons buttonId={2} 
+                                                    buttonIndex={2}
+                                                    buttonText={"Скачать"}
+                                                    buttonIcon={<DownloadIcon className="svgIcon"/>}
+                                                    buttonFnc={() => console.log("3")}
+                                                    hoveredButton={hoveredButton}
+                                                    rowIndex={rowIndex}
+                                                    handleMouseEnter={handleMouseEnter}
+                                                    handleMouseLeave={handleMouseLeave}/>
                                 </div>
                             </td>
                         </tr>
                     ))}
                 </tbody>
 
-                <div className="resultsViewerTablePagination">
-                    {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
-                        <a className="btn" key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
-                    ))}
-                </div>
+                {exams?.length > 3 && 
+                    <div className="resultsViewerTablePagination">
+                        {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
+                            <a className="btn" key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
+                        ))}
+                    </div>}
             </table>
         </div>
     </>)

@@ -64,7 +64,7 @@ export const LessonSessionPage = () => {
             //Далее если это поле есть ищем так t.taskType === variant.pickedTaskType
             //и ниже условие currentTask.taskType >= 4 || variant.pickedTaskType
             setTasks(response.data)
-            setCurrentTask(response.data.find((t)=>t.taskType === 2))
+            setCurrentTask(response.data.find((t)=>t.taskType === 1))
         }
         loadTasksByVariantId()
     }, [])
