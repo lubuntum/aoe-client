@@ -28,14 +28,16 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
     const [hoveredButton, setHoveredButton] = useState()
     const timeoutRef = useRef()
 
+    const startExamNumber = useRef()
     const itemsPerPage = 3
     const [currentPage, setCurrentPage] = useState(1)
     const paginate = (pageNum) => {
         
-        const indexOfLastItem = currentPage * itemsPerPage
+        const indexOfLastItem = pageNum * itemsPerPage
         const indexOfFirstItem = indexOfLastItem - itemsPerPage
         const currentItemsTemp = exams.slice(indexOfFirstItem, indexOfLastItem)
         
+        startExamNumber.current = indexOfFirstItem
         setCurrentPage(pageNum)
         setCurrentItems(currentItemsTemp)
     }
@@ -60,6 +62,7 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
             const indexOfLastItem = currentPage * itemsPerPage
             const indexOfFirstItem = indexOfLastItem - itemsPerPage
             const currentItemsTemp = examsTemp.slice(indexOfFirstItem, indexOfLastItem)
+            startExamNumber.current = indexOfFirstItem
             setCurrentItems(currentItemsTemp)
 
             setHoveredButton(Array(currentItemsTemp.length).fill(null))
@@ -161,7 +164,7 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                     {currentItems?.map((exam, rowIndex) => (
                         <tr key={exam.id}>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{rowIndex+1}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{rowIndex+1 + startExamNumber.current}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerTableBodyItem"><p>{exam.examCompleteDate}</p></div>
