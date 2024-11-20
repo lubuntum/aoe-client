@@ -22,6 +22,8 @@ import { useNavigate, useNavigation } from "react-router-dom"
     которые будут отображать экзамены по варианту и задания отдельно
 */
 export const ResultViewerPanel = ({variant, examPicked}) => {
+    const navigate = useNavigate()
+
     const [exams, setExams] = useState([])
     const [currentItems, setCurrentItems] = useState([])
 
@@ -96,11 +98,27 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
             })
         }, 400)
     }
-
-    const usefullBtns = [
-        {id: 1, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>},
-        {id: 2, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>},
-        {id: 3, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>},
+    const navigateToExamResults = (examId) => {
+        const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
+        navigate(resultsUrl)
+    }
+    const shareExamResults = async (examId) => {
+        try{
+            const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
+            await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
+            alert("Copy")
+        } catch(err) {
+            console.error(`Failed to copy ${err}`)
+        }
+        
+    }
+    const downloadExamResults = (examId) => {
+        console.log("download")
+    }
+    const optionsButtons = [
+        {id: 1, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToExamResults},
+        {id: 2, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareExamResults},
+        {id: 3, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadExamResults},
     ]
 
     const getColorClass = (score) => {
@@ -204,33 +222,20 @@ export const ResultViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerUsefullBtns" style={{gap: hoveredButton[rowIndex] === null ? "20px" : "10px"}}>
-                                    <OptionsButtons buttonId={0} 
-                                                    buttonIndex={0}
-                                                    buttonText={"Подробнее"}
-                                                    buttonIcon={<ExpandIcon className="svgIcon"/>}
-                                                    buttonFnc={() => console.log("1")}
-                                                    hoveredButton={hoveredButton}
-                                                    rowIndex={rowIndex}
-                                                    handleMouseEnter={handleMouseEnter}
-                                                    handleMouseLeave={handleMouseLeave}/>
-                                    <OptionsButtons buttonId={1} 
-                                                    buttonIndex={1}
-                                                    buttonText={"Ссылка"}
-                                                    buttonIcon={<LinkIcon className="svgIcon"/>}
-                                                    buttonFnc={() => console.log("2")}
-                                                    hoveredButton={hoveredButton}
-                                                    rowIndex={rowIndex}
-                                                    handleMouseEnter={handleMouseEnter}
-                                                    handleMouseLeave={handleMouseLeave}/>
-                                    <OptionsButtons buttonId={2} 
-                                                    buttonIndex={2}
-                                                    buttonText={"Скачать"}
-                                                    buttonIcon={<DownloadIcon className="svgIcon"/>}
-                                                    buttonFnc={() => console.log("3")}
-                                                    hoveredButton={hoveredButton}
-                                                    rowIndex={rowIndex}
-                                                    handleMouseEnter={handleMouseEnter}
-                                                    handleMouseLeave={handleMouseLeave}/>
+                                    {optionsButtons.map((btn, index) => (
+                                        <OptionsButtons buttonId={btn.id} 
+                                                        buttonIndex={index} 
+                                                        buttonText={btn.text}
+                                                        buttonIcon={btn.icon}
+                                                        buttonFnc={() => btn.fnc(exam.id)}
+                                                        hoveredButton={hoveredButton}
+                                                        rowIndex={rowIndex}
+                                                        handleMouseEnter={handleMouseEnter}
+                                                        handleMouseLeave={handleMouseLeave}
+                                                        /> 
+
+                                    ))}
+                                    
                                 </div>
                             </td>
                         </tr>
