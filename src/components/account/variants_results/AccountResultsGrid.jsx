@@ -9,10 +9,11 @@ import { TaskSelection } from "./topbar/TasksSelection"
 import { TaskViewerWrapper } from "./content_viewer/TaskViewerWrapper"
 import { ExamViewerWrapper } from "./content_viewer/ExamViewerWrapper"
 
-import { ResultViewerPanel } from "./result_viewer/ResultViewerPanel"
+import { ExamResultsViewerPanel } from "./result_viewer/ExamResultsViewerPanel"
 import { ResultViewerEmpty } from "./result_viewer/ResultViewerEmpty"
 
 import { getCustomerCompletedVariants } from "../../../modules/api/account/AccountApi"
+
 
 export const AccountResultsGrid = () =>{
     const [currentVariant, setCurrentVariant] = useState()
@@ -75,7 +76,7 @@ export const AccountResultsGrid = () =>{
 
             {examPicked ? <ExamViewerWrapper variant={currentVariant} exams={undefined}/> : <TaskViewerWrapper task={currentTask}/>}
 
-            {currentTask !== undefined || examPicked ? <ResultViewerPanel variant={currentVariant} examPicked={examPicked}/> : <ResultViewerEmpty/>}
+            {currentTask !== undefined || examPicked ? <ExamResultsViewerPanel variant={currentVariant} examPicked={examPicked}/> : <ResultViewerEmpty/>}
             
         </div>
     </>)

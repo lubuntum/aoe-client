@@ -136,15 +136,15 @@
     font-weight: 600 !important;
 }
 
-.scoreRed {
+.gradeRed {
     color: #ef476f;
 }
 
-.scoreYellow {
+.gradeYellow {
     color: #ffd166;
 }
 
-.scoreGreen {
+.gradeGreen {
     color: #06d6a0;
 }
 
