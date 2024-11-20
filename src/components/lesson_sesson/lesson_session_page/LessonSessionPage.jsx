@@ -63,18 +63,35 @@ export const LessonSessionPage = () => {
             //Наличие данного поля означает что юзер выбрал пройти только 1 задание в тек. варианте
             //Далее если это поле есть ищем так t.taskType === variant.pickedTaskType
             //и ниже условие currentTask.taskType >= 4 || variant.pickedTaskType
+            //Подумать как завершать прохождение задания, если выбран один вариант
+            //к примеру если выбран pickedTaskType = 2 , то что бы не переходил на 3 или 4
             setTasks(response.data)
-            setCurrentTask(response.data.find((t)=>t.taskType === 1))
+            let currentTaskTemp
+            if (variant.pickedTaskType){
+                currentTaskTemp = response.data.find((t)=>t.taskType === variant.pickedTaskType)
+                currentTaskTemp.taskSession = true
+            } else {
+                currentTaskTemp = response.data.find((t)=>t.taskType === 1)
+                currentTaskTemp.taskSession = false
+            }
+            setCurrentTask(currentTaskTemp)
+            
         }
         loadTasksByVariantId()
     }, [])
 
     const handleNextTask = (audioResult) => {
         audioResultsRef.current.push(audioResult)
-        audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
+        //audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
+        if (variant.pickedTaskType) {
+            speak("This is the end of the test", async ()=>{
+                await endTaskSession()
+            })
+            return
+        }
         if (currentTask.taskType >= 4) {
             speak("This is the end of the test", async ()=>{
-                await endLessonSession()
+                await endExamSession()
             })
             return;
         }//Потом если == 4 или 1 задача закончить тест
@@ -83,7 +100,13 @@ export const LessonSessionPage = () => {
         setStage(stages.prepare_reading)
     }
 
-    const endLessonSession = async () => {
+    const endTaskSession = async () => {
+        const sessionKey = localStorage.getItem("token")
+        await saveTasksResults(sessionKey)
+        navigate(routes.TASK)
+    }
+
+    const endExamSession = async () => {
         const sessionKey = localStorage.getItem("token")
         const exam = await createExam(sessionKey)
         await saveTasksResults(sessionKey, exam)
@@ -96,7 +119,7 @@ export const LessonSessionPage = () => {
     }
     const saveTasksResults = async (sessionKey, exam) => {
         for (const audioBlobData of audioResultsRef.current) {
-            const response = await saveUserTaskRequest(exam.id, audioBlobData.taskId, audioBlobData.audio, sessionKey)
+            const response = await saveUserTaskRequest(exam ? exam.id : null, audioBlobData.taskId, audioBlobData.audio, sessionKey)
             //if (!response.ok) throw new Error(`Error uploading ${audioBlob}`)
         }
     }
