@@ -14,11 +14,11 @@ export const Results = () => {
     const [customerResults, setCustomerResults] = useState()
     useEffect(()=>{
         const loadTaskByVariantId = async () => {
-            const taskResonse = await getTasksByVariantId(variantId)
-            const customerTaskResponse = await getCustomerTaskByExamId(examId)
-            setCustomerResults(mergeData(taskResonse.data, customerTaskResponse.data))
-            setCustomerTasks(customerTaskResponse.data)
-            setTasks(taskResonse.data)
+            const tasksResonse = await getTasksByVariantId(variantId)
+            const customerTasksResponse = await getCustomerTaskByExamId(examId)
+            setCustomerResults(mergeData(tasksResonse.data, customerTasksResponse.data))
+            setCustomerTasks(customerTasksResponse.data)
+            setTasks(tasksResonse.data)
         }
         loadTaskByVariantId()
     }, [])
