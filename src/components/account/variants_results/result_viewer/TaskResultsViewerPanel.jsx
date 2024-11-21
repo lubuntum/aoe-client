@@ -193,7 +193,6 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
                             <td>
                                 <div className="resultsViewerSendDate">
                                     <div className="resultsViewerTableBodyItem"><p>{exam.expressSendDate ? exam.expressSendDate : '--.--.----'}</p></div>
-                                    <div className="resultsViewerTableBodyItem"><p>{exam.expertSendDate ? exam.expertSendDate : '--.--.----'}</p></div>
                                 </div>
                             </td>
                             <td>
