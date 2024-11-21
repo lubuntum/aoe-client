@@ -14,3 +14,7 @@ export const getCustomerExamsByVariant = async (token, variant) => {
     })
     return response
 }
+//Запрос результата по заданию для shareLink
+export const getCustomerTaskByCustomerTaskId = async (customerTaskId) => {
+
+} 
