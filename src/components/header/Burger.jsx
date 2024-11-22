@@ -5,7 +5,7 @@ import routes from '../../routes'
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
-export const Burger = () => {
+export const Burger = ({burgerTop}) => {
     const {isAuth, getUsername} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ export const Burger = () => {
         <div className="navBurger" style={{display: "none"}}>
             <input type="checkbox" id="navBurgerCheckbox"></input>
             <label className="btn" for="navBurgerCheckbox"><MenuIcon className="svgIcon"/></label>
-            <nav>
+            <nav className={`${burgerTop ? 'burgerTop120' : 'burgerTop140'}`}>
                 <a href="/home" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Преимущества</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a href="#">Как начать учиться</a>}

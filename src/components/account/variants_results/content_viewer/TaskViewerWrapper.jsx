@@ -7,6 +7,9 @@ import { SecondTaskContent } from "../../../item_task_content/SecondTaskContent"
 import { ThirdTaskContent } from "../../../item_task_content/ThirdTaskContent"
 import { FourthTaskContent } from "../../../item_task_content/FourthTaskContent"
 
+import { useState } from "react"
+import { useEffect } from "react"
+
 export const TaskViewerWrapper = ({task}) => {
     const taskContentComponents = {
         1:FirstTaskContent,
@@ -23,10 +26,46 @@ export const TaskViewerWrapper = ({task}) => {
     else 
         TaskContent = taskContentComponents[task.taskType]
 
+    const [scrollEnabled, setScrollEnabled] = useState(false)
+    let timeoutId = null
+
+    const handleMouseEnter = () => {
+        timeoutId = setTimeout(() => {
+            setScrollEnabled(true)
+        }, 500)
+    }
+
+    const handleMouseLeave = () => {
+        clearTimeout(timeoutId)
+        setScrollEnabled(false)
+    }
+
+    const handleTouchStart = () => {
+        timeoutId = setTimeout(() => {
+            setScrollEnabled(true)
+        }, 500)
+    }
+
+    const handleTouchEnd =() => {
+        clearTimeout(timeoutId)
+        setScrollEnabled(false)
+    }
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(timeoutId)
+        }
+    }, [])
+
     return (<>
         {idleComponent && idleComponent}
         {idleComponent === undefined && 
-            <div className="taskViewerWrapper gridItem8">
+            <div className="taskViewerWrapper gridItem8"
+                 onMouseEnter={handleMouseEnter}
+                 onMouseLeave={handleMouseLeave}
+                 onTouchStart={handleTouchStart}
+                 onTouchEnd={handleTouchEnd}
+                 style={{overflow: scrollEnabled ? 'auto' : 'hidden'}}>
                 {TaskContent ? <TaskContent task = {task}/> : <p>Unknown task type</p>}
             </div>}
     </>)

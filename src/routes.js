@@ -15,6 +15,6 @@ const routes = {
     LESSON_SESSION,
     RESULTS,
     TASK_RESULT
-};
+}
 
 export default routes

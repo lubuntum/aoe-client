@@ -20,7 +20,6 @@ export const Options = ({headerData}) => {
     return (<>
         <div className="headerOptions">
             {isAuth && (<>
-                <div className="divider"></div>
                 {headerData === undefined ? loadingComponent : 
                 <div className="optionsTokens">
                     <a href="#" className="btn"><BoltIcon className="svgIcon"/> <span>{attemptsAI}</span> <AddIcon className="svgIcon"/></a>

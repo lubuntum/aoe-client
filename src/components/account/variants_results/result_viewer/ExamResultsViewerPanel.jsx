@@ -15,6 +15,9 @@ import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_refere
 import { OptionsButtons } from "./OptionsButtons"
 import { getCustomerExamsByVariant } from "../../../../modules/api/result/ResultAPI"
 
+import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
+import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
+
 /*TODO
     --Сделать две панельки для экзамена и для тасков
     --Они слишком сильно отличаются и имеют разную во многом бизнес логику
@@ -118,19 +121,6 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadExamResults},
     ]
 
-    const getColorClass = (grade) => {
-        if (!grade) return ""
-        const percentageGrade = (grade / 20) * 100
-        if (percentageGrade < 69) return "gradeRed"
-        if (percentageGrade >= 70 && percentageGrade <= 84) return "gradeYellow"
-        return "gradeGreen"
-    }
-
-    const formatGrade = (grade) => {
-        if (!grade) return "--"
-        return grade.toString().padStart(2, "0")
-    }
-
     return (<>
         <div className="resultsViewerContainer gridItem9">
             <div className="resultsViewerDescription">
@@ -207,12 +197,12 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(exam?.expressTotalGrade)}>{formatGrade(exam.expressTotalGrade)}</span> / 20</p>
+                                        <p><span className={setGradeColor(exam?.expressTotalGrade, 20)}>{setGradeFormat(exam.expressTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={getColorClass(exam?.expertTotalGrade)}>{formatGrade(exam.expertTotalGrade)}</span> / 20</p>
+                                        <p><span className={setGradeColor(exam?.expertTotalGrade, 20)}>{setGradeFormat(exam.expertTotalGrade)}</span> / 20</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                 </div>
@@ -228,9 +218,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                                                         hoveredButton={hoveredButton}
                                                         rowIndex={rowIndex}
                                                         handleMouseEnter={handleMouseEnter}
-                                                        handleMouseLeave={handleMouseLeave}/> 
-
-                                    ))}
+                                                        handleMouseLeave={handleMouseLeave}/>))}
                                 </div>
                             </td>
                         </tr>

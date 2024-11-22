@@ -1,10 +1,10 @@
 /*Стили для шапки сайта*/
 .headerWrapper {
     position: sticky;
-    top: 0;
+    top: 20px;
     background-color: var(--header-bg-cl);
-    box-shadow: 0 2px 10px var(--header-shadow-cl);
-    border-radius: 10px;
+    box-shadow: 0 0 10px var(--header-shadow-cl);
+    border-radius: 20px;
     max-height: 80px;
     width: 100%;
     padding: 20px;
@@ -52,7 +52,7 @@ nav a:hover {
 .authHeaderNav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
@@ -92,7 +92,12 @@ nav a:hover {
     padding: 20px;
     transition: all .4s ease;
 }
-.navBurger input[type="checkbox"]:checked ~ nav {
+.navBurger input[type="checkbox"]:checked ~ .burgerTop120 {
+    top: 120px;
+    opacity: 1;
+}
+
+.navBurger input[type="checkbox"]:checked ~ .burgerTop140 {
     top: 140px;
     opacity: 1;
 }
@@ -124,10 +129,15 @@ nav a:hover {
     padding: 20px;
     transition: all .4s ease;
 }
-.collapseMenu input[type="checkbox"]:checked ~ nav {
+.collapseMenu input[type="checkbox"]:checked ~ .collapseTop120 {
+    top: 120px;
+    opacity: 1;
+}
+.collapseMenu input[type="checkbox"]:checked ~ .collapseTop140 {
     top: 140px;
     opacity: 1;
 }
+
 
 /*Опции*/
 .headerOptions {
@@ -136,11 +146,6 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-}
-
-.divider {
-    height: 50px;
-    border-left: 1px solid var(--divider-cl);
 }
 
 .optionsTokens {
