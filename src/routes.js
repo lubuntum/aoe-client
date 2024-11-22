@@ -5,6 +5,7 @@ const ACCOUNT = "/account";
 const TASK = "/tasks";
 const LESSON_SESSION = "/session"
 const RESULTS = "/results"
+const TASK_RESULT = "/task-result"
 const routes = {
     REGISTER,
     LOGIN,
@@ -12,7 +13,8 @@ const routes = {
     ACCOUNT,
     TASK,
     LESSON_SESSION,
-    RESULTS
+    RESULTS,
+    TASK_RESULT
 };
 
 export default routes
