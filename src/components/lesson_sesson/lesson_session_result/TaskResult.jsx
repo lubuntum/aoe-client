@@ -18,7 +18,10 @@ export const TaskResult = () => {
         const loadCustomerTaskByTask = async () => {
             const taskResponse = await getTaskByTaskId(taskId)
             const customerTaskResponse = await getCustomerTaskByCustomerTaskId(customerTaskId)
+            console.log(taskResponse.data)
+            console.log(customerTaskResponse.data)
         }
+        loadCustomerTaskByTask()
     },[])
 
     return (<>
