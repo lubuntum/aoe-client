@@ -9,6 +9,10 @@
   list-style: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --temp-bg-cl: #E8F4FF;
 
@@ -70,7 +74,7 @@
 	box-shadow: 0 0 10px var(--btn-bg-cl);
 	height: 40px;
 	width: 40px;
-	border-radius: 7px;
+	border-radius: 10px;
 	justify-content: center;
 	align-items: center;
 	font-size: 18px;

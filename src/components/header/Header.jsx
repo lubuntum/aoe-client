@@ -20,10 +20,28 @@ export const Header = () => {
         }
         fetchData()
     }, [])
+
+    const [burgerTop, setBurgerTop] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setBurgerTop(true);
+            } else {
+                setBurgerTop(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
+
     return(
         <div className="headerWrapper">
             <div className="headerContainer">
-                <Burger/>
+                <Burger burgerTop = {burgerTop}/>
                 <Logo/>
                 <Navbar/>
                 <Options headerData = {headerData}/>
