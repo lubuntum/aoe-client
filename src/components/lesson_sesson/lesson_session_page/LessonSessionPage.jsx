@@ -102,14 +102,15 @@ export const LessonSessionPage = () => {
 
     const endTaskSession = async () => {
         const sessionKey = localStorage.getItem("token")
-        await saveTasksResults(sessionKey)
-        navigate(routes.TASK)
+        const customerTask = await saveTaskResult(sessionKey)
+        const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
+        navigate(resultUrl)
     }
 
     const endExamSession = async () => {
         const sessionKey = localStorage.getItem("token")
         const exam = await createExam(sessionKey)
-        await saveTasksResults(sessionKey, exam)
+        await saveTasksResults(sessionKey, exam) // поменять 
         const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
         navigate(resultsUrl)
     }
@@ -122,6 +123,10 @@ export const LessonSessionPage = () => {
             const response = await saveUserTaskRequest(exam ? exam.id : null, audioBlobData.taskId, audioBlobData.audio, sessionKey)
             //if (!response.ok) throw new Error(`Error uploading ${audioBlob}`)
         }
+    }
+    const saveTaskResult = async (sessionKey) => {
+        const response = await saveUserTaskRequest(null, audioResultsRef.current[0].taskId, audioResultsRef.current[0].audio, sessionKey)
+        return response.data
     }
 
     let CurrentTaskSessionComponent = undefined
