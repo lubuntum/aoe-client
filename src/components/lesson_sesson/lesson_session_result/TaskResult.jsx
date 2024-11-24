@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { getTaskByTaskId } from "../../../modules/api/variant/TaskApi"
 import { getCustomerTaskByCustomerTaskId } from "../../../modules/api/result/ResultAPI"
+import Header from "../../header/Header"
+import { TasksContentWrapper } from "../task_session/TasksContentWrapper"
+import { SERVER_API_URL } from "../../../config"
 /** TODO сделать API к получению getTaskByTaskId и getCustomerTaskByCustomerTaskId 
  * Затем сделать API для получения CustomerTasks для панели результатов по заданию
  * Сделать транскрибацию react-speech-recognition во время записи ответа
@@ -18,14 +21,20 @@ export const TaskResult = () => {
         const loadCustomerTaskByTask = async () => {
             const taskResponse = await getTaskByTaskId(taskId)
             const customerTaskResponse = await getCustomerTaskByCustomerTaskId(customerTaskId)
-            console.log(taskResponse.data)
-            console.log(customerTaskResponse.data)
+            setTask(taskResponse.data)
+            setCustomerTask(customerTaskResponse.data)
         }
         loadCustomerTaskByTask()
     },[])
 
     return (<>
-    
+        <Header/>
+        {task && 
+            <div> 
+                <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>
+                <TasksContentWrapper task={task} />
+            </div>}
+
     </>)
 
 }
