@@ -14,16 +14,25 @@ import { TaskSessionPanel } from "./TaskBottomPanel"
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
 import timersConfig from "../../../timersConfig"
+import { useCustomSpeechRecognition } from "../../../hooks/useCustomSpeechRecognition"
 
 export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { //blobRef + mЫicro hook
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(true)
+    const {startListening, stopListening, finalTranscript} = useCustomSpeechRecognition()
     const handleNextTaskWithSaveAudio =  async () => {
         await stopRecording()
-        console.log({"audio": audioBlobRef.current, "taskId": task.id})
+        const audioBlob = audioBlobRef.current;
+        //await stopListening();
         handleNextTask({"audio": audioBlobRef.current, "taskId": task.id})
     }
 
-    if (stage === stages.speak) startRecording();
+    if (stage === stages.speak) {
+        const startSpeakingPrep = async () => {
+            await startRecording()
+            //await startListening()
+        }
+        startSpeakingPrep()
+    }
 
     return (<>
         {(stage === stages.reading || stage === stages.speak) && <TasksContentWrapper task={task}/>}
