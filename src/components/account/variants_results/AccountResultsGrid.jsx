@@ -1,7 +1,7 @@
 import "./css/account_result_grid.css"
 import "./css/result_media.css"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { VariantsSelection } from "./sidebar/VariantsSelection"
 import { TaskSelection } from "./topbar/TasksSelection"
@@ -13,6 +13,7 @@ import { ExamResultsViewerPanel } from "./result_viewer/ExamResultsViewerPanel"
 import { ResultViewerEmpty } from "./result_viewer/ResultViewerEmpty"
 
 import { getCustomerCompletedVariants } from "../../../modules/api/account/AccountApi"
+import { TaskResultsViewerPanel } from "./result_viewer/TaskResultsViewerPanel"
 
 
 export const AccountResultsGrid = () =>{
@@ -54,15 +55,15 @@ export const AccountResultsGrid = () =>{
     const showContentByTaskClick = (task) => {
         console.log(task)//exam false hook
         console.info("set false")
-        setExamPicked(false)
         setCurrentTask(task)
+        setExamPicked(false)  
     }
     const showContentByExamClick = () =>{
         //account token, currentVariant.id
         setExamPicked(true)
         console.info("set true")
     } 
-    //Сделать отдельным компонентом дофига логики
+    
     return (<>
         <div className="accountResultGrid">
             <VariantsSelection 
@@ -76,8 +77,9 @@ export const AccountResultsGrid = () =>{
 
             {examPicked ? <ExamViewerWrapper variant={currentVariant} exams={undefined}/> : <TaskViewerWrapper task={currentTask}/>}
 
-            {currentTask !== undefined || examPicked ? <ExamResultsViewerPanel variant={currentVariant} examPicked={examPicked}/> : <ResultViewerEmpty/>}
-            
+            {examPicked ? <ExamResultsViewerPanel variant={currentVariant} examPicked={examPicked}/>
+            : currentTask ? <TaskResultsViewerPanel variant={currentVariant} task={currentTask}/>
+            : <ResultViewerEmpty/>}
         </div>
     </>)
 }

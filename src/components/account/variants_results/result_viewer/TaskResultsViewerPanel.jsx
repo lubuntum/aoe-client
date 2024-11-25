@@ -13,7 +13,7 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 import { OptionsButtons } from "./OptionsButtons"
-import { getCustomerExamsByVariant } from "../../../../modules/api/result/ResultAPI"
+import { getCustomerExamsByVariant, getCustomerTasksByTask } from "../../../../modules/api/result/ResultAPI"
 
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
@@ -24,10 +24,10 @@ import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.j
     --Будет лучше, проще и практичнее сделать два отдельных компонента 
     которые будут отображать экзамены по варианту и задания отдельно
 */
-export const TaskResultsViewerPanel = ({variant, examPicked}) => {
+export const TaskResultsViewerPanel = ({variant, task}) => {
     const navigate = useNavigate()
 
-    const [exams, setExams] = useState([])
+    const [customerTasks, setcustomerTasks] = useState([])
     const [currentItems, setCurrentItems] = useState([])
 
     const [hoveredButton, setHoveredButton] = useState()
@@ -39,7 +39,7 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
     const paginate = (pageNum) => {
         const indexOfLastItem = pageNum * itemsPerPage
         const indexOfFirstItem = indexOfLastItem - itemsPerPage
-        const currentItemsTemp = exams.slice(indexOfFirstItem, indexOfLastItem)
+        const currentItemsTemp = customerTasks.slice(indexOfFirstItem, indexOfLastItem)
         startItemNumber.current = indexOfFirstItem
         setCurrentPage(pageNum)
         setCurrentItems(currentItemsTemp)
@@ -47,12 +47,12 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
 
 
     useEffect(()=>{
-        const getExamsData = async () => {
-            const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
-            const examsTemp = response.data
-            examsTemp.sort((a,b)=>{
-                const [dayA, monthA, yearA] = a.examCompleteDate.split('.').map(Number);
-                const [dayB, monthB, yearB] = b.examCompleteDate.split('.').map(Number);
+        const getCustomerTasksData = async () => {
+            const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
+            const taskTemp = response.data
+            taskTemp.sort((a,b)=>{
+                const [dayA, monthA, yearA] = a.completeDate.split('.').map(Number);
+                const [dayB, monthB, yearB] = b.completeDate.split('.').map(Number);
 
                 const dateA = new Date(yearA, monthA - 1, dayA);
                 const dateB = new Date(yearB, monthB - 1, dayB);
@@ -61,16 +61,17 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
             
             const indexOfLastItem = currentPage * itemsPerPage
             const indexOfFirstItem = indexOfLastItem - itemsPerPage
-            const currentItemsTemp = examsTemp.slice(indexOfFirstItem, indexOfLastItem)
+            const currentItemsTemp = taskTemp.slice(indexOfFirstItem, indexOfLastItem)
             startItemNumber.current = indexOfFirstItem
 
             setCurrentItems(currentItemsTemp)
             setHoveredButton(Array(currentItemsTemp.length).fill(null))
             timeoutRef.current = Array(currentItemsTemp.length).fill(null)
-            setExams(examsTemp)
+            setcustomerTasks(taskTemp)
         }
-        getExamsData()
-    },[])
+        getCustomerTasksData()
+        console.log(`current task in panel => ${task.id}`)
+    },[task])
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
@@ -96,12 +97,13 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
         }, 400)
     }
 
-    const navigateToExamResults = (examId) => {
-        const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
-        navigate(resultsUrl)
+    const navigateToCustomerTask = (customerTaskId) => {
+        //const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
+        //navigate(resultsUrl)
     }
 
-    const shareExamResults = async (examId) => {
+    const shareCustomerTask = async (customerTaskId) => {
+        /*
         try{
             const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
             await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
@@ -109,24 +111,25 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
         } catch(err) {
             console.error(`Failed to copy ${err}`)
         }
+        */
     }
 
-    const downloadExamResults = (examId) => {
+    const downloadCustomerTaskAudio = (customerTaskId) => {
         console.log("download")
     }
 
     const optionsButtons = [
-        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToExamResults},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareExamResults},
-        {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadExamResults},
+        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToCustomerTask},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareCustomerTask},
+        {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadCustomerTaskAudio},
     ]
-
+    
     return (<>
         <div className="resultsViewerContainer gridItem9">
             <div className="resultsViewerDescription">
                 <p>Ваши попытки</p>
                 <p>{variant ? variant.theme : "Тема не найдена"}</p>
-                <p>{examPicked ? "Экзамен" : "Задание"}</p>
+                <p>Задание</p>
             </div>
             
             <table className="resultsViewerTable">
@@ -163,13 +166,13 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
                 </thead>
 
                 <tbody>
-                    {currentItems?.map((exam, rowIndex) => (
-                        <tr key={exam.id}>
+                    {currentItems.map((customerTask, rowIndex) => (
+                        <tr key={customerTask.id}>
                             <td>
                                 <div className="resultsViewerTableBodyItem"><p>{rowIndex+1 + startItemNumber.current}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{exam.examCompleteDate}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{customerTask.completeDate}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
@@ -182,13 +185,13 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendDate">
-                                    <div className="resultsViewerTableBodyItem"><p>{exam.expressSendDate ? exam.expressSendDate : '--.--.----'}</p></div>
+                                    <div className="resultsViewerTableBodyItem"><p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : '--.--.----'}</p></div>
                                 </div>
                             </td>
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={setGradeColor(exam?.expressTotalGrade, 20)}>{setGradeFormat(exam.expressTotalGrade)}</span> / 20</p>
+                                        <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, customerTask.taskResults[0]?.result.maxGrade)}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {customerTask.taskResults[0]?.result.maxGrade}</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                 </div>
@@ -200,7 +203,7 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
                                                         buttonIndex={index} 
                                                         buttonText={btn.text}
                                                         buttonIcon={btn.icon}
-                                                        buttonFnc={() => btn.fnc(exam.id)}
+                                                        buttonFnc={() => btn.fnc(customerTask.id)}
                                                         hoveredButton={hoveredButton}
                                                         rowIndex={rowIndex}
                                                         handleMouseEnter={handleMouseEnter}
@@ -211,9 +214,9 @@ export const TaskResultsViewerPanel = ({variant, examPicked}) => {
                     ))}
                 </tbody>
 
-                {exams?.length > 3 && 
+                {customerTasks?.length > 3 && 
                     <div className="resultsViewerTablePagination">
-                        {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
+                        {Array.from({ length: Math.ceil(customerTasks.length / itemsPerPage) }, (_, index) => (
                             <a className="btn" key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                         ))}
                     </div>}
