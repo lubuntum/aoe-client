@@ -25,8 +25,8 @@ export const getCustomerCompletedVariants = async (token) => {
             "Authorization": token
         }
     });
-    response.data.map(v => {
-        v.variantTasks.map(task => {
+    response.data.forEach(v => {
+        v.variantTasks.forEach(task => {
             task.taskContent = JSON.parse(task.taskContent)
             task.taskType = task.taskType.type
         })
