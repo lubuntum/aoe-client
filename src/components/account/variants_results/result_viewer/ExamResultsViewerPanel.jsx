@@ -176,12 +176,12 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn">
+                                    <a className="btn btnWithIcon">
                                         <BoltIcon className="svgIcon"/>
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
                                         <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>4 токена</p>
                                     </a>
-                                    <a className="btn">
+                                    <a className="btn btnWithIcon">
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Эксперт</p>
                                         <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>1 токен</p>
                                         <FaceIcon className="svgIcon"/>

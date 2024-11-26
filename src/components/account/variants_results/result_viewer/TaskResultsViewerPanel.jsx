@@ -142,20 +142,17 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             <div className="resultsViewerTableHeaderItem"><p>Пройдено</p></div>
                         </th>
                         <th>
-                            <div className="resultsViewerTableHeaderItem itemWithIcons">
-                                <BoltIcon className="svgIconTableHeaderItem"/>
+                            <div className="resultsViewerTableHeaderItem">
                                 <p>Отправить на проверку</p>
                             </div>
                         </th>
                         <th>
-                            <div className="resultsViewerTableHeaderItem itemWithIcons">
-                                <BoltIcon className="svgIconTableHeaderItem"/>
+                            <div className="resultsViewerTableHeaderItem">
                                 <p>Дата отправки</p>
                             </div>
                         </th>
                         <th>
-                            <div className="resultsViewerTableHeaderItem itemWithIcons">
-                                <BoltIcon className="svgIconTableHeaderItem"/>
+                            <div className="resultsViewerTableHeaderItem">
                                 <p>Результаты</p>
                             </div>
                         </th>
@@ -177,9 +174,8 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             <td>
                                 <div className="resultsViewerSendBtns">
                                     <a className="btn">
-                                        <BoltIcon className="svgIcon"/>
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
-                                        <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>4 токена</p>
+                                        <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>6 токенов</p>
                                     </a>
                                 </div>    
                             </td>

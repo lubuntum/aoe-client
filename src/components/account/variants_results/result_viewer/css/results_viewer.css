@@ -100,16 +100,20 @@
 
 .resultsViewerSendBtns a {
     width: 100%;
+}
+
+.btnWithIcon {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
 }
-.resultsViewerSendBtns a:first-child {
+.btnWithIcon:first-child {
     padding-right: 30px;
 }
 
-.resultsViewerSendBtns a:last-child {
+.btnWithIcon:last-child {
     padding-left: 30px;
 }
 
