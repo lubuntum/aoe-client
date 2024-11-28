@@ -22,7 +22,7 @@ const AuthProvider = ({children}) =>{
     
     useEffect(()=>{
         console.log(`${isAuth} -> ${loading}`)
-        if (!isAuth && !loading) navigate(routes.LOGIN)
+        if (!isAuth && !loading) navigate(routes.AUTORIZATION)
     }, [isAuth, navigate]);
     
 
@@ -34,7 +34,7 @@ const AuthProvider = ({children}) =>{
     const logout = () => {
         localStorage.clear()
         setIsAuth(false)
-        navigate('/login')
+        navigate('/autorization')
     }
     const saveUsername = (name) => {
         localStorage.setItem(USER_NAME, name)

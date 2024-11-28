@@ -37,8 +37,8 @@ export const Options = ({headerData}) => {
 
             {!isAuth && (<>
                 <div className="optionsLogin">
-                    <a className="btn" onClick={() => {navigate(routes.LOGIN)}}>Войти</a>
-                    <a className="btn" onClick={() => {navigate(routes.LOGIN)}}><LoginIcon className="svgIcon"/></a>
+                    <a className="btn" onClick={() => {navigate(routes.AUTORIZATION)}}>Войти</a>
+                    <a className="btn" onClick={() => {navigate(routes.AUTORIZATION)}}><LoginIcon className="svgIcon"/></a>
                 </div>
             </>)}
 
