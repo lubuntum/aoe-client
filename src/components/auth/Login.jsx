@@ -28,26 +28,43 @@ const Login = () => {
         login(token)
     }
 
-    return (
-        <>
-        <Header/>
-        <div className="login-container">
-            {error && 
-                <div className="error-container">
-                    <p>{error}</p>
+    return (<>
+        <div className="sectionWrapper">
+            <div className="contentWrapper">
+                <div className="autorizationWrapper">
+                    <div className="loginContainer">
+                        <div className="autorizationImg"></div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="inputContainer" style={{width: "350px"}}>
+                                <input className="customInput" 
+                                       type="password" 
+                                       value={username} 
+                                       placeholder="Почта" 
+                                       required 
+                                       onChange={(e)=>{setUsername(e.target.value)}}></input>
+                            </div>
+                            <div className="inputContainer" style={{width: "350px"}}>
+                                <input className="customInput" 
+                                       type="password" 
+                                       value={password} 
+                                       placeholder="Пароль" 
+                                       required 
+                                       onChange={(e) => {setPassword(e.target.value)}}></input>
+                            </div>
+
+                            <button type="submit">Войти</button>
+                        </form>
+
+                        {error && 
+                            <div className="error-container">
+                                <p>{error}</p>
+                            </div>
+                        }
+                    </div>
                 </div>
-            }
-            
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Логин" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
-                <input type="password" placeholder="Пароль" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
-                <button type="submit">Войти</button>
-            </form>
+            </div>
         </div>
-        </>
-
-    )
-
+    </>)
 }
 
 export default Login
