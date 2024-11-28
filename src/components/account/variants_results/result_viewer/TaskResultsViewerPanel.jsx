@@ -17,6 +17,7 @@ import { getCustomerExamsByVariant, getCustomerTasksByTask } from "../../../../m
 
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
+import routes from "../../../../routes.js"
 
 /*TODO
     --Сделать две панельки для экзамена и для тасков
@@ -98,20 +99,20 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
 
     const navigateToCustomerTask = (customerTaskId) => {
-        //const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
-        //navigate(resultsUrl)
+        const resultsUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTaskId}&taskId=${task.id}`
+        navigate(resultsUrl)
     }
 
     const shareCustomerTask = async (customerTaskId) => {
-        /*
+        
         try{
-            const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
+            const resultsUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTaskId}&taskId=${task.id}`
             await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
             console.log('Copied')
         } catch(err) {
             console.error(`Failed to copy ${err}`)
         }
-        */
+        
     }
 
     const downloadCustomerTaskAudio = (customerTaskId) => {
@@ -176,7 +177,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn">
+                                    <a className="btn" onClick={()=>{console.log("HELLO")}}>
                                         <BoltIcon className="svgIcon"/>
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
                                         <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>4 токена</p>
