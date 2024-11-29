@@ -1,10 +1,8 @@
 import { useState } from "react"
-import {useAuth} from "../../modules/auth/AuthProvider"
+import { useAuth } from "../../modules/auth/AuthProvider"
 import { serverLogin } from "../../modules/auth/AuthAPI"
-import Header from '../header/Header';
-import "./login.css"
 
-export const Login = () => {
+export const Login = ({toggle, disabledButton}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -23,6 +21,7 @@ export const Login = () => {
             console.error("Login failed", error)
         }
     }
+
     const collectDataByToken = async (token) =>{
         //Заглушка получения данных по токену аутендификации
         saveUsername(username)
@@ -30,34 +29,39 @@ export const Login = () => {
     }
 
     return (<>
-        <div className="loginContainer">
-            <form onSubmit={handleSubmit}>
-                <div className="inputContainer" style={{width: "350px"}}>
-                    <input className="customInput" 
-                            type="text" 
-                            value={username} 
-                            placeholder="Почта" 
-                            required 
-                            onChange={(e)=>{setUsername(e.target.value)}}></input>
-                </div>
-                <div className="inputContainer" style={{width: "350px"}}>
-                    <input className="customInput" 
-                            type="password" 
-                            value={password} 
-                            placeholder="Пароль" 
-                            required 
-                            onChange={(e) => {setPassword(e.target.value)}}></input>
-                </div>
+        <p className="loginTitle">Service</p>
 
-                <button type="submit">Войти</button>
-            </form>
-
-            {error && 
-                <div className="error-container">
-                    <p>{error}</p>
-                </div>
-            }
+        <div className="inputContainer" style={{width: "350px"}}>
+            <input className="customInput" 
+                    type="text" 
+                    value={username} 
+                    placeholder="Электронная почта" 
+                    required 
+                    onChange={(e)=>{setUsername(e.target.value)}}></input>
         </div>
 
+        <div className="inputContainer" style={{width: "350px"}}>
+            <input className="customInput" 
+                    type="password" 
+                    value={password} 
+                    placeholder="Пароль" 
+                    required 
+                    onChange={(e) => {setPassword(e.target.value)}}></input>
+        </div>
+
+        <div className="rememberForgetContainer">
+            <a>Запомнить меня</a>
+            <a onClick={() => {}}>Забыли пароль?</a>
+        </div>
+
+        <a className="btn" onClick={handleSubmit} style={{width: "350px"}}>Войти</a>
+
+        <div className="orContainer">
+            <div className="hr"></div>
+            <p>или</p>
+            <div className="hr"></div>
+        </div>
+
+        <a className="btn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Создать аккаунт</a>
     </>)
 }
