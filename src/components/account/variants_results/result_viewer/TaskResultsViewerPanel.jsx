@@ -13,7 +13,7 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 import { OptionsButtons } from "./OptionsButtons"
-import { getCustomerExamsByVariant, getCustomerTasksByTask } from "../../../../modules/api/result/ResultAPI"
+import { getCustomerExamsByVariant, getCustomerTasksByTask, startExpressCheckForTask } from "../../../../modules/api/result/ResultAPI"
 
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
@@ -118,6 +118,12 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     const downloadCustomerTaskAudio = (customerTaskId) => {
         console.log("download")
     }
+    const startExpressTask = async (customerTask) => {
+        const tempTranscribeService = "assemblyai"
+        const tempAIService = "GPT-4o"
+        const response = startExpressCheckForTask(customerTask, tempTranscribeService, tempAIService,localStorage.getItem("token"))
+        console.log(response.data)
+    }
 
     const optionsButtons = [
         {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToCustomerTask},
@@ -174,7 +180,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn">
+                                    <a className="btn" onClick={()=>{startExpressTask(customerTask)}}>
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
                                         <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>6 токенов</p>
                                     </a>
