@@ -180,7 +180,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn" onClick={()=>{startExpressTask(customerTask)}}>
+                                    <a className="btn" onClick={()=>{startExpressTask(customerTask)}} style = {customerTask.answer !== null ? { pointerEvents: "none", background: "gray" } : {}}>
                                         <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
                                         <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>6 токенов</p>
                                     </a>
