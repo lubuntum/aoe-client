@@ -7,7 +7,7 @@ import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_E8EAED_F
 import { useNavigate } from "react-router-dom"
 import routes from '../../routes'
 export const Options = ({headerData}) => {
-    const {logout, isAuth, getUsername} = useAuth()
+    const {logout, isAuth, getEmail} = useAuth()
     const navigate = useNavigate()
     let loadingComponent = <p>Анимация загрузки</p>
     let attemptsAI = undefined;
@@ -27,7 +27,7 @@ export const Options = ({headerData}) => {
                 </div>
                 }
                 <div className="optionsUsername">
-                    <a href="" onClick={()=>{navigate(routes.ACCOUNT)}}>{getUsername()}</a>
+                    <a href="" onClick={()=>{navigate(routes.ACCOUNT)}}>{getEmail()}</a>
                 </div>
                 
                 <div className="optionsLogout">

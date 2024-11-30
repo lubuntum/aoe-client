@@ -1,7 +1,7 @@
 import {createContext, useContext ,useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom"
 
-import { USER_DATA_KEY, USER_NAME, GUEST_NAME} from "../../config";
+import { USER_DATA_KEY, USER_NAME, GUEST_NAME, USER_EMAIL} from "../../config";
 import routes from '../../routes'
 
 const AuthContext = createContext()
@@ -36,15 +36,16 @@ const AuthProvider = ({children}) =>{
         setIsAuth(false)
         navigate('/autorization')
     }
-    const saveUsername = (name) => {
-        localStorage.setItem(USER_NAME, name)
+    const saveEmail = (email) => {
+        localStorage.setItem(USER_EMAIL, email)
     }
-    const getUsername = () => {
-        if (isAuth) return localStorage.getItem(USER_NAME)
+    const getEmail = () => {
+        if (isAuth) return localStorage.getItem(USER_EMAIL)
         return GUEST_NAME
     }
+    
     return (
-        <AuthContext.Provider value = {{isAuth, login, logout, saveUsername, getUsername, loading}}>
+        <AuthContext.Provider value = {{isAuth, login, logout, saveEmail, getEmail, loading}}>
             {children}
         </AuthContext.Provider>
     )
