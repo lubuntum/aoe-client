@@ -18,6 +18,7 @@ import { getCustomerExamsByVariant, getCustomerTasksByTask, startExpressCheckFor
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
 import routes from "../../../../routes.js"
+import TASKS_MAX_GRADE from "../../../../grades.js"
 
 /*TODO
     --Сделать две панельки для экзамена и для тасков
@@ -28,7 +29,7 @@ import routes from "../../../../routes.js"
 export const TaskResultsViewerPanel = ({variant, task}) => {
     const navigate = useNavigate()
 
-    const [customerTasks, setcustomerTasks] = useState([])
+    const [customerTasks, setCustomerTasks] = useState([])
     const [currentItems, setCurrentItems] = useState([])
 
     const [hoveredButton, setHoveredButton] = useState()
@@ -48,31 +49,31 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
 
 
     useEffect(()=>{
-        const getCustomerTasksData = async () => {
-            const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
-            const taskTemp = response.data
-            taskTemp.sort((a,b)=>{
-                const [dayA, monthA, yearA] = a.completeDate.split('.').map(Number);
-                const [dayB, monthB, yearB] = b.completeDate.split('.').map(Number);
-
-                const dateA = new Date(yearA, monthA - 1, dayA);
-                const dateB = new Date(yearB, monthB - 1, dayB);
-
-                return dateB - dateA})
-            
-            const indexOfLastItem = currentPage * itemsPerPage
-            const indexOfFirstItem = indexOfLastItem - itemsPerPage
-            const currentItemsTemp = taskTemp.slice(indexOfFirstItem, indexOfLastItem)
-            startItemNumber.current = indexOfFirstItem
-
-            setCurrentItems(currentItemsTemp)
-            setHoveredButton(Array(currentItemsTemp.length).fill(null))
-            timeoutRef.current = Array(currentItemsTemp.length).fill(null)
-            setcustomerTasks(taskTemp)
-        }
         getCustomerTasksData()
         console.log(`current task in panel => ${task.id}`)
     },[task])
+    const getCustomerTasksData = async () => {
+        const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
+        const taskTemp = response.data
+        taskTemp.sort((a,b)=>{
+            const [dayA, monthA, yearA] = a.completeDate.split('.').map(Number);
+            const [dayB, monthB, yearB] = b.completeDate.split('.').map(Number);
+
+            const dateA = new Date(yearA, monthA - 1, dayA);
+            const dateB = new Date(yearB, monthB - 1, dayB);
+
+            return dateB - dateA})
+        
+        const indexOfLastItem = currentPage * itemsPerPage
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage
+        const currentItemsTemp = taskTemp.slice(indexOfFirstItem, indexOfLastItem)
+        startItemNumber.current = indexOfFirstItem
+
+        setCurrentItems(currentItemsTemp)
+        setHoveredButton(Array(currentItemsTemp.length).fill(null))
+        timeoutRef.current = Array(currentItemsTemp.length).fill(null)
+        setCustomerTasks(taskTemp)
+    }
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
@@ -119,10 +120,17 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         console.log("download")
     }
     const startExpressTask = async (customerTask) => {
-        const tempTranscribeService = "assemblyai"
-        const tempAIService = "GPT-4o"
-        const response = startExpressCheckForTask(customerTask, tempTranscribeService, tempAIService,localStorage.getItem("token"))
+        const tempTranscribeService = "assemblyai"//TEMP
+        const tempAIService = "GPT-4o"//TEMP
+        const textDistanceMethod = "levenshtein";
+        const response = await startExpressCheckForTask(customerTask, 
+                                                    tempTranscribeService, 
+                                                    tempAIService,
+                                                    textDistanceMethod,
+                                                    task,
+                                                    localStorage.getItem("token"))
         console.log(response.data)
+        await getCustomerTasksData()
     }
 
     const optionsButtons = [
@@ -194,7 +202,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, customerTask.taskResults[0]?.result.maxGrade)}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {customerTask.taskResults[0]?.result.maxGrade}</p>
+                                        <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {TASKS_MAX_GRADE[task.taskType]}</p>
                                         <a className="btn"><ProtocolIcon className="svgIcon"/></a>
                                     </div>
                                 </div>
