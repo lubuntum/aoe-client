@@ -33,14 +33,21 @@ export const getCustomerTaskByCustomerTaskId = async (customerTaskId) => {
     return response
 } 
 //Начать экспресс проверку задачи
-export const startExpressCheckForTask = async (customerTask, transcriptionService, aiService, sessionKey) => {
+export const startExpressCheckForTask = async (customerTask, transcriptionService, aiService, textDistanceMethod, task, sessionKey) => {
+    const taskDTO = {
+        id : task.id,
+        taskContent : JSON.stringify(task.taskContent),
+        taskType : task.taskType
+    }
     const request = {
         id : customerTask.id,
-        taskId : customerTask.taskId,
+        task : taskDTO,
         audioPath: customerTask.audioPath,
         transcriptionServiceName : transcriptionService,
-        aiServiceName : aiService
+        aiServiceName : aiService,
+        textDistanceMethod : textDistanceMethod
     }
+    console.log(request)
     console.log(`trying to send customerTask => ${JSON.stringify(request)}`)
     const response = await axios.post(`${SERVER_API_URL}${API_TASK_EXPRESS}`, request,
         {headers: {Authorization: sessionKey}}
