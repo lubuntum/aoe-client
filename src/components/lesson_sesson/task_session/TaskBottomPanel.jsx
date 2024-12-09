@@ -33,7 +33,7 @@ export const TaskSessionPanel = ({nextAction, btnText, sec, stage}) => {
                 <div className="panelProgressBarLine" style={{width: `${currentProgress}%`}}></div>
             </div>
             <p className="panelTimer">{secondsToMinutes(time)}</p>
-            <a onClick={()=> {nextAction()}} className="btn">{btnText}</a>
+            <a onClick={()=> {nextAction()}} className="defBtn">{btnText}</a>
         </div>
     </>)
 }

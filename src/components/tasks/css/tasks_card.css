@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 20px;
     overflow: hidden;
     transition: all .2s ease;
@@ -19,23 +19,35 @@
     object-fit: cover;
 }
 
-.cardContent {
+.cardContentWrapper {
     position: absolute;
-    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 20px;
     width: 100%;
-    height: 50px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all .2s ease;
+}
+
+.cardContent {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 30%);
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--glassmorph-transparent);
     backdrop-filter: blur(3px);
     transition: all .2s ease;
 }
 
 .cardTitle p {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
-    color: white;
+    color: var(--white);
 }
 
 .cardBtns {
@@ -56,7 +68,11 @@
     width: 100%;
 }
 
-.cardContainer:hover > .cardContent {
+.cardContentWrapper:hover {
+    padding: 0;
+}
+
+.cardContentWrapper:hover > .cardContent {
     bottom: 0;
     width: 100%;
     height: 100%;
@@ -66,7 +82,7 @@
     padding-top: 80px;
 }
 
-.cardContainer:hover > .cardContent .cardBtns {
+.cardContentWrapper:hover > .cardContent .cardBtns {
     display: flex;
     width: 100%;
     flex-direction: column;

@@ -31,8 +31,8 @@ export const Login = ({toggle, disabledButton}) => {
     return (<>
         <p className="loginTitle">Service</p>
 
-        <div className="inputContainer" style={{width: "350px"}}>
-            <input className="customInput" 
+        <div className="defInpContainer" style={{width: "350px"}}>
+            <input className="defInp" 
                     type="text" 
                     value={email} 
                     placeholder="Электронная почта" 
@@ -40,8 +40,8 @@ export const Login = ({toggle, disabledButton}) => {
                     onChange={(e)=>{setEmail(e.target.value)}}></input>
         </div>
 
-        <div className="inputContainer" style={{width: "350px"}}>
-            <input className="customInput" 
+        <div className="defInpContainer" style={{width: "350px"}}>
+            <input className="defInp" 
                     type="password" 
                     value={password} 
                     placeholder="Пароль" 
@@ -51,10 +51,10 @@ export const Login = ({toggle, disabledButton}) => {
 
         <div className="rememberForgetContainer">
             <a>Запомнить меня</a>
-            <a onClick={() => {}}>Забыли пароль?</a>
+            <a className="linkBtn" onClick={() => {}}>Забыли пароль?</a>
         </div>
 
-        <a className="btn" onClick={handleSubmit} style={{width: "350px"}}>Войти</a>
+        <a className="defBtn" onClick={handleSubmit} style={{width: "350px"}}>Войти</a>
 
         <div className="orContainer">
             <div className="hr"></div>
@@ -62,6 +62,6 @@ export const Login = ({toggle, disabledButton}) => {
             <div className="hr"></div>
         </div>
 
-        <a className="btn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Создать аккаунт</a>
+        <a className="defBtn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Создать аккаунт</a>
     </>)
 }

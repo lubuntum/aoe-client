@@ -3,11 +3,15 @@ export const UserPromocode = () => {
         <div className="userPromocodeContainer gridItem3">
             <p>Промокод</p>
 
-            <div className="inputContainer">
-                <input className="customInput" type="text" placeholder="Введите промокод" required></input>
+            <div className="defInpContainer">
+                <input className="defInp" 
+                       style={{width: "100%"}} 
+                       type="text" 
+                       placeholder="Введите промокод" 
+                       required></input>
             </div>
 
-            <a className="btn" onClick={() => {}}>Применить</a>
+            <a className="defBtn" style={{width: "100%"}} onClick={() => {}}>Применить</a>
         </div>
     </>)
 }

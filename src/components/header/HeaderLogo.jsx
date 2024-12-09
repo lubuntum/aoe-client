@@ -1,9 +1,10 @@
 import { useLocation } from "react-router-dom"
 
-export const Logo = () => {
+export const HeaderLogo = () => {
     const location = useLocation()
+    
     return (<>
-        <div className="headerLogo">
+        <div className="headerLogoContainer">
             <p className="logo">{location.pathname}</p>
         </div>
     </>)

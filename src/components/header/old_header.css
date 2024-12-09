@@ -156,10 +156,6 @@ nav a:hover {
     gap: 20px;
 }
 
-.optionsTokens a {
-    width: 100px;
-}
-
 .optionsUsername a {
     font-size: 18px;
     font-weight: 500;
@@ -171,18 +167,6 @@ nav a:hover {
 .optionsUsername a:hover {
     color: var(--nav-link-hover-cl);
     border-bottom: 1px solid var(--nav-link-hover-cl);
-}
-
-.optionsLogin {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.optionsLogin a:first-child {
-    width: 150px;
 }
 
 .optionsLogin a:last-child {

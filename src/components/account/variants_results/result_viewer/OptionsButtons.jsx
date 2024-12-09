@@ -1,6 +1,6 @@
 export const OptionsButtons = ({buttonId, buttonIndex, buttonText, buttonIcon, buttonFnc, hoveredButton, rowIndex, handleMouseEnter, handleMouseLeave}) => {
     return (<>
-        <a className="btn" 
+        <a className="defBtn" 
         key={buttonId}
         onClick={() => buttonFnc()}
         style={{width: hoveredButton[rowIndex] === buttonIndex ? "120px" : hoveredButton[rowIndex] === null ? "40px" : "10px"}}

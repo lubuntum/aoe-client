@@ -1,0 +1,32 @@
+.headerBurgerContainer input[type="checkbox"] {
+    display: none;
+}
+
+.headerBurgerContainer {
+    display: none;
+}
+
+.headerBurgerContainer nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+    background-color: var(--white);
+    box-shadow: 0 0 10px var(--black-shadow);
+    opacity: 0;
+    top: -500px;
+    margin-left: -20px;
+    border-radius: 20px;
+    padding: 30px;
+    transition: all .5s ease;
+}
+
+.headerBurgerContainer input:checked ~ .headerBurgerTop120 {
+    top: 120px;
+    opacity: 1;
+}
+.headerBurgerContainer input:checked ~ .headerBurgerTop140 {
+    top: 140px;
+    opacity: 1;
+}

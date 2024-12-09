@@ -135,9 +135,9 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
 
     const optionsButtons = [
-        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToCustomerTask},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareCustomerTask},
-        {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadCustomerTaskAudio},
+        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="defBtnSvg"/>, fnc: navigateToCustomerTask},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="defBtnSvg"/>, fnc: shareCustomerTask},
+        {id: 2, text: 'Скачать', icon: <DownloadIcon className="defBtnSvg"/>, fnc: downloadCustomerTaskAudio},
     ]
     
     return (<>
@@ -189,9 +189,9 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn" onClick={()=>{startExpressTask(customerTask)}} style = {customerTask.answer !== null ? { pointerEvents: "none", background: "gray" } : {}}>
-                                        <p className="sendBtnType" style={{fontWeight: "600"}}>Экспресс</p>
-                                        <p className="sendBtnCost" style={{fontWeight: "600", display: "none"}}>6 токенов</p>
+                                    <a className={`defBtn switchBtn ${customerTask.answer !== null ? "blockBtn" : ""}`} onClick={()=>{startExpressTask(customerTask)}}>
+                                        <span>Экспресс</span>
+                                        <span>6 токенов</span>
                                     </a>
                                 </div>    
                             </td>
@@ -203,8 +203,8 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             <td>
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
-                                        <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {TASKS_MAX_GRADE[task.taskType]}</p>
-                                        <a className="btn"><ProtocolIcon className="svgIcon"/></a>
+                                        <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {setGradeFormat(TASKS_MAX_GRADE[task.taskType])}</p>
+                                        <a className="defBtn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="defBtnSvg ghostBtnSvg"/></a>
                                     </div>
                                 </div>
                             </td>
@@ -229,7 +229,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                 {customerTasks?.length > 3 && 
                     <div className="resultsViewerTablePagination">
                         {Array.from({ length: Math.ceil(customerTasks.length / itemsPerPage) }, (_, index) => (
-                            <a className="btn" key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
+                            <a className="defBtn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                         ))}
                     </div>}
             </table>

@@ -1,7 +1,7 @@
 import "./css/account_result_grid.css"
 import "./css/result_media.css"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { VariantsSelection } from "./sidebar/VariantsSelection"
 import { TaskSelection } from "./topbar/TasksSelection"

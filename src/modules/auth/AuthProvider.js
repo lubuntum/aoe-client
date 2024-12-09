@@ -19,13 +19,6 @@ const AuthProvider = ({children}) =>{
         if (token && !isAuth) setIsAuth(true)
         setLoading(false)
     }, []);
-    
-    useEffect(()=>{
-        console.log(`${isAuth} -> ${loading}`)
-        if (!isAuth && !loading) navigate(routes.AUTORIZATION)
-    }, [isAuth, navigate]);
-    
-
     const login = (token) => {
         localStorage.setItem('token', token);
         setIsAuth(true)

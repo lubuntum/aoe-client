@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 40px;
     gap: 20px;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 20px;
 }
 .userPromocodeContainer p {

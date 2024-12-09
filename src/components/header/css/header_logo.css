@@ -1,0 +1,12 @@
+.headerLogoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerLogoContainer p {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--black);
+}

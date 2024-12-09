@@ -1,0 +1,25 @@
+.userInfoContainerLoading {
+    display: flex;
+    position: relative;
+    background-color: var(--white);
+    border-radius: 20px;
+    height: 250px;
+}
+
+.userInfoTokenLoading {
+    display: flex;
+    position: absolute;
+    top: -40px;
+    right: 40px;
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    background-color: var(--white);
+    box-shadow: 0 0 10px var(--black-shadow);
+}
+
+.userSubscriptionContainerLoading {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+}

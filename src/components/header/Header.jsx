@@ -1,16 +1,25 @@
-import "./header.css"
+import "./css/header.css"
+import "./css/header_logo.css"
+import "./css/header_burger.css"
+import "./css/header_navbar.css"
+import "./css/header_options.css"
+import "./css/header_media.css"
 
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth/AuthProvider"
-import { Logo } from "./Logo"
-import { Burger } from "./Burger"
-import { Navbar } from "./Navbar"
-import { Options } from "./Options"
+
+import { HeaderBurger } from "./HeaderBurger"
+import { HeaderLogo } from "./HeaderLogo"
+import { HeaderNavbar } from "./HeaderNavbar"
+import { HeaderOptions } from "./HeaderOptions"
+
 import { getHeaderData } from "../../modules/api/account/AccountApi"
 
 export const Header = () => {
-    const [headerData, setHeaderData] = useState()
     const {isAuth} = useAuth()
+    const [headerData, setHeaderData] = useState()
+    const [burgersTopFormat, setBurgersTopFormat] = useState(false);
+    
     useEffect(()=>{
         if (!isAuth) return
         const fetchData = async () => {
@@ -21,30 +30,22 @@ export const Header = () => {
         fetchData()
     }, [])
 
-    const [burgerTop, setBurgerTop] = useState(false);
+    
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setBurgerTop(true);
-            } else {
-                setBurgerTop(false);
-            }
+            {window.scrollY > 20 ? setBurgersTopFormat(true) : setBurgersTopFormat(false)}
         }
-
         window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
+        return () => {window.removeEventListener('scroll', handleScroll);}
     }, [])
 
     return(
         <div className="headerWrapper">
             <div className="headerContainer">
-                <Burger burgerTop = {burgerTop}/>
-                <Logo/>
-                <Navbar/>
-                <Options headerData = {headerData}/>
+                <HeaderBurger topFormat = {burgersTopFormat}/>
+                <HeaderLogo/>
+                <HeaderNavbar topFormat = {burgersTopFormat}/>
+                <HeaderOptions headerData = {headerData}/>
             </div>
         </div>
     )

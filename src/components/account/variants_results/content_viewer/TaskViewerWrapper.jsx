@@ -26,46 +26,10 @@ export const TaskViewerWrapper = ({task}) => {
     else 
         TaskContent = taskContentComponents[task.taskType]
 
-    const [scrollEnabled, setScrollEnabled] = useState(false)
-    let timeoutId = null
-
-    const handleMouseEnter = () => {
-        timeoutId = setTimeout(() => {
-            setScrollEnabled(true)
-        }, 500)
-    }
-
-    const handleMouseLeave = () => {
-        clearTimeout(timeoutId)
-        setScrollEnabled(false)
-    }
-
-    const handleTouchStart = () => {
-        timeoutId = setTimeout(() => {
-            setScrollEnabled(true)
-        }, 500)
-    }
-
-    const handleTouchEnd =() => {
-        clearTimeout(timeoutId)
-        setScrollEnabled(false)
-    }
-
-    useEffect(() => {
-        return () => {
-            clearTimeout(timeoutId)
-        }
-    }, [])
-
     return (<>
         {idleComponent && idleComponent}
         {idleComponent === undefined && 
-            <div className="taskViewerWrapper gridItem8"
-                 onMouseEnter={handleMouseEnter}
-                 onMouseLeave={handleMouseLeave}
-                 onTouchStart={handleTouchStart}
-                 onTouchEnd={handleTouchEnd}
-                 style={{overflow: scrollEnabled ? 'auto' : 'hidden'}}>
+            <div className="taskViewerWrapper gridItem8">
                 {TaskContent ? <TaskContent task = {task}/> : <p>Unknown task type</p>}
             </div>}
     </>)
