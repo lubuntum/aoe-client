@@ -32,7 +32,7 @@ export const HeaderOptions = ({headerData}) => {
                 {headerData === undefined ? loadingName : <>
                     <a className="linkBtn" onClick={()=>{navigate(routes.ACCOUNT)}}>{getEmail()}</a>
                 </>}
-                <a className="defBtn adminBtn" style={{width: "40px"}}><AdminIcon className="defBtnSvg"/></a>
+                <a className="defBtn adminBtn" style={{width: "40px"}} onClick={() => {navigate(routes.ADMIN)}}><AdminIcon className="defBtnSvg"/></a>
                 
                 <a className="defBtn" style={{width: "40px"}} onClick={() => {logout()}}><LogoutIcon className="defBtnSvg"/></a>
             </>)}

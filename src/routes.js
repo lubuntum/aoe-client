@@ -5,6 +5,7 @@ const TASK = "/tasks";
 const LESSON_SESSION = "/session"
 const RESULTS = "/results"
 const TASK_RESULT = "/task-result"
+const ADMIN = "/admin"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -12,7 +13,8 @@ const routes = {
     TASK,
     LESSON_SESSION,
     RESULTS,
-    TASK_RESULT
+    TASK_RESULT,
+    ADMIN
 }
 
 export default routes
