@@ -121,11 +121,12 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
     const startExpressTask = async (customerTask) => {
         const tempTranscribeService = "assemblyai"//TEMP
-        const tempAIService = "GPT-4o"//TEMP
+        const tempAIService = "aimlapi.com"//TEMP
+        const tempAIModel = "gpt-4o"//TEMP
         const textDistanceMethod = "levenshtein";
         const response = await startExpressCheckForTask(customerTask, 
                                                     tempTranscribeService, 
-                                                    tempAIService,
+                                                    tempAIService, 
                                                     textDistanceMethod,
                                                     task,
                                                     localStorage.getItem("token"))
