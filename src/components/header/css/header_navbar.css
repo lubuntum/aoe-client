@@ -1,0 +1,51 @@
+.headerUnauthNavbarContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerAuthNavbarContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    gap: 30px;
+    justify-content: start;
+    align-items: center;
+    left: 0;
+}
+
+.headerCollapseContainer input[type="checkbox"] {
+    display: none;
+}
+
+.headerCollapseContainer nav {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background-color: var(--white);
+    box-shadow: 0 0 10px var(--black-shadow);
+    opacity: 0;
+    top: -100px;
+    border-radius: 20px;
+    padding: 30px;
+    transition: all .5s ease;
+}
+
+.headerCollapseContainer input:checked ~ .headerCollapseTop120 {
+    top: 120px;
+    opacity: 1;
+}
+.headerCollapseContainer input:checked ~ .headerCollapseTop140 {
+    top: 140px;
+    opacity: 1;
+}
+
+.headerAuthNavbarImportantContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

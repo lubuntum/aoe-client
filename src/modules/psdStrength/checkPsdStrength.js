@@ -1,6 +1,7 @@
-const BAD_PASS = "badPassStyle";
-const MIDDLE_PASS = "middlePassStyle"
-const GOOD_PASS = "goodPassStyle"
+const GOOD_PASS = "psdStrong"
+const MIDDLE_PASS = "psdMiddle"
+const BAD_PASS = "psdWeak";
+
 export const checkPsdStrength = (pass) => {
     let strength = 0;
     if (pass.length >= 8) strength += 5;

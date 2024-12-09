@@ -4,7 +4,7 @@
     gap: 20px;
     width: 100%;
     border-radius: 20px;
-    background-color: white;
+    background-color: var(--white);
     padding: 20px;
 }
 
@@ -16,7 +16,7 @@
     gap: 20px;
     width: 100%;
     border-radius: 20px;
-    background-color: white;
+    background-color: var(--white);
     padding: 20px;
     min-height: 120px;
 }
@@ -30,7 +30,7 @@
 
 .resultsViewerDescription p {
     font-weight: 600;
-    background-color: #E8F4FF;
+    background-color: var(--background);
     border-radius: 10px;
     padding: 5px 20px 5px 20px;
 }
@@ -120,7 +120,7 @@
 .resultsViewerTableHeaderItem,
 .resultsViewerTableBodyItem {
     height: 40px;
-    background-color: #E8F4FF;
+    background-color: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,10 +129,11 @@
 }
 
 .resultsViewerResults .resultsViewerTableBodyItem {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 20px;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -140,25 +141,27 @@
     font-weight: 600 !important;
 }
 
+.resultsViewerResults .resultsViewerTableBodyItem a {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 .gradeRed {
-    color: #ef476f;
+    color: var(--bad);
 }
 
 .gradeYellow {
-    color: #ffd166;
+    color: var(--warn);
 }
 
 .gradeGreen {
-    color: #06d6a0;
+    color: var(--good);
 }
 
 .resultsViewerTableBodyItem a {
     background-color: transparent;
     box-shadow: 0 0 0 transparent;
-}
-
-.resultsViewerTableBodyItem a .svgIcon {
-    fill: #2276F4;
 }
 
 .itemWithIcons {
@@ -169,21 +172,7 @@
 }
 
 .svgIconTableHeaderItem {
-    fill: black;
-}
-
-.resultsViewerIconsPresenation {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-between;
-}
-
-.svgIconPresentation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    fill: black;
+    fill: var(--black);
 }
 
 .resultsViewerTablePagination {
@@ -195,24 +184,9 @@
     gap: 20px;
 }
 
-.resultsViewerTablePagination a {
-    background-color: transparent;
-    box-shadow: 0 0 0 transparent;
-    color: #2276F4;
-    font-size: 18px;
-}
-
 .resultsViewerUsefullBtns a {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.resultsViewerSendBtns a:hover > .sendBtnType {
-    display: none;
-}
-
-.resultsViewerSendBtns a:hover > .sendBtnCost {
-    display: flex !important;
 }

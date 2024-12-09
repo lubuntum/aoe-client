@@ -40,11 +40,11 @@ export const LessonSessionPanel = ({currentTask, handleNextTask,
     <>
         <div style={{display:'flex', justifyContent:'center', gap: '15px'}}>
             {isRecording 
-                ? <a onClick={()=> {stopRecording()}} className="btn" style={{width:'auto',padding:'0px 15px', backgroundColor:'red'}} >Стоп</a>
-                : <a onClick={()=> {startRecording()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Ответить</a>}
+                ? <a onClick={()=> {stopRecording()}} className="defBtn" style={{width:'auto',padding:'0px 15px', backgroundColor:'red'}} >Стоп</a>
+                : <a onClick={()=> {startRecording()}} className="defBtn" style={{width:'auto',padding:'0px 15px'}} >Ответить</a>}
             {currentTask.taskType !== 4 
-                ? <a onClick={()=> {nextTask()}} className="btn" style={{width:'auto',padding:'0px 15px'}} >Далее</a>
-                : <a onClick={()=> {endExamSession()}} className="btn" style={{width:'auto',padding:'0px 15px', backgroundColor:'green'}} >Завершить</a>}
+                ? <a onClick={()=> {nextTask()}} className="defBtn" style={{width:'auto',padding:'0px 15px'}} >Далее</a>
+                : <a onClick={()=> {endExamSession()}} className="defBtn" style={{width:'auto',padding:'0px 15px', backgroundColor:'green'}} >Завершить</a>}
             
             {mediaBlobUrl &&
                     <audio controls src={mediaBlobUrl} >

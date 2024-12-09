@@ -11,7 +11,7 @@ import routes from "../../routes"
 
 export const AutorizationPage = () => {
     const navigate = useNavigate()
-    
+
     const [panelToggle, setPanelToggle] = useState(true)
     const [disabledButton, setDisabledButton] = useState(false)
 

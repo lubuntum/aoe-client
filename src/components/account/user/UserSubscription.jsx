@@ -1,6 +1,6 @@
 import { subscriptionEndDate, subscriptionRemain } from "../../../modules/date/SubscriptionDate"
+
 export const UserSubscription = ({customer}) => {
-    console.log(customer.actualSubscriptionDate)
     let subscriptionPurchase = undefined
     let endSubDate = undefined
     let endSubDateStr = undefined
@@ -33,8 +33,7 @@ export const UserSubscription = ({customer}) => {
                 </div>
             </> : subscriptionPurchase}
 
-
-            <a className="btn" onClick={() => {}}>Продлить</a>
+            <a className="defBtn" style={{width: "100%"}} onClick={() => {}}>Продлить</a>
         </div>
     </>)
 }

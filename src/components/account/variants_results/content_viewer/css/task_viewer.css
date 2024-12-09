@@ -11,12 +11,12 @@
 }
 
 .taskGuideAccount span {
-    color: #2276F4;
+    color: var(--blue);
 }
 
 .taskDividerAccount {
     width: 100%;
-    border-bottom: 1px solid #bbbbbb;
+    border-bottom: 1px solid var(--gray);
     margin-top: 10px;
     margin-bottom: 10px;
 }

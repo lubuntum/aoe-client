@@ -34,7 +34,7 @@ export const MicroPerfomanceCheck = ({setMicroCheck}) => {
 
             <div className="microActions">
                 <audio controls src={mediaBlobUrl}><p>Ваш браузер не поддерживает audio тег</p></audio>
-                <a className="btn" style={{width:'300px'}} onClick={()=> {setMicroCheck(true)}}>Приступить к решению</a>
+                <a className="defBtn" style={{width:'300px'}} onClick={()=> {setMicroCheck(true)}}>Приступить к решению</a>
             </div>
         </div>
     </>)
