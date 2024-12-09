@@ -27,7 +27,7 @@ export const HeaderNavbar = ({topFormat}) => {
 
         {isAuth && <>
             <div className="headerAuthNavbarContainer">
-                {(location.pathname !== routes.ACCOUNT) && <>
+                {(location.pathname !== routes.ACCOUNT && location.pathname !== routes.ADMIN) && <>
                     <div className="headerCollapseContainer">
                         <input type="checkbox" id="headerCollapseCheckbox"></input>
                         <label className="defBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defBtnSvg"/><span>Меню</span></label>
