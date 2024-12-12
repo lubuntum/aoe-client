@@ -127,6 +127,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         const response = await startExpressCheckForTask(customerTask, 
                                                     tempTranscribeService, 
                                                     tempAIService, 
+                                                    tempAIModel,
                                                     textDistanceMethod,
                                                     task,
                                                     localStorage.getItem("token"))
@@ -139,7 +140,10 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         {id: 1, text: 'Ссылка', icon: <LinkIcon className="defBtnSvg"/>, fnc: shareCustomerTask},
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="defBtnSvg"/>, fnc: downloadCustomerTaskAudio},
     ]
-    
+    const statuses = {completed : "blockBtn", checking: "cancelBtn"}
+    const getButtonStatusStyle = (status) => {
+        return statuses[status] || ""
+    }
     return (<>
         <div className="resultsViewerContainer gridItem9">
             <div className="resultsViewerDescription">
@@ -189,7 +193,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className={`defBtn switchBtn ${customerTask.answer !== null ? "blockBtn" : ""}`} onClick={()=>{startExpressTask(customerTask)}}>
+                                    <a className={`defBtn switchBtn ${getButtonStatusStyle(customerTask.expressCheckStatus?.status)}`} onClick={()=>{startExpressTask(customerTask)}}>
                                         <span>Экспресс</span>
                                         <span>6 токенов</span>
                                     </a>

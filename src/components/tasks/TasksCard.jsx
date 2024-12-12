@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import routes from '../../routes';
+import { SERVER_API_URL } from "../../config";
 export const TasksCard = ({variant, index}) => {
     const navigate = useNavigate()
     const navigateToTaskSession = (taskType) => {
@@ -9,7 +10,7 @@ export const TasksCard = ({variant, index}) => {
     return (<>
         <div className="cardContainer">
             <div className="cardImg">
-                <img src="https://img.freepik.com/free-photo/view-lynx-animals-wild_23-2150374914.jpg?t=st=1729166295~exp=1729169895~hmac=5b1c1876ac35fb8db6f1f9f053910b1d914a680510e7e4e0801c2fd1e4e23559&w=1380" alt=""/>
+                <img src={`${SERVER_API_URL}/${variant.imagePath}`} alt=""/>
             </div>
             <div className="cardContentWrapper">
                 <div className="cardContent">
