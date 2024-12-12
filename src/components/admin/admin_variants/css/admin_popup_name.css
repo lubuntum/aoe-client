@@ -1,0 +1,23 @@
+.adminNameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.adminNameContainer p {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.adminNameWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

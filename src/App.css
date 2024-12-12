@@ -7,6 +7,7 @@
   outline: none;
   text-decoration: none;
   list-style: none;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -130,8 +131,13 @@
     box-shadow: 0 0 0 transparent;
 }
 .adminBtn {
-  background-color: var(--emphasis);
-  box-shadow: 0 0 10px var(--emphasis);
+    background-color: var(--emphasis);
+    box-shadow: 0 0 10px var(--emphasis);
+}
+.deleteBtn {
+	background-color: transparent;
+	box-shadow: 0 0 0 transparent;
+	transition: all .1s ease;
 }
 .defBtnSvg {
     fill: var(--white);
@@ -142,6 +148,13 @@
 }
 .ghostBtnSvg {
     fill: var(--blue);
+}
+.deleteBtnSvg {
+	fill: var(--black);
+	transition: all .1s ease;
+}
+.deleteBtnSvg {
+  fill: var(--black);
 }
 .defBtn:hover {
     background-color: var(--yellow);
@@ -162,6 +175,13 @@
     color: var(--blue);
     border-bottom: 1px solid var(--blue);
 }
+.deleteBtn:hover {
+	background-color: transparent;
+	box-shadow: 0 0 0 transparent;
+}
+.deleteBtn:hover > .deleteBtnSvg {
+	fill: var(--bad);
+}
 /*------------------------*/
 
 
@@ -174,6 +194,7 @@
 }
 .defInpContainer .defInp {
     padding-left: 30px;
+    padding-right: 30px;
     font-size: 16px;
     height: 100%;
     width: 100%;
@@ -220,6 +241,57 @@
     box-shadow: 0 0 5px var(--bad);
 }
 /*------------------------*/
+
+/*Стили для textarea*/
+.defInpContainer .defTextArea {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid var(--gray);
+    resize: none;
+    transition: all .2s ease;
+}
+
+.defInpContainer .defTextArea:focus,
+.defInpContainer .defTextArea:valid {
+    border: 1px solid var(--blue);
+    box-shadow: 0 0 10px var(--blue);
+}
+/*------------------------*/
+
+.defInpFileContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+	align-items: center;
+    gap: 10px;
+}
+
+.defInpFileContainer input {
+	display: none;
+}
+
+.defInpFileContainer p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    max-width: 200px;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    margin-left: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 
 
 
