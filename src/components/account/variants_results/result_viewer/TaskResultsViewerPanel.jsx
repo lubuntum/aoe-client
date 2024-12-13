@@ -228,7 +228,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                 {customerTasks?.length > 3 && 
                     <div className="resultsViewerTablePagination">
                         {Array.from({ length: Math.ceil(customerTasks.length / itemsPerPage) }, (_, index) => (
-                            <a className="Btn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
+                            <a className="btn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                         ))}
                     </div>}
             </table>

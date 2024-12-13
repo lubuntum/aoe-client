@@ -175,16 +175,19 @@
 .switchBtn {
     background-color: var(--blue);
     box-shadow: 0 0 10px var(--blue);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
     color: var(--white);
     transition: all .1s ease;
 }
 .switchBtn .switchBtnSvg {
     fill: var(--white);
+}
+.switchBtn span:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 .switchBtn span:last-child {
     color: var(--black);
