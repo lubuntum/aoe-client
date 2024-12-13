@@ -11,7 +11,7 @@ export const UserPromocode = () => {
                        required></input>
             </div>
 
-            <a className="defBtn" style={{width: "100%"}} onClick={() => {}}>Применить</a>
+            <a className="btn defaultBtn" style={{width: "100%"}} onClick={() => {}}>Применить</a>
         </div>
     </>)
 }

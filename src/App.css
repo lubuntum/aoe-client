@@ -117,14 +117,7 @@
     color: var(--white);
     pointer-events: none;
 }
-.linkBtn {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--black);
-    border-bottom: 1px solid transparent;
-    transition: all .1s ease;
-    cursor: pointer;
-}
+
 .ghostBtn {
     background-color: transparent;
     color: var(--blue);

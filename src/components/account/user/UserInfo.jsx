@@ -38,11 +38,11 @@ export const UserInfo = ({customer}) => {
             <div className="userInfoToken">
                 <div className="tokenTitle"><FaceIcon className="tokenSvg"/><p>Количество Токенов</p></div>
                 <div className="remainToken">{remainTokens}</div>
-                <a className="defBtn altBtn" style={{width: "100%"}} onClick={() => {}}>Пополнить</a>
+                <a className="btn whiteBtn" style={{width: "100%"}} onClick={() => {}}>Пополнить</a>
             </div>
 
             <div className="userInfoTokenMini">
-                <a className="defBtn" style={{width: "100px"}}><FaceIcon className="defBtnSvg"/><span>{remainTokens}</span><AddIcon className="defBtnSvg"/></a>
+                <a className="btn defaultBtn" style={{width: "100px"}}><FaceIcon className="defaultBtnSvg"/><span>{remainTokens}</span><AddIcon className="defaultBtnSvg"/></a>
             </div>
         </div>
     </>)

@@ -1,5 +1,6 @@
 
 import './App.css';
+import './btns.css'
 import AuthProvider, { useAuth } from './modules/auth/AuthProvider';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './modules/auth/ProtectedRoute';

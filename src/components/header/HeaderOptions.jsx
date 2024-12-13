@@ -27,20 +27,20 @@ export const HeaderOptions = ({headerData}) => {
         <div className="headerOptionsContainer">
             {isAuth && (<>
                 {headerData === undefined ? loadingTokens : <>
-                    <a className="defBtn" style={{width: "100px"}}><FaceIcon className="defBtnSvg"/><span>{remainTokens}</span><AddIcon className="defBtnSvg"/></a>
+                    <a className="btn defaultBtn" style={{width: "100px"}}><FaceIcon className="defaultBtnSvg"/><span>{remainTokens}</span><AddIcon className="defaultBtnSvg"/></a>
                 </>}
                 {headerData === undefined ? loadingName : <>
                     <a className="linkBtn" onClick={()=>{navigate(routes.ACCOUNT)}}>{getEmail()}</a>
                 </>}
-                <a className="defBtn adminBtn" style={{width: "40px"}} onClick={() => {navigate(routes.ADMIN)}}><AdminIcon className="defBtnSvg"/></a>
+                <a className="btn emphasisBtn" style={{width: "40px"}} onClick={() => {navigate(routes.ADMIN)}}><AdminIcon className="emphasisBtnSvg"/></a>
                 
-                <a className="defBtn" style={{width: "40px"}} onClick={() => {logout()}}><LogoutIcon className="defBtnSvg"/></a>
+                <a className="btn defaultBtn" style={{width: "40px"}} onClick={() => {logout()}}><LogoutIcon className="defaultBtnSvg"/></a>
             </>)}
 
             {!isAuth && (<>
                 <div className="optionsLoginContainer">
-                    <a className="defBtn" style={{width: "150px"}} onClick={() => {navigate(routes.AUTORIZATION)}}><span>Войти</span></a>
-                    <a className="defBtn" style={{width: "40px"}} onClick={() => {navigate(routes.AUTORIZATION)}}><LoginIcon className="defBtnSvg"/></a>
+                    <a className="btn defaultBtn" style={{width: "150px"}} onClick={() => {navigate(routes.AUTORIZATION)}}><span>Войти</span></a>
+                    <a className="btn defaultBtn" style={{width: "40px"}} onClick={() => {navigate(routes.AUTORIZATION)}}><LoginIcon className="defaultBtnSvg"/></a>
                 </div>
             </>)}
         </div>

@@ -14,7 +14,7 @@ export const HeaderBurger = ({topFormat}) => {
     return (<>
         <div className="headerBurgerContainer">
             <input type="checkbox" id="headerBurgerCheckbox"></input>
-            <label className="defBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defBtnSvg"/></label>
+            <label className="btn defaultBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defaultBtnSvg"/></label>
 
             <nav className={`${topFormat ? 'headerBurgerTop120' : 'headerBurgerTop140'}`}>
                                                            <a className="linkBtn" onClick={()=>{navigate(routes.HOME)}}>Главная</a>

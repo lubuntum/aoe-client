@@ -15,7 +15,7 @@ export const AdminVariantCard = () => {
                         <p><span>1 </span>Theme</p>
                     </div>
                     <div className="variantCardBtns">
-                        <a className="defBtn"><ExpandIcon className="defBtnSvg"/></a>
+                        <a className="defBtn altBtn"><ExpandIcon className="defBtnSvg altBtnSvg"/></a>
                         <a className="defBtn blockBtn"><EditIcon className="defBtnSvg"/></a>
                         <a className="defBtn cancelBtn"><DeleteIcon className="defBtnSvg"/></a>
                     </div>
