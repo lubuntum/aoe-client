@@ -50,10 +50,12 @@ export const AdminPopupFourthTask = ({taskValues, handleInputChange}) => {
             </div>
             <div className="adminTaskImgsContainer">
                 <div className="defInpFileContainer">
-                    <label className="defBtn" for="unplodaImg3" style={{width: "200px"}}>Выберите файл</label>
+                    <label className="btn defaultBtn" for="unplodaImg3" style={{width: "200px"}}>Выберите файл</label>
                     <input type="file" name="img" id="unplodaImg3"></input>
-                    <p><a className="defBtn deleteBtn"><DeleteIcon className="defBtnSvg deleteBtnSvg"/></a>Здесь имя 1</p>
-                    <p><a className="defBtn deleteBtn"><DeleteIcon className="defBtnSvg deleteBtnSvg"/></a>Здесь имя 2</p>
+                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+                    <p>Имя файла большое</p>
+                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+                    <p>Имя файла</p>
                 </div>
             </div>
         </div>

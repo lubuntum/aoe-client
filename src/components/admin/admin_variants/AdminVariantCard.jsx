@@ -12,12 +12,12 @@ export const AdminVariantCard = () => {
             <div className="variantCardWrapper">
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
-                        <p><span>1 </span>Theme</p>
+                        <p><span>1</span> Theme</p>
                     </div>
                     <div className="variantCardBtns">
-                        <a className="defBtn altBtn"><ExpandIcon className="defBtnSvg altBtnSvg"/></a>
-                        <a className="defBtn blockBtn"><EditIcon className="defBtnSvg"/></a>
-                        <a className="defBtn cancelBtn"><DeleteIcon className="defBtnSvg"/></a>
+                        <a className="btn whiteBtn"><ExpandIcon className="whiteBtnSvg"/></a>
+                        <a className="btn whiteBtn blockBtn"><EditIcon className="blockBtnSvg"/></a>
+                        <a className="btn redBtn"><DeleteIcon className="redBtnSvg"/></a>
                     </div>
                 </div>
             </div>

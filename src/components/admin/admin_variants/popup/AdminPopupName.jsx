@@ -16,9 +16,10 @@ export const AdminPopupName = ({variantValues, handleInputChange}) => {
                     </input>
                 </div>
                 <div className="defInpFileContainer">
-                    <label className="defBtn" for="uploadImg1" style={{width: "200px"}}>Выберите файл</label>
+                    <label className="btn defaultBtn" for="uploadImg1" style={{width: "200px"}}>Выберите файл</label>
                     <input type="file" name="img" id="uploadImg1"></input>
-                    <p><a className="defBtn deleteBtn"><DeleteIcon className="defBtnSvg deleteBtnSvg"/></a>Здесь имя</p>
+                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+                    <p>Здесь имя</p>
                 </div>
             </div>
 

@@ -49,7 +49,7 @@ export const AdminPage = () => {
                             <AdminTitle curerntContentTitle = {CurrentComponent.title}/>
                             <div className="adminBtns">
                                 {adminBtnsNames.map((btnName, index) => (
-                                    <a className="defBtn" style={{width: "180px", height: "100%"}} onClick={() => setCurrentContent(index + 1)}><SettingsIcon className="defBtnSvg"/><span>{btnName}</span></a>
+                                    <a className="btn defaultBtn" style={{width: "180px", height: "100%"}} onClick={() => setCurrentContent(index + 1)}><SettingsIcon className="defaultBtnSvg"/><span>{btnName}</span></a>
                                 ))}
                             </div>
                         </div>

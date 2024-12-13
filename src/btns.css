@@ -169,3 +169,59 @@
 .emphasisBtn:hover .emphasisBtnSvg {
     fill: var(--black);
 }
+
+
+
+.switchBtn {
+    background-color: var(--blue);
+    box-shadow: 0 0 10px var(--blue);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    transition: all .1s ease;
+}
+.switchBtn .switchBtnSvg {
+    fill: var(--white);
+}
+.switchBtn span:last-child {
+    color: var(--black);
+    display: none;
+}
+.switchBtn:hover {
+    background-color: var(--yellow);
+    box-shadow: 0 0 10px var(--yellow);
+}
+.switchBtn:hover .switchBtnSvg {
+    fill: var(--black);
+}
+.switchBtn:hover span:first-child,
+.switchBtn:hover div:first-child {
+    display: none;
+}
+.switchBtn:hover span:last-child {
+    display: flex;
+}
+
+
+
+.deleteBtn {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+    color: var(--white);
+    transition: all .1s ease;
+}
+.deleteBtn .deleteBtnSvg {
+    fill: var(--bad);
+    transition: all .1s ease;
+}
+.deleteBtn:hover {
+    background-color: var(--bad);
+    box-shadow: 0 0 10px var(--bad);
+    color: var(--white);
+}
+.deleteBtn:hover .deleteBtnSvg {
+    fill: var(--white);
+}

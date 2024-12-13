@@ -49,9 +49,10 @@ export const AdminPopupSecondTask = ({taskValues, handleInputChange}) => {
             </div>
             <div className="adminTaskImg">
                 <div className="defInpFileContainer">
-                    <label className="defBtn" for="uploadImg2" style={{width: "200px"}}>Выберите файл</label>
+                    <label className="btn defaultBtn" for="uploadImg2" style={{width: "200px"}}>Выберите файл</label>
                     <input type="file" name="img" id="uploadImg2"></input>
-                    <p><a className="defBtn deleteBtn"><DeleteIcon className="defBtnSvg deleteBtnSvg"/></a>Здесь имя</p>
+                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+                    <p>Здесь имя вфывф ывфы в</p>
                 </div>
 
                 <div className="defInpContainer" style={{width: "100%"}}>
