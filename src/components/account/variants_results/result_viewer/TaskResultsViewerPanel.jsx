@@ -56,13 +56,19 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
         taskTemp.sort((a,b)=>{
-            const [dayA, monthA, yearA] = a.completeDate.split('.').map(Number);
-            const [dayB, monthB, yearB] = b.completeDate.split('.').map(Number);
+            const [dateA, timeA] = a.completeDate.split(' ');
+            const [dateB, timeB] = b.completeDate.split(' ');
 
-            const dateA = new Date(yearA, monthA - 1, dayA);
-            const dateB = new Date(yearB, monthB - 1, dayB);
+            const [dayA, monthA, yearA] = dateA.split('.').map(Number);
+            const [dayB, monthB, yearB] = dateB.split('.').map(Number);
 
-            return dateB - dateA})
+            const [hourA, minuteA, secondA] = timeA.split(':').map(Number)
+            const [hourB, minuteB, secondB] = timeB.split(':').map(Number)
+
+            const fullDateA = new Date(yearA, monthA-1, dayA, hourA, minuteA, secondA)
+            const fullDateB = new Date(yearB, monthB-1, dayB, hourB, minuteB, secondB)
+
+            return fullDateB - fullDateA})
         
         const indexOfLastItem = currentPage * itemsPerPage
         const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -121,8 +127,8 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
     const startExpressTask = async (customerTask) => {
         const tempTranscribeService = "assemblyai"//TEMP
-        const tempAIService = "aimlapi.com"//TEMP
-        const tempAIModel = "gpt-4o"//TEMP
+        const tempAIService = "vsegpt"//TEMP
+        const tempAIModel = "openai/gpt-4o-latest"//TEMP
         const textDistanceMethod = "levenshtein";
         const response = await startExpressCheckForTask(customerTask, 
                                                     tempTranscribeService, 
