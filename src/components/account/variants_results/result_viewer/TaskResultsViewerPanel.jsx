@@ -19,6 +19,7 @@ import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
 import routes from "../../../../routes.js"
 import TASKS_MAX_GRADE from "../../../../grades.js"
+import { sortCustomerTasks, sortDate } from "../../../../modules/date/sortDate.js"
 
 /*TODO
     --Сделать две панельки для экзамена и для тасков
@@ -55,20 +56,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     const getCustomerTasksData = async () => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
-        taskTemp.sort((a,b)=>{
-            const [dateA, timeA] = a.completeDate.split(' ');
-            const [dateB, timeB] = b.completeDate.split(' ');
-
-            const [dayA, monthA, yearA] = dateA.split('.').map(Number);
-            const [dayB, monthB, yearB] = dateB.split('.').map(Number);
-
-            const [hourA, minuteA, secondA] = timeA.split(':').map(Number)
-            const [hourB, minuteB, secondB] = timeB.split(':').map(Number)
-
-            const fullDateA = new Date(yearA, monthA-1, dayA, hourA, minuteA, secondA)
-            const fullDateB = new Date(yearB, monthB-1, dayB, hourB, minuteB, secondB)
-
-            return fullDateB - fullDateA})
+        taskTemp.sort(sortCustomerTasks)
         
         const indexOfLastItem = currentPage * itemsPerPage
         const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -195,7 +183,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                                 <div className="resultsViewerTableBodyItem"><p>{rowIndex+1 + startItemNumber.current}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{customerTask.completeDate}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{customerTask.completeDate.split(" ")[0]}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
