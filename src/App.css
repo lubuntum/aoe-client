@@ -66,118 +66,6 @@
 }
 
 
-/*Стили для всевозможных вариантов кнопок*/
-.defBtn {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    background-color: var(--blue);
-    box-shadow: 0 0 10px var(--blue);
-    color: var(--white);
-    min-height: 40px;
-    height: 40px;
-    width: 40px;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all .1s ease;
-}
-.altBtn {
-    background-color: var(--white);
-    box-shadow: 0 0 10px var(--white);
-    color: var(--black);
-}
-.switchBtn span {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.switchBtn span:last-child {
-    color: var(--black);
-    display: none;
-}
-.doneBtn {
-    background-color: var(--good);
-    box-shadow: 0 0 10px var(--good);
-    color: var(--white);
-}
-.cancelBtn {
-    background-color: var(--bad);
-    box-shadow: 0 0 10px var(--bad);
-    color: var(--white);
-}
-.blockBtn {
-    background-color: var(--gray);
-    box-shadow: 0 0 10px var(--gray);
-    color: var(--white);
-    pointer-events: none;
-}
-
-.ghostBtn {
-    background-color: transparent;
-    color: var(--blue);
-    box-shadow: 0 0 0 transparent;
-}
-.adminBtn {
-    background-color: var(--emphasis);
-    box-shadow: 0 0 10px var(--emphasis);
-}
-.deleteBtn {
-	background-color: transparent;
-	box-shadow: 0 0 0 transparent;
-	transition: all .1s ease;
-}
-.defBtnSvg {
-    fill: var(--white);
-    transition: all .1s ease;
-}
-.altBtnSvg {
-    fill: var(--black);
-}
-.ghostBtnSvg {
-    fill: var(--blue);
-}
-.deleteBtnSvg {
-	fill: var(--black);
-	transition: all .1s ease;
-}
-.deleteBtnSvg {
-  fill: var(--black);
-}
-.defBtn:hover {
-    background-color: var(--yellow);
-    box-shadow: 0 0 10px var(--yellow);
-    color: var(--black);
-}
-.defBtn:hover .defBtnSvg {
-    fill: var(--black);
-}
-.switchBtn:hover span:first-child,
-.switchBtn:hover div:first-child {
-    display: none;
-}
-.switchBtn:hover span:last-child {
-    display: flex;
-}
-.linkBtn:hover {
-    color: var(--blue);
-    border-bottom: 1px solid var(--blue);
-}
-.deleteBtn:hover {
-	background-color: transparent;
-	box-shadow: 0 0 0 transparent;
-}
-.deleteBtn:hover > .deleteBtnSvg {
-	fill: var(--bad);
-}
-/*------------------------*/
-
-
 /*Стили для поля ввода*/
 .defInpContainer {
     position: relative;
@@ -258,6 +146,7 @@
 }
 /*------------------------*/
 
+/*Стили для инпутов для файлов*/
 .defInpFileContainer {
     display: flex;
     flex-direction: row;
@@ -265,7 +154,6 @@
 	  align-items: center;
     gap: 10px;
 }
-
 .defInpFileContainer input {
 	display: none;
 }
@@ -279,7 +167,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+/*------------------------*/
 
 
 
