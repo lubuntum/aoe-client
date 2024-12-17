@@ -130,9 +130,9 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
 
     const optionsButtons = [
-        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="defBtnSvg"/>, fnc: navigateToCustomerTask},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="defBtnSvg"/>, fnc: shareCustomerTask},
-        {id: 2, text: 'Скачать', icon: <DownloadIcon className="defBtnSvg"/>, fnc: downloadCustomerTaskAudio},
+        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="defaultBtnSvg"/>, fnc: navigateToCustomerTask},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="defaultBtnSvg"/>, fnc: shareCustomerTask},
+        {id: 2, text: 'Скачать', icon: <DownloadIcon className="defaultBtnSvg"/>, fnc: downloadCustomerTaskAudio},
     ]
     const statuses = {completed : "blockBtn", checking: "cancelBtn"}
     const getButtonStatusStyle = (status) => {
@@ -202,7 +202,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
                                         <p><span className={setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}>{setGradeFormat(customerTask.taskResults[0]?.result.grade)}</span> / {setGradeFormat(TASKS_MAX_GRADE[task.taskType])}</p>
-                                        <a className="defBtn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="defBtnSvg ghostBtnSvg"/></a>
+                                        <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
                                     </div>
                                 </div>
                             </td>
@@ -227,7 +227,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                 {customerTasks?.length > 3 && 
                     <div className="resultsViewerTablePagination">
                         {Array.from({ length: Math.ceil(customerTasks.length / itemsPerPage) }, (_, index) => (
-                            <a className="defBtn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
+                            <a className="btn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                         ))}
                     </div>}
             </table>

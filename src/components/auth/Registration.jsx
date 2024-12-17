@@ -121,7 +121,7 @@ export const Registration = ({toggle, disabledButton}) => {
                 <CheckPsdStrength psdStrengthStyle = {checkPsdStrength(repeatPass)}/>
         </div>
 
-        <a className="defBtn" onClick={sendCustomerData} style={{width: "350px"}}>Регистрация</a>
+        <a className="btn defaultBtn" onClick={sendCustomerData} style={{width: "350px"}}>Регистрация</a>
 
         <div className="orContainer">
             <div className="hr"></div>
@@ -129,6 +129,6 @@ export const Registration = ({toggle, disabledButton}) => {
             <div className="hr"></div>
         </div>
 
-        <a className="defBtn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Войти в аккаунт</a>
+        <a className="btn defaultBtn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Войти в аккаунт</a>
     </>)
 }

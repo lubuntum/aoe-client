@@ -54,7 +54,7 @@ export const Login = ({toggle, disabledButton}) => {
             <a className="linkBtn" onClick={() => {}}>Забыли пароль?</a>
         </div>
 
-        <a className="defBtn" onClick={handleSubmit} style={{width: "350px"}}>Войти</a>
+        <a className="btn defaultBtn" onClick={handleSubmit} style={{width: "350px"}}>Войти</a>
 
         <div className="orContainer">
             <div className="hr"></div>
@@ -62,6 +62,6 @@ export const Login = ({toggle, disabledButton}) => {
             <div className="hr"></div>
         </div>
 
-        <a className="defBtn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Создать аккаунт</a>
+        <a className="btn defaultBtn" onClick={toggle} disabled={disabledButton} style={{width: "350px"}}>Создать аккаунт</a>
     </>)
 }

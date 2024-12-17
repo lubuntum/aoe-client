@@ -33,7 +33,7 @@ export const UserSubscription = ({customer}) => {
                 </div>
             </> : subscriptionPurchase}
 
-            <a className="defBtn" style={{width: "100%"}} onClick={() => {}}>Продлить</a>
+            <a className="btn defaultBtn" style={{width: "100%"}} onClick={() => {}}>Продлить</a>
         </div>
     </>)
 }

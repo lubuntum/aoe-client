@@ -111,9 +111,9 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
     }
 
     const optionsButtons = [
-        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="defBtnSvg"/>, fnc: navigateToExamResults},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="defBtnSvg"/>, fnc: shareExamResults},
-        {id: 2, text: 'Скачать', icon: <DownloadIcon className="defBtnSvg"/>, fnc: downloadExamResults},
+        {id: 0, text: 'Подробнее', icon: <ExpandIcon className="defaultBtnSvg"/>, fnc: navigateToExamResults},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="defaultBtnSvg"/>, fnc: shareExamResults},
+        {id: 2, text: 'Скачать', icon: <DownloadIcon className="defaultBtnSvg"/>, fnc: downloadExamResults},
     ]
 
     return (<>
@@ -171,12 +171,12 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="defBtn switchBtn">
-                                        <span><BoltIcon className="defBtnSvg"/>Экспресс</span>
+                                    <a className="btn switchBtn">
+                                        <span><BoltIcon className="switchBtnSvg"/>Экспресс</span>
                                         <span>4 токена</span>
                                     </a>
-                                    <a className="defBtn switchBtn">
-                                        <span>Эксперт<FaceIcon className="defBtnSvg"/></span>
+                                    <a className="btn switchBtn">
+                                        <span>Эксперт<FaceIcon className="switchBtnSvg"/></span>
                                         <span>1 токен</span>
                                     </a>
                                 </div>    
@@ -191,12 +191,12 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                                 <div className="resultsViewerResults">
                                     <div className="resultsViewerTableBodyItem">
                                         <p><span className={setGradeColor(exam?.expressTotalGrade, 20)}>{setGradeFormat(exam.expressTotalGrade)}</span> / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}</p>
-                                        <a className="defBtn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="defBtnSvg ghostBtnSvg"/></a>
+                                        <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
                                     </div>
                                     
                                     <div className="resultsViewerTableBodyItem">
                                         <p><span className={setGradeColor(exam?.expertTotalGrade, 20)}>{setGradeFormat(exam.expertTotalGrade)}</span> / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}</p>
-                                        <a className="defBtn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="defBtnSvg ghostBtnSvg"/></a>
+                                        <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
                                     </div>
                                 </div>
                             </td>
@@ -221,7 +221,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                 {exams?.length > 3 && 
                     <div className="resultsViewerTablePagination">
                         {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
-                            <a className="defBtn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
+                            <a className="btn ghostBtn" style={{width: "40px"}} key={index + 1} onClick={() => paginate(index + 1)}>{index + 1}</a>
                         ))}
                     </div>}
             </table>

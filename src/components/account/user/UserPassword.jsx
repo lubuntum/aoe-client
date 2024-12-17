@@ -61,7 +61,7 @@ export const UserPassword = () => {
                                onChange={handleOldPassChange}></input>
                     </div>
 
-                    <a className="defBtn" style={{width: "100%"}} onClick={() => {changePass()}}>Применить</a>
+                    <a className="btn defaultBtn" style={{width: "100%"}} onClick={() => {changePass()}}>Применить</a>
                 </div>
             </div>
         </div>

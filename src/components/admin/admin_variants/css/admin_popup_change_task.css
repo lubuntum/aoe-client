@@ -1,0 +1,64 @@
+.adminChangeTaskContainer {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adminStatus {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.adminStatusGood {
+    background-color: var(--good);
+    box-shadow: 0 0 10px var(--good);
+    color: var(--white);
+}
+
+.adminStatusBad {
+    background-color: var(--bad);
+    box-shadow: 0 0 10px var(--bad);
+    color: var(--white);
+}
+
+.adminStatusOpen {
+    animation: scaleIn 3s forwards;
+}
+
+.adminStatus p {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.changeTaskBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.saveCloseBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

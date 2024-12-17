@@ -20,11 +20,11 @@ export const TasksCard = ({variant, index}) => {
                     <div className="cardBtns">
                         <div className="cardTasks">
                             {Array.from({length:4}, (_, index) => (
-                                <a className="defBtn altBtn" onClick={() => {navigateToTaskSession(index+1)}}>{index+1}</a>
+                                <a className="btn whiteBtn" onClick={() => {navigateToTaskSession(index+1)}}>{index+1}</a>
                             ))}
                         </div>
                         <div className="cardExam">
-                            <a className="defBtn altBtn" onClick={() => {navigate(routes.LESSON_SESSION, {state: variant})}}>Экзамен</a>
+                            <a className="btn whiteBtn" onClick={() => {navigate(routes.LESSON_SESSION, {state: variant})}}>Экзамен</a>
                         </div>
                     </div>
                 </div>

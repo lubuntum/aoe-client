@@ -1,0 +1,31 @@
+.adminWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adminContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adminSettings {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.adminBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    height: 100px;
+    padding: 20px;
+    gap: 20px;
+}
