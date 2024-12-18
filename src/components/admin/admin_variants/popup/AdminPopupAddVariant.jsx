@@ -61,26 +61,30 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
                 updatedQuestions[index] = value
                 return { ...prevValues, questions: updatedQuestions}
             })
-        } else if (id.startsWith('topic')) {
+            return
+        }  
+        if (id.startsWith('topic')) {
             const index = parseInt(id.replace('topic', '')) // Assuming id is like 'topic0', 'topic1', etc.
             setValues(prevValues => {
                 const updatedTopics = [...prevValues.topics]
                 updatedTopics[index] = value
                 return { ...prevValues, topics: updatedTopics}
             })
-        } else if (id.startsWith('subTask')) {
+            return
+        }
+        if (id.startsWith('subTask')) {
             const index = parseInt(id.replace('subTask', '')) // Assuming id is like 'subTask0', 'subTask1', etc.
             setValues(prevValues => {
                 const updatedSubTasks = [...prevValues.subTasks]
                 updatedSubTasks[index] = value
                 return { ...prevValues, subTasks: updatedSubTasks}
             })
-        } else {
-            setValues(prevValues => ({
-                ...prevValues,
-                [id]: value
-            }))
+            return
         }
+        setValues(prevValues => ({
+            ...prevValues,
+            [id]: value
+        }))
     }
 
     //Обработка структуры перед отправкой (формат для сервера)
@@ -136,18 +140,8 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         <div className="adminPopupContainer">
             <AdminPopupName variantValues = {variantValues}
                             handleInputChange = {handleInputChange(setVariantValues)}/>
-
-            {currentPopupComponent === 1 && <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues}
-                                                                             handleInputChange = {CurrentPopupComponent.handleInputChange}/>}
-
-            {currentPopupComponent === 2 && <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues}
-                                                                             handleInputChange = {CurrentPopupComponent.handleInputChange}/>}
-
-            {currentPopupComponent === 3 && <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues} 
-                                                                             handleInputChange = {CurrentPopupComponent.handleInputChange}/>}
-
-            {currentPopupComponent === 4 && <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues} 
-                                                                             handleInputChange = {CurrentPopupComponent.handleInputChange}/>}
+            <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues}
+                                             handleInputChange = {CurrentPopupComponent.handleInputChange} />
 
             <AdminPopupChangeTask setCurrentPopupComponent={setCurrentPopupComponent} 
                                   setShowPopup = {setShowPopup} 
