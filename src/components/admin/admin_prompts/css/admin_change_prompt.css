@@ -1,0 +1,38 @@
+.adminChangePromptContainer {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.changePromptBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.savePromptBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.adminPromptStatus {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.adminPromptStatusGood {
+    background-color: var(--good);
+    box-shadow: 0 0 10px var(--good);
+    color: var(--white);
+}
+.adminPromptStatusBad {
+    background-color: var(--bad);
+    box-shadow: 0 0 10px var(--bad);
+    color: var(--white);
+}
