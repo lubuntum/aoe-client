@@ -5,6 +5,7 @@ import { AdminPopupThirdTask } from "./AdminPopupThirdTask"
 import { AdminPopupFourthTask } from "./AdminPopupFourthTask"
 import { AdminPopupChangeTask } from "./AdminPopupChangeTask"
 import { useState } from "react"
+import { sendVariantData } from "../../../../modules/api/variant/VariantApi"
 
 export const AdminPopupAddVariant = ({setShowPopup}) => {
     //Popup компонент
@@ -81,6 +82,12 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             })
             return
         }
+        if (id.startsWith('variantImg')){
+            console.log(e.target.files[0])
+            setVariantValues(prevValues => {
+                return {...prevValues, [id]: e.target.files[0]}
+            })
+        }
         setValues(prevValues => ({
             ...prevValues,
             [id]: value
@@ -119,9 +126,14 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             taskValues: fourthTaskValues, 
             handleInputChange: handleInputChange(setFourthTaskValues)},
     }
-
+    
+    const sendVariant = async () => {
+        const response = await sendVariantData(variantValues)
+        sendTasksData(response.data)
+        //TODO use id from response and save other data sendTasksData()...
+    }
     //Отправка данных о тасках на сервер
-    const sendVariantData = () => {
+    const sendTasksData = (variant) => {
         console.log(variantValues, getRequestDataFromValues())
         setViewStatus(true)
         setStatusColor("bad")
@@ -145,7 +157,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
 
             <AdminPopupChangeTask setCurrentPopupComponent={setCurrentPopupComponent} 
                                   setShowPopup = {setShowPopup} 
-                                  sendVariantData = {sendVariantData}
+                                  sendVariant = {sendVariant}
                                   viewStatus = {viewStatus}
                                   status = {status}
                                   statusColor = {statusColor}/>

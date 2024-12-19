@@ -1,4 +1,4 @@
-export const AdminPopupChangeTask = ({setCurrentPopupComponent, setShowPopup, sendVariantData, viewStatus, status, statusColor}) => {
+export const AdminPopupChangeTask = ({setCurrentPopupComponent, setShowPopup, sendVariant, viewStatus, status, statusColor}) => {
     return (<>
         <div className="adminChangeTaskContainer">
             <div className="changeTaskBtns">
@@ -10,7 +10,7 @@ export const AdminPopupChangeTask = ({setCurrentPopupComponent, setShowPopup, se
                 <p>{status}</p>
             </div>
             <div className="saveCloseBtns">
-                <a className="btn greenBtn" onClick={sendVariantData} style={{width: "150px"}}>Создать</a>
+                <a className="btn greenBtn" onClick={sendVariant} style={{width: "150px"}}>Создать</a>
                 <a className="btn redBtn" onClick={()=>setShowPopup(false)} style={{width: "150px"}}>Отмена</a>
             </div>
         </div>
