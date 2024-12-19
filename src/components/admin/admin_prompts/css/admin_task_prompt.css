@@ -1,0 +1,11 @@
+.adminPromptContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adminPromptContainer p {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
