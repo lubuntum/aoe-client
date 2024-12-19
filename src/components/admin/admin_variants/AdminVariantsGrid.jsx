@@ -1,16 +1,13 @@
 import { AdminAddVariant } from "./AdminAddVariant"
 import { AdminVariantCard } from "./AdminVariantCard"
 
-export const AdminVariantsGrid = ({setShowPopup}) => {
+export const AdminVariantsGrid = ({setShowPopup, variants}) => {
     return (<>
         <div className="variantsCardGrid">
             <AdminAddVariant setShowPopup={setShowPopup}/>
-            <AdminVariantCard/>
-            <AdminVariantCard/>
-            <AdminVariantCard/>
-            <AdminVariantCard/>
-            <AdminVariantCard/>
-            <AdminVariantCard/>
+            {variants.map((variant, index) => (
+                <AdminVariantCard index={index} variant={variant}/>
+            ))}
         </div>
     </>)
 }
