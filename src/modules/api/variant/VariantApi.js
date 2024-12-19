@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../../config";
+import { API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../../config";
 import { getCurrentDate } from "../../date/currentDate";
 
 export const getVariantsData = async () => {
@@ -21,8 +21,21 @@ export const sendVariantData = async (variant) => {
     formData.append('variantImg', variant.variantImg)
     formData.append('variantName', variant.variantName)
     formData.append('creationDate', getCurrentDate())
+    formData.forEach((value, key) => {
+        console.log(key, value);
+    });
     const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_VARIANT}`,
-         formData, {headers : {Authorization : localStorage.getItem("token"),'Content-Type': 'multipart/form-data'}})
-    return response.data
+         formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}})
+    return response
+}
+
+export const sendTasksForVariant = async (tasks, variantId) => {
+    const formData = new FormData()
+    formData.append("tasks", JSON.stringify(tasks))
+    formData.append("variantId", variantId)
+    const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_TASKS}`,
+        formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}}
+    )
+    return response
 }
 

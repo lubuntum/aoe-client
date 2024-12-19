@@ -5,7 +5,7 @@ import { AdminPopupThirdTask } from "./AdminPopupThirdTask"
 import { AdminPopupFourthTask } from "./AdminPopupFourthTask"
 import { AdminPopupChangeTask } from "./AdminPopupChangeTask"
 import { useState } from "react"
-import { sendVariantData } from "../../../../modules/api/variant/VariantApi"
+import { sendTasksForVariant, sendVariantData } from "../../../../modules/api/variant/VariantApi"
 
 export const AdminPopupAddVariant = ({setShowPopup}) => {
     //Popup компонент
@@ -16,9 +16,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
     const [status, setStatus] = useState("")
 
     const [variantValues, setVariantValues] = 
-        useState({variantName: "", 
-                  variantImg: ""})
-
+        useState({variantName: "", variantImg : null})
     //Структура первого таска
     const [firstTaskValues, setFirstTaskValues] = 
         useState({taskGuide: "", 
@@ -37,7 +35,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
     //Структура третьего таска
     const [thirdTaskValues, setThirdTaskValues] = 
         useState({taskGuide: "", 
-                  taskText: "", 
+                  speaker: Array(1).fill(""), 
                   questions: Array(5).fill("")})
 
     //Структура четвертого таска
@@ -83,10 +81,18 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             return
         }
         if (id.startsWith('variantImg')){
-            console.log(e.target.files[0])
-            setVariantValues(prevValues => {
-                return {...prevValues, [id]: e.target.files[0]}
+            setValues(prevValues => {
+                return {...prevValues, [id] : e.target.files[0]}
             })
+            return
+        }
+        if (id.startsWith('speaker')) {
+            setValues(prevValues => {
+                const updatedSpeakerText = [...prevValues.speaker]
+                updatedSpeakerText[0] = value
+                return {...prevValues, speaker : updatedSpeakerText}
+            })
+            return
         }
         setValues(prevValues => ({
             ...prevValues,
@@ -102,10 +108,10 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
 
     //Конвертация в JSON
     const getRequestDataFromValues = () => {
-        return [JSON.stringify(firstTaskValues), 
-                JSON.stringify(filterValuesForSending(secondTaskValues)), 
-                JSON.stringify(thirdTaskValues), 
-                JSON.stringify(filterValuesForSending(fourthTaskValues))]
+        return [{"taskType" : 1, "taskContent":JSON.stringify(firstTaskValues)}, 
+                {"taskType" : 2, "taskContent":JSON.stringify(filterValuesForSending(secondTaskValues))}, 
+                {"taskType" : 3, "taskContent":JSON.stringify(thirdTaskValues)}, 
+                {"taskType" : 4, "taskContent":JSON.stringify(filterValuesForSending(fourthTaskValues))}]
     }
 
     // Компоненты и их параметры для (1 таска / 2 таска / 3 таска / 4 таска)
@@ -128,17 +134,20 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
     }
     
     const sendVariant = async () => {
+        console.log(variantValues)
+        console.log(`${JSON.stringify(getRequestDataFromValues())}`)
         const response = await sendVariantData(variantValues)
+        //console.log(`Response data -> ${response.data}`)
         sendTasksData(response.data)
-        //TODO use id from response and save other data sendTasksData()...
+        
     }
     //Отправка данных о тасках на сервер
     const sendTasksData = (variant) => {
-        console.log(variantValues, getRequestDataFromValues())
+        //console.log(variantValues, getRequestDataFromValues())
+        sendTasksForVariant(getRequestDataFromValues(), variant.id)
         setViewStatus(true)
         setStatusColor("bad")
         setStatus("Ошибка")
-        
         setTimeout(() => {
             setViewStatus(false)
             setStatusColor("")

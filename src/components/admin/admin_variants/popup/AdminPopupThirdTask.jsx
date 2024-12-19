@@ -14,8 +14,8 @@ export const AdminPopupThirdTask = ({taskValues, handleInputChange}) => {
             <div className="defInpContainer" style={{width: "100%", height: "120px"}}>
                 <textarea className="defTextArea"
                           placeholder="Текст задания (для спикера)"
-                          id="taskText"
-                          value={taskValues.taskText}
+                          id="speaker"
+                          value={taskValues.speaker}
                           onChange={handleInputChange}
                           required>
                 </textarea>
