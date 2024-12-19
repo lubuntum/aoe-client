@@ -18,6 +18,7 @@ import { getCustomerExamsByVariant } from "../../../../modules/api/result/Result
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
 import TASKS_MAX_GRADE from "../../../../grades.js"
+import { sortCustomerTasks, sortDate, sortExams } from "../../../../modules/date/sortDate.js"
 
 /*TODO
     --Сделать две панельки для экзамена и для тасков
@@ -51,14 +52,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
         const getExamsData = async () => {
             const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
             const examsTemp = response.data
-            examsTemp.sort((a,b)=>{
-                const [dayA, monthA, yearA] = a.examCompleteDate.split('.').map(Number);
-                const [dayB, monthB, yearB] = b.examCompleteDate.split('.').map(Number);
-
-                const dateA = new Date(yearA, monthA - 1, dayA);
-                const dateB = new Date(yearB, monthB - 1, dayB);
-
-                return dateB - dateA})
+            examsTemp.sort(sortExams)
             
             const indexOfLastItem = currentPage * itemsPerPage
             const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -173,7 +167,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                                 <div className="resultsViewerTableBodyItem"><p>{rowIndex+1 + startItemNumber.current}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{exam.examCompleteDate}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{exam.examCompleteDate.split(" ")[0]}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">

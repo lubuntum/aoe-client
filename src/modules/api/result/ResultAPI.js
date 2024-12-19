@@ -33,7 +33,7 @@ export const getCustomerTaskByCustomerTaskId = async (customerTaskId) => {
     return response
 } 
 //Начать экспресс проверку задачи
-export const startExpressCheckForTask = async (customerTask, transcriptionService, aiService, textDistanceMethod, task, sessionKey) => {
+export const startExpressCheckForTask = async (customerTask, transcriptionService, aiService, aiModel, textDistanceMethod, task, sessionKey) => {
     const taskDTO = {
         id : task.id,
         taskContent : JSON.stringify(task.taskContent),
@@ -45,6 +45,7 @@ export const startExpressCheckForTask = async (customerTask, transcriptionServic
         audioPath: customerTask.audioPath,
         transcriptionServiceName : transcriptionService,
         aiServiceName : aiService,
+        aiModelName : aiModel,
         textDistanceMethod : textDistanceMethod
     }
     console.log(request)

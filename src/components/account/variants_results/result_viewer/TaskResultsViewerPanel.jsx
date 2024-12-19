@@ -19,6 +19,7 @@ import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
 import routes from "../../../../routes.js"
 import TASKS_MAX_GRADE from "../../../../grades.js"
+import { sortCustomerTasks, sortDate } from "../../../../modules/date/sortDate.js"
 
 /*TODO
     --Сделать две панельки для экзамена и для тасков
@@ -55,14 +56,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     const getCustomerTasksData = async () => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
-        taskTemp.sort((a,b)=>{
-            const [dayA, monthA, yearA] = a.completeDate.split('.').map(Number);
-            const [dayB, monthB, yearB] = b.completeDate.split('.').map(Number);
-
-            const dateA = new Date(yearA, monthA - 1, dayA);
-            const dateB = new Date(yearB, monthB - 1, dayB);
-
-            return dateB - dateA})
+        taskTemp.sort(sortCustomerTasks)
         
         const indexOfLastItem = currentPage * itemsPerPage
         const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -121,11 +115,13 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
     }
     const startExpressTask = async (customerTask) => {
         const tempTranscribeService = "assemblyai"//TEMP
-        const tempAIService = "GPT-4o"//TEMP
+        const tempAIService = "vsegpt"//TEMP
+        const tempAIModel = "openai/gpt-4o-latest"//TEMP
         const textDistanceMethod = "levenshtein";
         const response = await startExpressCheckForTask(customerTask, 
                                                     tempTranscribeService, 
-                                                    tempAIService,
+                                                    tempAIService, 
+                                                    tempAIModel,
                                                     textDistanceMethod,
                                                     task,
                                                     localStorage.getItem("token"))
@@ -138,7 +134,10 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         {id: 1, text: 'Ссылка', icon: <LinkIcon className="defaultBtnSvg"/>, fnc: shareCustomerTask},
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="defaultBtnSvg"/>, fnc: downloadCustomerTaskAudio},
     ]
-    
+    const statuses = {completed : "blockBtn", checking: "cancelBtn"}
+    const getButtonStatusStyle = (status) => {
+        return statuses[status] || ""
+    }
     return (<>
         <div className="resultsViewerContainer gridItem9">
             <div className="resultsViewerDescription">
@@ -184,11 +183,11 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                                 <div className="resultsViewerTableBodyItem"><p>{rowIndex+1 + startItemNumber.current}</p></div>
                             </td>
                             <td>
-                                <div className="resultsViewerTableBodyItem"><p>{customerTask.completeDate}</p></div>
+                                <div className="resultsViewerTableBodyItem"><p>{customerTask.completeDate.split(" ")[0]}</p></div>
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className={`btn switchBtn ${customerTask.answer !== null ? "blockBtn" : ""}`} onClick={()=>{startExpressTask(customerTask)}}>
+                                    <a className={`defBtn switchBtn ${getButtonStatusStyle(customerTask.expressCheckStatus?.status)}`} onClick={()=>{startExpressTask(customerTask)}}>
                                         <span>Экспресс</span>
                                         <span>6 токенов</span>
                                     </a>
