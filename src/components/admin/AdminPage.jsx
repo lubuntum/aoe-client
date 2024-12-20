@@ -18,7 +18,7 @@ import { AdminPopupAddVariant } from "./admin_variants/popup/AdminPopupAddVarian
 import { useEffect, useState } from "react"
 
 export const AdminPage = () => {
-    const [currentContent, setCurrentContent] = useState(2)
+    const [currentContent, setCurrentContent] = useState(1)
     const [showPopup, setShowPopup] = useState(false)
 
     useEffect(() => {
@@ -29,8 +29,8 @@ export const AdminPage = () => {
     }, [showPopup])
 
     const AdminContentComponents = {
-        1:{component: AdminPartners, title: "Партнеры"},
-        2:{component: AdminVariants, title: "Варианты", props: {setShowPopup}, popupContent: AdminPopupAddVariant},
+        1:{component: AdminVariants, title: "Варианты", props: {setShowPopup}, popupContent: AdminPopupAddVariant},
+        2:{component: AdminPartners, title: "Партнеры"},
         3:{component: AdminPrompts, title: "Промпты"},
         4:{component: AdminServices, title: "Сервисы API"},
         5:{component: AdminTariffs, title: "Тарифы"},
@@ -39,11 +39,11 @@ export const AdminPage = () => {
     const CurrentComponent = AdminContentComponents[currentContent]
 
     const adminBtns = [
-        {name: "Партнеры", icon: <PartnerIcon className="defaultBtnSvg"/>}, 
-        {name: "Варианты", icon: <SettingsIcon className="defaultBtnSvg"/>}, 
-        {name: "Промпты", icon: <SettingsIcon className="defaultBtnSvg"/>}, 
-        {name: "Сервисы", icon: <SettingsIcon className="defaultBtnSvg"/>}, 
-        {name: "Тарифы", icon: <SettingsIcon className="defaultBtnSvg"/>}]
+        {name: "Варианты", icon: <SettingsIcon className="defaultBtnSvg"/>, className: "btn defaultBtn"}, 
+        {name: "Партнеры", icon: <PartnerIcon className="defaultBtnSvg"/>, className: "btn defaultBtn"}, 
+        {name: "Промпты", icon: <SettingsIcon className="defaultBtnSvg"/>, className: "btn defaultBtn"}, 
+        {name: "Сервисы", icon: <SettingsIcon className="blockBtnSvg"/>, className: "btn blockBtn"}, 
+        {name: "Тарифы", icon: <SettingsIcon className="defaultBtnSvg"/>, className: "btn defaultBtn"}]
 
     //TODO: <PopupContainer component = {CurrentComponent.popup}/>
     return (<>
@@ -58,7 +58,7 @@ export const AdminPage = () => {
                             <div className="adminBtns">
                                 {adminBtns.map((btn, index) => (
                                     <a key={index}
-                                       className="btn defaultBtn"
+                                       className={btn.className}
                                        style={{width: "180px", height: "100%"}}
                                        onClick={() => setCurrentContent(index + 1)}>{btn.icon}<span>{btn.name}</span></a>
                                 ))}
