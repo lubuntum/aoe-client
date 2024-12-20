@@ -13,14 +13,14 @@ import { getVariantsData } from "../../../modules/api/variant/VariantApi"
 export const AdminVariants = ({setShowPopup}) => {
     const [variants, setVariants] = useState(null)
     useEffect(() => {
-        const downloadVariants = async () => {
-            const response = await getVariantsData()
-            console.log(response.data)
-            setVariants(response.data)
-        }
         downloadVariants()
     }, [])
+    const downloadVariants = async () => {
+        const response = await getVariantsData()
+        console.log(response.data)
+        setVariants(response.data)
+    }
     return (<>
-        <AdminVariantsGrid setShowPopup={setShowPopup} variants={variants}/>
+        <AdminVariantsGrid setShowPopup={setShowPopup} variants={variants} downloadVariants = {downloadVariants}/>
     </>)
 }
