@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../../config";
+import { API_ADMIN_DELETE_VARIANT, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../../config";
 import { getCurrentDate } from "../../date/currentDate";
 
 export const getVariantsData = async () => {
@@ -28,7 +28,11 @@ export const sendVariantData = async (variant) => {
          formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}})
     return response
 }
-
+export const deleteVariantData = async (variantId) => {
+    const response = await axios.delete(`${SERVER_API_URL}${API_ADMIN_DELETE_VARIANT}/${variantId}`, 
+        {headers : {Authorization : localStorage.getItem("token")}})
+    return response
+}
 export const sendTasksForVariant = async (tasks, variantId) => {
     const formData = new FormData()
     formData.append("tasks", JSON.stringify(tasks))
