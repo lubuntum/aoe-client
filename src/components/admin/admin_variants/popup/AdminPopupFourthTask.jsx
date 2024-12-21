@@ -1,6 +1,38 @@
+import { useEffect, useState } from "react"
 import { ReactComponent as DeleteIcon } from "../../../../res/icons/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 export const AdminPopupFourthTask = ({taskValues, handleInputChange}) => {
+    const [firstPickedImgName, setFirstPickedImgName] = useState("Первая картинка к заданию")
+    const [secondPickedImgName, setSecondPickedImgName] = useState("Вторая картинка к заданию")
+    const addImagesToFourthtask = (e , changePickedImageName) => {
+        changePickedImageName(e.target.files[0].name)
+        handleInputChange(e)
+    }
+    /**
+     * Логина для выбора одного или двух вариантов с удалением 
+     * const files = e.target.files;
+
+        if (files.length === 0) return;
+
+        if (files.length === 2) {
+            // If two files are selected, update both states
+            setFirstPickedImgName(files[0].name);
+            setSecondPickedImgName(files[1].name);
+        } else if (files.length === 1) {
+            // If one file is selected
+            if (firstPickedImgName === '...') {
+            setFirstPickedImgName(files[0].name);
+            } else if (secondPickedImgName === '...') {
+            setSecondPickedImgName(files[0].name);
+            }
+        }
+            Removed
+            <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+            <p>{firstPickedImgName}</p>
+            <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
+            <p>{secondPickedImgName}</p>
+     */
+    //console.log(taskValues.firstImage )
     return (<>
         <div className="adminTaskContainer">
             <p>Задание 4</p>
@@ -52,14 +84,15 @@ export const AdminPopupFourthTask = ({taskValues, handleInputChange}) => {
                     </div>)
                 )}
             </div>
-            <div className="adminTaskImgsContainer">
+        
+            <div className="adminTaskImgsContainer" style={{gap:"20px"}}>
                 <div className="defInpFileContainer">
-                    <label className="btn defaultBtn" for="unplodaImg3" style={{width: "340px"}}>Выберите картинки к заданию</label>
-                    <input type="file" name="img" id="unplodaImg3"></input>
-                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
-                    <p>...</p>
-                    <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
-                    <p>...</p>
+                    <label className="btn defaultBtn" for="firstImg" style={{width: "340px"}}>{taskValues.firstImg ? taskValues.firstImg.name : firstPickedImgName}</label>
+                    <input type="file" name="firstImg" id="firstImg" onChange={(e) => addImagesToFourthtask(e, setFirstPickedImgName)} multiple></input>
+                </div>
+                <div className="defInpFileContainer">
+                    <label className="btn defaultBtn" for="secondImg" style={{width: "340px"}}>{taskValues.secondImg ? taskValues.secondImg.name : secondPickedImgName}</label>
+                    <input type="file" name="secondImg" id="secondImg" onChange={(e) => addImagesToFourthtask(e, setSecondPickedImgName)} multiple></input>
                 </div>
             </div>
         </div>

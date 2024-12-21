@@ -33,9 +33,12 @@ export const deleteVariantData = async (variantId) => {
         {headers : {Authorization : localStorage.getItem("token")}})
     return response
 }
-export const sendTasksForVariant = async (tasks, variantId) => {
+export const sendTasksForVariant = async (tasks, secondTaskImg, fourthTaskImg1, fourthTaskImg2, variantId) => {
     const formData = new FormData()
     formData.append("tasks", JSON.stringify(tasks))
+    formData.append("img", secondTaskImg)
+    formData.append("firstImg", fourthTaskImg1)
+    formData.append("secondImg", fourthTaskImg2)
     formData.append("variantId", variantId)
     const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_TASKS}`,
         formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}}

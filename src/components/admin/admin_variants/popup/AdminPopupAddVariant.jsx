@@ -4,7 +4,7 @@ import { AdminPopupSecondTask } from "./AdminPopupSecondTask"
 import { AdminPopupThirdTask } from "./AdminPopupThirdTask"
 import { AdminPopupFourthTask } from "./AdminPopupFourthTask"
 import { AdminPopupChangeTask } from "./AdminPopupChangeTask"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { sendTasksForVariant, sendVariantData } from "../../../../modules/api/variant/VariantApi"
 
 export const AdminPopupAddVariant = ({setShowPopup}) => {
@@ -29,7 +29,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
                   text: "",
                   taskText: Array(2).fill(""),
                   topics: Array(4).fill(""), 
-                  img: "",
+                  img: null,
                   imgTitle: ""})
 
     //Структура третьего таска
@@ -45,13 +45,14 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
                   text: "In 2.5 minutes be ready to", 
                   taskText: Array(2).fill(""),
                   subTasks: Array(4).fill(""), 
-                  firstImg: "",
-                  secondImg: ""})
-
+                  firstImg: null,
+                  secondImg: null})
+    //Поскольку в оригинальных полях тасков файлы
+    //не могут храниться для отправки, они будут отправлены отсюда
+    const imagesForSendingRef = useRef({img:null, firstImg:null, secondImg: null})
     //Handle чекающий изменения в инпутах (для 1 таска / 2 таска / 3 таска / 4 таска)
     const handleInputChange = (setValues) => (e) => {
         const { id, value } = e.target
-
         // Check if the field is an array (for questions, topcis, subTasks)
         if (id.startsWith('question')) {
             const index = parseInt(id.replace('question', '')) // Assuming id is like 'question0', 'question1', etc.
@@ -80,7 +81,10 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             })
             return
         }
-        if (id.startsWith('variantImg')){
+        
+        if (id ==='variantImg' || id === 'img' || 
+            id === 'firstImg' || id === 'secondImg'){
+            console.log(`add image with id = ${id}`)
             setValues(prevValues => {
                 return {...prevValues, [id] : e.target.files[0]}
             })
@@ -108,6 +112,12 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
 
     //Конвертация в JSON
     const getRequestDataFromValues = () => {
+        imagesForSendingRef.current.img = secondTaskValues.img
+        secondTaskValues.img = "%s"
+        imagesForSendingRef.current.firstImg = fourthTaskValues.firstImg
+        fourthTaskValues.firstImg = "%s"
+        imagesForSendingRef.current.secondImg = fourthTaskValues.secondImg
+        fourthTaskValues.secondImg = "%s"
         return [{"taskType" : 1, "taskContent":JSON.stringify(firstTaskValues)}, 
                 {"taskType" : 2, "taskContent":JSON.stringify(filterValuesForSending(secondTaskValues))}, 
                 {"taskType" : 3, "taskContent":JSON.stringify(thirdTaskValues)}, 
@@ -134,17 +144,23 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
     }
     
     const sendVariant = async () => {
-        console.log(variantValues)
-        console.log(`${JSON.stringify(getRequestDataFromValues())}`)
+        //console.log(variantValues)
+        //Отдельно извлечь все изображения и передать их, затем удалить их поля
+        //в данных и только потом преобразовать структуру в текст
+        //console.log(getRequestDataFromValues())
+        //console.log(imagesForSendingRef.current)
         const response = await sendVariantData(variantValues)
-        //console.log(`Response data -> ${response.data}`)
-        sendTasksData(response.data)
+        await sendTasksData(response.data)
         
     }
     //Отправка данных о тасках на сервер
-    const sendTasksData = (variant) => {
+    const sendTasksData = async (variant) => {
         //console.log(variantValues, getRequestDataFromValues())
-        sendTasksForVariant(getRequestDataFromValues(), variant.id)
+        await sendTasksForVariant(getRequestDataFromValues(), 
+                                imagesForSendingRef.current.img, 
+                                imagesForSendingRef.current.firstImg, 
+                                imagesForSendingRef.current.secondImg,  
+                                variant.id)
         setViewStatus(true)
         setStatusColor("bad")
         setStatus("Ошибка")
