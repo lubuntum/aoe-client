@@ -32,7 +32,7 @@ export const AdminVariantCard = ({index, variant, downloadVariants}) => {
             <div className="variantCardWrapper">
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
-                        <p><span>1</span>{variant.theme}</p>
+                        <p><span>{index+1}</span> {variant.theme}</p>
                     </div>
                     <div className="variantCardBtns">
                         <a className="btn whiteBtn"><ExpandIcon className="whiteBtnSvg"/></a>
