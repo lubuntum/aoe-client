@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { SERVER_API_URL } from "../../../config"
 import { deleteVariantData } from "../../../modules/api/variant/VariantApi"
-import { ReactComponent as DeleteIcon } from "../../../res/icons/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-import { ReactComponent as EditIcon } from "../../../res/icons/edit_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as VisibilityOffIcon } from "../../../res/icons/visibility_off_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as ExpandIcon } from "../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+
+import { setDigitsFormat } from "../../../modules/digitsFormat/setDigitsFormat.js"
 
 export const AdminVariantCard = ({index, variant, downloadVariants}) => {
     const [status, setStatus] = useState(null)
@@ -32,12 +33,11 @@ export const AdminVariantCard = ({index, variant, downloadVariants}) => {
             <div className="variantCardWrapper">
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
-                        <p><span>{index+1}</span> {variant.theme}</p>
+                        <p><span>{setDigitsFormat(index + 1)}</span> {variant.theme}</p>
                     </div>
                     <div className="variantCardBtns">
-                        <a className="btn whiteBtn"><ExpandIcon className="whiteBtnSvg"/></a>
-                        <a className="btn whiteBtn blockBtn"><EditIcon className="blockBtnSvg"/></a>
-                        <a className="btn redBtn" onClick={() => {deleteVariant(variant.id)}}><DeleteIcon className="redBtnSvg"/></a>
+                        <a className="btn whiteBtn" style={{width: "180px"}}><ExpandIcon className="whiteBtnSvg"/><span>Детально</span></a>
+                        <a className="btn redBtn" style={{width: "150px"}} onClick={() => {deleteVariant(variant.id)}}><VisibilityOffIcon className="redBtnSvg"/><span>Скрыть</span></a>
                     </div>
                 </div>
             </div>

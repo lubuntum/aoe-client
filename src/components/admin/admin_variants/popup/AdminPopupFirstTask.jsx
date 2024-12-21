@@ -2,9 +2,10 @@ export const AdminPopupFirstTask = ({taskValues, handleInputChange}) => {
     return (<>
         <div className="adminTaskContainer">
             <p>Задание 1</p>
-            <div className="defInpContainer" style={{width: "100%", height: "80px"}}>
+            <div className="defInpContainer" style={{width: "100%", height: "100px"}}>
+                <p>Гайд задания</p>
                 <textarea className="defTextArea"
-                          placeholder="Гайд задания"
+                          placeholder="---"
                           id="taskGuide"
                           value={taskValues.taskGuide}
                           onChange={handleInputChange}
@@ -12,8 +13,9 @@ export const AdminPopupFirstTask = ({taskValues, handleInputChange}) => {
                 </textarea>
             </div>
             <div className="defInpContainer" style={{width: "100%", height: "300px"}}>
+                <p>Текст задания</p>
                 <textarea className="defTextArea"
-                          placeholder="Текст задания"
+                          placeholder="---"
                           id="taskText"
                           value={taskValues.taskText}
                           onChange={handleInputChange}

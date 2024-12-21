@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import routes from '../../routes';
 import { SERVER_API_URL } from "../../config";
+
+import { setDigitsFormat } from "../../modules/digitsFormat/setDigitsFormat.js"
+
 export const TasksCard = ({variant, index}) => {
     const navigate = useNavigate()
     const navigateToTaskSession = (taskType) => {
@@ -15,7 +18,7 @@ export const TasksCard = ({variant, index}) => {
             <div className="cardContentWrapper">
                 <div className="cardContent">
                     <div className="cardTitle">
-                        <p><span>{index} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
+                        <p><span>{setDigitsFormat(index)} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
                     </div>
                     <div className="cardBtns">
                         <div className="cardTasks">

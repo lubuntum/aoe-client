@@ -22,6 +22,17 @@
 .adminTaskQuestion {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+.adminTaskQuestion p {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+.adminTaskQuestionContainer {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -37,7 +48,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     gap: 20px;
 }
 
