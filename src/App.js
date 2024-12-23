@@ -6,6 +6,8 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './modules/auth/ProtectedRoute';
 import AccountPage from './components/account/account_page/AccountPage';
 import { AdminPage } from './components/admin/AdminPage';
+import { TariffPage } from './components/tariff/TariffPage';
+import { TariffPageConcept } from './components/tariff/TariffPageConcept';
 import HomePage from './components/HomePage';
 import TasksPage from './components/tasks/TasksPage'
 import { AutorizationPage } from './components/auth/AutorizationPage';
@@ -34,7 +36,9 @@ const Main = () => {
 
                 <Route path={routes.ACCOUNT} element = {<ProtectedRoute component={<AccountPage/>}/>}/>
                 <Route path={routes.ADMIN} element = {<ProtectedRoute component={<AdminPage/>}/>}/>
-                <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>} />
+                <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>}/>
+                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPage/>}/>}/>
+                <Route path={routes.TARIFFTEMP} element = {<ProtectedRoute component={<TariffPageConcept/>}/>}/>
 
                 <Route path={routes.TASK} element = {<ProtectedRoute component={<TasksPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
