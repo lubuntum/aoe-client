@@ -1,17 +1,9 @@
-import { useState } from "react"
-import { ReactComponent as DeleteIcon } from "../../../../res/icons/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-
 export const AdminPopupSecondTask = ({taskValues, handleInputChange}) => {
-    const [secondTaskImgName, setSecondTaskImgName] = useState("Выберите картинку к заданию")
+    
     const addSecondTaskImg = (e) => {
         if(e.target.files.length === 0) return
-        setSecondTaskImgName(e.target.files[0].name)
         handleInputChange(e)
     }
-    /** REMOVED
-     * <a className="btn deleteBtn"><DeleteIcon className="deleteBtnSvg"/></a>
-        <p>...</p>
-     */
     return (<>
         <div className="adminTaskContainer">
             <p>Задание 2</p>
@@ -64,7 +56,9 @@ export const AdminPopupSecondTask = ({taskValues, handleInputChange}) => {
             </div>
             <div className="adminTaskImg">
                 <div className="defInpFileContainer">
-                    <label className="btn defaultBtn" for="img" style={{width: "340px"}}>{taskValues.img ? taskValues.img.name : secondTaskImgName}</label>
+                    <label className="btn defaultBtn" for="img" style={{width: "300px"}}>
+                        <span style={{width: "100%", overflow: "hidden", whiteSpace: 'nowrap', textOverflow: "ellipsis", padding: "0 20px"}}>{taskValues.img ? taskValues.img.name : "Выберите изображение к заданию"}</span>
+                    </label>
                     <input type="file" name="img" id="img" onChange={addSecondTaskImg}></input>
                     
                 </div>

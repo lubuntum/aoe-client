@@ -14,7 +14,7 @@ export const FirstTaskContent = ({task}) => {
         <div className={taskContent}>
             <p className={taskGuide}><span>GUIDE:</span> {task.taskContent.taskGuide}</p>
             <div className={taskDivider}></div>
-            <p className={taskText}>{task.taskContent.taskText[0]}</p>
+            <p className={taskText}>{task.taskContent.taskText}</p>
         </div>
     </>)
 }
