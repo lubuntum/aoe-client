@@ -16,7 +16,7 @@ export const AdminPopupSecondTask = ({taskValues, handleInputChange}) => {
         <div className="adminTaskContainer">
             <p>Задание 2</p>
             <div className="defInpContainer" style={{width: "100%", height: "100px"}}>
-                <p>Гайд задания</p>
+                <p>Гайд задания (установлено по умолчанию)</p>
                 <textarea className="defTextArea"
                           placeholder="---"
                           id="taskGuide"

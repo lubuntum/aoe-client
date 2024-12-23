@@ -24,7 +24,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
 
     //Структура второго таска
     const [secondTaskValues, setSecondTaskValues] = 
-        useState({taskGuide: "", 
+        useState({taskGuide: "Study the advertisement", 
                   description: "You have 20 seconds to ask each question", 
                   text: "",
                   taskText: Array(2).fill(""),
