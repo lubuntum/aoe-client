@@ -175,6 +175,11 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         }))
     }
 
+    const convertValuesToArray = (value) => {
+        const {taskText, ...rest} = value
+        return {...rest, taskText: [value.taskText]}
+    }
+
     //Обработка структуры перед отправкой (формат для сервера)
     const filterValuesForSending = (value) => {
         const {description, text, ...rest} = value;
@@ -189,7 +194,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         fourthTaskValues.firstImg = "%s"
         imagesForSendingRef.current.secondImg = fourthTaskValues.secondImg
         fourthTaskValues.secondImg = "%s"
-        return [{"taskType" : 1, "taskContent":JSON.stringify(firstTaskValues)}, 
+        return [{"taskType" : 1, "taskContent":JSON.stringify(convertValuesToArray(firstTaskValues))}, 
                 {"taskType" : 2, "taskContent":JSON.stringify(filterValuesForSending(secondTaskValues))}, 
                 {"taskType" : 3, "taskContent":JSON.stringify(thirdTaskValues)}, 
                 {"taskType" : 4, "taskContent":JSON.stringify(filterValuesForSending(fourthTaskValues))}]
