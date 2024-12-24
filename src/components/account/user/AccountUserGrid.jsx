@@ -41,7 +41,6 @@ export const AccountUserGrid = () => {
             {customer !== undefined ? <UserSubscription customer={customer}/> : <UserSubscriptionLoading/>}
             <UserPromocode/>
             <UserPassword/>
-            <UserActivity/>
         </div>
     </>)
 }
