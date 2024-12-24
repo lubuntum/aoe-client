@@ -20,7 +20,7 @@ export const HeaderBurger = ({topFormat}) => {
                                                            <a className="linkBtn" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Преимущества</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Как начать учиться</a>}
-                                                           <a className="linkBtn">Тарифы</a>
+                                                           <a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>
                 {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Отзывы</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Партнеры</a>}
                 {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">FAQ</a>}
