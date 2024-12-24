@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react"
-import { ReactComponent as DeleteIcon } from "../../../../res/icons/delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 export const AdminPopupFourthTask = ({taskValues, handleInputChange}) => {
-    const [firstPickedImgName, setFirstPickedImgName] = useState("Первая картинка к заданию")
-    const [secondPickedImgName, setSecondPickedImgName] = useState("Вторая картинка к заданию")
-    const addImagesToFourthtask = (e , changePickedImageName) => {
-        changePickedImageName(e.target.files[0].name)
+    const addImagesToFourthtask = (e) => {
         handleInputChange(e)
     }
     /**
@@ -87,12 +82,16 @@ export const AdminPopupFourthTask = ({taskValues, handleInputChange}) => {
         
             <div className="adminTaskImgsContainer" style={{gap:"20px"}}>
                 <div className="defInpFileContainer">
-                    <label className="btn defaultBtn" for="firstImg" style={{width: "340px"}}>{taskValues.firstImg ? taskValues.firstImg.name : firstPickedImgName}</label>
-                    <input type="file" name="firstImg" id="firstImg" onChange={(e) => addImagesToFourthtask(e, setFirstPickedImgName)} multiple></input>
+                    <label className="btn defaultBtn" for="firstImg" style={{width: "300px"}}>
+                        <span style={{width: "100%", overflow: "hidden", whiteSpace: 'nowrap', textOverflow: "ellipsis", padding: "0 20px"}}>{taskValues.firstImg ? taskValues.firstImg.name : "Первое изображение к заданию"}</span>
+                    </label>
+                    <input type="file" name="firstImg" id="firstImg" onChange={addImagesToFourthtask}></input>
                 </div>
                 <div className="defInpFileContainer">
-                    <label className="btn defaultBtn" for="secondImg" style={{width: "340px"}}>{taskValues.secondImg ? taskValues.secondImg.name : secondPickedImgName}</label>
-                    <input type="file" name="secondImg" id="secondImg" onChange={(e) => addImagesToFourthtask(e, setSecondPickedImgName)} multiple></input>
+                    <label className="btn defaultBtn" for="secondImg" style={{width: "300px"}}>
+                        <span style={{width: "100%", overflow: "hidden", whiteSpace: 'nowrap', textOverflow: "ellipsis", padding: "0 20px"}}>{taskValues.secondImg ? taskValues.secondImg.name : "Второе изображение к заданию"}</span>
+                    </label>
+                    <input type="file" name="secondImg" id="secondImg" onChange={addImagesToFourthtask}></input>
                 </div>
             </div>
         </div>

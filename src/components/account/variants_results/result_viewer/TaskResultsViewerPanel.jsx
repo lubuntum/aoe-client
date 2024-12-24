@@ -187,7 +187,7 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className={`defBtn switchBtn ${getButtonStatusStyle(customerTask.expressCheckStatus?.status)}`} onClick={()=>{startExpressTask(customerTask)}}>
+                                    <a className={`btn switchBtn ${getButtonStatusStyle(customerTask.expressCheckStatus?.status)}`} onClick={()=>{startExpressTask(customerTask)}}>
                                         <span>Экспресс</span>
                                         <span>6 токенов</span>
                                     </a>

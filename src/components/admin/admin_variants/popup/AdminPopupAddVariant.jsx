@@ -1,22 +1,30 @@
+import { useEffect, useRef, useState } from "react"
+
 import { AdminPopupName } from "./AdminPopupName"
 import { AdminPopupFirstTask } from "./AdminPopupFirstTask"
 import { AdminPopupSecondTask } from "./AdminPopupSecondTask"
 import { AdminPopupThirdTask } from "./AdminPopupThirdTask"
 import { AdminPopupFourthTask } from "./AdminPopupFourthTask"
 import { AdminPopupChangeTask } from "./AdminPopupChangeTask"
-import { useRef, useState } from "react"
 import { sendTasksForVariant, sendVariantData } from "../../../../modules/api/variant/VariantApi"
+
+import { hasAllValues } from "../../../../modules/validate/hasAllValues.js"
 
 export const AdminPopupAddVariant = ({setShowPopup}) => {
     //Popup компонент
     const [currentPopupComponent, setCurrentPopupComponent] = useState(1)
 
-    const [viewStatus, setViewStatus] = useState(false)
-    const [statusColor, setStatusColor] = useState("")
     const [status, setStatus] = useState("")
+    const [statusColor, setStatusColor] = useState("")
 
+    const [variantValidate, setVariantValidate] = useState(false)
+    const [taskValidate, setTaskValidate] = useState([false, false, false, false])
+
+    //Структура варинта
     const [variantValues, setVariantValues] = 
-        useState({variantName: "", variantImg : null})
+        useState({variantName: "", 
+                  variantImg : null})
+    
     //Структура первого таска
     const [firstTaskValues, setFirstTaskValues] = 
         useState({taskGuide: "", 
@@ -24,10 +32,9 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
 
     //Структура второго таска
     const [secondTaskValues, setSecondTaskValues] = 
-        useState({taskGuide: "", 
+        useState({taskGuide: "Study the advertisement", 
                   description: "You have 20 seconds to ask each question", 
                   text: "",
-                  taskText: Array(2).fill(""),
                   topics: Array(4).fill(""), 
                   img: null,
                   imgTitle: ""})
@@ -43,10 +50,70 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         useState({taskGuide: "", 
                   description: "You will speak for not more than 3 minutes (12-15 sentences). You have to talk continuously.", 
                   text: "In 2.5 minutes be ready to", 
-                  taskText: Array(2).fill(""),
                   subTasks: Array(4).fill(""), 
                   firstImg: null,
                   secondImg: null})
+
+    //Ловит изменения в поле имени варианта
+    useEffect(() => {
+        variantValidation()
+    }, [variantValues])
+
+    //Ловит изменения в полях для тасков
+    useEffect(() => {
+        taskValidation()
+    }, [firstTaskValues, secondTaskValues, thirdTaskValues, fourthTaskValues])
+
+    //Функция валидации имени и картинки варианта
+    const variantValidation = () => {
+        setVariantValidate(hasAllValues(variantValues))
+    }
+
+    //Функция валидации полей тасков
+    const taskValidation = () => {
+        const taskValidateTemp = [...taskValidate]
+        taskValidateTemp[0] = hasAllValues(firstTaskValues)
+        taskValidateTemp[1] = hasAllValues(secondTaskValues)
+        taskValidateTemp[2] = hasAllValues(thirdTaskValues)
+        taskValidateTemp[3] = hasAllValues(fourthTaskValues)
+        setTaskValidate(taskValidateTemp)
+    }
+
+    //Функция для сброса всех значений при добавлении варианта
+    const resetAllValues = () => {
+        setVariantValues({ 
+            variantName: "", 
+            variantImg: null })
+
+        setFirstTaskValues({ 
+            taskGuide: "",
+            taskText: "" })
+
+        setSecondTaskValues({
+            taskGuide: "Study the advertisement",
+            description: "You have 20 seconds to ask each question",
+            text: "",
+            topics: Array(4).fill(""),
+            img: null,
+            imgTitle: ""
+        })
+
+        setThirdTaskValues({
+            taskGuide: "",
+            speaker: Array(1).fill(""),
+            questions: Array(5).fill("")
+        })
+        
+        setFourthTaskValues({
+            taskGuide: "",
+            description: "You will speak for not more than 3 minutes (12-15 sentences). You have to talk continuously.",
+            text: "In 2.5 minutes be ready to",
+            subTasks: Array(4).fill(""),
+            firstImg: null,
+            secondImg: null
+        });
+    };
+    
     //Поскольку в оригинальных полях тасков файлы
     //не могут храниться для отправки, они будут отправлены отсюда
     const imagesForSendingRef = useRef({img:null, firstImg:null, secondImg: null})
@@ -62,7 +129,8 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
                 return { ...prevValues, questions: updatedQuestions}
             })
             return
-        }  
+        }
+
         if (id.startsWith('topic')) {
             const index = parseInt(id.replace('topic', '')) // Assuming id is like 'topic0', 'topic1', etc.
             setValues(prevValues => {
@@ -72,6 +140,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             })
             return
         }
+
         if (id.startsWith('subTask')) {
             const index = parseInt(id.replace('subTask', '')) // Assuming id is like 'subTask0', 'subTask1', etc.
             setValues(prevValues => {
@@ -90,6 +159,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             })
             return
         }
+
         if (id.startsWith('speaker')) {
             setValues(prevValues => {
                 const updatedSpeakerText = [...prevValues.speaker]
@@ -98,6 +168,7 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             })
             return
         }
+
         setValues(prevValues => ({
             ...prevValues,
             [id]: value
@@ -149,26 +220,36 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         //в данных и только потом преобразовать структуру в текст
         //console.log(getRequestDataFromValues())
         //console.log(imagesForSendingRef.current)
-        const response = await sendVariantData(variantValues)
-        await sendTasksData(response.data)
-        
+        try {
+            const response = await sendVariantData(variantValues)
+            await sendTasksData(response.data)
+            console.log("Вариант создан!")
+        } catch (err) {
+            console.error("Ошибка при создании варианта!", err)
+        }
     }
-    //Отправка данных о тасках на сервер
+
+    //Отправка данных о тасках на сервер а также обработка ошибок при добавлении
     const sendTasksData = async (variant) => {
-        //console.log(variantValues, getRequestDataFromValues())
-        await sendTasksForVariant(getRequestDataFromValues(), 
-                                imagesForSendingRef.current.img, 
-                                imagesForSendingRef.current.firstImg, 
-                                imagesForSendingRef.current.secondImg,  
-                                variant.id)
-        setViewStatus(true)
-        setStatusColor("bad")
-        setStatus("Ошибка")
-        setTimeout(() => {
-            setViewStatus(false)
-            setStatusColor("")
-            setStatus("")
-        }, 3000)
+        try {
+            await sendTasksForVariant(getRequestDataFromValues(), 
+                                      imagesForSendingRef.current.img, 
+                                      imagesForSendingRef.current.firstImg, 
+                                      imagesForSendingRef.current.secondImg,  
+                                      variant.id)
+            setStatus("Вариант добавлен!")
+            setStatusColor("good")
+            resetAllValues()
+        } catch (err) {
+            setStatus("Ошибка при добавлении!")
+            setStatusColor("bad")
+            console.error("Ошибка при добавлении!", err)
+        } finally {
+            setTimeout(() => {
+                setStatus("")
+                setStatusColor("")
+            }, 3000)
+        }
     }
 
     const CurrentPopupComponent = AdminPopupContentComponents[currentPopupComponent]
@@ -177,15 +258,17 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
         <div className="adminPopupContainer">
             <AdminPopupName variantValues = {variantValues}
                             handleInputChange = {handleInputChange(setVariantValues)}/>
+
             <CurrentPopupComponent.component taskValues = {CurrentPopupComponent.taskValues}
                                              handleInputChange = {CurrentPopupComponent.handleInputChange} />
 
             <AdminPopupChangeTask setCurrentPopupComponent={setCurrentPopupComponent} 
                                   setShowPopup = {setShowPopup} 
                                   sendVariant = {sendVariant}
-                                  viewStatus = {viewStatus}
                                   status = {status}
-                                  statusColor = {statusColor}/>
+                                  statusColor = {statusColor}
+                                  taskValidate = {taskValidate}
+                                  variantValidate = {variantValidate}/>
         </div>
     </>)
 }

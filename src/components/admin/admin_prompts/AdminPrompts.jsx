@@ -1,6 +1,9 @@
+import "./css/admin_prompt.css"
 import "./css/admin_change_prompt.css"
 import "./css/admin_task_prompt.css"
+import "./css/admin_prompt_hint.css"
 
+import { AdminPromptHint } from "./AdminPromptHint"
 import { AdminSecondTaskPrompt } from "./AdminSecondTaskPrompt"
 import { AdminThirdTaskPrompt } from "./AdminThirdTaskPrompt"
 import { AdminFourthTaskPrompt } from "./AdminFourthTaskPrompt"
@@ -37,9 +40,16 @@ export const AdminPrompts = () => {
     const CurrentPromptComponent = AdminPromptContentComponents[currentPromptComponent]
 
     return (<>
-        {currentPromptComponent === 2 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
-        {currentPromptComponent === 3 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
-        {currentPromptComponent === 4 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
+        <div className="adminPrompHintContainer">
+            {currentPromptComponent === 2 && <AdminPromptHint currentPrompt = {2}/>}
+            {currentPromptComponent === 3 && <AdminPromptHint currentPrompt = {3}/>}
+            {currentPromptComponent === 4 && <AdminPromptHint currentPrompt = {4}/>}
+
+            {currentPromptComponent === 2 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
+            {currentPromptComponent === 3 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
+            {currentPromptComponent === 4 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
+        </div>
+
         <AdminChangePrompt setCurrentPromptComponent={setCurrentPromptComponent} 
                            savePromptData={savePromptData}
                            status={status}
