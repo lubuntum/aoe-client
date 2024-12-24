@@ -134,10 +134,12 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         {id: 1, text: 'Ссылка', icon: <LinkIcon className="defaultBtnSvg"/>, fnc: shareCustomerTask},
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="defaultBtnSvg"/>, fnc: downloadCustomerTaskAudio},
     ]
-    const statuses = {completed : "blockBtn", checking: "cancelBtn"}
-    const getButtonStatusStyle = (status) => {
-        return statuses[status] || ""
+    
+    const statuses = {completed : "completed", checking: "checking"}
+    const getStatusStyle = (status) => { 
+        return statuses[status] || "default"
     }
+
     return (<>
         <div className="resultsViewerContainer gridItem9">
             <div className="resultsViewerDescription">
@@ -187,10 +189,20 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className={`btn switchBtn ${getButtonStatusStyle(customerTask.expressCheckStatus?.status)}`} onClick={()=>{startExpressTask(customerTask)}}>
+                                    {getStatusStyle(customerTask.expressCheckStatus?.status) === "checking" ?
+                                    <a className="btn redBtn" style={{pointerEvents: "none"}}>
+                                        <span>Проверка</span>
+                                    </a> :
+
+                                    getStatusStyle(customerTask.expressCheckStatus?.status) === "completed" ?
+                                    <a className="btn blockBtn" style={{pointerEvents: "none"}}>
+                                        <span>Проверено</span>
+                                    </a> :
+
+                                    <a className="btn switchBtn" onClick={()=>{startExpressTask(customerTask)}}>
                                         <span>Экспресс</span>
                                         <span>6 токенов</span>
-                                    </a>
+                                    </a>}
                                 </div>    
                             </td>
                             <td>
