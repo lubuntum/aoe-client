@@ -7,7 +7,6 @@
     border-radius: 20px;
     padding: 20px;
     position: relative;
-    min-height: 700px;
 }
 
 .tariffCardWrapper {
@@ -16,6 +15,7 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .tariffCardLeft {
@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
 }
 .tariffCardRight {
@@ -31,17 +31,22 @@
     flex-direction: column;
     align-items: end;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
 }
 
-.tariffCardNamePosLeft {
+.tariffCardNamePosLeft,
+.tariffCardSubNamePosLeft {
     display: flex;
     width: 100%;
     justify-content: start;
     font-size: 30px;
     font-weight: 600;
     color: var(--white);
+}
+.tariffCardSubNamePosLeft p {
+    font-size: 18px;
+    font-weight: 600;
 }
 .tariffCardCostPosLeft {
     display: flex;
@@ -65,7 +70,8 @@
 }
 
 
-.tariffCardNamePosRight {
+.tariffCardNamePosRight,
+.tariffCardSubNamePosRight {
     display: flex;
     width: 100%;
     justify-content: end;
@@ -77,7 +83,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+}
+.tariffCardSubNamePosRight p {
+    font-size: 18px;
+    font-weight: 600;
 }
 .tariffCardNamePosRight .tariffIconSvg {
     fill: var(--white);

@@ -14,6 +14,9 @@ export const TariffCard = ({pos, type, description, price, per, bg}) => {
                             {type === "base" && <p>Базовая</p>}
                             {type === "standart" && <p>Стандартная</p>}
                         </div>
+                        <div className="tariffCardSubNamePosLeft">
+                            <p>Подписка</p>
+                        </div>
                         <div className="tariffCardCostPosLeft">
                             {type === "base" && <p>{price}</p>}
                             {type === "standart" && <p>{price}₽<br/><span>/ {per}</span></p>}
@@ -24,6 +27,9 @@ export const TariffCard = ({pos, type, description, price, per, bg}) => {
                         <div className="tariffCardNamePosRight">
                             {type === "express" && <p>Экспресс<BoltIcon className="tariffIconSvg"/></p>}
                             {type === "expert" && <p>Эксперт<FaceIcon className="tariffIconSvg"/></p>}
+                        </div>
+                        <div className="tariffCardSubNamePosRight">
+                            <p>Токен</p>
                         </div>
                         <div className="tariffCardCostPosRight">
                             {type === "express" && <p>{price}₽<br/><span>/ {per}</span></p>}

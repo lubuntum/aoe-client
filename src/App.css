@@ -1,173 +1,177 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-  border: none;
-  outline: none;
-  text-decoration: none;
-  list-style: none;
-  scroll-behavior: smooth;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	list-style: none;
+	scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+	display: none;
 }
 
 :root {
-    --white: #ffffff;
-    --black: #000000;
-    --background: #e8f4ff;
-    --blue: #2276f4;
-    --yellow: #fdce26;
-    --gray: #adadad;
-    --emphasis: #f6705e;
-    --badge: #079366;
-    --good: #06d6a0;
-    --warn: #ffd166;
-    --bad: #ef476f;
-    --glassmorph-transparent: rgba(0, 0, 0, .5);
-    --black-shadow: rgba(0, 0, 0, .25);
+	--white: #ffffff;
+	--black: #000000;
+	--background: #e8f4ff;
+	--blue: #2276f4;
+	--yellow: #fdce26;
+	--gray: #adadad;
+	--emphasis: #f6705e;
+	--badge: #079366;
+	--good: #06d6a0;
+	--warn: #ffd166;
+	--bad: #ef476f;
+	--glassmorph-transparent: rgba(0, 0, 0, .5);
+	--black-shadow: rgba(0, 0, 0, .25);
 }
 
 .pageWrapper {
-  margin: 20px;
+	margin: 20px;
 }
 
 .sectionWrapper {
-  padding: 20px;
-  border-radius: 20px;
-  background-color: var(--background);
+	padding: 20px;
+	border-radius: 20px;
+	background-color: var(--background);
 }
 
 .contentWrapper {
-  margin: 0 auto;
-  max-width: 1440px;
+	margin: 0 auto;
+	max-width: 1440px;
 }
 
 .titleContainer {
-  width: 100%;
-  height: 100px;
-  background-color: var(--white);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
+	width: 100%;
+	height: 100px;
+	background-color: var(--white);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
 }
 
 .titleContainer p {
-  font-size: 36px;
-  margin-left: 40px;
-  font-weight: 500;
+	font-size: 36px;
+	margin-left: 40px;
+	font-weight: 500;
 }
 
 .titleContainer p span {
-  font-weight: 700;
-  color: var(--emphasis);
+	font-weight: 700;
+	color: var(--emphasis);
 }
 
 
 /*Стили для поля ввода*/
 .defInpContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-    min-height: 40px;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	position: relative;
+	min-height: 40px;
+	width: 100%;
 }
 .defInpContainer p {
-    font-size: 16px !important;
-    font-weight: 500 !important;
+	font-size: 16px !important;
+	font-weight: 500 !important;
 }
 .defInpContainer .defInp {
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 16px;
-    height: 40px;
-    width: 100%;
-    outline: none;
-    border-radius: 10px;
-    border: 1px solid var(--gray);
-    transition: all .1s ease;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: 16px;
+	height: 40px;
+	width: 100%;
+	outline: none;
+	border-radius: 10px;
+	border: 1px solid var(--gray);
+	transition: all .1s ease;
 }
 .defInpContainer .defInp:focus,
 .defInpContainer .defInp:valid {
-    border: 1px solid var(--blue);
-    box-shadow: 0 0 10px var(--blue);
+	border: 1px solid var(--blue);
+	box-shadow: 0 0 10px var(--blue);
 }
 /*------------------------*/
 
 /*Стили для индикатора силы пароля*/
 .psdStrength {
-    position: absolute;
-    min-width: 10px;
-    min-height: 20px;
-    width: 10px;
-    height: 20px;
-    background-color: transparent;
-    border-radius: 3px;
-    z-index: 2;
-    top: 10px;
-    left: 10px;
-    opacity: 0;
-    transition: all .3s ease;
+	position: absolute;
+	min-width: 10px;
+	min-height: 20px;
+	width: 10px;
+	height: 20px;
+	background-color: transparent;
+	border-radius: 3px;
+	z-index: 2;
+	top: 10px;
+	left: 10px;
+	opacity: 0;
+	transition: all .3s ease;
 }
 .defInpContainer .defInp:valid + .psdStrength {
-    opacity: 1;
+	opacity: 1;
 }
 .psdStrong {
-    background-color: var(--good);
-    box-shadow: 0 0 5px var(--good);
+	background-color: var(--good);
+	box-shadow: 0 0 5px var(--good);
 }
 .psdMiddle {
-    background-color: var(--warn);
-    box-shadow: 0 0 5px var(--warn);
+	background-color: var(--warn);
+	box-shadow: 0 0 5px var(--warn);
 }
 .psdWeak {
-    background-color: var(--bad);
-    box-shadow: 0 0 5px var(--bad);
+	background-color: var(--bad);
+	box-shadow: 0 0 5px var(--bad);
 }
 /*------------------------*/
 
 /*Стили для textarea*/
 .defInpContainer .defTextArea {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 16px;
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border-radius: 10px;
-    border: 1px solid var(--gray);
-    resize: none;
-    transition: all .2s ease;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border-radius: 10px;
+	border: 1px solid var(--gray);
+	resize: none;
+	transition: all .2s ease;
 }
 
 .defInpContainer .defTextArea:focus,
 .defInpContainer .defTextArea:valid {
-    border: 1px solid var(--blue);
-    box-shadow: 0 0 10px var(--blue);
+	border: 1px solid var(--blue);
+	box-shadow: 0 0 10px var(--blue);
 }
 /*------------------------*/
 
 /*Стили для инпутов для файлов*/
 .defInpFileContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	  align-items: center;
-    gap: 10px;
+	gap: 10px;
 }
 .defInpFileContainer input {
 	display: none;
 }
 
 .defInpFileContainer p {
-    max-width: 200px;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    margin-left: 0 !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	max-width: 200px;
+	font-size: 16px !important;
+	font-weight: 500 !important;
+	margin-left: 0 !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 /*------------------------*/
 
@@ -244,6 +248,6 @@
 
 @media (max-width: 425px) {
   .pageWrapper {
-    margin: 0;
+	margin: 0;
   }
 }
