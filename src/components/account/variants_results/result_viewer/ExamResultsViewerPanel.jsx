@@ -65,7 +65,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
             setExams(examsTemp)
         }
         getExamsData()
-    },[examPicked])
+    },[examPicked, variant])
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
