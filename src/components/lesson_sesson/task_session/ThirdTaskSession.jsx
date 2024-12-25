@@ -8,12 +8,15 @@ import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
 import timersConfig from "../../../timersConfig"
+import { useSound } from "../../../hooks/sound/useSound";
+import notification from "../../../res/wavs/notification.wav"
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [studentAnswering, setStudentAnswering] = useState(false)
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
     const {speak} = useLessonSpeaker();
+    const {playAndEvent} = useSound(notification)
 
     const handleNextQuestion = async () => {
         await stopRecording()
@@ -34,7 +37,10 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     //Если этап чтения, то проговорить задание и перейти на этап подготовки
     if(stage === stages.reading) speak(task.taskContent.speaker[0], () => setStage(stages.prepare_speak))
     // Если этап ответа и студент еще не должен отвечать, задать вопрос и дать студентку сказать
-    if(stage === stages.speak && !studentAnswering) speak(task.taskContent.questions[questionNumber], handleStudentAnswer)
+    if(stage === stages.speak && !studentAnswering) {
+        playAndEvent(() => {speak(task.taskContent.questions[questionNumber], () => {playAndEvent(()=>{handleStudentAnswer()})})})
+        
+    }
     // Если этап ответа и студент уже отвечает, начать запись его голоса
     if(stage === stages.speak && studentAnswering) startRecording()
         

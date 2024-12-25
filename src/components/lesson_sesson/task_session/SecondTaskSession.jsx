@@ -8,12 +8,14 @@ import { TasksContentWrapper } from "./TasksContentWrapper"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 
 import timersConfig from "../../../timersConfig"
-
+import { useSound } from "../../../hooks/sound/useSound"
+import notification from "../../../res/wavs/notification.wav"
 export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [topicNumber, setTopicNumber] = useState(0)
     const {speak} = useLessonSpeaker()
     const [studentAnswering, setStudentAnswering] = useState(false)
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
+    const {playAndEvent} = useSound(notification)
 
     const handleNextTopicNumber = async () => {
         await stopRecording()
@@ -27,7 +29,10 @@ export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
     }
 
     if (stage === stages.speak) task.topicNumber = topicNumber
-    if (stage === stages.speak && !studentAnswering) speak(`Question ${topicNumber+1}`,()=>{setStudentAnswering(true)})
+    if (stage === stages.speak && !studentAnswering) {
+        speak(`Question ${topicNumber+1}`,()=>{playAndEvent(() => {setStudentAnswering(true)})})
+        
+    }
     if (stage === stages.speak && studentAnswering) startRecording()
 
     return (<>
