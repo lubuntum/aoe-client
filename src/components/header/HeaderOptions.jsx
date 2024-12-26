@@ -32,7 +32,9 @@ export const HeaderOptions = ({headerData}) => {
                 {headerData === undefined ? loadingName : <>
                     <a className="linkBtn" onClick={()=>{navigate(routes.ACCOUNT)}}>{getEmail()}</a>
                 </>}
-                <a className="btn emphasisBtn" style={{width: "40px", minWidth: "40px"}} onClick={() => {navigate(routes.ADMIN)}}><AdminIcon className="emphasisBtnSvg"/></a>
+                {headerData?.roles.includes("admin") && 
+                <a className="btn emphasisBtn" style={{width: "40px", minWidth: "40px"}} onClick={() => {navigate(routes.ADMIN)}}><AdminIcon className="emphasisBtnSvg"/></a>}
+                
                 
                 <a className="btn defaultBtn" style={{width: "40px", minWidth: "40px"}} onClick={() => {logout()}}><LogoutIcon className="defaultBtnSvg"/></a>
             </>)}

@@ -16,18 +16,30 @@ import { PopupContainer } from "../popup/PopupContainer"
 import { AdminPopupAddVariant } from "./admin_variants/popup/AdminPopupAddVariant"
 
 import { useEffect, useState } from "react"
+import { validateAdmin } from "../../modules/api/admin/validateAdmin"
+import { useNavigate } from "react-router-dom"
+import routes from "../../routes"
 
 export const AdminPage = () => {
     const [currentContent, setCurrentContent] = useState(1)
     const [showPopup, setShowPopup] = useState(false)
-
+    const navigate = useNavigate()
+    const [isAdmin, setIsAdmin] = useState(false)
     useEffect(() => {
         {showPopup ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"}
         return () => {
             document.body.style.overflow = "auto"
         }
     }, [showPopup])
-
+    useEffect(()=>{
+        validate()
+    },[])
+    const validate = async () => {
+        const response = await validateAdmin(localStorage.getItem("token"))
+        if (response.data) setIsAdmin(response.data)
+        //else navigate(routes.HOME)
+        //console.log(response.data)
+    }
     const AdminContentComponents = {
         1:{component: AdminVariants, title: "Варианты", props: {setShowPopup}, popupContent: AdminPopupAddVariant},
         2:{component: AdminPartners, title: "Партнеры"},
@@ -47,27 +59,28 @@ export const AdminPage = () => {
 
     //TODO: <PopupContainer component = {CurrentComponent.popup}/>
     return (<>
-        {showPopup && <PopupContainer component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
-        <div className="sectionWrapper">
-            <div className="contentWrapper">
-                <div className="adminWrapper">
-                    <Header/>
-                    <div className="adminContainer">
-                        <div className="adminSettings">
-                            <AdminTitle curerntContentTitle = {CurrentComponent.title}/>
-                            <div className="adminBtns">
-                                {adminBtns.map((btn, index) => (
-                                    <a key={index}
-                                       className={btn.className}
-                                       style={{width: "180px", height: "100%"}}
-                                       onClick={() => setCurrentContent(index + 1)}>{btn.icon}<span>{btn.name}</span></a>
-                                ))}
+        {!isAdmin ? <p>Not found 404</p> : 
+        <>({showPopup && <PopupContainer component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
+            <div className="sectionWrapper">
+                <div className="contentWrapper">
+                    <div className="adminWrapper">
+                        <Header/>
+                        <div className="adminContainer">
+                            <div className="adminSettings">
+                                <AdminTitle curerntContentTitle = {CurrentComponent.title}/>
+                                <div className="adminBtns">
+                                    {adminBtns.map((btn, index) => (
+                                        <a key={index}
+                                        className={btn.className}
+                                        style={{width: "180px", height: "100%"}}
+                                        onClick={() => setCurrentContent(index + 1)}>{btn.icon}<span>{btn.name}</span></a>
+                                    ))}
+                                </div>
                             </div>
+                            {CurrentComponent.component ? <CurrentComponent.component {...CurrentComponent.props}/> : <div>Component not found</div>}
                         </div>
-                        {CurrentComponent.component ? <CurrentComponent.component {...CurrentComponent.props}/> : <div>Component not found</div>}
                     </div>
                 </div>
-            </div>
-        </div> 
+            </div> )</>}
     </>)
 }
