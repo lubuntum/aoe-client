@@ -10,6 +10,8 @@ export const Login = ({toggle, disabledButton}) => {
     const {login} = useAuth()
     const {saveEmail, getEmail} = useAuth()
 
+    const [isChecked, setIsChecked] = useState(false)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
@@ -50,7 +52,14 @@ export const Login = ({toggle, disabledButton}) => {
         </div>
 
         <div className="rememberForgetContainer">
-            <a>Запомнить меня</a>
+            <label className="defCheckboxContainer">
+                <input type="checkbox" onChange={() => {
+                    setIsChecked(!isChecked)
+                }}></input>
+                <span className={`checkbox ${isChecked ? "checkboxAcitve" : "checkboxDisable"}`} aria-hidden="true"></span>
+                Запомнить меня!
+            </label>
+
             <a className="linkBtn" onClick={() => {}}>Забыли пароль?</a>
         </div>
 
