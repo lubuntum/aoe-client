@@ -8,6 +8,7 @@ export const subscriptionEndDate = (startDateStr) => {
 
 export const subscriptionRemain = (endDate) => {
     const currentDate = new Date()
+    if (currentDate > endDate) return 0
     const daysRemain = Math.ceil((Math.abs(endDate - currentDate)) / (1000 * 3600 * 24))
     return daysRemain
 }

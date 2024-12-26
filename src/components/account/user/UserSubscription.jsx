@@ -7,13 +7,16 @@ export const UserSubscription = ({customer}) => {
     let daysRemain = undefined
     let daysRemainPersent = undefined
 
-    if (customer.actualSubscriptionDate === undefined || customer.actualSubscriptionDate === null) {
+    if (customer.actualSubscriptionDate === undefined || customer.actualSubscriptionDate === null
+        || customer.actualSubscriptionDate === '') {
         subscriptionPurchase = <p>Подписки нет</p>
     } else {
         endSubDate = subscriptionEndDate(customer.actualSubscriptionDate);
         endSubDateStr = endSubDate.toLocaleDateString('en-GB').replace(/\//g,'.') //DD.MM.YYYY
         daysRemain = subscriptionRemain(endSubDate)
-        daysRemainPersent = `${(daysRemain / 30) * 100}%`
+        //TODO не делить на 30, потому-что должно зависить от длительности подписки
+        daysRemainPersent = daysRemain === 0 ? '0' : `${(daysRemain / 30) * 100}%`
+        //daysRemainPersent = `${(daysRemain / 30) * 100}%`
     }
     
     return (<>
