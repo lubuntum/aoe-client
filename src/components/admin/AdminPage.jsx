@@ -60,7 +60,7 @@ export const AdminPage = () => {
     //TODO: <PopupContainer component = {CurrentComponent.popup}/>
     return (<>
         {!isAdmin ? <p>Not found 404</p> : 
-        <>({showPopup && <PopupContainer component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
+        <>{showPopup && <PopupContainer component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
             <div className="sectionWrapper">
                 <div className="contentWrapper">
                     <div className="adminWrapper">
@@ -81,6 +81,6 @@ export const AdminPage = () => {
                         </div>
                     </div>
                 </div>
-            </div> )</>}
+            </div></>}
     </>)
 }
