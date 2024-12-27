@@ -8,7 +8,7 @@ import "./css/admin_popup_tasks.css"
 
 import { AdminVariantsGrid } from "./AdminVariantsGrid"
 import { useEffect, useState } from "react"
-import { getVariantsData } from "../../../modules/api/variant/VariantApi"
+import { getAllVariants } from "../../../modules/api/variant/VariantApi"
 
 export const AdminVariants = ({setShowPopup}) => {
     const [variants, setVariants] = useState(null)
@@ -16,11 +16,11 @@ export const AdminVariants = ({setShowPopup}) => {
         downloadVariants()
     }, [])
     const downloadVariants = async () => {
-        const response = await getVariantsData()
+        const response = await getAllVariants(localStorage.getItem("token"))
         console.log(response.data)
         setVariants(response.data)
     }
     return (<>
-        <AdminVariantsGrid setShowPopup={setShowPopup} variants={variants} downloadVariants = {downloadVariants}/>
+        <AdminVariantsGrid setShowPopup={setShowPopup} variants={variants} setVariants = {setVariants} downloadVariants = {downloadVariants}/>
     </>)
 }

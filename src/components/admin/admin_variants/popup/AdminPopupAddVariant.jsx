@@ -218,7 +218,6 @@ export const AdminPopupAddVariant = ({setShowPopup}) => {
             taskValues: fourthTaskValues, 
             handleInputChange: handleInputChange(setFourthTaskValues)},
     }
-    
     const sendVariant = async () => {
         //console.log(variantValues)
         //Отдельно извлечь все изображения и передать их, затем удалить их поля

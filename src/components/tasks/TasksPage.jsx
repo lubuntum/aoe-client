@@ -8,13 +8,13 @@ import './css/tasks_more.css'
 import { Header } from '../header/Header'
 import { TasksContent } from './TasksContent'
 import { useEffect, useState } from 'react'
-import { getVariantsData } from '../../modules/api/variant/VariantApi'
+import { getVisibleVariants } from '../../modules/api/variant/VariantApi'
 
 const TasksPage = () => {
     const [variants, setVariants] = useState(undefined);
     useEffect(()=>{
         const fetchData = async () => {
-            const response = await getVariantsData();
+            const response = await getVisibleVariants();
             setVariants(response.data);
         }
         fetchData()
