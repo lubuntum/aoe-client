@@ -1,9 +1,9 @@
-export const AdminChangePrompt = ({setCurrentPromptComponent, savePromptData, status, statusColor}) => {
+export const AdminChangePrompt = ({setCurrentTaskTypeId, tasksTypes, updateCurrentTaskType, status, statusColor}) => {
     return (<>
         <div className="adminChangePromptContainer">
             <div className="changePromptBtns">
                 {Array.from({length: 3}, (_, index) => (
-                    <a className="btn defaultBtn" onClick={() => setCurrentPromptComponent(index + 2)} style={{width: "150px"}}>Промпт {index + 2}</a>
+                    <a className="btn defaultBtn" onClick={() => setCurrentTaskTypeId(tasksTypes.find(t => t.type === index + 2).id)} style={{width: "150px"}}>Промпт {index + 2}</a>
                 ))}
             </div>
             {status && (            
@@ -12,7 +12,7 @@ export const AdminChangePrompt = ({setCurrentPromptComponent, savePromptData, st
                 </div>
             )}
             <div className="savePromptBtns">
-                <a className="btn greenBtn" onClick={savePromptData} style={{width: "150px"}}>Сохранить</a>
+                <a className="btn greenBtn" onClick={updateCurrentTaskType} style={{width: "320px"}}>Сохранить текущий промпт</a>
                 <a className="btn redBtn" style={{width: "150px"}}>Сбросить</a>
             </div>
         </div>

@@ -4,55 +4,62 @@ import "./css/admin_task_prompt.css"
 import "./css/admin_prompt_hint.css"
 
 import { AdminPromptHint } from "./AdminPromptHint"
-import { AdminSecondTaskPrompt } from "./AdminSecondTaskPrompt"
-import { AdminThirdTaskPrompt } from "./AdminThirdTaskPrompt"
-import { AdminFourthTaskPrompt } from "./AdminFourthTaskPrompt"
 import { AdminChangePrompt } from "./AdminChangePrompt"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+import { AdminTaskPrompt } from "./AdminTaskPrompt"
+import { getTasksTypes, updateTaskType } from "../../../modules/api/admin/taskTypesApi"
 
 export const AdminPrompts = () => {
     const [currentPromptComponent, setCurrentPromptComponent] = useState(2)
-    const [prompts, setPrompts] = useState({1:"", 2:"", 3:""})
+
+    const [currentTaskTypeId, setCurrentTaskTypeId] = useState(null)
+    const [tasksTypes, setTasksTypes] = useState([]);
 
     const [status, setStatus] = useState("")
     const [statusColor, setStatusColor] = useState("")
-
-    const AdminPromptContentComponents = {
-        2:{component: AdminSecondTaskPrompt},
-        3:{component: AdminThirdTaskPrompt},
-        4:{component: AdminFourthTaskPrompt},
+    useEffect(()=>{
+        loadTasksTypes()
+    },[])
+    const loadTasksTypes = async () => {
+        const response = await getTasksTypes(localStorage.getItem("token"))
+        setTasksTypes(response.data)
+        setCurrentTaskTypeId(response.data.find(t => t.type === 2).id)
     }
 
-    const setPrompt = (value) => {
-        setPrompts({ ...prompts, [currentPromptComponent]: value});
+    const updatePromptForTaskType = (value, taskTypeId) => {
+        console.log(value)
+        setTasksTypes(prev => {
+            const updatedTasks = prev.map(t => t.id === taskTypeId ? { ...t, prompt: value } : t);
+            console.log('Updated tasks:', updatedTasks);
+            return updatedTasks;
+        });
     }
 
-    const savePromptData = async () => {
-        console.log(`Промпт ${currentPromptComponent} сохранен. ${prompts[currentPromptComponent]}`)
-        setStatus(`Промпт ${currentPromptComponent} сохранен!`)
+    const updateCurrentTaskType = async () => {
+        //console.log(`Промпт ${currentPromptComponent} сохранен. ${prompts[currentPromptComponent]}`)
+        const response = await updateTaskType(localStorage.getItem("token"), tasksTypes.find(t => t.id === currentTaskTypeId))
+        setStatus(`${response.status}!`)
         setStatusColor("good")
         setTimeout(() => {
             setStatus("")
             setStatusColor("")
         }, 3000)
     }
-
-    const CurrentPromptComponent = AdminPromptContentComponents[currentPromptComponent]
-
+    console.log(currentTaskTypeId)
     return (<>
-        <div className="adminPrompHintContainer">
-            {currentPromptComponent === 2 && <AdminPromptHint currentPrompt = {2}/>}
-            {currentPromptComponent === 3 && <AdminPromptHint currentPrompt = {3}/>}
-            {currentPromptComponent === 4 && <AdminPromptHint currentPrompt = {4}/>}
+        {currentTaskTypeId !== null && <> 
+            <div className="adminPrompHintContainer">
+                <AdminPromptHint type={tasksTypes.find(t => t.id === currentTaskTypeId).type}/>
+                <AdminTaskPrompt currentTaskTypeId = {currentTaskTypeId} tasksTypes = {tasksTypes} updatePromptForTaskType = {updatePromptForTaskType}/>
+            </div>
 
-            {currentPromptComponent === 2 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
-            {currentPromptComponent === 3 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
-            {currentPromptComponent === 4 && <CurrentPromptComponent.component prompt = {prompts[currentPromptComponent]} setPrompt = {setPrompt}/>}
-        </div>
-
-        <AdminChangePrompt setCurrentPromptComponent={setCurrentPromptComponent} 
-                           savePromptData={savePromptData}
-                           status={status}
-                           statusColor={statusColor}/>
+            <AdminChangePrompt setCurrentTaskTypeId={setCurrentTaskTypeId} 
+                            tasksTypes={tasksTypes}
+                            updateCurrentTaskType={updateCurrentTaskType}
+                            status={status}
+                            statusColor={statusColor}/>
+        </>}
+        
     </>)
 }
