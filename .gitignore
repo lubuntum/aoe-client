@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 src/config.js
+certs
+.env
+
 
 # testing
 /coverage
