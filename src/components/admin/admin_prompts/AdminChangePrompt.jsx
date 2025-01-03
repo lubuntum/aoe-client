@@ -1,4 +1,5 @@
-export const AdminChangePrompt = ({setCurrentTaskTypeId, tasksTypes, updateCurrentTaskType, status, statusColor}) => {
+export const AdminChangePrompt = ({setCurrentTaskTypeId, tasksTypes, updateCurrentTaskType, 
+                                resetCurrentTaskType, status, statusColor}) => {
     return (<>
         <div className="adminChangePromptContainer">
             <div className="changePromptBtns">
@@ -12,8 +13,8 @@ export const AdminChangePrompt = ({setCurrentTaskTypeId, tasksTypes, updateCurre
                 </div>
             )}
             <div className="savePromptBtns">
-                <a className="btn greenBtn" onClick={updateCurrentTaskType} style={{width: "320px"}}>Сохранить текущий промпт</a>
-                <a className="btn redBtn" style={{width: "150px"}}>Сбросить</a>
+                <a className="btn greenBtn" style={{width: "320px"}} onClick={updateCurrentTaskType}>Сохранить текущий промпт</a>
+                <a className="btn redBtn" style={{width: "150px"}} onClick={resetCurrentTaskType}>Сбросить</a>
             </div>
         </div>
     </>)
