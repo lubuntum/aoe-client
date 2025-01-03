@@ -24,7 +24,7 @@ export const AdminPrompts = () => {
 
         originalTasksTypesRef.current = response.data
         setTasksTypes(response.data)
-        setCurrentTaskTypeId(response.data.find(t => t.type === 2).id)
+        if(!currentTaskTypeId) setCurrentTaskTypeId(response.data.find(t => t.type === 2).id)
     }
 
     const updatePromptForTaskType = (value, taskTypeId) => {
