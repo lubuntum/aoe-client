@@ -19,7 +19,9 @@ export const Header = () => {
     const {isAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
     const [burgersTopFormat, setBurgersTopFormat] = useState(false);
-    
+    /**TODO если запрос данных к header по токену вернул ошибку, значит токен истек,
+     * инициировать процедуру выхода из аккаунта.
+     */
     useEffect(()=>{
         if (!isAuth) return
         const fetchData = async () => {
