@@ -124,12 +124,12 @@
 .blockBtn {
     background-color: var(--gray) !important;
     box-shadow: 0 0 10px var(--gray) !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     transition: all .1s ease;
     pointer-events: none;
 }
 .blockBtn .blockBtnSvg {
-    fill: var(--white) !important;
+    fill: var(--black) !important;
     transition: all .1s ease;
 }
 

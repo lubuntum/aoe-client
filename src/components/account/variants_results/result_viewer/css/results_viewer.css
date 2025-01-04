@@ -190,3 +190,9 @@
     justify-content: center;
     overflow: hidden;
 }
+
+.emptyResultsViewerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

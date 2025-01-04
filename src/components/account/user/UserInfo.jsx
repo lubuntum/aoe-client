@@ -1,4 +1,5 @@
 import { ReactComponent as FaceIcon } from "../../../res/icons/face_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as RubIcon } from "../../../res/icons/currency_ruble_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 import { ReactComponent as AddIcon } from "../../../res/icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 import { setDigitsFormat } from "./../../../modules/digitsFormat/setDigitsFormat"
@@ -36,8 +37,8 @@ export const UserInfo = ({customer}) => {
             </div>
             
             <div className="userInfoToken">
-                <div className="tokenTitle"><FaceIcon className="tokenSvg"/><p>Количество Токенов</p></div>
-                <div className="remainToken">{remainTokens}</div>
+                <div className="tokenTitle"><p>Баланс</p></div>
+                <div className="remainToken">₽ {remainTokens}</div>
                 <a className="btn whiteBtn" style={{width: "100%"}} onClick={() => {}}>Пополнить</a>
             </div>
 

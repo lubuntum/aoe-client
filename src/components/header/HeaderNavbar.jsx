@@ -17,8 +17,8 @@ export const HeaderNavbar = ({topFormat}) => {
                 <a className="linkBtn" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
                 <a className="linkBtn">Преимущества</a>
                 <a className="linkBtn">Как начать учиться</a>
+                {/*<a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>*/}
                 <a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>
-                <a className="linkBtn" onClick={()=>{navigate(routes.TARIFFTEMP)}}>Тарифы (Temp)</a>
                 <a className="linkBtn">Отзывы</a>
                 <a className="linkBtn">Партнеры</a>
                 <a className="linkBtn">FAQ</a>
@@ -45,8 +45,8 @@ export const HeaderNavbar = ({topFormat}) => {
             </div>
             <nav className="headerAuthNavbarImportantContainer">
                 <a className="linkBtn" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
+                {/*<a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>*/}
                 <a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>
-                <a className="linkBtn" onClick={()=>{navigate(routes.TARIFFTEMP)}}>Тарифы (Temp)</a>
                 <a className="linkBtn" onClick={()=>{navigate(routes.TASK)}}>Задания</a>
             </nav>
         </>}
