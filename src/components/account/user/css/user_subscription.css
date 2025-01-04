@@ -41,7 +41,7 @@
 }
 .progressBarBackground {
     display: flex;
-    justify-content: end;
+    justify-content: start;
     width: 100%;
     height: 10px;
     border-radius: 50px;

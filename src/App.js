@@ -37,8 +37,8 @@ const Main = () => {
                 <Route path={routes.ACCOUNT} element = {<ProtectedRoute component={<AccountPage/>}/>}/>
                 <Route path={routes.ADMIN} element = {<ProtectedRoute component={<AdminPage/>}/>}/>
                 <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>}/>
-                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPage/>}/>}/>
-                <Route path={routes.TARIFFTEMP} element = {<ProtectedRoute component={<TariffPageConcept/>}/>}/>
+                {/*<Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPage/>}/>}/>*/}
+                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPageConcept/>}/>}/>
 
                 <Route path={routes.TASK} element = {<ProtectedRoute component={<TasksPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>

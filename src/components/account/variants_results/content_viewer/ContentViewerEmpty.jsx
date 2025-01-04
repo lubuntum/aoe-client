@@ -1,5 +1,5 @@
 export const ContentViewerEmpty = () => {
     return (<>
-        <div className="taskViewerWrapper gridItem8">Задание не выбрано</div>
+        <div className="emptyTaskViewerContainer gridItem8">Задание не выбрано</div>
     </>)
 }
