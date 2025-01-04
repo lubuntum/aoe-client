@@ -1,10 +1,10 @@
 import warningTape from "../../../res/pngs/warning_tape.png"
 
-export const AdminPromptHint = ({currentPrompt}) => {
+export const AdminPromptHint = ({type}) => {
     return (<>
         <div className="adminHintContainer">
             <div className="adminHintTitle">
-                <p>Подсказка для промпта {currentPrompt}</p>
+                <p>Подсказка промпта, для задания типа {type}</p>
                 <p>В промпте необходимо указать:</p>
             </div>
 
