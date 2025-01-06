@@ -13,7 +13,7 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 import { OptionsButtons } from "./OptionsButtons"
-import { getCustomerExamsByVariant, getCustomerTasksByTask, startExpressCheckForTask } from "../../../../modules/api/result/ResultAPI"
+import { getCustomerExamsByVariant, getCustomerTasksByTask, sendCustomerTaskToCheckQueue, startExpressCheckForTask } from "../../../../modules/api/result/ResultAPI"
 
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
@@ -118,7 +118,8 @@ export const TaskResultsViewerPanel = ({variant, task}) => {
         const tempAIService = "vsegpt"//TEMP
         const tempAIModel = "openai/gpt-4o-latest"//TEMP
         const textDistanceMethod = "levenshtein";
-        const response = await startExpressCheckForTask(customerTask, 
+        
+        const response = await sendCustomerTaskToCheckQueue(customerTask, 
                                                     tempTranscribeService, 
                                                     tempAIService, 
                                                     tempAIModel,
