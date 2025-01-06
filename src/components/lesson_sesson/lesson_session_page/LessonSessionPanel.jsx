@@ -3,7 +3,7 @@ import useMediaRecorder from "../../../hooks/useMediaRecorder"
 import { useNavigate } from "react-router-dom"
 import routes from "../../../routes"
 import { stages } from "./LessonSessionPage"
-import { createExamRequest, saveTaskResultRequest, saveUserTaskRequest } from "../../../modules/api/voice/LessonSessionAPI"
+import { createExamRequest, saveTaskResultRequest, saveUserTaskRequest } from "../../../modules/api_modules/complitionScenarioAPI"
 export const LessonSessionPanel = ({currentTask, handleNextTask, 
                                     examStage, variantId}) => {
     const navigation = useNavigate()

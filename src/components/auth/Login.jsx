@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useAuth } from "../../modules/auth/AuthProvider"
-import { serverLogin } from "../../modules/auth/AuthAPI"
+import { useAuth } from "../../modules/auth_modules/AuthProvider"
+import { serverLogin } from "../../modules/api_modules/authAPI"
 
 export const Login = ({toggle, disabledButton}) => {
     const [email, setEmail] = useState('')

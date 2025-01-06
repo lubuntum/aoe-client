@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
-import { getTaskByTaskId } from "../../../modules/api/variant/TaskApi"
-import { getCustomerTaskByCustomerTaskId } from "../../../modules/api/result/ResultAPI"
-import Header from "../../header/Header"
+import { getTaskByTaskId } from "../../../modules/api_modules/taskAPI"
+import { getCustomerTaskByCustomerTaskId } from "../../../modules/api_modules/resultAPI"
+import { HeaderMain } from "../../header_components/HeaderMain"
 import { TasksContentWrapper } from "../task_session/TasksContentWrapper"
 import { SERVER_API_URL } from "../../../config"
 /** TODO сделать API к получению getTaskByTaskId и getCustomerTaskByCustomerTaskId 
@@ -28,7 +28,7 @@ export const TaskResult = () => {
     },[])
 
     return (<>
-        <Header/>
+        <HeaderMain/>
         {task && 
             <div> 
                 <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>

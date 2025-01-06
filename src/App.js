@@ -1,20 +1,25 @@
-
 import './App.css';
 import './btns.css'
-import AuthProvider, { useAuth } from './modules/auth/AuthProvider';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import ProtectedRoute from './modules/auth/ProtectedRoute';
-import AccountPage from './components/account/account_page/AccountPage';
-import { AdminPage } from './components/admin/AdminPage';
-import { TariffPage } from './components/tariff/TariffPage';
-import { TariffPageConcept } from './components/tariff/TariffPageConcept';
-import HomePage from './components/HomePage';
-import TasksPage from './components/tasks/TasksPage'
+
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+import ProtectedRoute from "./modules/auth_modules/ProtectedRoute"
+import AuthProvider from "./modules/auth_modules/AuthProvider"
+import { useAuth } from "./modules/auth_modules/AuthProvider"
+
+import { MainPage } from "./components/main_page_components/MainPage"
+import { AccountPage } from './components/account_page_components/AccountPage';
+import { AdminPage } from "./components/admin_page_components/AdminPage"
+import { PricingPage } from "./components/pricing_page_components/PricingPage"
+import { VariantsPage } from "./components/variants_page_components/VariantsPage"
+
 import { AutorizationPage } from './components/auth/AutorizationPage';
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage';
-import routes from './routes';
+
 import { Results } from './components/lesson_sesson/lesson_session_result/Results';
 import { TaskResult } from './components/lesson_sesson/lesson_session_result/TaskResult';
+
+import routes from "./routes"
 
 function App() {
     return (
@@ -36,11 +41,10 @@ const Main = () => {
 
                 <Route path={routes.ACCOUNT} element = {<ProtectedRoute component={<AccountPage/>}/>}/>
                 <Route path={routes.ADMIN} element = {<ProtectedRoute component={<AdminPage/>}/>}/>
-                <Route path={routes.HOME} element = {<ProtectedRoute component={<HomePage/>}/>}/>
-                {/*<Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPage/>}/>}/>*/}
-                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<TariffPageConcept/>}/>}/>
+                <Route path={routes.HOME} element = {<ProtectedRoute component={<MainPage/>}/>}/>
+                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<PricingPage/>}/>}/>
 
-                <Route path={routes.TASK} element = {<ProtectedRoute component={<TasksPage/>}/>}/>
+                <Route path={routes.TASK} element = {<ProtectedRoute component={<VariantsPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
                 <Route path={routes.RESULTS} element = {<ProtectedRoute component={<Results/>}/>}/>
                 <Route path={routes.TASK_RESULT} element = {<ProtectedRoute component={<TaskResult/>}/>}/>

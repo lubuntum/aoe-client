@@ -1,0 +1,11 @@
+const GRADE_RED = "gradeBad";
+const GRADE_YELLOW = "gradeMiddle"
+const GRADE_GREEN = "gradeGood"
+export const setGradeColor = (grade, total) => {
+    if (grade === null) return ""
+    const percentage = (grade / total) * 100
+    if (percentage < 69) return GRADE_RED
+    if (percentage >= 70 && percentage <= 84) return GRADE_YELLOW
+    if (percentage > 84) return GRADE_GREEN
+    return ""
+}

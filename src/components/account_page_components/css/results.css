@@ -1,0 +1,322 @@
+.resultGrid {
+    display: grid;
+    grid-template-rows: 100px 400px auto;
+    grid-template-columns: 320px auto;
+    gap: 20px;
+}
+.resultGridItem1 {
+    grid-row: span 2;
+}
+.resultGridItem2 {
+    grid-row: span 1;
+}
+.resultGridItem3 {
+    grid-row: span 1;
+}
+.resultGridItem4 {
+    grid-row: span 1;
+    grid-column: span 2;
+}
+
+
+
+/*Стили для sidebar*/
+.resultSidebarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+.resultSidebarRadioGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.sidebarRadioOption,
+.topbarRadioOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.sidebarRadioOption input,
+.topbarRadioOption input {
+    display: none;
+}
+#sidebarGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.sidebarButton,
+.topbarButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue);
+    box-shadow: 0 0 5px var(--blue);
+    border-radius: 10px;
+    transition: all .2s ease;
+}
+.sidebarRadioOption:hover > .sidebarButton,
+.sidebarRadioOption input:checked + .sidebarButton,
+.topbarRadioOption:hover > .topbarButton,
+.topbarRadioOption input:checked + .topbarButton {
+    background-color: var(--yellow);
+    box-shadow: 0 0 5px var(--yellow);
+    color: var(--black);
+}
+
+
+
+/*Стили для topbar*/
+.resultTopbarContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+.resultTopbarRadioGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+#topbarGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+
+
+/*Стили для viewer*/
+.resultsViewerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+.taskIterator {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 10px;
+}
+
+
+
+/*Стили для records*/
+.resultsRecordsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--white);
+    padding: 20px;
+}
+.resultsRecordsDescription {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.resultsRecordsDescription p {
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: var(--background);
+    padding: 5px 20px;
+}
+.resultsRecordsTable {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.resultsRecordsTableHeaderItem,
+.resultsRecordsTableBodyItem {
+    height: 40px;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+}
+.resultsRecordsTableBodyButtons,
+.resultsRecordsTableBodySendDate,
+.resultsRecordsTableBodyGrade {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+.resultsRecordsGradeWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.resultsRecordsTable thead tr,
+.resultsRecordsTable tbody tr {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.resultsRecordsTable tbody tr {
+    padding-bottom: 20px;
+}
+.resultsRecordsTable tbody tr:last-child {
+    padding-bottom: 0;
+}
+.resultsRecordsTable thead tr th:nth-child(1),
+.resultsRecordsTable tbody tr td:nth-child(1) {
+    width: 40px;
+}
+.resultsRecordsTable thead tr th:nth-child(2),
+.resultsRecordsTable tbody tr td:nth-child(2) {
+    width: 130px;
+}
+.resultsRecordsTable thead tr th:nth-child(3),
+.resultsRecordsTable tbody tr td:nth-child(3) {
+    width: 350px;
+}
+.resultsRecordsTable thead tr th:nth-child(4),
+.resultsRecordsTable tbody tr td:nth-child(4),
+.resultsRecordsTable thead tr th:nth-child(5),
+.resultsRecordsTable tbody tr td:nth-child(5) {
+    width: 310px;
+}
+.resultsRecordsTable thead tr th:nth-child(6),
+.resultsRecordsTable tbody tr td:nth-child(6) {
+    width: 160px;
+}
+.resultsRecordsTable thead tr p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.resultsRecordsTable tbody tr p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.headerItemIcons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.resultsRecordsSvgIcon {
+    fill: var(--black)
+}
+.recordGrade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600 !important;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid transparent;
+    border-radius: 10px;
+    transition: all .2s ease;
+}
+.gradeBad {
+    border-bottom: 3px solid var(--bad);
+}
+.gradeMiddle {
+    border-bottom: 3px solid var(--warn);
+}
+.gradeGood {
+    border-bottom: 3px solid var(--good);
+}
+
+
+
+/*Стили для пагинации*/
+.resultsRecordsTablePagination {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+/*Стили для опций*/
+.resultsRecordsOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 5px var(--blue);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--white);
+    transition: all .2s ease;
+}
+.resultsRecordsOptions .svgIcon {
+    fill: var(--white);
+}
+.resultsRecordsOptions:hover {
+    background-color: var(--yellow);
+    box-shadow: 0 0 5px var(--yellow);
+    color: var(--black);
+}
+.resultsRecordsOptions:hover .svgIcon {
+    fill: var(--black);
+}
+.resultsRecordsTableOptions {
+    display: flex;
+    justify-content: space-between;
+}
+.resultsRecordsTableOptions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+
+/*Стили для пустых контейнеров*/
+.resultsSidebarContainerLoading,
+.resultsTopbarContainerEmpty,
+.resultsViewerContainerEmpty,
+.resultsRecordsContainerEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    height: 100%;
+}
+.resultsRecordsContainerEmpty {
+    height: 100px;
+}

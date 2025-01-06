@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { registration } from "../../modules/auth/AuthAPI";
-import { getCurrentDate } from "../../modules/date/currentDate";
+import { registration } from "../../modules/api_modules/authAPI"
+import { getCurrentDate } from "../../modules/date_modules/currentDate"
 import { useNavigate } from "react-router-dom";
-import { checkPsdStrength } from "../../modules/psdStrength/checkPsdStrength";
-import { CheckPsdStrength } from "../utils/CheckPsdStrength";
+import { checkPsdStrength } from "../../modules/password_modules/checkPasswordStrength"
+import { CheckPsdStrength } from "../utils/CheckPsdStrength"
 
 import routes from "../../routes";
 

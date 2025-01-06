@@ -1,0 +1,32 @@
+.accountWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.accountGrid {
+    display: grid;
+    grid-template-rows: 100px 250px 220px 100px auto;
+    grid-template-columns: 400px 400px auto;
+    gap: 20px;
+}
+.accountGridItem1 {
+    grid-column: span 3;
+}
+.accountGridItem2 {
+    grid-column: span 3;
+}
+.accountGridItem3 {
+    grid-column: span 1;
+}
+.accountGridItem4 {
+    grid-column: span 1;
+}
+.accountGridItem5 {
+    grid-column: span 1;
+}
+.accountGridItem6 {
+    grid-column: span 3;
+}
+.accountGridItem7 {
+    grid-column: span 3;
+}

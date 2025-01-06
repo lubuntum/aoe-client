@@ -1,0 +1,22 @@
+.pageTitleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: 1.25rem;
+    width: 100%;
+    height: 100px;
+}
+.pageTitleContainer h1 {
+    font-size: 2rem;
+    margin-left: 40px;
+    font-weight: 500;
+    color: var(--black);
+}
+.pageTitleContainer h1 span {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--emphasis);
+}

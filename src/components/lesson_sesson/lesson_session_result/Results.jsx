@@ -1,9 +1,9 @@
 import { useAsyncError, useLocation } from "react-router-dom"
-import Header from "../../header/Header"
+import { HeaderMain } from "../../header_components/HeaderMain"
 import { useEffect, useState } from "react"
-import { getTasksByVariantId } from "../../../modules/api/variant/VariantApi"
+import { getTasksByVariantId } from "../../../modules/api_modules/variantAPI"
 import { TasksContentWrapper } from "../task_session/TasksContentWrapper"
-import { getCustomerTaskByExamId } from "../../../modules/api/result/ResultAPI"
+import { getCustomerTaskByExamId } from "../../../modules/api_modules/resultAPI"
 import { SERVER_API_URL } from "../../../config"
 export const Results = () => {
     const query = new URLSearchParams(useLocation().search)
@@ -35,7 +35,7 @@ export const Results = () => {
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (
         <>
-            <Header/>
+            <HeaderMain/>
             {tasks && 
             <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>
                 {customerResults.map((result)=>(<>

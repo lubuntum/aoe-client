@@ -1,0 +1,165 @@
+/*Стили для данных пользователя*/
+.userInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+.userInfoBioContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+}
+.userInfoBioContainerItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.userInfoBioContainerItem p:first-child {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.userInfoBioContainerItem p:last-child {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+.userRemainingBalanceContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--blue);
+    box-shadow: 0 0 5px var(--blue);
+    padding: 20px;
+    height: 100%;
+    border-radius: 20px;
+}
+.userRemainingBalanceContainer p:nth-child(1) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+.userRemainingBalanceContainer p:nth-child(2){
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+
+
+/*Стили для данных о подписке*/
+.userSubscriptionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+.userSubscriptionContainer p {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+.userSubscriptionContainer p:nth-child(1) {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.userSubscriptionDateEnd {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.userSubscriptionDateEnd p {
+    font-size: 1.125rem !important;
+    font-weight: 400 !important;
+}
+.userSubscriptionDateEnd p:nth-child(2) {
+    font-weight: 600 !important;
+}
+.userProgressBarBackground {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    height: 10px;
+    background-color: var(--gray);
+    border-radius: 50px;
+}
+.userProgressBarLine {
+    height: 10px;
+    background-color: var(--blue);
+    border-radius: 50px;
+    box-shadow: 0 0 5px var(--blue);
+}
+
+
+
+/*Стили для промокода*/
+.userPromocodeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+.userPromocodeContainer p {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+
+
+/*Стили для сброса пароля*/
+.userChangePasswordContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+.userChangePasswordContainer p {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.userChangePasswordGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 40px 40px;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.userInfoContainerLoading,
+.userSubscriptionContainerLoading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    height: 250px;
+}

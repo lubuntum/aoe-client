@@ -1,7 +1,7 @@
 import useMediaRecorder from "../../../hooks/useMediaRecorder"
 
-import { ReactComponent as MicOn } from "../../../res/icons/mic_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-import { ReactComponent as MicOff } from "../../../res/icons/mic_off_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as MicOn } from "../../../res/icons/mic_24dp_gi.svg"
+import { ReactComponent as MicOff } from "../../../res/icons/mic_off_24dp_gi.svg"
 
 export const MicroPerfomanceCheck = ({setMicroCheck}) => {
     const {mediaBlobUrl, isRecording, startRecording, stopRecording, microphonePermission} = useMediaRecorder(false)

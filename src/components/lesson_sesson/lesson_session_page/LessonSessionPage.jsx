@@ -2,12 +2,11 @@ import "../../../App.css"
 import "./css/lesson.css"
 
 import { useEffect, useRef, useState } from "react"
-import Header from "../../header/Header"
+import { HeaderMain } from "../../header_components/HeaderMain"
 import { MicroPerfomance } from "../micro_perfomance/MicroPerfomance"
 import { createPath, useLocation , useNavigate} from "react-router-dom"
-import {getTasksByVariantId} from "../../../modules/api/variant/VariantApi"
-import { TaskContentViewer } from "../../account/variants_results/content_viewer/TaskViewerWrapper"
-import { createExam } from "../../../modules/api/voice/LessonSessionAPI"
+import {getTasksByVariantId} from "../../../modules/api_modules/variantAPI"
+import { createExam } from "../../../modules/api_modules/complitionScenarioAPI"
 import { LessonSessionPanel } from "./LessonSessionPanel"
 import { PrepareTimer } from "../prepare_timer/PrepareTimer"
 
@@ -17,10 +16,10 @@ import { FourthTaskSession } from "../task_session/FourthTaskSession"
 import { ThirdTaskSession } from "../task_session/ThirdTaskSession"
 
 import { useLessonSpeaker } from '../../../hooks/speech/useLessonSpeaker'
-import { createExamRequest, saveUserTaskRequest } from "../../../modules/api/voice/LessonSessionAPI"
+import { createExamRequest, saveUserTaskRequest } from "../../../modules/api_modules/complitionScenarioAPI"
 import routes from '../../../routes'
 
-import timersConfig from "../../../timersConfig"
+import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { USER_NAME } from "../../../config"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
@@ -137,7 +136,7 @@ export const LessonSessionPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="lessonWrapper">
-                    <Header/>
+                    <HeaderMain/>
 
                     {!microCheck && 
                         <MicroPerfomance setMicroCheck = {setMicroCheck}/>

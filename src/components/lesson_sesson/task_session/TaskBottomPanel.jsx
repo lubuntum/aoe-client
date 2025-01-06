@@ -1,10 +1,10 @@
 import "./css/task_bottom_panel.css"
 
-import { ReactComponent as Record } from "../../../res/icons/screen_record_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as Record } from "../../../res/icons/screen_record_24dp_gi.svg"
 
 import { stages } from "../lesson_session_page/LessonSessionPage.jsx";
 import { useTimer } from "../../../hooks/useTimer.jsx"
-import {secondsToMinutes} from "../../../modules/date/convertTime.js"
+import {secondsToMinutes} from "../../../modules/date_modules/convertTime.js"
 import { useEffect, useRef, useState } from "react";
 
 //По идее сюда можно добавить запись звука + сохранение blob audio

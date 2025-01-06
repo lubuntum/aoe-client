@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
 
-import { ReactComponent as Hearing } from "../../../src/res/icons/hearing_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+import { ReactComponent as Hearing } from "../../../src/res/icons/hearing_24dp_gi.svg"
 
 import routes from "../../routes"
 

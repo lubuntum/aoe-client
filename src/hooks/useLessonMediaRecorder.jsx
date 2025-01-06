@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { concatenateAudioBlobs } from "../modules/audio/audioBlobs"
+import { concatenateAudioBlobs } from "../modules/audio_modules/audioBlobs"
 
 const useLessonMediaRecorder = (isOneChunck, callback = null) => {
 //Object for working with micro (all stages)

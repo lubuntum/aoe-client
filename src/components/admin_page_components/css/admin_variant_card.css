@@ -1,0 +1,89 @@
+.variantCardContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all .2s ease;
+}
+
+.variantCardImg {
+    width: 100%;
+    height: 100%;
+}
+
+.variantCardImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.variantCardWrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all .2s ease;
+}
+
+.variantCardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--glassmorph-transparent);
+    backdrop-filter: blur(3px);
+    transition: all .2s ease;
+}
+
+.variantCardContent p {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.variantCardBtns {
+    display: none;
+}
+
+.variantCardWrapper:hover {
+    padding: 0;
+}
+
+.variantCardWrapper:hover > .variantCardContent {
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.variantCardWrapper:hover .variantCardContent .variantCardBtns {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: btnAppears .2s ease .2s 1 normal forwards;
+}
+
+@keyframes btnAppears {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

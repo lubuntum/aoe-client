@@ -1,0 +1,27 @@
+.passwrodStrengthContainer {
+    position: absolute;
+    min-width: 10px;
+    min-height: 20px;
+    background-color: transparent;
+    border-radius: 3px;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    transition: all .2s ease;   
+}
+.inputContainer input:valid + .passwrodStrengthContainer {
+	opacity: 1;
+}
+.passwordGood {
+	background-color: var(--good);
+	box-shadow: 0 0 5px var(--good);
+}
+.passwordMiddle {
+	background-color: var(--warn);
+	box-shadow: 0 0 5px var(--warn);
+}
+.passwordBad {
+	background-color: var(--bad);
+	box-shadow: 0 0 5px var(--bad);
+}

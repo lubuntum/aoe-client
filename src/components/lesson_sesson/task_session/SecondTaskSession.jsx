@@ -7,7 +7,7 @@ import { TaskSessionPanel } from "./TaskBottomPanel"
 import { TasksContentWrapper } from "./TasksContentWrapper"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 
-import timersConfig from "../../../timersConfig"
+import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSound } from "../../../hooks/sound/useSound"
 import notification from "../../../res/wavs/notification.wav"
 export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {

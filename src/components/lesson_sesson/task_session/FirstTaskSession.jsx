@@ -13,7 +13,7 @@ import { stages } from "../lesson_session_page/LessonSessionPage"
 import { TaskSessionPanel } from "./TaskBottomPanel"
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
-import timersConfig from "../../../timersConfig"
+import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useCustomSpeechRecognition } from "../../../hooks/useCustomSpeechRecognition"
 
 export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { //blobRef + mЫicro hook
