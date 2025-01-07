@@ -9,7 +9,6 @@
     padding: 20px;
     z-index: 10;
 }
-
 .headerContainer {
     display: flex;
     flex-direction: row;
@@ -19,4 +18,100 @@
     text-align: center;
     align-items: center;
     z-index: 10;
+}
+.headerLogoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.headerLogoContainer p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--black);
+}
+.headerBurgerContainer input[type="checkbox"] {
+    display: none;
+}
+.headerBurgerContainer {
+    display: none;
+}
+.headerBurgerContainer nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+    background-color: var(--white);
+    box-shadow: 0 0 10px var(--black-shadow);
+    opacity: 0;
+    top: -500px;
+    margin-left: -20px;
+    border-radius: 20px;
+    padding: 30px;
+    transition: all .5s ease;
+}
+.headerUnauthNavbarContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.headerAuthNavbarContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    gap: 30px;
+    justify-content: start;
+    align-items: center;
+    left: 0;
+}
+.headerCollapseContainer input[type="checkbox"] {
+    display: none;
+}
+.headerCollapseContainer nav {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    background-color: var(--white);
+    box-shadow: 0 0 10px var(--black-shadow);
+    opacity: 0;
+    top: -100px;
+    border-radius: 20px;
+    padding: 30px;
+    transition: all .5s ease;
+}
+.headerOptionsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.optionsLoginContainer a:nth-child(2) {
+    display: none;
+}
+.headerAuthNavbarImportantContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.headerBurgerContainer input:checked ~ .headerBurgerTop120 {
+    top: 120px;
+    opacity: 1;
+}
+.headerBurgerContainer input:checked ~ .headerBurgerTop140 {
+    top: 140px;
+    opacity: 1;
+}
+.headerCollapseContainer input:checked ~ .headerCollapseTop120 {
+    top: 120px;
+    opacity: 1;
+}
+.headerCollapseContainer input:checked ~ .headerCollapseTop140 {
+    top: 140px;
+    opacity: 1;
 }

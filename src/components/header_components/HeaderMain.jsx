@@ -1,9 +1,4 @@
 import "./css/header.css"
-import "./css/header_logo.css"
-import "./css/header_burger.css"
-import "./css/header_navbar.css"
-import "./css/header_options.css"
-import "./css/header_media.css"
 
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"

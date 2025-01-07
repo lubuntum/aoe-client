@@ -6,8 +6,7 @@ const LESSON_SESSION = "/session"
 const RESULTS = "/results"
 const TASK_RESULT = "/task-result"
 const ADMIN = "/admin"
-const TARIFF = "/tariff"
-const TARIFFTEMP = "/tarifftemp"
+const PRICING = "/pricing"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -17,8 +16,7 @@ const routes = {
     RESULTS,
     TASK_RESULT,
     ADMIN,
-    TARIFF,
-    TARIFFTEMP
+    PRICING
 }
 
 export default routes

@@ -15,27 +15,55 @@ export const HeaderMenu = ({topFormat}) => {
     return (<>
         {!isAuth && <>
             <nav className="headerUnauthNavbarContainer">
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
                         buttonText={"Главная"} 
                         buttonFunc={()=>{navigate(routes.HOME)}}/>
 
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
                         buttonText={"Преимущества"} />
 
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
                         buttonText={"Как начать учиться"}/>
 
-                <Button buttonType={"link"} 
-                        buttonText={"Тарифы"} 
-                        buttonFunc={()=>{navigate(routes.TARIFF)}}/>
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Пополнение баланса"}
+                        buttonFunc={()=>{navigate(routes.PRICING)}}/>
 
                 <Button buttonType={"link"} 
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
                         buttonText={"Партнеры"} />
 
                 <Button buttonType={"link"} 
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
                         buttonText={"FAQ"}/>
 
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""} 
                         buttonText={"Задания"}
                         buttonFunc={()=>{navigate(routes.TASK)}}/>
             </nav>
@@ -49,34 +77,59 @@ export const HeaderMenu = ({topFormat}) => {
                         <label className="btn defaultBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defaultBtnSvg"/><span>Меню</span></label>
 
                         <nav className={`${topFormat ? 'headerCollapseTop120' : 'headerCollapseTop140'}`}>
-                            <Button buttonType={"link"} 
+                            <Button buttonType={"link"}
+                                    buttonPadding={""}
+                                    buttonWidth={""}
+                                    buttonHeight={""}
+                                    buttonIcon={""}
                                     buttonText={"Преимущества"}/>
 
-                            <Button buttonType={"link"} 
+                            <Button buttonType={"link"}
+                                    buttonPadding={""}
+                                    buttonWidth={""}
+                                    buttonHeight={""}
+                                    buttonIcon={""} 
                                     buttonText={"Как начать учиться"}/>
 
-                            <Button buttonType={"link"} 
-                                    buttonText={"Отзывы"}/>
-
-                            <Button buttonType={"link"} 
+                            <Button buttonType={"link"}
+									buttonPadding={""}
+									buttonWidth={""}
+									buttonHeight={""}
+									buttonIcon={""}
                                     buttonText={"Партнеры"}/>
 
-                            <Button buttonType={"link"} 
+                            <Button buttonType={"link"}
+									buttonPadding={""}
+									buttonWidth={""}
+									buttonHeight={""}
+									buttonIcon={""}
                                     buttonText={"FAQ"}/>
                         </nav>
                     </div>
                 </>}
             </div>
             <nav className="headerAuthNavbarImportantContainer">
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
                         buttonText={"Главная"} 
                         buttonFunc={()=>{navigate(routes.HOME)}}/>
 
-                <Button buttonType={"link"} 
-                        buttonText={"Тарифы"} 
-                        buttonFunc={()=>{navigate(routes.TARIFF)}}/>
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Пополнение баланса"} 
+                        buttonFunc={()=>{navigate(routes.PRICING)}}/>
 
-                <Button buttonType={"link"} 
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
                         buttonText={"Задания"}
                         buttonFunc={()=>{navigate(routes.TASK)}}/>
             </nav>

@@ -43,7 +43,7 @@ const Main = () => {
                 <Route path={routes.ACCOUNT} element = {<ProtectedRoute component={<AccountPage/>}/>}/>
                 <Route path={routes.ADMIN} element = {<ProtectedRoute component={<AdminPage/>}/>}/>
                 <Route path={routes.HOME} element = {<ProtectedRoute component={<MainPage/>}/>}/>
-                <Route path={routes.TARIFF} element = {<ProtectedRoute component={<PricingPage/>}/>}/>
+                <Route path={routes.PRICING} element = {<ProtectedRoute component={<PricingPage/>}/>}/>
 
                 <Route path={routes.TASK} element = {<ProtectedRoute component={<VariantsPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>

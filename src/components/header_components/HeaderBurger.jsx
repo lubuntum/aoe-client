@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 
 import routes from '../../routes'
 
+import { Button } from "../reusible_components/Button"
+
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
 export const HeaderBurger = ({topFormat}) => {
@@ -17,15 +19,65 @@ export const HeaderBurger = ({topFormat}) => {
             <label className="btn defaultBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defaultBtnSvg"/></label>
 
             <nav className={`${topFormat ? 'headerBurgerTop120' : 'headerBurgerTop140'}`}>
-                                                           <a className="linkBtn" onClick={()=>{navigate(routes.HOME)}}>Главная</a>
-                {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Преимущества</a>}
-                {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Как начать учиться</a>}
-                                                           <a className="linkBtn" onClick={()=>{navigate(routes.TARIFF)}}>Тарифы</a>
-                {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Отзывы</a>}
-                {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">Партнеры</a>}
-                {(location.pathname !== routes.ACCOUNT) && <a className="linkBtn">FAQ</a>}
-                                                           <a className="linkBtn" onClick={()=>{navigate(routes.TASK)}}>Задания</a>
-                {(isAuth && (location.pathname !== routes.ACCOUNT)) && <a onClick={() => navigate(routes.ACCOUNT)}>Личный кабинет</a>}
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Главная"} 
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>
+
+                {(location.pathname !== routes.ACCOUNT) &&
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Преимущества"} 
+                        buttonFunc={()=>{}}/>}
+
+                {(location.pathname !== routes.ACCOUNT) &&
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Как начать учиться"} 
+                        buttonFunc={()=>{}}/>}
+
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Пополнение баланса"} 
+                        buttonFunc={()=>{navigate(routes.PRICING)}}/>
+
+                {(location.pathname !== routes.ACCOUNT) &&
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"FAQ"} 
+                        buttonFunc={()=>{}}/>}
+
+                <Button buttonType={"link"}
+						buttonPadding={""}
+						buttonWidth={""}
+						buttonHeight={""}
+						buttonIcon={""}
+                        buttonText={"Задания"} 
+                        buttonFunc={()=>{navigate(routes.TASK)}}/>
+                        
+                {(isAuth && (location.pathname !== routes.ACCOUNT)) && 
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Личный кабинет"} 
+                        buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>}
             </nav>
         </div>
     </>)
