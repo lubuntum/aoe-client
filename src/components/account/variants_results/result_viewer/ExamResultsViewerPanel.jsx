@@ -13,7 +13,7 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
 
 import { OptionsButtons } from "./OptionsButtons"
-import { getCustomerExamsByVariant } from "../../../../modules/api/result/ResultAPI"
+import { getCustomerExamsByVariant, sendExamToCheckQueue } from "../../../../modules/api/result/ResultAPI"
 
 import { setGradeColor } from "../../../../modules/gradeFormat/setGradeColor.js"
 import { setGradeFormat } from "../../../../modules/gradeFormat/setGradeFormat.js"
@@ -171,7 +171,7 @@ export const ExamResultsViewerPanel = ({variant, examPicked}) => {
                             </td>
                             <td>
                                 <div className="resultsViewerSendBtns">
-                                    <a className="btn switchBtn">
+                                    <a className="btn switchBtn" onClick={() => {sendExamToCheckQueue(exam.id, localStorage.getItem("token"))}}>
                                         <span><BoltIcon className="switchBtnSvg"/>Экспресс</span>
                                         <span>4 токена</span>
                                     </a>

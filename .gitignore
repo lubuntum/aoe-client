@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-#src/config.js
-/.env
+src/config.js
+certs
+.env
 
 
 # testing
