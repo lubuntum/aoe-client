@@ -1,0 +1,15 @@
+:root {
+	--white: #ffffff;
+	--black: #000000;
+	--background: #e8f4ff;
+	--blue: #2276f4;
+	--yellow: #fdce26;
+	--gray: #d2d2d2;
+	--emphasis: #f6705e;
+	--badge: #079366;
+	--good: #06d6a0;
+	--warn: #ffd166;
+	--bad: #ef476f;
+	--glassmorph-transparent: rgba(0, 0, 0, .5);
+	--black-shadow: rgba(0, 0, 0, .25);
+}

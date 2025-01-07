@@ -19,7 +19,7 @@ export const UserRemainingBalance = ({customer}) => {
                     buttonHeight={""}
                     buttonIcon={""}
                     buttonText={"Пополнить"}
-                    buttonFunc={()=>{navigate(routes.TARIFF)}}/>
+                    buttonFunc={()=>{navigate(routes.PRICING)}}/>
         </div>
     </>)
 }

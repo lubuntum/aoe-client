@@ -57,7 +57,7 @@ export const UserSubscription = ({customer, className}) => {
                     buttonHeight={""}
                     buttonIcon={""}
                     buttonText={"Продлить"}
-                    buttonFunc={()=>{navigate(routes.TARIFF)}}/>
+                    buttonFunc={()=>{navigate(routes.PRICING)}}/>
         </div>
     </>)
 }

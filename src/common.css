@@ -1,0 +1,23 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	list-style: none;
+	scroll-behavior: smooth;
+}
+.pageWrapper {
+	margin: 20px;
+}
+.sectionWrapper {
+	padding: 20px;
+	border-radius: 20px;
+	background-color: var(--background);
+}
+.contentWrapper {
+	margin: 0 auto;
+	max-width: 1440px;
+}
