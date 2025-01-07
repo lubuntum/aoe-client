@@ -10,10 +10,6 @@
 	scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar {
-	display: none;
-}
-
 :root {
 	--white: #ffffff;
 	--black: #000000;

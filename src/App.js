@@ -1,5 +1,6 @@
 import './App.css';
 import './btns.css'
+import "./components/reusible_components/css/scrollbar.css"
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 

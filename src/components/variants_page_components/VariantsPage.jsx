@@ -1,11 +1,10 @@
-import './css/variants_page.css'
-import './css/variants_content.css'
-import './css/variant_card.css'
+import './css/variants.css'
 
 import { useEffect, useState } from 'react'
 
 import { HeaderMain } from "../header_components/HeaderMain"
 import { VariantsContent } from './VariantsContent'
+import { VariantsEmpty } from "./VariantsEmpty"
 import { getVisibleVariants } from "../../modules/api_modules/variantAPI"
 
 export const VariantsPage = () => {
@@ -16,17 +15,20 @@ export const VariantsPage = () => {
             setVariants(response.data);
         }
         fetchData()
-    },[])
+    }, [])
+    const variantsLength = Array.isArray(variants) ? variants.length : 0
 
     return (<>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
-                <div className='tasksWrapper'>
+                <div className='variantsWrapper'>
                     <HeaderMain/>
-                    <VariantsContent variants={variants}/>
+                    {variantsLength ? 
+                        <VariantsContent variants={variants}/> :
+                        <VariantsEmpty/>
+                    }
                 </div>
             </div>
         </div>
-
     </>)
 }

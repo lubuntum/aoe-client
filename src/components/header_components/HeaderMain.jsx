@@ -19,9 +19,34 @@ export const HeaderMain = () => {
     const {isAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
     const [burgersTopFormat, setBurgersTopFormat] = useState(false);
+
+    const [headerOpacity, setHeaderOpacity] = useState(1)
+    const handleScroll = () => {
+        if (window.scrollY > 0) {
+            setHeaderOpacity(.3)
+        } else {
+            setHeaderOpacity(1)
+        }
+    }
+    const handleMouseEnter = () => {
+        setHeaderOpacity(1)
+    }
+    const handleMouseLeave = () => {
+        if (window.scrollY > 0) {
+            setHeaderOpacity(.3)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
     /**TODO если запрос данных к header по токену вернул ошибку, значит токен истек,
      * инициировать процедуру выхода из аккаунта.
      */
+
     useEffect(()=>{
         if (!isAuth) return
         const fetchData = async () => {
@@ -32,7 +57,6 @@ export const HeaderMain = () => {
         fetchData()
     }, [])
 
-    
     useEffect(() => {
         const handleScroll = () => {
             {window.scrollY > 20 ? setBurgersTopFormat(true) : setBurgersTopFormat(false)}
@@ -42,7 +66,10 @@ export const HeaderMain = () => {
     }, [])
 
     return(
-        <div className="headerWrapper">
+        <div className="headerWrapper" 
+             style={{opacity: headerOpacity, transition: "all .2s ease"}}
+             onMouseEnter={handleMouseEnter}
+             onMouseLeave={handleMouseLeave}>
             <div className="headerContainer">
                 <HeaderBurger topFormat = {burgersTopFormat}/>
                 <HeaderLogo/>
