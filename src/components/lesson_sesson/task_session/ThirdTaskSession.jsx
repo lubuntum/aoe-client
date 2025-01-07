@@ -9,7 +9,7 @@ import { TasksContentWrapper } from "./TasksContentWrapper"
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSound } from "../../../hooks/sound/useSound";
-import notification from "../../../res/wavs/notification.wav"
+import notification from "../../../res/wavs/beep.wav"
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)

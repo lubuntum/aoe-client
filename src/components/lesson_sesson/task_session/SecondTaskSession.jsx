@@ -9,7 +9,7 @@ import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSound } from "../../../hooks/sound/useSound"
-import notification from "../../../res/wavs/notification.wav"
+import notification from "../../../res/wavs/beep.wav"
 export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [topicNumber, setTopicNumber] = useState(0)
     const {speak} = useLessonSpeaker()
