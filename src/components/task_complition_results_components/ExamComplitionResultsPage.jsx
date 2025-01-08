@@ -1,11 +1,11 @@
 import { useAsyncError, useLocation } from "react-router-dom"
-import { HeaderMain } from "../../header_components/HeaderMain"
+import { HeaderMain } from "../header_components/HeaderMain"
 import { useEffect, useState } from "react"
-import { getTasksByVariantId } from "../../../modules/api_modules/variantAPI"
-import { TasksContentWrapper } from "../task_session/TasksContentWrapper"
-import { getCustomerTaskByExamId } from "../../../modules/api_modules/resultAPI"
-import { SERVER_API_URL } from "../../../config"
-export const Results = () => {
+import { getTasksByVariantId } from "../../modules/api_modules/variantAPI"
+import { TasksContentWrapper } from "../lesson_sesson/task_session/TasksContentWrapper"
+import { getCustomerTaskByExamId } from "../../modules/api_modules/resultAPI"
+import { SERVER_API_URL } from "../../config"
+export const ExamComplitionResultsPage = () => {
     const query = new URLSearchParams(useLocation().search)
     const examId = query.get('examId')
     const variantId = query.get('variantId')
@@ -35,6 +35,7 @@ export const Results = () => {
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (
         <>
+            <p>Aboba 11111111</p>
             <HeaderMain/>
             {tasks && 
             <div style={{display:"flex", flexDirection:"column", flexWrap:"wrap"}}>

@@ -1,0 +1,36 @@
+.taskComplitionWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.taskComplitionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background-color: var(--white);
+    padding: 20px;
+    width: 100%;
+    border-radius: 20px;
+    height: calc(100vh - 300px);
+    overflow: auto;
+}
+.taskComplitionAudio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.taskComplitionAudio p {
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+}
+.taskCompltionOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}

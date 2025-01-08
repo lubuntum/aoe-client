@@ -5,7 +5,7 @@ export const HeaderLogo = () => {
     
     return (<>
         <div className="headerLogoContainer">
-            <p className="logo">{location.pathname}</p>
+            <p className="logo">LOGO</p>
         </div>
     </>)
 }

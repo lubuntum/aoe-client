@@ -1,7 +1,7 @@
-import { FirstTaskContent } from "../../../item_task_content/FirstTaskContent"
-import { SecondTaskContent } from "../../../item_task_content/SecondTaskContent"
-import { ThirdTaskContent } from "../../../item_task_content/ThirdTaskContent"
-import { FourthTaskContent } from "../../../item_task_content/FourthTaskContent"
+import { FirstTaskContent } from "../../../reusible_components/FirstTaskContent"
+import { SecondTaskContent } from "../../../reusible_components/SecondTaskContent"
+import { ThirdTaskContent } from "../../../reusible_components/ThirdTaskContent"
+import { FourthTaskContent } from "../../../reusible_components/FourthTaskContent"
 
 export const ResultsTaskViewer = ({task, className}) => {
     const taskContentComponents = {

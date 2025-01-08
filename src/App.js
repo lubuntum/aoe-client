@@ -19,8 +19,8 @@ import { VariantsPage } from "./components/variants_page_components/VariantsPage
 import { AutorizationPage } from './components/auth/AutorizationPage';
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage';
 
-import { Results } from './components/lesson_sesson/lesson_session_result/Results';
-import { TaskResult } from './components/lesson_sesson/lesson_session_result/TaskResult';
+import { ExamComplitionResultsPage } from "./components/task_complition_results_components/ExamComplitionResultsPage"
+import { TaskComplitionResultsPage } from "./components/task_complition_results_components/TaskComplitionResultsPage"
 
 import routes from "./routes"
 
@@ -47,8 +47,8 @@ const Main = () => {
                 <Route path={routes.PRICING} element = {<ProtectedRoute component={<PricingPage/>}/>}/>
                 <Route path={routes.TASK} element = {<ProtectedRoute component={<VariantsPage/>}/>}/>
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
-                <Route path={routes.RESULTS} element = {<ProtectedRoute component={<Results/>}/>}/>
-                <Route path={routes.TASK_RESULT} element = {<ProtectedRoute component={<TaskResult/>}/>}/>
+                <Route path={routes.RESULTS} element = {<ProtectedRoute component={<ExamComplitionResultsPage/>}/>}/>
+                <Route path={routes.TASK_RESULT} element = {<ProtectedRoute component={<TaskComplitionResultsPage/>}/>}/>
             </Routes>
         </div>
     )
