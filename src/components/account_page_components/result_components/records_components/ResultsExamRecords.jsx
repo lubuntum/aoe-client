@@ -10,7 +10,7 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_gi.svg"
 
 import { ResultsOptionButtons } from "./ResultsOptionButtons.jsx"
-import { getCustomerExamsByVariant } from "../../../../modules/api_modules/resultAPI.js"
+import { getCustomerExamsByVariant, sendExamToCheckQueue } from "../../../../modules/api_modules/resultAPI.js"
 
 import { setGradeColor } from "../../../../modules/number_formation_modules/setGradeColorRecognition.js"
 import { setGradeFormat } from "../../../../modules/number_formation_modules/setGradeNumberFormat.js"
@@ -194,7 +194,7 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                             buttonHeight={""}
                                             buttonIcon={<BoltIcon className="svgIcon"/>}
                                             buttonText={"Экспресс"}
-                                            buttonFunc={""}/>
+                                            buttonFunc={() => {sendExamToCheckQueue(exam.id, localStorage.getItem("token"))}}/>
 
                                     <Button buttonType={""}
                                             buttonPadding={"0 20px"}

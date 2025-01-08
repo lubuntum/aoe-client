@@ -1,6 +1,8 @@
 import "./css/autorization_page.css"
 import "./css/login_registration.css"
 
+import loginBackground from "../../res/images/login_background_image.jpg"
+
 import { Login } from "./Login"
 import { Registration } from "./Registration"
 import { Error } from "./Error"
@@ -8,6 +10,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import routes from "../../routes"
+
 
 export const AutorizationPage = () => {
     const navigate = useNavigate()
@@ -59,7 +62,7 @@ export const AutorizationPage = () => {
                                         <div className="overlayBack" onClick={() => {navigate(routes.HOME)}}>
                                             <p>Назад</p>
                                         </div>
-                                        <img src="https://img.freepik.com/free-photo/closeup-shot-two-brown-color-domestic-cats-sleeping_181624-56374.jpg?t=st=1732878244~exp=1732881844~hmac=ab77a6514bcdc8a53ca46fb4d1a8b15aed1b8980452f1f57d78ed1fd6efd8357&w=740" alt=""/>
+                                        <img src={loginBackground} alt=""/>
                                     </div>
                                 </div>
                                 <div className="overlayRight">
