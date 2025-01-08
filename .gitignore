@@ -27,3 +27,8 @@ yarn-debug.log*
 yarn-error.log*
 
 
+.env
+package-lock.json
+package.json
+certs/localhost_1-key.pem
+certs/localhost_1.pem
