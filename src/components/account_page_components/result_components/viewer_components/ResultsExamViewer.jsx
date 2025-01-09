@@ -13,15 +13,17 @@ export const ResultsExamViewer = ({variant, className}) => {
 
     return (<>
         <div className={`resultsViewerContainer ${className}`}>
-            {variant && variant.variantTasks.map((task, index) => {
-                const TaskComponent = TaskContentComponents[task.taskType]
-                return TaskComponent ? (<>
-                    <div key={task.id}>
-                        <p className="taskIterator">{`Задание ${index + 1}`}</p>
-                        <TaskComponent task={task}/>
-                    </div>
-                </>) : <p>Экзамен не найден</p>
-            })}
+            <div className="resultsViewerExamContainer">
+                {variant && variant.variantTasks.map((task, index) => {
+                    const TaskComponent = TaskContentComponents[task.taskType]
+                    return TaskComponent ? (<>
+                        <div key={task.id}>
+                            <p className="taskIterator">{`Задание ${index + 1}`}</p>
+                            <TaskComponent task={task}/>
+                        </div>
+                    </>) : <p>Экзамен не найден</p>
+                })}
+            </div>
         </div>
     </>)
 }

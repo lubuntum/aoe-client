@@ -1,7 +1,6 @@
 import "./css/account.css"
 import "./css/user.css"
 import "./css/results.css"
-import "./css/task_viewer.css"
 import "../reusible_components/css/input.css"
 
 import { getCustomerData } from "../../modules/api_modules/accountAPI"

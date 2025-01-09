@@ -1,0 +1,11 @@
+.emptyContainer {
+    display: flex;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.resultEmptyRecords {
+    height: 100px;
+}

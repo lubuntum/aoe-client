@@ -39,31 +39,33 @@ export const TaskComplitionResultsPage = () => {
             <div className='contentWrapper'>
                 <div className='taskComplitionWrapper'>
                     <HeaderMain/>
-                    <PageTitle pageTitleText={"Ответ на: {наименование варианта} - {номер} задание"} className={""}/>
+                    <PageTitle pageTitleText={"Ответ на {наименование варианта} - {номер} задание"} className={""}/>
                     <div className="taskComplitionContainer">
-                        {task && <>
-                            <ComplitionResultsWrapper task={task} />
-                            <div className="taskComplitionAudio">
-                                <p>Ваша запись:</p>
-                                <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>
-                                <div className="taskCompltionOptions">
-                                    <Button buttonType={""}
-                                            buttonPadding={""}
-                                            buttonWidth={"100%"}
-                                            buttonHeight={""}
-                                            buttonIcon={<DownloadIcon className="svgIcon"/>}
-                                            buttonText={"Скачать"}
-                                            buttonFunc={()=>{}}/>
-                                    <Button buttonType={""}
-                                            buttonPadding={""}
-                                            buttonWidth={"100%"}
-                                            buttonHeight={""}
-                                            buttonIcon={<LinkIcon className="svgIcon"/>}
-                                            buttonText={"Cсылка"}
-                                            buttonFunc={()=>{}}/>
+                        <div className="taskComplitionInnerContainer">
+                            {task && <>
+                                <ComplitionResultsWrapper task={task} />
+                                <div className="taskComplitionAudio">
+                                    <p>Ваша запись:</p>
+                                    <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>
+                                    <div className="taskComplitionOptions">
+                                        <Button buttonType={""}
+                                                buttonPadding={"0 20px"}
+                                                buttonWidth={""}
+                                                buttonHeight={""}
+                                                buttonIcon={<DownloadIcon className="svgIcon"/>}
+                                                buttonText={"Скачать"}
+                                                buttonFunc={()=>{}}/>
+                                        <Button buttonType={""}
+                                                buttonPadding={"0 20px"}
+                                                buttonWidth={""}
+                                                buttonHeight={""}
+                                                buttonIcon={<LinkIcon className="svgIcon"/>}
+                                                buttonText={"Cсылка"}
+                                                buttonFunc={()=>{}}/>
+                                    </div>
                                 </div>
-                            </div>
-                        </>}
+                            </>}
+                        </div>
                     </div>
                 </div>
             </div>

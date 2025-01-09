@@ -34,7 +34,6 @@
 .taskTopicScenario {
     display: flex;
     flex-direction: column;
-    padding: 40px;
 }
 .taskTopicScenario p {
     font-size: 1rem;

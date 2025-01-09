@@ -4,15 +4,14 @@ import { ResultsSidebar } from "./sidebar_components/ResultsSidebar"
 import { ResultsSidebarLoading } from "./sidebar_components/ResultsSidebarLoading"
 
 import { ResultsTopbar } from "./topbar_components/ResultsTopbar"
-import { ResultsTopbarEmpty } from "./topbar_components/ResultsTopbarEmpty"
 
 import { ResultsTaskViewer } from "./viewer_components/ResultsTaskViewer"
 import { ResultsExamViewer } from "./viewer_components/ResultsExamViewer"
-import { ResultsEmptyViewer } from "./viewer_components/ResultsEmptyViewer"
 
 import { ResultsTaskRecords } from "./records_components/ResultsTaskRecords"
 import { ResultsExamRecords } from "./records_components/ResultsExamRecords"
-import { ResultsEmptyRecords } from "./records_components/ResultsEmptyRecords"
+
+import { EmptyContainer } from "../../reusible_components/EmptyContainer"
 
 import { getCustomerCompletedVariants } from "../../../modules/api_modules/accountAPI"
 
@@ -69,16 +68,16 @@ export const ResultsGrid = ({className}) =>{
                                                            showContentByTaskClick = {showContentByTaskClick} 
                                                            showContentByExamClick = {showContentByExamClick}
                                                            className={"resultGridItem2"}/> : 
-                                            <ResultsTopbarEmpty className={"resultGridItem2"}/>}
+                                            <EmptyContainer emptyText={"Вариант не выбран"} className={"resultGridItem2"}/>}
 
 
             {examPicked ? <ResultsExamViewer variant={currentVariant} exams={undefined} className={"resultGridItem3"}/> : 
             currentTask ? <ResultsTaskViewer task={currentTask} className={"resultGridItem3"}/> : 
-                          <ResultsEmptyViewer className={"resultGridItem3"}/>}
+                          <EmptyContainer emptyText={"Задание не выбрано"} className={"resultGridItem3"}/>}
 
             {examPicked ? <ResultsExamRecords variant={currentVariant} examPicked={examPicked} className={"resultGridItem4"}/> : 
             currentTask ? <ResultsTaskRecords variant={currentVariant} task={currentTask} className={"resultGridItem4"}/> : 
-                          <ResultsEmptyRecords className={"resultGridItem4"}/>}
+                          <EmptyContainer emptyText={"Задание не выбрано"} className={"resultGridItem4 resultEmptyRecords"}/>}
         </div>
     </>)
 }

@@ -126,7 +126,7 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadCustomerTaskAudio},
     ]
     
-    const statuses = {completed : "completed", checking: "checking"}
+    const statuses = {completed : "completed", checking: "checking", untranscribed: "untranscribed", transcribed: "transcribed"}
     const getStatus = (status) => { 
         return statuses[status] || "default"
     }
@@ -190,61 +190,60 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodyButtons">
-                                    {getStatus(customerTask.expressCheckStatus?.status) === "checking" ?
-                                    <Button buttonType={"block"}
-                                            buttonPadding={"0 20px"}
-                                            buttonWidth={"100%"}
-                                            buttonHeight={""}
-                                            buttonIcon={""}
-                                            buttonText={"Экспресс"}
-                                            buttonFunc={""}/> :
-
-                                    getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
-                                    <Button buttonType={"block"}
-                                            buttonPadding={"0 20px"}
-                                            buttonWidth={"100%"}
-                                            buttonHeight={""}
-                                            buttonIcon={""}
-                                            buttonText={"Экспресс"}
-                                            buttonFunc={""}/> :
-
-                                    <Button buttonType={""}
-                                            buttonPadding={"0 20px"}
-                                            buttonWidth={"100%"}
-                                            buttonHeight={""}
-                                            buttonIcon={""}
-                                            buttonText={"Экспресс"}
-                                            buttonFunc={()=>{startExpressTask(customerTask)}}/>}
+                                    {(getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
+                                    getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
+                                    getStatus(customerTask.expressCheckStatus?.status) === "checking" ||
+                                    getStatus(customerTask.expressCheckStatus?.status) === "completed") ?
+                                        <Button buttonType={"block"}
+                                                buttonPadding={"0 20px"}
+                                                buttonWidth={"100%"}
+                                                buttonHeight={""}
+                                                buttonIcon={""}
+                                                buttonText={"Экспресс"}
+                                                buttonFunc={""}/> :
+                                        <Button buttonType={""}
+                                                buttonPadding={"0 20px"}
+                                                buttonWidth={"100%"}
+                                                buttonHeight={""}
+                                                buttonIcon={""}
+                                                buttonText={"Экспресс"}
+                                                buttonFunc={()=>{startExpressTask(customerTask)}}/>}
                                 </div>    
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodySendDate">
                                     <div className="resultsRecordsTableBodyItem">
-                                        <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Не отправлено"}</p>
+                                        {(getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "checking") ?
+                                            <Loader/> :
+                                        getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
+                                            <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Не отправлено"}</p> :
+                                            <p>Не отправлено</p>}
+                                        
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodyGrade">
                                     <div className="resultsRecordsTableBodyItem">
-                                        {getStatus(customerTask.expressCheckStatus?.status) === "checking" ? 
-                                        <Loader/> :
-
+                                        {(getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "checking") ? 
+                                            <Loader/> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ? <>
-                                        <div className="resultsRecordsGradeWrapper">
-                                            <p className={`recordGrade ${setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}`}>
-                                                {setGradeFormat(customerTask.taskResults[0]?.result.grade)} / {setGradeFormat(TASKS_MAX_GRADE[task.taskType])}
-                                            </p> 
-                                            <Button buttonType={"ghost protocol"}
-                                                    buttonPadding={""}
-                                                    buttonWidth={""}
-                                                    buttonHeight={""}
-                                                    buttonIcon={""}
-                                                    buttonText={<ProtocolIcon className="svgIcon"/>}
-                                                    buttonFunc={()=>{startExpressTask(customerTask)}}/>
-                                        </div></> :
-
-                                        <p>Не отправлено</p>}
+                                            <div className="resultsRecordsGradeWrapper">
+                                                <p className={`recordGrade ${setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}`}>
+                                                    {setGradeFormat(customerTask.taskResults[0]?.result.grade)} / {setGradeFormat(TASKS_MAX_GRADE[task.taskType])}</p> 
+                                                <Button buttonType={"ghost protocol"}
+                                                        buttonPadding={""}
+                                                        buttonWidth={""}
+                                                        buttonHeight={""}
+                                                        buttonIcon={""}
+                                                        buttonText={<ProtocolIcon className="svgIcon"/>}
+                                                        buttonFunc={()=>{startExpressTask(customerTask)}}/>
+                                            </div></> :
+                                            <p>Не отправлено</p>}
                                     </div>
                                 </div>
                             </td>

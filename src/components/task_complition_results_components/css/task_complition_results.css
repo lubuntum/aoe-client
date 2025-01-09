@@ -6,7 +6,6 @@
 .taskComplitionContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     gap: 40px;
     background-color: var(--white);
@@ -14,7 +13,14 @@
     width: 100%;
     border-radius: 20px;
     height: calc(100vh - 300px);
+}
+.taskComplitionInnerContainer {
+    display: flex;
+    flex-direction: column;
     overflow: auto;
+    justify-content: space-between;
+    gap: 40px;
+    height: 100%;
 }
 .taskComplitionAudio {
     display: flex;
@@ -23,14 +29,20 @@
     justify-content: center;
     align-items: center;
 }
+.taskComplitionExamAudio {
+    padding-top: 40px;
+}
 .taskComplitionAudio p {
     font-size: 1rem;
     font-weight: 500;
     font-style: italic;
 }
-.taskCompltionOptions {
+.taskComplitionOptions {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
     gap: 20px;
     width: 100%;
 }

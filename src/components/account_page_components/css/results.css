@@ -117,7 +117,13 @@
     background-color: var(--white);
     border-radius: 20px;
     padding: 20px;
+}
+.resultsViewerExamContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     overflow: auto;
+    gap: 20px;
 }
 .taskIterator {
     font-size: 1rem;
@@ -306,17 +312,11 @@
 
 
 /*Стили для пустых контейнеров*/
-.resultsSidebarContainerLoading,
-.resultsTopbarContainerEmpty,
-.resultsViewerContainerEmpty,
-.resultsRecordsContainerEmpty {
+.resultsSidebarContainerLoading {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--white);
     border-radius: 20px;
     height: 100%;
-}
-.resultsRecordsContainerEmpty {
-    height: 100px;
 }
