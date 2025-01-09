@@ -1,0 +1,109 @@
+.pricingWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.pricingGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 100px 300px 100px auto;
+    gap: 20px;
+}
+.pricingGridItem1 {
+    grid-column: span 2;
+}
+.pricingGridItem2 {
+    grid-column: span 1;
+}
+.pricingGridItem3 {
+    grid-column: span 1;
+}
+.pricingGridItem4 {
+    grid-column: span 2;
+}
+.pricingGridItem5 {
+    grid-column: span 2;
+}
+
+
+
+.pricngSubscriptionCardContainer {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.pricingSubscriptionCardContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.contentSwapName {
+    order: 2;
+}
+.contentSwapDescription {
+    order: 1;
+}
+.pricingSubscriptionCardContent p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--white);
+}
+.pricingSubscriptionCardContent p:nth-child(2) {
+    font-size: 1rem;
+}
+.pricingSubscriptionCardDescription {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 30px;
+}
+.contentSwapBorder {
+    order: 2;
+}
+.cardDescriptionItem {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.cardDescriptionBorder {
+    display: flex;
+    min-width: 3px;
+    min-height: 100%;
+    background-color: var(--white);
+    border-radius: 50px;
+}
+.pricingSubscriptionOptions {
+    position: absolute;
+    bottom: 0;
+}
+.contentSwapOptions {
+    right: 0;
+}
+.subscriptionOptionsEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--white);
+}
+.subscriptionOptionsEmpty p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--black);
+}
+.subscriptionOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
