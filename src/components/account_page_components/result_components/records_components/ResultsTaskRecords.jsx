@@ -220,7 +220,6 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
                                             <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Не отправлено"}</p> :
                                             <p>Не отправлено</p>}
-                                        
                                     </div>
                                 </div>
                             </td>
