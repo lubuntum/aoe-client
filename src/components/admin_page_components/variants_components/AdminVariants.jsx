@@ -3,7 +3,6 @@ import "../css/admin_variant_popup.css"
 import "../css/admin_variant_popup_tasks.css"
 import "../css/admin_variant_popup_options.css"
 import "../css/admin_variant_popup_name.css"
-import "../css/admin_variant_card.css"
 import "../css/admin_variant_add_card.css"
 
 import { AdminVariantsGrid } from "./AdminVariantsGrid"

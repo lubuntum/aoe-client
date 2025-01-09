@@ -6,8 +6,6 @@ import { HeaderMain } from "../../header_components/HeaderMain"
 import { MicroPerfomance } from "../micro_perfomance/MicroPerfomance"
 import { createPath, useLocation , useNavigate} from "react-router-dom"
 import {getTasksByVariantId} from "../../../modules/api_modules/variantAPI"
-import { createExam } from "../../../modules/api_modules/complitionScenarioAPI"
-import { LessonSessionPanel } from "./LessonSessionPanel"
 import { PrepareTimer } from "../prepare_timer/PrepareTimer"
 
 import { FirstTaskSession } from "../task_session/FirstTaskSession"
@@ -20,7 +18,6 @@ import { createExamRequest, saveUserTaskRequest } from "../../../modules/api_mod
 import routes from '../../../routes'
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
-import { USER_NAME } from "../../../config"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания

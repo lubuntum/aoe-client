@@ -66,13 +66,18 @@
 }
 .variantCardTitle {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--white);
 }
 .variantCardButtons {
     display: none;
 }
 .variantCardTasksButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.variantCardOptionsButtons {
     display: flex;
     flex-direction: row;
     gap: 20px;
