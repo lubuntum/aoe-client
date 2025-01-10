@@ -9,6 +9,7 @@ import { PricingSubscriptionCard } from "./PricingSubscriptionCard"
 import { PricingBalanceCard } from "./PricingBalanceCard"
 
 import { PageTitle } from "../reusible_components/PageTitle"
+import { Tooltip } from "../reusible_components/Tooltip"
 
 export const PricingPage = () => {
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
@@ -23,9 +24,9 @@ export const PricingPage = () => {
                             "Приветственный баланс на 1 проверку"]
 
     const paymentDescription = ["Срок действия баланса - 270 дней",
-                                "Экспресс проверка 1 задания - 50₽",
-                                "Экспресс проверка 1 экзамена - 200₽",
-                                "Проверка экспертом 1 экзамена - 400₽"]
+                                <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 задания: 50₽</p>,
+                                <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 экзамена: 200₽</p>,
+                                <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 400₽</p>]
 
     return (<>
         <div className='sectionWrapper'>
@@ -48,7 +49,7 @@ export const PricingPage = () => {
                                                  subscriptionType={"pro"}
                                                  subscriptionName={"Улучшеный план"}
                                                  subscriptionDescription={proDescription}
-                                                 subscriptionIsActive={""}
+                                                 subscriptionIsActive={"Активен"}
                                                  subscriptionBG={proBackground}
                                                  subscriptionPricing={proPricing}/>
 

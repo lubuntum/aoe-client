@@ -35,7 +35,8 @@
     position: absolute;
     bottom: 120%;
     background-color: var(--white);
-    border-radius: 11px;
+    border-radius: 10px;
+    overflow: hidden;
     width: 100%;
 }
 .dropdownItem {
@@ -57,10 +58,4 @@
 }
 .dropdownItem:hover {
     background-color: var(--yellow);
-}
-.dropdownItem:first-child:hover {
-    border-radius: 10px 10px 0 0;
-}
-.dropdownItem:last-child:hover {
-    border-radius: 0 0 10px 10px;
 }

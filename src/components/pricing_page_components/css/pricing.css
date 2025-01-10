@@ -45,13 +45,6 @@
     align-items: center;
     position: relative;
 }
-.contentSwapName {
-    order: 2;
-}
-.contentSwapDescription {
-    order: 1;
-    text-align: end;
-}
 .pricingSubscriptionCardContent p {
     font-size: 2rem;
     font-weight: 600;
@@ -74,6 +67,13 @@
     flex-direction: row;
     gap: 20px;
 }
+.cardDescriptionItem p {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
 .cardDescriptionBorder {
     display: flex;
     min-width: 3px;
@@ -85,9 +85,6 @@
     position: absolute;
     bottom: 0;
 }
-.contentSwapOptions {
-    right: 0;
-}
 .subscriptionOptionsEmpty {
     display: flex;
     justify-content: center;
@@ -97,6 +94,7 @@
     width: 300px;
     border-radius: 10px;
     box-shadow: 0 0 5px var(--white);
+    user-select: none;
 }
 .subscriptionOptionsEmpty p {
     font-size: 1rem;
@@ -108,7 +106,19 @@
     flex-direction: row;
     gap: 20px;
 }
-
+.contentSwapName {
+    order: 2;
+}
+.contentSwapName p {
+    text-align: end;
+}
+.contentSwapDescription {
+    order: 1;
+    text-align: end;
+}
+.contentSwapOptions {
+    right: 0;
+}
 
 
 
@@ -160,6 +170,7 @@
     position: absolute;
     transition: top .2s ease;
     top: 45px;
+    user-select: none;
 }
 .cardOptions {
     display: flex;

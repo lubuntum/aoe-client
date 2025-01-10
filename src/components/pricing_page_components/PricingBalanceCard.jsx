@@ -42,7 +42,7 @@ export const PricingBalanceCard = ({className, paymentBG, paymentPricing, paymen
                     {paymentDescription.map((description, index) => (
                         <div className="cardDescriptionItem">
                             <div className="cardDescriptionBorder"></div>
-                            <p>{description}</p>
+                            {description}
                         </div>
                     ))}
                 </div>
