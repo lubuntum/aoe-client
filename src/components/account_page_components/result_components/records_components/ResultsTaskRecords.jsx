@@ -220,15 +220,18 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                             <td>
                                 <div className="resultsRecordsTableBodySendDate">
                                     <div className="resultsRecordsTableBodyItem">
-                                        {(getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
-                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
-                                        getStatus(customerTask.expressCheckStatus?.status) === "checking") ?
+                                        {getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ?
+                                            <p>Untranscribed</p> :
+                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ?
+                                            <p>Transcribed</p> :
+                                        getStatus(customerTask.expressCheckStatus?.status) === "checking" ?
                                             <Loader/> :
-                                        getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ?
+                                            <p>Incomlete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "insufficient" ?
-                                            <p>Ошибка</p> :
+                                            <p>Incomlete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
-                                            <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Не отправлено"}</p> :
+                                            <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Ошибка сервера"}</p> :
                                             <p>Не отправлено</p>}
                                     </div>
                                 </div>
@@ -236,13 +239,16 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                             <td>
                                 <div className="resultsRecordsTableBodyGrade">
                                     <div className="resultsRecordsTableBodyItem">
-                                        {(getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
-                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
-                                        getStatus(customerTask.expressCheckStatus?.status) === "checking") ? 
+                                        {getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ?
+                                            <p>Untranscribed</p> :
+                                        getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ?
+                                            <p>Transcribed</p> :
+                                        getStatus(customerTask.expressCheckStatus?.status) === "checking" ? 
                                             <Loader/> :
-                                        getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ||
+                                        getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ?
+                                            <p>Incomlete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "insufficient" ?
-                                            <p>Ошибка</p> :
+                                            <p>Incomlete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ? <>
                                             <div className="resultsRecordsGradeWrapper">
                                                 <p className={`recordGrade ${setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}`}>
