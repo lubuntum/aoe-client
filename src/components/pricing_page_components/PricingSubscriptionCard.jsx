@@ -1,6 +1,11 @@
 import { Button } from "../reusible_components/Button"
+import { DropdownList } from "../reusible_components/DropdownList"
 
-export const PricingSubscriptionCard = ({className, contentSwap, subscriptionType, subscriptionName, subscriptionDescription, subscriptionIsActive, subscriptionBG}) => {
+export const PricingSubscriptionCard = ({className, contentSwap, subscriptionType, subscriptionName, subscriptionDescription, subscriptionIsActive, subscriptionBG, subscriptionPricing}) => {
+    const handleSelect = (subscriptionPricing) => {
+        console.log(subscriptionPricing)
+    }
+
     return (<>
         <div className={`pricngSubscriptionCardContainer ${className}`} style={{backgroundImage: `url(${subscriptionBG})`}}>
             <div className="pricingSubscriptionCardContent">
@@ -9,10 +14,12 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
                     <p>{subscriptionIsActive}</p>
                 </div>
                 <div className={`pricingSubscriptionCardDescription ${contentSwap === false ? "" : "contentSwapDescription"}`}>
-                    <div className="cardDescriptionItem">
-                        <div className={`cardDescriptionBorder ${contentSwap === false ? "" : "contentSwapBorder"}`}></div>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
+                    {subscriptionDescription.map((description, index) => (
+                        <div className="cardDescriptionItem">
+                            <div className={`cardDescriptionBorder ${contentSwap === false ? "" : "contentSwapBorder"}`}></div>
+                            <p>{description}</p>
+                        </div>
+                    ))}
                 </div>
                 <div className={`pricingSubscriptionOptions ${contentSwap === false ? "" : "contentSwapOptions"}`}>
                     {subscriptionType === "base" ? 
@@ -20,7 +27,7 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
                             <p>Бесплатно</p>
                         </div> : 
                         <div className="subscriptionOptions">
-                            <Button/>
+                            <DropdownList options={subscriptionPricing} onSelect={handleSelect}/>
                             <Button buttonType={"alt"}
                                     buttonPadding={"0 20px"}
                                     buttonWidth={""}

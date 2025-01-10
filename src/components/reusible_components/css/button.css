@@ -9,6 +9,7 @@
     background-color: var(--blue);
     box-shadow: 0 0 5px var(--blue);
     border-radius: .625rem;
+    user-select: none;
     transition: all .2s ease;
 }
 .button span {
