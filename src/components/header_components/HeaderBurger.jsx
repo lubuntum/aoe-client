@@ -8,7 +8,7 @@ import { Button } from "../reusible_components/Button"
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
-export const HeaderBurger = ({topFormat}) => {
+export const HeaderBurger = () => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export const HeaderBurger = ({topFormat}) => {
             <input type="checkbox" id="headerBurgerCheckbox"></input>
             <label className="btn defaultBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defaultBtnSvg"/></label>
 
-            <nav className={`${topFormat ? 'headerBurgerTop120' : 'headerBurgerTop140'}`}>
+            <nav>
                 <Button buttonType={"link"}
 						buttonPadding={""}
 						buttonWidth={""}

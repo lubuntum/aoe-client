@@ -13,16 +13,26 @@ import { getHeaderData } from "../../modules/api_modules/accountAPI"
 export const HeaderMain = () => {
     const {isAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
-    const [burgersTopFormat, setBurgersTopFormat] = useState(false);
-
+    const [headerTop, setHeaderTop] = useState(40)
     const [headerOpacity, setHeaderOpacity] = useState(1)
-    const handleScroll = () => {
-        if (window.scrollY > 0) {
-            setHeaderOpacity(.3)
-        } else {
-            setHeaderOpacity(1)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setHeaderOpacity(.3)
+                setHeaderTop(20)
+            } else {
+                setHeaderOpacity(1)
+                setHeaderTop(40)
+            }
         }
-    }
+        
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
     const handleMouseEnter = () => {
         setHeaderOpacity(1)
     }
@@ -32,12 +42,6 @@ export const HeaderMain = () => {
         }
     }
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
     /**TODO если запрос данных к header по токену вернул ошибку, значит токен истек,
      * инициировать процедуру выхода из аккаунта.
      */
@@ -52,24 +56,18 @@ export const HeaderMain = () => {
         fetchData()
     }, [])
 
-    useEffect(() => {
-        const handleScroll = () => {
-            {window.scrollY > 20 ? setBurgersTopFormat(true) : setBurgersTopFormat(false)}
-        }
-        window.addEventListener('scroll', handleScroll);
-        return () => {window.removeEventListener('scroll', handleScroll);}
-    }, [])
-
     return(
-        <div className="headerWrapper" 
-             style={{opacity: headerOpacity, transition: "all .2s ease"}}
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}>
-            <div className="headerContainer">
-                <HeaderBurger topFormat = {burgersTopFormat}/>
-                <HeaderLogo/>
-                <HeaderMenu topFormat = {burgersTopFormat}/>
-                <HeaderOptions headerData = {headerData}/>
+        <div className="headerFixedContainer" style={{top: `${headerTop}px`}}>
+            <div className="headerWrapper" 
+                style={{opacity: headerOpacity}}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                <div className="headerContainer">
+                    <HeaderBurger/>
+                    <HeaderLogo/>
+                    <HeaderMenu/>
+                    <HeaderOptions headerData = {headerData}/>
+                </div>
             </div>
         </div>
     )

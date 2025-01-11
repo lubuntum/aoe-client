@@ -1,3 +1,14 @@
+.headerFixedContainer {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+    max-width: 1440px;
+    max-height: 80px;
+    width: 100%;
+	z-index: 9999;
+    transition: all .2s ease;
+}
 .headerWrapper {
     position: sticky;
     top: 20px;
@@ -5,9 +16,11 @@
     box-shadow: 0 0 10px var(--black-shadow);
     border-radius: 20px;
     max-height: 80px;
+    max-width: 1440px;
     width: 100%;
     padding: 20px;
-    z-index: 10;
+    z-index: 9999;
+    transition: all .2s ease;
 }
 .headerContainer {
     display: flex;
@@ -99,19 +112,11 @@
     flex-direction: row;
     gap: 30px;
 }
-.headerBurgerContainer input:checked ~ .headerBurgerTop120 {
-    top: 120px;
+.headerBurgerContainer input:checked ~ nav {
+    top: 100px;
     opacity: 1;
 }
-.headerBurgerContainer input:checked ~ .headerBurgerTop140 {
-    top: 140px;
-    opacity: 1;
-}
-.headerCollapseContainer input:checked ~ .headerCollapseTop120 {
-    top: 120px;
-    opacity: 1;
-}
-.headerCollapseContainer input:checked ~ .headerCollapseTop140 {
-    top: 140px;
+.headerCollapseContainer input:checked ~ nav {
+    top: 100px;
     opacity: 1;
 }

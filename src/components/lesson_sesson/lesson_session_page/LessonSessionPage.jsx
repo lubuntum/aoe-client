@@ -130,11 +130,10 @@ export const LessonSessionPage = () => {
         CurrentTaskSessionComponent = taskSessionsComponents[currentTask.taskType]
 
     return (<>
+        <HeaderMain/>
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="lessonWrapper">
-                    <HeaderMain/>
-
                     {!microCheck && 
                         <MicroPerfomance setMicroCheck = {setMicroCheck}/>
                     }

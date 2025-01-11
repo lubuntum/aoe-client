@@ -29,10 +29,10 @@ export const PricingPage = () => {
                                 <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 400₽</p>]
 
     return (<>
+        <HeaderMain/>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
-                    <HeaderMain/>
                     <div className="pricingGrid">
                         <PageTitle pageTitleText={"Приобрести подписку"} className={"pricingGridItem1"}/>
 
