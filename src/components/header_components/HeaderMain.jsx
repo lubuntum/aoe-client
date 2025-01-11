@@ -13,24 +13,21 @@ import { getHeaderData } from "../../modules/api_modules/accountAPI"
 export const HeaderMain = () => {
     const {isAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
-    const [headerTop, setHeaderTop] = useState(40)
+    const [headerTop, setHeaderTop] = useState("40px")
     const [headerOpacity, setHeaderOpacity] = useState(1)
 
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 20) {
                 setHeaderOpacity(.3)
-                setHeaderTop(20)
+                setHeaderTop("20px")
             } else {
                 setHeaderOpacity(1)
-                setHeaderTop(40)
+                setHeaderTop("40px")
             }
         }
-        
         window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
+        return () => {window.removeEventListener('scroll', handleScroll)}
     }, [])
 
     const handleMouseEnter = () => {
@@ -57,7 +54,7 @@ export const HeaderMain = () => {
     }, [])
 
     return(
-        <div className="headerFixedContainer" style={{top: `${headerTop}px`}}>
+        <div className="headerFixedContainer" style={{top: headerTop}}>
             <div className="headerWrapper" 
                 style={{opacity: headerOpacity}}
                 onMouseEnter={handleMouseEnter}

@@ -5,7 +5,7 @@
 	transform: translateX(-50%);
     max-width: 1440px;
     max-height: 80px;
-    width: 100%;
+    width: calc(100% - 80px);
 	z-index: 9999;
     transition: all .2s ease;
 }
@@ -13,10 +13,9 @@
     position: sticky;
     top: 20px;
     background-color: var(--white);
-    box-shadow: 0 0 10px var(--black-shadow);
+    box-shadow: 0 5px 10px var(--black-shadow);
     border-radius: 20px;
     max-height: 80px;
-    max-width: 1440px;
     width: 100%;
     padding: 20px;
     z-index: 9999;
@@ -119,4 +118,8 @@
 .headerCollapseContainer input:checked ~ nav {
     top: 100px;
     opacity: 1;
+}
+.headerWrapper:hover {
+    box-shadow: 0 10px 20px var(--black-shadow);
+    transform: translateY(-1px);
 }
