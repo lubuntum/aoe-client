@@ -1,4 +1,5 @@
 import "./css/header.css"
+import "./css/header_media.css"
 
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
@@ -60,7 +61,7 @@ export const HeaderMain = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
                 <div className="headerContainer">
-                    <HeaderBurger/>
+                    <HeaderBurger headerData = {headerData}/>
                     <HeaderLogo/>
                     <HeaderMenu/>
                     <HeaderOptions headerData = {headerData}/>

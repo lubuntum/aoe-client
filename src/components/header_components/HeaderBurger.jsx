@@ -8,7 +8,7 @@ import { Button } from "../reusible_components/Button"
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
-export const HeaderBurger = () => {
+export const HeaderBurger = ({headerData}) => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -78,6 +78,15 @@ export const HeaderBurger = () => {
                         buttonIcon={""}
                         buttonText={"Личный кабинет"} 
                         buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>}
+                
+                {(isAuth && (headerData?.roles.includes("admin"))) &&
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Кабинет админа"} 
+                        buttonFunc={()=>{navigate(routes.ADMIN)}}/>}
             </nav>
         </div>
     </>)

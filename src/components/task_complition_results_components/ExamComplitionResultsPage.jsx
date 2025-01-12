@@ -43,11 +43,11 @@ export const ExamComplitionResultsPage = () => {
     
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (<>
+        <HeaderMain/>
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="taskComplitionWrapper">
-                    <HeaderMain/>
-                    <PageTitle pageTitleText={"Ответы на {наименование варианта} - Экзамен"} className={""}/>
+                    <PageTitle pageTitleText={`Ответы на {наименование варианта} - Экзамен`} className={""}/>
                     <div className="taskComplitionContainer">
                         <div className="taskComplitionInnerContainer">
                             {tasks && <>
