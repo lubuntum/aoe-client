@@ -19,10 +19,10 @@ export const VariantsPage = () => {
     const variantsLength = Array.isArray(variants) ? variants.length : 0
 
     return (<>
+        <HeaderMain/>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className='variantsWrapper'>
-                    <HeaderMain/>
                     {variantsLength ? 
                         <VariantsContent variants={variants}/> :
                         <VariantsEmpty/>

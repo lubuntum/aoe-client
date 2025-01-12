@@ -26,7 +26,7 @@ export const HeaderOptions = ({headerData}) => {
         <div className="headerOptionsContainer">
             {isAuth && (<>
                 {headerData === undefined ? loadingBalance : <>
-                    <Button buttonType={""}
+                    <Button buttonType={"balance"}
                             buttonPadding={"0 20px"}
                             buttonWidth={""}
                             buttonHeight={""}

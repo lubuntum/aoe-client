@@ -11,5 +11,7 @@
 	--warn: #ffd166;
 	--bad: #ef476f;
 	--glassmorph-transparent: rgba(0, 0, 0, .5);
+	--white-glassmorph-transparent: rgba(255, 255, 255, .5);
 	--black-shadow: rgba(0, 0, 0, .25);
+	--tooltip-background: rgba(0, 0, 0, .75);
 }

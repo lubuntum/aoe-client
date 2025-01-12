@@ -7,7 +7,7 @@ import routes from '../../routes'
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
-export const HeaderMenu = ({topFormat}) => {
+export const HeaderMenu = () => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -28,7 +28,7 @@ export const HeaderMenu = ({topFormat}) => {
                         buttonWidth={""}
                         buttonHeight={""}
                         buttonIcon={""}
-                        buttonText={"Преимущества"} />
+                        buttonText={"Преимущества"}/>
 
                 <Button buttonType={"link"}
                         buttonPadding={""}
@@ -76,7 +76,7 @@ export const HeaderMenu = ({topFormat}) => {
                         <input type="checkbox" id="headerCollapseCheckbox"></input>
                         <label className="btn defaultBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defaultBtnSvg"/><span>Меню</span></label>
 
-                        <nav className={`${topFormat ? 'headerCollapseTop120' : 'headerCollapseTop140'}`}>
+                        <nav>
                             <Button buttonType={"link"}
                                     buttonPadding={""}
                                     buttonWidth={""}

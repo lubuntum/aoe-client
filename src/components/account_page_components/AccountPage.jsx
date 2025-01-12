@@ -37,10 +37,10 @@ export const AccountPage = () =>{
     }, [])
 
     return (<>
+        <HeaderMain/>
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="accountWrapper">
-                    <HeaderMain/>
                     <div className="accountGrid">
                         <PageTitle pageTitleText={"Личный кабинет"} className={"accountGridItem1"}/>
 

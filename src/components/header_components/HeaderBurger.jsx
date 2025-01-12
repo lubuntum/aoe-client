@@ -8,7 +8,7 @@ import { Button } from "../reusible_components/Button"
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
-export const HeaderBurger = ({topFormat}) => {
+export const HeaderBurger = ({headerData}) => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export const HeaderBurger = ({topFormat}) => {
             <input type="checkbox" id="headerBurgerCheckbox"></input>
             <label className="btn defaultBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defaultBtnSvg"/></label>
 
-            <nav className={`${topFormat ? 'headerBurgerTop120' : 'headerBurgerTop140'}`}>
+            <nav>
                 <Button buttonType={"link"}
 						buttonPadding={""}
 						buttonWidth={""}
@@ -78,6 +78,15 @@ export const HeaderBurger = ({topFormat}) => {
                         buttonIcon={""}
                         buttonText={"Личный кабинет"} 
                         buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>}
+                
+                {(isAuth && (headerData?.roles.includes("admin"))) &&
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Кабинет админа"} 
+                        buttonFunc={()=>{navigate(routes.ADMIN)}}/>}
             </nav>
         </div>
     </>)

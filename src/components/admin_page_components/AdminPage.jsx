@@ -52,12 +52,12 @@ export const AdminPage = () => {
         {name: "Тарифы", icon: <SettingsIcon className="svgIcon"/>}]
 
     return (<>
-        {!isAdmin ? <p>Not found 404</p> : 
-        <>{showPopup && <Popup component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
+        {!isAdmin ? <p>Not found 404</p> : <>
+        <HeaderMain/>
+        {showPopup && <Popup component = {CurrentComponent.popupContent} setShowPopup = {setShowPopup}/>}
             <div className="sectionWrapper">
                 <div className="contentWrapper">
                     <div className="adminWrapper">
-                        <HeaderMain/>
                         <div className="adminContainer">
                             <div className="adminSettings">
                                 <PageTitle pageTitleText={CurrentComponent.title}/>

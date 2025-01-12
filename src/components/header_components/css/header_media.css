@@ -1,0 +1,37 @@
+@media (max-width: 1280px) {
+    .headerUnauthNavbarContainer {
+        gap: 20px;
+    }
+
+    .headerAuthNavbarImportantContainer {
+        gap: 20px;
+    }
+}
+@media (max-width: 1220px) {
+    .headerUnauthNavbarContainer {
+        display: none;
+    }
+    .headerBurgerContainer {
+        display: flex;
+    }
+
+    .headerAuthNavbarImportantContainer {
+        display: none;
+    }
+    .headerAuthNavbarContainer {
+        display: none;
+    }
+}
+@media (max-width: 1100px) {
+    .headerOptionsContainer .link {
+        display: none;
+    }
+}
+@media (max-width: 748px) {
+    .headerOptionsContainer .balance {
+        display: none;
+    }
+    .headerOptionsContainer .admin {
+        display: none;
+    }
+}
