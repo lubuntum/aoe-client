@@ -17,10 +17,6 @@ export const HeaderOptions = ({headerData}) => {
 
     let loadingBalance = <Loader/>
     let loadingName = <Loader/>
-    let remainingBalance = undefined;
-    if (headerData !== undefined) {
-        remainingBalance = headerData.attemptsExpert
-    }
     
     return (<>
         <div className="headerOptionsContainer">
@@ -31,7 +27,7 @@ export const HeaderOptions = ({headerData}) => {
                             buttonWidth={""}
                             buttonHeight={""}
                             buttonIcon={""}
-                            buttonText={`Баланс: ${remainingBalance} ₽`} 
+                            buttonText={`Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`} 
                             buttonFunc={()=>{navigate(routes.PRICING)}}/>
                 </>}
                 {headerData === undefined ? loadingName : <>

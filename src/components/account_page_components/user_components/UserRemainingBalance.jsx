@@ -5,13 +5,12 @@ import { Button } from "../../reusible_components/Button"
 export const UserRemainingBalance = ({customer}) => {
     const navigate = useNavigate()
 
-    let remainigBalance = customer.attemptsExpert
     
     return (<>
         <div className="userRemainingBalanceContainer">
             <p>Баланс</p>
             
-            <p>₽ {remainigBalance}</p>
+            <p>₽ {customer.currentBalance ? customer.currentBalance : 0}</p>
 
             <Button buttonType={"alt"}
                     buttonPadding={"0 20px"}
