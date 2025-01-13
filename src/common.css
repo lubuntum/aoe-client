@@ -9,12 +9,6 @@
 	list-style: none;
 	scroll-behavior: smooth;
 }
-body {
-	overflow-y: scroll;
-}
-html {
-	scrollbar-gutter: stable;
-}
 .pageWrapper {
 	margin: 20px;
 }
