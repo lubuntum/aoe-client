@@ -11,34 +11,35 @@ import { HeaderOptions } from "./HeaderOptions"
 
 import { getHeaderData } from "../../modules/api_modules/accountAPI"
 
-export const HeaderMain = () => {
+export const HeaderMain = ({onScrollToSection}) => {
     const {isAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
     const [headerTop, setHeaderTop] = useState("40px")
-    const [headerOpacity, setHeaderOpacity] = useState(1)
+    const [isScrolling, setIsScrolling] = useState(false)
 
     useEffect(() => {
-        const handleScroll = () => {
+        let timeoutId
+        const handleScorll = () => {
+            setIsScrolling(true)
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            timeoutId = setTimeout(() => {
+                setIsScrolling(false)
+            }, 100)
+            
             if (window.scrollY > 20) {
-                setHeaderOpacity(.3)
                 setHeaderTop("20px")
             } else {
-                setHeaderOpacity(1)
                 setHeaderTop("40px")
             }
         }
-        window.addEventListener('scroll', handleScroll)
-        return () => {window.removeEventListener('scroll', handleScroll)}
-    }, [])
-
-    const handleMouseEnter = () => {
-        setHeaderOpacity(1)
-    }
-    const handleMouseLeave = () => {
-        if (window.scrollY > 0) {
-            setHeaderOpacity(.3)
+        window.addEventListener("scroll", handleScorll)
+        return () => {
+            window.removeEventListener("scroll", handleScorll)
+            clearTimeout(timeoutId)
         }
-    }
+    }, [])
 
     /**TODO если запрос данных к header по токену вернул ошибку, значит токен истек,
      * инициировать процедуру выхода из аккаунта.
@@ -57,14 +58,12 @@ export const HeaderMain = () => {
     return(
         <div className="headerFixedContainer" style={{top: headerTop}}>
             <div className="headerWrapper" 
-                style={{opacity: headerOpacity}}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+                style={{opacity: isScrolling ? .3 : 1}}>
                 <div className="headerContainer">
-                    <HeaderBurger headerData = {headerData}/>
+                    <HeaderBurger headerData={headerData} onScrollToSection={onScrollToSection}/>
                     <HeaderLogo/>
-                    <HeaderMenu/>
-                    <HeaderOptions headerData = {headerData}/>
+                    <HeaderMenu onScrollToSection={onScrollToSection}/>
+                    <HeaderOptions headerData={headerData}/>
                 </div>
             </div>
         </div>

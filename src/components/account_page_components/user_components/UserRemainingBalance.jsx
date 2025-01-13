@@ -10,7 +10,7 @@ export const UserRemainingBalance = ({customer}) => {
         <div className="userRemainingBalanceContainer">
             <p>Баланс</p>
             
-            <p>₽ {customer.currentBalance ? customer.currentBalance : 0}</p>
+            <p>{customer.currentBalance ? customer.currentBalance : 0} ₽</p>
 
             <Button buttonType={"alt"}
                     buttonPadding={"0 20px"}

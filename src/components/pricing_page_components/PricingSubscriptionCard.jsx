@@ -1,7 +1,10 @@
 import { Button } from "../reusible_components/Button"
 import { DropdownList } from "../reusible_components/DropdownList"
+import { useLocation } from "react-router-dom"
+import routes from "../../routes"
 
 export const PricingSubscriptionCard = ({className, contentSwap, subscriptionType, subscriptionName, subscriptionDescription, subscriptionIsActive, subscriptionBG, subscriptionPricing}) => {
+    const location = useLocation()
     const handleSelect = (subscriptionPricing) => {
         console.log(subscriptionPricing)
     }
@@ -21,6 +24,7 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
                         </div>
                     ))}
                 </div>
+                {location.pathname !== routes.HOME &&
                 <div className={`pricingSubscriptionOptions ${contentSwap === false ? "" : "contentSwapOptions"}`}>
                     {subscriptionType === "base" ? 
                         <div className="subscriptionOptionsEmpty">
@@ -36,7 +40,7 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
                                     buttonText={"Подключить"}
                                     buttonFunc={()=>{}}/>
                         </div>}
-                </div>
+                </div>}
             </div>
         </div>
     </>)

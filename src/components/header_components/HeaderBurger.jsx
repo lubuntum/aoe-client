@@ -8,7 +8,7 @@ import { Button } from "../reusible_components/Button"
 
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
-export const HeaderBurger = ({headerData}) => {
+export const HeaderBurger = ({headerData, onScrollToSection}) => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
@@ -19,13 +19,21 @@ export const HeaderBurger = ({headerData}) => {
             <label className="btn defaultBtn" style={{width: "40px"}} for="headerBurgerCheckbox"><MenuIcon className="defaultBtnSvg"/></label>
 
             <nav>
+                {location.pathname === routes.HOME ?
                 <Button buttonType={"link"}
-						buttonPadding={""}
-						buttonWidth={""}
-						buttonHeight={""}
-						buttonIcon={""}
-                        buttonText={"Главная"} 
-                        buttonFunc={()=>{navigate(routes.HOME)}}/>
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Главная"}
+                        buttonFunc={()=>{onScrollToSection("section0")}}/> :
+                <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Главная"}
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
                 {(location.pathname !== routes.ACCOUNT) &&
                 <Button buttonType={"link"}
@@ -34,7 +42,7 @@ export const HeaderBurger = ({headerData}) => {
 						buttonHeight={""}
 						buttonIcon={""}
                         buttonText={"Преимущества"} 
-                        buttonFunc={()=>{}}/>}
+                        buttonFunc={()=>{onScrollToSection("section1")}}/>}
 
                 {(location.pathname !== routes.ACCOUNT) &&
                 <Button buttonType={"link"}
@@ -43,7 +51,7 @@ export const HeaderBurger = ({headerData}) => {
 						buttonHeight={""}
 						buttonIcon={""}
                         buttonText={"Как начать учиться"} 
-                        buttonFunc={()=>{}}/>}
+                        buttonFunc={()=>{onScrollToSection("section2")}}/>}
 
                 <Button buttonType={"link"}
 						buttonPadding={""}
@@ -55,12 +63,21 @@ export const HeaderBurger = ({headerData}) => {
 
                 {(location.pathname !== routes.ACCOUNT) &&
                 <Button buttonType={"link"}
+                        buttonPadding={""}
+                        buttonWidth={""}
+                        buttonHeight={""}
+                        buttonIcon={""}
+                        buttonText={"Партнеры"} 
+                        buttonFunc={()=>{onScrollToSection("section4")}}/>}
+
+                {(location.pathname !== routes.ACCOUNT) &&
+                <Button buttonType={"link"}
 						buttonPadding={""}
 						buttonWidth={""}
 						buttonHeight={""}
 						buttonIcon={""}
                         buttonText={"FAQ"} 
-                        buttonFunc={()=>{}}/>}
+                        buttonFunc={()=>{onScrollToSection("section5")}}/>}
 
                 <Button buttonType={"link"}
 						buttonPadding={""}
