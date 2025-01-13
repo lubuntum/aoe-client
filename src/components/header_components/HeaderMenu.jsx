@@ -17,65 +17,49 @@ export const HeaderMenu = ({onScrollToSection}) => {
             <nav className="headerUnauthNavbarContainer">
                 {location.pathname === routes.HOME ?
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Главная"}
                         buttonFunc={()=>{onScrollToSection("section0")}}/> :
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Главная"}
                         buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
+                {location.pathname === routes.HOME ?
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Преимущества"}
-                        buttonFunc={()=>{onScrollToSection("section1")}}/>
-
+                        buttonFunc={()=>{onScrollToSection("section1")}}/> :
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
+                        buttonText={"Преимущества"}
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>}
+
+                {location.pathname === routes.HOME ?
+                <Button buttonType={"link"}
                         buttonText={"Как начать учиться"}
-                        buttonFunc={()=>{onScrollToSection("section2")}}/>
+                        buttonFunc={()=>{onScrollToSection("section2")}}/> :
+                <Button buttonType={"link"}
+                        buttonText={"Как начать учиться"}
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Пополнение баланса"}
                         buttonFunc={()=>{navigate(routes.PRICING)}}/>
 
+                {location.pathname === routes.HOME ?
                 <Button buttonType={"link"} 
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Партнеры"}
-                        buttonFunc={()=>{onScrollToSection("section4")}}/>
-
+                        buttonFunc={()=>{onScrollToSection("section4")}}/> :
                 <Button buttonType={"link"} 
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
+                        buttonText={"Партнеры"}
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>}
+
+                {location.pathname === routes.HOME ?
+                <Button buttonType={"link"} 
                         buttonText={"FAQ"}
-                        buttonFunc={()=>{onScrollToSection("section5")}}/>
+                        buttonFunc={()=>{onScrollToSection("section5")}}/> :
+                <Button buttonType={"link"} 
+                        buttonText={"FAQ"}
+                        buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""} 
                         buttonText={"Задания"}
                         buttonFunc={()=>{navigate(routes.TASK)}}/>
             </nav>
@@ -87,39 +71,38 @@ export const HeaderMenu = ({onScrollToSection}) => {
                     <div className="headerCollapseContainer">
                         <input type="checkbox" id="headerCollapseCheckbox"></input>
                         <label className="btn defaultBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defaultBtnSvg"/><span>Меню</span></label>
-
                         <nav>
-                            <Button buttonType={"link"}
-                                    buttonPadding={""}
-                                    buttonWidth={""}
-                                    buttonHeight={""}
-                                    buttonIcon={""}
-                                    buttonText={"Преимущества"}
-                                    buttonFunc={()=>{onScrollToSection("section1")}}/>
+                        {location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Преимущества"}
+							buttonFunc={()=>{onScrollToSection("section1")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Преимущества"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-                                    buttonPadding={""}
-                                    buttonWidth={""}
-                                    buttonHeight={""}
-                                    buttonIcon={""} 
-                                    buttonText={"Как начать учиться"}
-                                    buttonFunc={()=>{onScrollToSection("section2")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Как начать учиться"}
+							buttonFunc={()=>{onScrollToSection("section2")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Как начать учиться"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-									buttonPadding={""}
-									buttonWidth={""}
-									buttonHeight={""}
-									buttonIcon={""}
-                                    buttonText={"Партнеры"}
-                                    buttonFunc={()=>{onScrollToSection("section4")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Партнеры"}
+							buttonFunc={()=>{onScrollToSection("section4")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Партнеры"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-									buttonPadding={""}
-									buttonWidth={""}
-									buttonHeight={""}
-									buttonIcon={""}
-                                    buttonText={"FAQ"}
-                                    buttonFunc={()=>{onScrollToSection("section5")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"FAQ"}
+							buttonFunc={()=>{onScrollToSection("section5")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"FAQ"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
                         </nav>
                     </div>
                 </>}
@@ -127,33 +110,17 @@ export const HeaderMenu = ({onScrollToSection}) => {
             <nav className="headerAuthNavbarImportantContainer">
                 {location.pathname === routes.HOME ?
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Главная"}
                         buttonFunc={()=>{onScrollToSection("section0")}}/> :
                 <Button buttonType={"link"}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={""}
                         buttonText={"Главная"}
                         buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
                 <Button buttonType={"link"}
-						buttonPadding={""}
-						buttonWidth={""}
-						buttonHeight={""}
-						buttonIcon={""}
                         buttonText={"Пополнение баланса"} 
                         buttonFunc={()=>{navigate(routes.PRICING)}}/>
 
                 <Button buttonType={"link"}
-						buttonPadding={""}
-						buttonWidth={""}
-						buttonHeight={""}
-						buttonIcon={""}
                         buttonText={"Задания"}
                         buttonFunc={()=>{navigate(routes.TASK)}}/>
             </nav>
