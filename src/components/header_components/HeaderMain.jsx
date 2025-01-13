@@ -16,6 +16,7 @@ export const HeaderMain = () => {
     const [headerData, setHeaderData] = useState()
     const [headerTop, setHeaderTop] = useState("40px")
     const [headerOpacity, setHeaderOpacity] = useState(1)
+    const {logout} = useAuth()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,9 +48,13 @@ export const HeaderMain = () => {
     useEffect(()=>{
         if (!isAuth) return
         const fetchData = async () => {
-            const response = await getHeaderData(localStorage.getItem("token"))
-            console.log(`fetched user data => ${JSON.stringify(response.data)}`)
-            setHeaderData(response.data)
+            try{
+                const response = await getHeaderData(localStorage.getItem("token"))
+                console.log(`fetched user data => ${JSON.stringify(response.data)}`)
+                setHeaderData(response.data)
+            } catch(e) {
+                logout()
+            }   
         }
         fetchData()
     }, [])

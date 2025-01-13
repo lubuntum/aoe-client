@@ -22,8 +22,13 @@ export const ResultsGrid = ({className}) =>{
     const [variants, setVariants] = useState()
     useEffect(()=>{
         const variantsRequest = async () => {
-            const response = await getCustomerCompletedVariants(localStorage.getItem("token"))
-            setVariants(response.data)
+            try{
+                const response = await getCustomerCompletedVariants(localStorage.getItem("token"))
+                setVariants(response.data)
+            } catch (e) {
+                setVariants(null)
+            }
+            
         }
         variantsRequest()
     },[])
@@ -59,12 +64,12 @@ export const ResultsGrid = ({className}) =>{
     
     return (<>
         <div className={`resultGrid ${className}`}>
-            {variants !== undefined ? <ResultsSidebar variants={variants} 
+            {variants ? <ResultsSidebar variants={variants} 
                                                       showTasksClick={showTasksClick} 
                                                       className={"resultGridItem1"}/> : 
                                       <ResultsSidebarLoading className={"resultGridItem1"}/>}
 
-            {currentVariant !== undefined ? <ResultsTopbar currentVariant = {currentVariant} 
+            {currentVariant ? <ResultsTopbar currentVariant = {currentVariant} 
                                                            showContentByTaskClick = {showContentByTaskClick} 
                                                            showContentByExamClick = {showContentByExamClick}
                                                            className={"resultGridItem2"}/> : 

@@ -20,17 +20,22 @@ export const getHeaderData = async (token) => {
 }
 
 export const getCustomerCompletedVariants = async (token) => {
-    const response = await axios.get(`${SERVER_API_URL}${API_CUSTOMER_COMPLETED_VARIANTS}`,{
-        headers:{
-            "Authorization": token
-        }
-    });
-    response.data.forEach(v => {
-        v.variantTasks.forEach(task => {
-            task.taskContent = JSON.parse(task.taskContent)
-            task.taskType = task.taskType.type
+    try{
+        const response = await axios.get(`${SERVER_API_URL}${API_CUSTOMER_COMPLETED_VARIANTS}`,{
+            headers:{
+                "Authorization": token
+            }
+        });
+        response.data.forEach(v => {
+            v.variantTasks.forEach(task => {
+                task.taskContent = JSON.parse(task.taskContent)
+                task.taskType = task.taskType.type
+            })
         })
-    })
-    return response;
+        return response;
+    } catch (e) {
+        return null
+    }
+    
 }
 

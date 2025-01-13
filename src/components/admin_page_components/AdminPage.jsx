@@ -18,11 +18,13 @@ import { validateAdmin } from "../../modules/validation_modules/adminValidation"
 
 import { ReactComponent as SettingsIcon } from "../../res/icons/manufacturing_24dp_gi.svg"
 import { ReactComponent as PartnerIcon } from "../../res/icons/handshake_24dp_gi.svg"
+import { useAuth } from "../../modules/auth_modules/AuthProvider"
 
 export const AdminPage = () => {
     const [currentContent, setCurrentContent] = useState(1)
     const [showPopup, setShowPopup] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
+    const {logout} = useAuth()
     useEffect(() => {
         {showPopup ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"}
         return () => {
@@ -33,8 +35,14 @@ export const AdminPage = () => {
         validate()
     },[])
     const validate = async () => {
-        const response = await validateAdmin(localStorage.getItem("token"))
-        if (response.data) setIsAdmin(response.data)
+        try {
+            const response = await validateAdmin(localStorage.getItem("token"))
+            setIsAdmin(response.data)
+        } catch (e) {
+            setIsAdmin(false)
+            logout()
+        }
+        
     }
     const AdminContentComponents = {
         1:{component: AdminVariants, title: "Варианты", props: {setShowPopup}, popupContent: AdminVariantPopup},
