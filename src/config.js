@@ -41,3 +41,6 @@ export const API_ADMIN_VALIDATE = "/api/admin/validate"
 export const API_ADMIN_VARIANTS = "/api/admin/variants"
 export const API_ADMIN_TASKS_TYPES = "/api/admin/tasks-types"
 export const API_ADMIN_UPDATE_TASK_TYPE = "/api/admin/update-prompt"
+
+export const API_ADMIN_ADD_BALANCE_TO_CUSTOMER = "/api/admin/add-balance-to-customer"
+export const API_ADMIN_GET_CUSTOMER_ID_BY_EMAIL = "/api/admin/customer-id-by-email"

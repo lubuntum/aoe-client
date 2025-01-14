@@ -11,8 +11,8 @@ export const HeaderOptions = ({headerData}) => {
     const {logout, isAuth, getEmail} = useAuth()
     const navigate = useNavigate()
     let loadingOptions = <Loader/>
+    console.log(headerData)
     const buttonsOptionsContainer = [
-        {text: `Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`, type: "balance", padding: "0 20px", icon: "", func: ()=>{navigate(routes.PRICING)}},
         {text: getEmail(), type: "link", padding: "", icon: "", func: ()=>{navigate(routes.ACCOUNT)}},
         {text: "", type: "admin", padding: "", icon: <AdminIcon className={"svgIcon"}/>, func: ()=>{navigate(routes.ADMIN)}},
         {text: "", type: "", padding: "", icon: <LogoutIcon className={"svgIcon"}/>, func: ()=>{logout()}},
@@ -26,8 +26,17 @@ export const HeaderOptions = ({headerData}) => {
         <div className="headerOptionsContainer">
             {isAuth && (<>
                 {headerData === undefined ? loadingOptions : <>
+                    <Button buttonText={`Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`}
+                            buttonType={"balance"}
+                            buttonPadding="0 20px"
+                            buttonFunc={()=>{navigate(routes.PRICING)}}/>
                     {buttonsOptionsContainer.map((button, index) => (
-                        <Button key={index} buttonType={button.type} buttonPadding={button.padding} buttonText={button.text} buttonIcon={button.icon} buttonFunc={button.func}/>
+                        <Button key={index} 
+                                buttonType={button.type} 
+                                buttonPadding={button.padding} 
+                                buttonText={button.text} 
+                                buttonIcon={button.icon} 
+                                buttonFunc={button.func}/>
                     ))}
                 </>}
             </>)}
@@ -35,7 +44,11 @@ export const HeaderOptions = ({headerData}) => {
             {!isAuth && (<>
                 <div className="optionsLoginContainer">
                     {buttonsOptionsLoginContainer.map((button, index) => (
-                        <Button key={index} buttonPadding={button.padding} buttonIcon={button.icon} buttonFunc={button.func}/>
+                        <Button key={index} 
+                                buttonPadding={button.padding} 
+                                buttonIcon={button.icon} 
+                                buttonFunc={button.func}
+                                buttonText={button.text}/>
                     ))}
                 </div>
             </>)}

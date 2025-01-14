@@ -263,7 +263,7 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                                         buttonHeight={""}
                                                         buttonIcon={""}
                                                         buttonText={<ProtocolIcon className="svgIcon"/>}
-                                                        buttonFunc={()=>{startExpressTask(customerTask)}}/>
+                                                        buttonFunc={()=>{}}/>
                                             </div></> :
                                             <p>Не отправлено</p>}
                                     </div>

@@ -12,10 +12,10 @@ export const HeaderMenu = ({onScrollToSection}) => {
         {text: "Главная", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section0") : ()=>navigate(routes.HOME)},
         {text: "Преимущества", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section1") : ()=>navigate(routes.HOME)},
         {text: "Как начать учиться", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section2") : ()=>navigate(routes.HOME)},
-        {text: "Пополнение баланса", func:()=>{navigate(routes.PRICING)}},
         {text: "Партнеры", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section4") : ()=>navigate(routes.HOME)},
         {text: "FAQ", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section5") : ()=>navigate(routes.HOME)},
-        {text: "Задания", func:()=>{navigate(routes.TASK)}},
+        {text: "Пополнение баланса", func:()=>{navigate(routes.PRICING)}},
+        {text: "Варианты", func:()=>{navigate(routes.TASK)}},
     ]
     const buttonsAuthCollapseContainer = [
         {text: "Преимущества", func: location.pathname === routes.HOME ? ()=> onScrollToSection("section1") : ()=>navigate(routes.HOME)},
@@ -26,13 +26,16 @@ export const HeaderMenu = ({onScrollToSection}) => {
     const buttonsAuthNavbarContainer = [
         {text: "Главная", func: location.pathname === routes.HOME ? ()=> onScrollToSection("section0") : ()=>navigate(routes.HOME)},
         {text: "Пополнение баланса", func:()=>{navigate(routes.PRICING)}},
-        {text: "Задания", func:()=>{navigate(routes.TASK)}},
+        {text: "Варианты", func:()=>{navigate(routes.TASK)}},
     ]
     return (<>
         {!isAuth && <>
             <nav className="headerUnauthNavbarContainer">
                 {buttonsUnauthNavbarContainer.map((button, index) => (
-                    <Button key={index} buttonType={"link"} buttonText={button.text} buttonFunc={button.func}/>
+                    <Button key={index} 
+                            buttonType={"link"} 
+                            buttonText={button.text} 
+                            buttonFunc={button.func}/>
                 ))}
             </nav>
         </>}
@@ -45,7 +48,10 @@ export const HeaderMenu = ({onScrollToSection}) => {
                         <label className="btn defaultBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defaultBtnSvg"/><span>Меню</span></label>
                         <nav>
                             {buttonsAuthCollapseContainer.map((button, index) => (
-                                <Button key={index} buttonType={"link"} buttonText={button.text} buttonFunc={button.func}/>
+                                <Button key={index} 
+                                        buttonType={"link"} 
+                                        buttonText={button.text} 
+                                        buttonFunc={button.func}/>
                             ))}
                         </nav>
                     </div>
@@ -53,7 +59,10 @@ export const HeaderMenu = ({onScrollToSection}) => {
             </div>
             <nav className="headerAuthNavbarImportantContainer">
                 {buttonsAuthNavbarContainer.map((button, index) => (
-                    <Button key={index} buttonType={"link"} buttonText={button.text} buttonFunc={button.func}/>
+                    <Button key={index} 
+                            buttonType={"link"} 
+                            buttonText={button.text} 
+                            buttonFunc={button.func}/>
                 ))}
             </nav>
         </>}

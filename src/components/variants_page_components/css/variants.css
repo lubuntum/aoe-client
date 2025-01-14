@@ -104,6 +104,22 @@
     opacity: 0;
     animation: buttonsKeys .2s ease .2s 1 normal forwards;
 }
+.variantIsVisibleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    background-color: var(--good);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--good);
+}
+.variantIsVisibleContainer .svgIcon {
+    fill: var(--white);
+}
 
 @keyframes buttonsKeys {
     0% {
