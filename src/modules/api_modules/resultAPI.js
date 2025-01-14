@@ -70,6 +70,8 @@ const prepareTaskDTO = (task) => {
 const prepareRequestData = (customerTask, transcriptionService, aiService, aiModel, textDistanceMethod, taskDTO) => {
     return {
         id : customerTask.id,
+        customerId: customerTask.customerId,
+        examId: customerTask.examId,
         task : taskDTO,
         audioPath: customerTask.audioPath,
         transcriptionServiceName : transcriptionService,

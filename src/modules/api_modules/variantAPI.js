@@ -3,8 +3,10 @@ import { API_ADMIN_DELETE_VARIANT, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASK
 import { getCurrentDate } from "../date_modules/currentDate";
 
 export const getVisibleVariants = async () => {
+    
     const response = await axios.get(`${SERVER_API_URL}${API_VARIANTS_DATA}`);
     return response;
+    
 }
 export const getAllVariants = async (token) => {
     const response = await axios.get(`${SERVER_API_URL}${API_ADMIN_VARIANTS}`, {
