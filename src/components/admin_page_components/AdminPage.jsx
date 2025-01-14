@@ -57,7 +57,7 @@ export const AdminPage = () => {
         {name: "Варианты", icon: <SettingsIcon className="svgIcon"/>}, 
         {name: "Партнеры", icon: <PartnerIcon className="svgIcon"/>}, 
         {name: "Промпты", icon: <SettingsIcon className="svgIcon"/>}, 
-        {name: "Тарифы", icon: <SettingsIcon className="svgIcon"/>}]
+        {name: "Финансы", icon: <SettingsIcon className="svgIcon"/>}]
 
     return (<>
         {!isAdmin ? <p>Not found 404</p> : <>

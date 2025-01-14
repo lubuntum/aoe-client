@@ -201,7 +201,7 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                             buttonWidth={"100%"}
                                             buttonHeight={""}
                                             buttonIcon={<FaceIcon className="svgIcon"/>}
-                                            buttonText={"Экспресс"}
+                                            buttonText={"Эксперт"}
                                             buttonFunc={""}/>
                                 </div>    
                             </td>

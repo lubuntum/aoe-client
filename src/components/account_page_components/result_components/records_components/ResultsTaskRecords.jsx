@@ -109,15 +109,19 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         const tempAIService = "vsegpt"//TEMP
         const tempAIModel = "openai/gpt-4o-latest"//TEMP
         const textDistanceMethod = "levenshtein";
-        const response = await sendCustomerTaskToCheckQueue(customerTask, 
-                                                    tempTranscribeService, 
-                                                    tempAIService, 
-                                                    tempAIModel,
-                                                    textDistanceMethod,
-                                                    task,
-                                                    localStorage.getItem("token"))
-        console.log(response.data)
-        await getCustomerTasksData()
+        try {
+            const response = await sendCustomerTaskToCheckQueue(customerTask, 
+                tempTranscribeService, 
+                tempAIService, 
+                tempAIModel,
+                textDistanceMethod,
+                task,
+                localStorage.getItem("token"))
+            console.log(response.data)
+            await getCustomerTasksData()
+        } catch(e) {
+            console.log(e)
+        }
     }
 
     const optionsButtons = [
