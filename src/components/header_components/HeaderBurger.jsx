@@ -12,6 +12,17 @@ export const HeaderBurger = ({headerData, onScrollToSection}) => {
     const {isAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
+    const buttonsBurgerContainer = [
+        {text: "Главная", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section0") : ()=>navigate(routes.HOME)},
+        {text: "Преимущества", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section1") : ()=>navigate(routes.HOME)},
+        {text: "Как начать учиться", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section2") : ()=>navigate(routes.HOME)},
+        {text: "Пополнение баланса", func: ()=>navigate(routes.PRICING)},
+        {text: "Партнеры", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section4") : ()=>navigate(routes.HOME)},
+        {text: "FAQ", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section5") : ()=>navigate(routes.HOME)},
+        {text: "Задания", func: ()=>navigate(routes.TASK)},
+        {text: "Личный кабинет", func: ()=>navigate(routes.ACCOUNT)},
+        {text: "Кабинет админа", func: ()=>navigate(routes.ADMIN)},
+    ]
 
     return (<>
         <div className="headerBurgerContainer">
