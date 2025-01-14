@@ -34,7 +34,7 @@ export const HeaderBurger = ({headerData, onScrollToSection}) => {
                             buttonText={button.text}
                             buttonFunc={button.func}/>
                 ))}
-                {(isAuth && (location.pathname !== routes.ACCOUNT)) && 
+                {isAuth &&
                 <Button buttonType={"link"}
                         buttonText={"Личный кабинет"} 
                         buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>}

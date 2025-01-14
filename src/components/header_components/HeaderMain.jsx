@@ -53,7 +53,6 @@ export const HeaderMain = ({onScrollToSection}) => {
                 console.log(`fetched user data => ${JSON.stringify(response.data)}`)
                 setHeaderData(response.data)
             } catch(e) {
-                console.log(e)
                 logout()
             }   
         }

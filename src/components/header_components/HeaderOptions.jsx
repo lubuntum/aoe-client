@@ -11,7 +11,6 @@ export const HeaderOptions = ({headerData}) => {
     const {logout, isAuth, getEmail} = useAuth()
     const navigate = useNavigate()
     let loadingOptions = <Loader/>
-    console.log(headerData)
     const buttonsOptionsContainer = [
         {text: getEmail(), type: "link", padding: "", icon: "", func: ()=>{navigate(routes.ACCOUNT)}},
         {text: "", type: "admin", padding: "", icon: <AdminIcon className={"svgIcon"}/>, func: ()=>{navigate(routes.ADMIN)}},
