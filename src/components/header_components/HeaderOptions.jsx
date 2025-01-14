@@ -24,55 +24,31 @@ export const HeaderOptions = ({headerData}) => {
                 {headerData === undefined ? loadingBalance : <>
                     <Button buttonType={"balance"}
                             buttonPadding={"0 20px"}
-                            buttonWidth={""}
-                            buttonHeight={""}
-                            buttonIcon={""}
                             buttonText={`Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`} 
                             buttonFunc={()=>{navigate(routes.PRICING)}}/>
                 </>}
                 {headerData === undefined ? loadingName : <>
                     <Button buttonType={"link"}
-                            buttonPadding={""}
-                            buttonWidth={""}
-                            buttonHeight={""}
-                            buttonIcon={""}
                             buttonText={getEmail()} 
                             buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>
                 </>}
                 {headerData?.roles.includes("admin") && 
                     <Button buttonType={"admin"}
-                            buttonPadding={""}
-                            buttonWidth={""}
-                            buttonHeight={""}
                             buttonIcon={<AdminIcon className={"svgIcon"}/>}
-                            buttonText={""} 
                             buttonFunc={()=>{navigate(routes.ADMIN)}}/>}
                 
-                <Button buttonType={""}
-                        buttonPadding={""}
-                        buttonWidth={""}
-                        buttonHeight={""}
-                        buttonIcon={<LogoutIcon className={"svgIcon"}/>}
-                        buttonText={""} 
+                <Button buttonIcon={<LogoutIcon className={"svgIcon"}/>}
                         buttonFunc={()=>{logout()}}/>
             </>)}
 
             {!isAuth && (<>
                 <div className="optionsLoginContainer">
-                    <Button buttonType={""}
-                            buttonPadding={"0 20px"}
-                            buttonWidth={""}
-                            buttonHeight={""}
-                            buttonIcon={""}
+                    <Button buttonPadding={"0 20px"}
                             buttonText={"Войти"} 
                             buttonFunc={()=>{navigate(routes.AUTORIZATION)}}/>
 
-                    <Button buttonType={""}
-                            buttonPadding={"0 20px"}
-                            buttonWidth={""}
-                            buttonHeight={""}
+                    <Button buttonPadding={"0 20px"}
                             buttonIcon={<LoginIcon className={"svgIcon"}/>}
-                            buttonText={""} 
                             buttonFunc={()=>{navigate(routes.AUTORIZATION)}}/>
                 </div>
             </>)}

@@ -40,24 +40,38 @@ export const HeaderMenu = ({onScrollToSection}) => {
                     <div className="headerCollapseContainer">
                         <input type="checkbox" id="headerCollapseCheckbox"></input>
                         <label className="btn defaultBtn" style={{width: "100px"}} for="headerCollapseCheckbox"><MenuIcon className="defaultBtnSvg"/><span>Меню</span></label>
-
                         <nav>
-                            <Button buttonType={"link"}
-                                    buttonText={"Преимущества"}
-                                    buttonFunc={()=>{onScrollToSection("section1")}}/>
+                        {location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Преимущества"}
+							buttonFunc={()=>{onScrollToSection("section1")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Преимущества"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-                                    buttonPadding={""}
-                                    buttonText={"Как начать учиться"}
-                                    buttonFunc={()=>{onScrollToSection("section2")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Как начать учиться"}
+							buttonFunc={()=>{onScrollToSection("section2")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Как начать учиться"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-                                    buttonText={"Партнеры"}
-                                    buttonFunc={()=>{onScrollToSection("section4")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"Партнеры"}
+							buttonFunc={()=>{onScrollToSection("section4")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"Партнеры"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
 
-                            <Button buttonType={"link"}
-                                    buttonText={"FAQ"}
-                                    buttonFunc={()=>{onScrollToSection("section5")}}/>
+						{location.pathname === routes.HOME ?
+						<Button buttonType={"link"}
+							buttonText={"FAQ"}
+							buttonFunc={()=>{onScrollToSection("section5")}}/> :
+						<Button buttonType={"link"}
+							buttonText={"FAQ"}
+							buttonFunc={()=>{navigate(routes.HOME)}}/>}
                         </nav>
                     </div>
                 </>}
