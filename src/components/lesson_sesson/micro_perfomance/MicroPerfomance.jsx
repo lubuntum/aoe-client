@@ -9,7 +9,7 @@ import { PageTitle } from "../../reusible_components/PageTitle"
 export const MicroPerfomance = ({setMicroCheck}) => {
     return (<>
         <div className="microCheckWrapper">
-            <PageTitle pageTitleText={"Проверка микрофона"}/>
+            <PageTitle pageTitleText={"#Проверка# микрофона"}/>
             <MicroPerfomanceCheck setMicroCheck = {setMicroCheck}/>
         </div>
     </>)

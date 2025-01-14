@@ -6,7 +6,7 @@ import { Button } from "../reusible_components/Button"
 export const VariantsContent = ({variants}) => {
     return (<>
         <div className='variantsContentWrapper'>
-            <PageTitle pageTitleText={"Выберите вариант для прохождения"}/>
+            <PageTitle pageTitleText={"Выберите #вариант# для прохождения"}/>
             
             {variants ? <>
                 <div className='variantsGrid'>
@@ -17,11 +17,8 @@ export const VariantsContent = ({variants}) => {
             </> : 
             <p>Ошибка загрузки вариантов, обновите страницу</p>}
 
-            <Button buttonType={""}
+            <Button key={0}
                     buttonPadding={"0 20px"}
-                    buttonWidth={""}
-                    buttonHeight={""}
-                    buttonIcon={""}
                     buttonText={"Показать еще"}
                     buttonFunc={()=>{}}/>
         </div>

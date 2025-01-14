@@ -70,11 +70,9 @@ export const MainPage = () => {
                             <div className="bannerInfoContainer">
                                 <h1>Lorem ipsum dolor <span>sit amet</span> consectetur, adipisicing elit.</h1>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa explicabo cum accusantium repellendus impedit dignissimos aperiam labore sapiente voluptatum necessitatibus quas, ipsa corporis doloribus nemo, odit praesentium vel fugit quo deserunt voluptatibus laborum voluptates illo odio? Excepturi mollitia autem, quae accusamus in reiciendis deleniti quisquam suscipit voluptates beatae magnam consequuntur voluptas ipsam sint iste. Est incidunt labore sunt sequi officia!</p>
-                                <Button buttonType={""}
+                                <Button key={0}
                                         buttonPadding={"0 20px"}
                                         buttonWidth={"300px"}
-                                        buttonHeight={""}
-                                        buttonIcon={""}
                                         buttonText={"Пройти пробные варианты"}
                                         buttonFunc={()=>{}}/>
                             </div>
@@ -88,7 +86,7 @@ export const MainPage = () => {
             <div id="section1" className='sectionWrapper'>
                 <div className="contentWrapper">
                     <div className='advantagesWrapper'>
-                        <PageTitle pageTitleText={"6 плюсов которое помогут Вам лучше подготовиться к экзамену"}/>
+                        <PageTitle pageTitleText={"#6 плюсов# которые помогут Вам лучше подготовиться к экзамену"}/>
                         <div className="advantagesContainer">
                             <MainAdvantages advantageImage={<DuckIcon className="svgIcon"/>} advantageText={"Первое наименование"}/>
                             <MainAdvantages advantageImage={<SnakeIcon className="svgIcon"/>} advantageText={"Второе наименование"}/>
@@ -103,7 +101,7 @@ export const MainPage = () => {
             <div id="section2" className='sectionWrapper'>
                 <div className="contentWrapper">
                     <div className='usesWrapper'>
-                        <PageTitle pageTitleText={"Всего 4 шага к началу подгтовки к ЕГЭ"}/>
+                        <PageTitle pageTitleText={"Всего #4 шага# к началу подгтовки к ЕГЭ"}/>
                         <div className="usesInfoContainer">
                             <div className="usesImageContrainer">
                                 <img src={bannerImage} alt=""/>
@@ -121,7 +119,7 @@ export const MainPage = () => {
             <div id="section3" className='sectionWrapper'>
                 <div className="contentWrapper">
                     <div className='subscriptionAdvantagesWrapper'>
-                        <PageTitle pageTitleText={"Преимущества улучшеной подписки"}/>
+                        <PageTitle pageTitleText={"Преимущества #улучшеной подписки#"}/>
                         <div className="subscriptionAdvantagesContainer">
                             <PricingSubscriptionCard className={""}
                                                      contentSwap={false}
@@ -144,14 +142,14 @@ export const MainPage = () => {
             <div id="section4" className='sectionWrapper'>
                 <div className="contentWrapper">
                     <div className='partnersWrapper'>
-                        <PageTitle pageTitleText={"Наши партнеры"}/>
+                        <PageTitle pageTitleText={"Наши #партнеры#"}/>
                     </div>
                 </div>
             </div>
             <div id="section5" className='sectionWrapper'>
                 <div className="contentWrapper">
                     <div className='faqWrapper'>
-                        <PageTitle pageTitleText={"Ответим на частые вопросы"}/>
+                        <PageTitle pageTitleText={"Ответим на #частые вопросы#"}/>
                         <div className="faqContainer">
                             {faqData.map((item, index) => (
                                 <MainFAQ iterator={index+1} question={item.question} answer={item.answer}/>

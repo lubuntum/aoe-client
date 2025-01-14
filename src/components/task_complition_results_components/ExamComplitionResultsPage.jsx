@@ -47,7 +47,7 @@ export const ExamComplitionResultsPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="taskComplitionWrapper">
-                    <PageTitle pageTitleText={`Ответы на {наименование варианта} - Экзамен`} className={""}/>
+                    <PageTitle pageTitleText={`#Ответы# на {наименование варианта} - Экзамен`} className={""}/>
                     <div className="taskComplitionContainer">
                         <div className="taskComplitionInnerContainer">
                             {tasks && <>
@@ -59,17 +59,13 @@ export const ExamComplitionResultsPage = () => {
                                             <p>Ваша запись:</p>
                                             <audio controls src={`${SERVER_API_URL}/${result.customerTask.audioPath}`}></audio>
                                             <div className="taskComplitionOptions">
-                                                <Button buttonType={""}
+                                                <Button key={0}
                                                         buttonPadding={"0 20px"}
-                                                        buttonWidth={""}
-                                                        buttonHeight={""}
                                                         buttonIcon={<DownloadIcon className="svgIcon"/>}
                                                         buttonText={"Скачать"}
                                                         buttonFunc={()=>{}}/>
-                                                <Button buttonType={""}
+                                                <Button key={1}
                                                         buttonPadding={"0 20px"}
-                                                        buttonWidth={""}
-                                                        buttonHeight={""}
                                                         buttonIcon={<LinkIcon className="svgIcon"/>}
                                                         buttonText={"Cсылка"}
                                                         buttonFunc={()=>{}}/>

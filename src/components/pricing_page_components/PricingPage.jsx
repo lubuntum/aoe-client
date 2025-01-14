@@ -34,7 +34,7 @@ export const PricingPage = () => {
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
                     <div className="pricingGrid">
-                        <PageTitle pageTitleText={"Приобрести подписку"} className={"pricingGridItem1"}/>
+                        <PageTitle pageTitleText={"Приобрести #подписку#"} className={"pricingGridItem1"}/>
 
                         <PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
@@ -53,7 +53,7 @@ export const PricingPage = () => {
                                                  subscriptionBG={proBackground}
                                                  subscriptionPricing={proPricing}/>
 
-                        <PageTitle pageTitleText={"Пополнить баланс"} className={"pricingGridItem4"}/>
+                        <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
 
                         <PricingBalanceCard className={"pricingGridItem5"}
                                             paymentBG={paymentBackground}
