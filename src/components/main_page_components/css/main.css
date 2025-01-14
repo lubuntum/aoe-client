@@ -186,7 +186,6 @@
 .faqContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
 }
 .accrodionSummary {
@@ -210,6 +209,7 @@
     grid-template-rows: 0fr;
     transition-duration: .2s;
     transition-timing-function: ease;
+    margin-top: 20px;
 }
 .accordionAnswer {
     user-select: none;
@@ -228,6 +228,7 @@
     border-radius: 20px;
     font-size: 1rem;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
 

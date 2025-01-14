@@ -37,7 +37,7 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
                                     buttonWidth={""}
                                     buttonHeight={""}
                                     buttonIcon={""}
-                                    buttonText={"Подключить"}
+                                    buttonText={"Приобрести"}
                                     buttonFunc={()=>{}}/>
                         </div>}
                 </div>}

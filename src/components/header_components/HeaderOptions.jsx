@@ -1,12 +1,8 @@
 import { useAuth } from "../../modules/auth_modules/AuthProvider.js"
 import { useNavigate } from "react-router-dom"
-
 import { Button } from "../reusible_components/Button.jsx"
-
 import { Loader } from "../reusible_components/Loader.jsx"
-
 import routes from "../../routes.js"
-
 import { ReactComponent as LogoutIcon } from "../../res/icons/logout_24dp_gi.svg"
 import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_gi.svg"
 import { ReactComponent as AdminIcon } from "../../res/icons/admin_24dp_gi.svg"
@@ -14,42 +10,45 @@ import { ReactComponent as AdminIcon } from "../../res/icons/admin_24dp_gi.svg"
 export const HeaderOptions = ({headerData}) => {
     const {logout, isAuth, getEmail} = useAuth()
     const navigate = useNavigate()
-
-    let loadingBalance = <Loader/>
-    let loadingName = <Loader/>
+    let loadingOptions = <Loader/>
+    const buttonsOptionsContainer = [
+        {text: getEmail(), type: "link", padding: "", icon: "", func: ()=>{navigate(routes.ACCOUNT)}},
+        {text: "", type: "admin", padding: "", icon: <AdminIcon className={"svgIcon"}/>, func: ()=>{navigate(routes.ADMIN)}},
+        {text: "", type: "", padding: "", icon: <LogoutIcon className={"svgIcon"}/>, func: ()=>{logout()}},
+    ]
+    const buttonsOptionsLoginContainer = [
+        {text: "Войти", padding: "0 20px", icon: "", func: ()=>{navigate(routes.AUTORIZATION)}},
+        {text: "", padding: "0 20px", icon: <LoginIcon className={"svgIcon"}/>, func: ()=>{navigate(routes.AUTORIZATION)}},
+    ]
     
     return (<>
         <div className="headerOptionsContainer">
             {isAuth && (<>
-                {headerData === undefined ? loadingBalance : <>
-                    <Button buttonType={"balance"}
-                            buttonPadding={"0 20px"}
-                            buttonText={`Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`} 
+                {headerData === undefined ? loadingOptions : <>
+                    <Button buttonText={`Баланс: ${headerData.currentBalance ? headerData.currentBalance : 0} ₽`}
+                            buttonType={"balance"}
+                            buttonPadding="0 20px"
                             buttonFunc={()=>{navigate(routes.PRICING)}}/>
+                    {buttonsOptionsContainer.map((button, index) => (
+                        <Button key={index} 
+                                buttonType={button.type} 
+                                buttonPadding={button.padding} 
+                                buttonText={button.text} 
+                                buttonIcon={button.icon} 
+                                buttonFunc={button.func}/>
+                    ))}
                 </>}
-                {headerData === undefined ? loadingName : <>
-                    <Button buttonType={"link"}
-                            buttonText={getEmail()} 
-                            buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>
-                </>}
-                {headerData?.roles.includes("admin") && 
-                    <Button buttonType={"admin"}
-                            buttonIcon={<AdminIcon className={"svgIcon"}/>}
-                            buttonFunc={()=>{navigate(routes.ADMIN)}}/>}
-                
-                <Button buttonIcon={<LogoutIcon className={"svgIcon"}/>}
-                        buttonFunc={()=>{logout()}}/>
             </>)}
 
             {!isAuth && (<>
                 <div className="optionsLoginContainer">
-                    <Button buttonPadding={"0 20px"}
-                            buttonText={"Войти"} 
-                            buttonFunc={()=>{navigate(routes.AUTORIZATION)}}/>
-
-                    <Button buttonPadding={"0 20px"}
-                            buttonIcon={<LoginIcon className={"svgIcon"}/>}
-                            buttonFunc={()=>{navigate(routes.AUTORIZATION)}}/>
+                    {buttonsOptionsLoginContainer.map((button, index) => (
+                        <Button key={index} 
+                                buttonPadding={button.padding} 
+                                buttonIcon={button.icon} 
+                                buttonFunc={button.func}
+                                buttonText={button.text}/>
+                    ))}
                 </div>
             </>)}
         </div>

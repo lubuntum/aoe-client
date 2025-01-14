@@ -77,6 +77,10 @@ export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}
                         </div>
                     </div>
                 </div>
+                {variant.isVisible &&
+                <div className="variantIsVisibleContainer">
+                        <VisibilityOnIcon className="svgIcon"/>
+                </div>}
             </div>
         </div>
     </>)
