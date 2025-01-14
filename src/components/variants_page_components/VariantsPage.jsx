@@ -11,8 +11,12 @@ export const VariantsPage = () => {
     const [variants, setVariants] = useState(undefined);
     useEffect(()=>{
         const fetchData = async () => {
-            const response = await getVisibleVariants();
-            setVariants(response.data);
+            try {
+                const response = await getVisibleVariants();
+                setVariants(response.data);
+            } catch(e) {
+                setVariants(null)
+            }
         }
         fetchData()
     }, [])
