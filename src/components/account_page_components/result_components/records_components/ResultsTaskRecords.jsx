@@ -231,9 +231,9 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                         getStatus(customerTask.expressCheckStatus?.status) === "checking" ?
                                             <Loader/> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ?
-                                            <p>Incomlete</p> :
+                                            <p>Incomplete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "insufficient" ?
-                                            <p>Incomlete</p> :
+                                            <p>Not enough words</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
                                             <p>{customerTask.taskResults[0]?.sendDate ? customerTask.taskResults[0].sendDate : "Ошибка сервера"}</p> :
                                             <p>Не отправлено</p>}
@@ -250,9 +250,9 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                         getStatus(customerTask.expressCheckStatus?.status) === "checking" ? 
                                             <Loader/> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ?
-                                            <p>Incomlete</p> :
+                                            <p>Incomplete</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "insufficient" ?
-                                            <p>Incomlete</p> :
+                                            <p>Not enough words</p> :
                                         getStatus(customerTask.expressCheckStatus?.status) === "completed" ? <>
                                             <div className="resultsRecordsGradeWrapper">
                                                 <p className={`recordGrade ${setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}`}>
