@@ -25,7 +25,8 @@ const AuthProvider = ({children}) =>{
         navigate('/home')
     }
     const logout = () => {
-        localStorage.clear()
+        localStorage.removeItem("user_email")
+        localStorage.removeItem("token")
         setIsAuth(false)
         navigate('/autorization')
     }

@@ -58,7 +58,6 @@ export const FooterMain = ({onScrollToSection}) => {
                     </div>
                     <div className="footerCred">
                         <p>© Lorem, ipsum dolor.</p>
-                        <p>Разработка сервиса - <span>timofeyershovv@gmail.com</span>, <span>lubuntum@gmail.com</span></p>
                     </div>
                 </div>
             </div>

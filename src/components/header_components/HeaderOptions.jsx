@@ -8,13 +8,12 @@ import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_gi.svg"
 import { ReactComponent as AdminIcon } from "../../res/icons/admin_24dp_gi.svg"
 
 export const HeaderOptions = ({headerData}) => {
-    const {logout, isAuth, getEmail} = useAuth()
+    const {logout, isAuth} = useAuth()
     const navigate = useNavigate()
     let loadingOptions = <Loader/>
     const buttonsOptionsContainer = [
-        {text: getEmail(), type: "link", padding: "", icon: "", func: ()=>{navigate(routes.ACCOUNT)}},
+        {text: "Личный кабинет", type: "link", padding: "", icon: "", func: ()=>{navigate(routes.ACCOUNT)}},
         {text: "", type: "admin", padding: "", icon: <AdminIcon className={"svgIcon"}/>, func: ()=>{navigate(routes.ADMIN)}},
-        {text: "", type: "", padding: "", icon: <LogoutIcon className={"svgIcon"}/>, func: ()=>{logout()}},
     ]
     const buttonsOptionsLoginContainer = [
         {text: "Войти", padding: "0 20px", icon: "", func: ()=>{navigate(routes.AUTORIZATION)}},
@@ -38,6 +37,9 @@ export const HeaderOptions = ({headerData}) => {
                                 buttonFunc={button.func}/>
                     ))}
                 </>}
+                <Button key={"logout0"}
+                        buttonIcon={<LogoutIcon className={"svgIcon"}/>}
+                        buttonFunc={()=>{logout()}}/>
             </>)}
 
             {!isAuth && (<>

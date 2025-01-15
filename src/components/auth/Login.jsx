@@ -1,16 +1,32 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
+import { Checkbox } from "../reusible_components/Checkbox"
 
 export const Login = ({toggle, disabledButton}) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
+    const [rememberMe, setRememberMe] = useState(false)
     const [error, setError] = useState(null)
 
     const {login} = useAuth()
     const {saveEmail, getEmail} = useAuth()
 
-    const [isChecked, setIsChecked] = useState(false)
+    useEffect(() => {
+        const savedEmail = localStorage.getItem("savedEmail")
+        const savedPassword = localStorage.getItem("savedPassword")
+        const savedRemember = localStorage.getItem("savedRemember") === "true"
+
+        if (savedRemember) {
+            setEmail(savedEmail)
+            setPassword(savedPassword)
+            setRememberMe(savedRemember)
+        }
+    }, [])
+
+    const handleRememberMe = () => {
+        setRememberMe(!rememberMe)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,13 +34,23 @@ export const Login = ({toggle, disabledButton}) => {
             setError("Введите почту и пароль")
             return
         }
-        try{
+        try {
             const response = await serverLogin(email, password)
             collectDataByToken(response.data.token)
             setError(null)
         } catch(error) {
             setError("Неверный логин или пароль")
             console.error("Login failed", error)
+        }
+
+        if (rememberMe) {
+            localStorage.setItem("savedEmail", email)
+            localStorage.setItem("savedPassword", password)
+            localStorage.setItem("savedRemember", "true")
+        } else {
+            localStorage.removeItem("savedEmail")
+            localStorage.removeItem("savedPassword")
+            localStorage.setItem("savedRemember", "false")
         }
     }
 
@@ -56,13 +82,7 @@ export const Login = ({toggle, disabledButton}) => {
         </div>
 
         <div className="rememberForgetContainer">
-            <label className="defCheckboxContainer">
-                <input type="checkbox" onChange={() => {
-                    setIsChecked(!isChecked)
-                }}></input>
-                <span className={`checkbox ${isChecked ? "checkboxAcitve" : "checkboxDisable"}`} aria-hidden="true"></span>
-                Запомнить меня!
-            </label>
+            <Checkbox checkboxText={"Запомнить меня!"} checkboxChecked={rememberMe} checkboxOnChange={handleRememberMe}/>
 
             <a className="linkBtn" onClick={() => {}}>Забыли пароль?</a>
         </div>

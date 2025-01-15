@@ -1,0 +1,57 @@
+.checkboxContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	justify-content: center;
+	align-items: center;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+.checkboxContainer input[type="checkbox"] {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+	
+}
+.checkboxContainer .checkbox {
+	position: relative;
+	display: inline-block;
+	height: 22px;
+	width: 22px;
+	background-color: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 5px;
+}
+.checkboxContainer .checkboxAcitve {
+	box-shadow: 0 0 5px var(--blue);
+	border: 1px solid var(--blue);
+	transition: all .2s ease;
+}
+.checkboxContainer .checkboxAcitve::after {
+	content: "";
+	position: absolute;
+	opacity: 0;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background-color: var(--blue);
+	border-radius: 3px;
+	animation: checkAppear .2s forwards;
+}
+@keyframes checkAppear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
