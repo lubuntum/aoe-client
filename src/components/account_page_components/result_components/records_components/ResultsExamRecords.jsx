@@ -25,14 +25,6 @@ import { Loader } from "../../../reusible_components/Loader.jsx"
     <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
 </div> */
 
-
-
-/*TODO
-    --Сделать две панельки для экзамена и для тасков
-    --Они слишком сильно отличаются и имеют разную во многом бизнес логику
-    --Будет лучше, проще и практичнее сделать два отдельных компонента 
-    которые будут отображать экзамены по варианту и задания отдельно
-*/
 export const ResultsExamRecords = ({variant, examPicked, className}) => {
     const navigate = useNavigate()
 
@@ -188,30 +180,28 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodyButtons">
-                                    <Button buttonType={""}
+                                    <Button key={0}
                                             buttonPadding={"0 20px"}
                                             buttonWidth={"100%"}
-                                            buttonHeight={""}
                                             buttonIcon={<BoltIcon className="svgIcon"/>}
                                             buttonText={"Экспресс"}
                                             buttonFunc={() => {sendExamToCheckQueue(exam.id, localStorage.getItem("token"))}}/>
 
-                                    <Button buttonType={""}
+                                    <Button key={1}
+                                            buttonType={"block"}
                                             buttonPadding={"0 20px"}
                                             buttonWidth={"100%"}
-                                            buttonHeight={""}
                                             buttonIcon={<FaceIcon className="svgIcon"/>}
-                                            buttonText={"Эксперт"}
-                                            buttonFunc={""}/>
+                                            buttonText={"Эксперт"}/>
                                 </div>    
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodySendDate">
                                     <div className="resultsRecordsTableBodyItem">
-                                        <p>{exam.expressSendDate ? exam.expressSendDate : "Не отправл."}</p>
+                                        <p>{exam.expressSendDate ? exam.expressSendDate : "Ошибка"}</p>
                                     </div>
                                     <div className="resultsRecordsTableBodyItem">
-                                        <p>{exam.expertSendDate ? exam.expertSendDate : "Не отправл."}</p>
+                                        <p>{exam.expertSendDate ? exam.expertSendDate : "Ошибка"}</p>
                                     </div>
                                 </div>
                             </td>
@@ -222,11 +212,8 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                             <p className={`recordGrade ${setGradeColor(exam?.expressTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
                                             {exam?.expressTotalGrade} / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
                                             </p>
-                                            <Button buttonType={"ghost protocol"}
-                                                    buttonPadding={""}
-                                                    buttonWidth={""}
-                                                    buttonHeight={""}
-                                                    buttonIcon={""}
+                                            <Button key={2}
+                                                    buttonType={"ghost protocol"}
                                                     buttonText={<ProtocolIcon className="svgIcon"/>}
                                                     buttonFunc={()=>{}}/>
                                         </div>
@@ -237,11 +224,8 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                             <p className={`recordGrade ${setGradeColor(exam?.expressTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
                                                 -- / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
                                             </p>
-                                            <Button buttonType={"ghost protocol"}
-                                                    buttonPadding={""}
-                                                    buttonWidth={""}
-                                                    buttonHeight={""}
-                                                    buttonIcon={""}
+                                            <Button key={3}
+                                                    buttonType={"ghost protocol"}
                                                     buttonText={<ProtocolIcon className="svgIcon"/>}
                                                     buttonFunc={()=>{}}/>
                                         </div>
@@ -269,11 +253,8 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                 {exams?.length > 3 && 
                     <div className="resultsRecordsTablePagination">
                         {Array.from({ length: Math.ceil(exams.length / itemsPerPage) }, (_, index) => (
-                            <Button buttonType={"ghost"}
-                                    buttonPadding={""}
-                                    buttonWidth={""}
-                                    buttonHeight={""}
-                                    buttonIcon={""}
+                            <Button key={`pagination${index + 1}`}
+                                    buttonType={"ghost"}
                                     buttonText={index + 1}
                                     buttonFunc={() => paginate(index + 1)}/>))}
                     </div>}

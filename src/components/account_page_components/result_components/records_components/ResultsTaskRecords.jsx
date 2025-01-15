@@ -205,18 +205,14 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                     getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
                                     getStatus(customerTask.expressCheckStatus?.status) === "checking" ||
                                     getStatus(customerTask.expressCheckStatus?.status) === "completed") ?
-                                        <Button buttonType={"block"}
+                                        <Button key={0}
+                                                buttonType={"block"}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
-                                                buttonHeight={""}
-                                                buttonIcon={""}
-                                                buttonText={"Экспресс"}
-                                                buttonFunc={""}/> :
-                                        <Button buttonType={""}
+                                                buttonText={"Экспресс"}/> :
+                                        <Button key={1}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
-                                                buttonHeight={""}
-                                                buttonIcon={""}
                                                 buttonText={"Экспресс"}
                                                 buttonFunc={()=>{startExpressTask(customerTask)}}/>}
                                 </div>    
@@ -257,11 +253,8 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                             <div className="resultsRecordsGradeWrapper">
                                                 <p className={`recordGrade ${setGradeColor(customerTask.taskResults[0]?.result.grade, TASKS_MAX_GRADE[task.taskType])}`}>
                                                     {setGradeFormat(customerTask.taskResults[0]?.result.grade)} / {setGradeFormat(TASKS_MAX_GRADE[task.taskType])}</p> 
-                                                <Button buttonType={"ghost protocol"}
-                                                        buttonPadding={""}
-                                                        buttonWidth={""}
-                                                        buttonHeight={""}
-                                                        buttonIcon={""}
+                                                <Button key={2}
+                                                        buttonType={"ghost protocol"}
                                                         buttonText={<ProtocolIcon className="svgIcon"/>}
                                                         buttonFunc={()=>{}}/>
                                             </div></> :
@@ -290,11 +283,8 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                 {customerTasks?.length > 3 && 
                     <div className="resultsRecordsTablePagination">
                         {Array.from({ length: Math.ceil(customerTasks.length / itemsPerPage) }, (_, index) => (
-                            <Button buttonType={"ghost"}
-                                    buttonPadding={""}
-                                    buttonWidth={""}
-                                    buttonHeight={""}
-                                    buttonIcon={""}
+                            <Button key={`pagination${index + 1}`}    
+                                    buttonType={"ghost"}
                                     buttonText={index + 1}
                                     buttonFunc={() => paginate(index + 1)}/>))}
                     </div>}

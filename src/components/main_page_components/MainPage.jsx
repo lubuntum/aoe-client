@@ -16,6 +16,7 @@ import { MainAdvantages } from "./MainAdvantages"
 import { MainUses } from "./MainUses"
 import { PricingSubscriptionCard } from "../pricing_page_components/PricingSubscriptionCard"
 import { MainFAQ } from "./MainFAQ"
+import { FooterMain } from "../footer_components/FooterMain"
 import { Button } from "../reusible_components/Button"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { useState } from "react"
@@ -159,5 +160,6 @@ export const MainPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain onScrollToSection={scrollToSection}/>
     </>)
 }
