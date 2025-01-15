@@ -23,3 +23,8 @@ export const sortExams = (a, b) => {
     const second = b.examCompleteDate
     return sortDate(first, second)
 }
+export const sortVariants = (a, b) => {
+    const first = a.creationDate;
+    const second = b.creationDate
+    return sortDate(first, second)
+}

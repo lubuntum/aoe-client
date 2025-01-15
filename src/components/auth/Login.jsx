@@ -3,9 +3,9 @@ import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
 
 export const Login = ({toggle, disabledButton}) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [error, setError] = useState(null)
 
     const {login} = useAuth()
     const {saveEmail, getEmail} = useAuth()
@@ -14,13 +14,16 @@ export const Login = ({toggle, disabledButton}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!email || !password) {
+            setError("Введите почту и пароль")
+            return
+        }
         try{
-            //const response = {data : {'username':username, 'token':"test"}} //await serverLogin(username, password)
-            console.log(`${email} ${password}`)
             const response = await serverLogin(email, password)
             collectDataByToken(response.data.token)
+            setError(null)
         } catch(error) {
-            if (error.response) setError(error.response.data.error)
+            setError("Неверный логин или пароль")
             console.error("Login failed", error)
         }
     }
@@ -31,6 +34,7 @@ export const Login = ({toggle, disabledButton}) => {
     }
 
     return (<>
+        {error && <p>{error}</p>}
         <p className="loginTitle">Service</p>
 
         <div className="defInpContainer" style={{width: "350px"}}>
