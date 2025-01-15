@@ -16,6 +16,8 @@ import { Button } from "../reusible_components/Button"
 import { useEffect, useState } from "react"
 import { validateAdmin } from "../../modules/validation_modules/adminValidation"
 
+import { FooterMain } from "../footer_components/FooterMain"
+
 import { ReactComponent as SettingsIcon } from "../../res/icons/manufacturing_24dp_gi.svg"
 import { ReactComponent as PartnerIcon } from "../../res/icons/handshake_24dp_gi.svg"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
@@ -84,6 +86,8 @@ export const AdminPage = () => {
                         </div>
                     </div>
                 </div>
-            </div></>}
+            </div>
+            <FooterMain/>
+        </>}
     </>)
 }

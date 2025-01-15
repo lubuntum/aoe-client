@@ -12,6 +12,7 @@ import { FirstTaskSession } from "../task_session/FirstTaskSession"
 import { SecondTaskSession } from "../task_session/SecondTaskSession"
 import { FourthTaskSession } from "../task_session/FourthTaskSession"
 import { ThirdTaskSession } from "../task_session/ThirdTaskSession"
+import { FooterMain } from "../../footer_components/FooterMain"
 
 import { useLessonSpeaker } from '../../../hooks/speech/useLessonSpeaker'
 import { createExamRequest, saveUserTaskRequest } from "../../../modules/api_modules/complitionScenarioAPI"
@@ -152,5 +153,6 @@ export const LessonSessionPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 }

@@ -32,7 +32,7 @@
 .footerColumn p:first-child {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--black);
     margin-bottom: 10px;
 }
 .footerColumn p {

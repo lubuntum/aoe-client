@@ -6,6 +6,7 @@ import { HeaderMain } from "../header_components/HeaderMain"
 import { VariantsContent } from './VariantsContent'
 import { VariantsEmpty } from "./VariantsEmpty"
 import { getVisibleVariants } from "../../modules/api_modules/variantAPI"
+import { FooterMain } from '../footer_components/FooterMain'
 
 export const VariantsPage = () => {
     const [variants, setVariants] = useState(undefined);
@@ -34,5 +35,6 @@ export const VariantsPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 }

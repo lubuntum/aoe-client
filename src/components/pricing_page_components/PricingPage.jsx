@@ -7,6 +7,7 @@ import paymentBackground from "../../res/images/payment_balance_backgorund.png"
 import { HeaderMain } from "../header_components/HeaderMain"
 import { PricingSubscriptionCard } from "./PricingSubscriptionCard"
 import { PricingBalanceCard } from "./PricingBalanceCard"
+import { FooterMain } from "../footer_components/FooterMain"
 
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Tooltip } from "../reusible_components/Tooltip"
@@ -63,5 +64,6 @@ export const PricingPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 }

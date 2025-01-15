@@ -16,7 +16,7 @@ import { UserSubscriptionLoading } from "./user_components/UserSubscriptionLoadi
 import { UserPromocode } from "./user_components/UserPromocode"
 import { UserChangePassword } from "./user_components/UserChangePassword"
 import { ResultsGrid } from "./result_components/ResultsGrid"
-
+import { FooterMain } from "../footer_components/FooterMain"
 
 
 export const AccountPage = () =>{
@@ -61,5 +61,6 @@ export const AccountPage = () =>{
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 }

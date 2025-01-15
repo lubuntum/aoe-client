@@ -9,6 +9,7 @@ import { getTaskByTaskId } from "../../modules/api_modules/taskAPI"
 import { getCustomerTaskByCustomerTaskId } from "../../modules/api_modules/resultAPI"
 import { HeaderMain } from "../header_components/HeaderMain"
 import { ComplitionResultsWrapper } from "./ComplitionResultsWrapper"
+import { FooterMain } from "../footer_components/FooterMain"
 import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
@@ -66,6 +67,7 @@ export const TaskComplitionResultsPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 
 }

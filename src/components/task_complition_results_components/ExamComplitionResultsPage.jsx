@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { getTasksByVariantId } from "../../modules/api_modules/variantAPI"
 import { ComplitionResultsWrapper } from "./ComplitionResultsWrapper"
 import { getCustomerTaskByExamId } from "../../modules/api_modules/resultAPI"
+import { FooterMain } from "../footer_components/FooterMain"
 import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
@@ -79,5 +80,6 @@ export const ExamComplitionResultsPage = () => {
                 </div>
             </div>
         </div>
+        <FooterMain/>
     </>)
 }
