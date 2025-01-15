@@ -107,7 +107,7 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
     const startExpressTask = async (customerTask) => {
         const tempTranscribeService = "assemblyai"//TEMP
         const tempAIService = "vsegpt"//TEMP
-        const tempAIModel = "openai/gpt-4o-latest"//TEMP
+        const tempAIModel = "openai/gpt-4"//TEMP
         const textDistanceMethod = "levenshtein";
         try {
             const response = await sendCustomerTaskToCheckQueue(customerTask, 

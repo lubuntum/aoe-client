@@ -220,7 +220,7 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                     <div className="resultsRecordsTableBodyItem">
                                         <div className="resultsRecordsGradeWrapper">
                                             <p className={`recordGrade ${setGradeColor(exam?.expressTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
-                                                -- / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
+                                            {exam?.expressTotalGrade} / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
                                             </p>
                                             <Button buttonType={"ghost protocol"}
                                                     buttonPadding={""}
