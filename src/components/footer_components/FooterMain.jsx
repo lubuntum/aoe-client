@@ -7,7 +7,6 @@ import { Button } from "../reusible_components/Button"
 
 import { ReactComponent as TelegramIcon } from "../../res/icons/telegram_24dp.svg"
 import { ReactComponent as VKIcon } from "../../res/icons/vk_24dp.svg"
-import { ReactComponent as SendIcon } from "../../res/icons/send_24dp_gi.svg"
 
 export const FooterMain = ({onScrollToSection}) => {
     const location = useLocation()
@@ -49,29 +48,17 @@ export const FooterMain = ({onScrollToSection}) => {
                         <div className="footerContact footerColumn">
                             <p>Контакты</p>
                         </div>
-                        <div className="footerEmail footerColumn">
-                            <p>Связаться с нами</p>
-                            <div className="footerEmailContainer">
-                                <div className="defInpContainer">
-                                    <input className="defInp" 
-                                            placeholder="Ваша почта" 
-                                            required
-                                            onChange={(e) => {}}></input>
-                                </div>
-                                <Button key={"footerEmail1"}
-                                        buttonIcon={<SendIcon className="svgIcon"/>}/>
-                            </div>
-                        </div>
                     </div>
                     <div className="footerBottomDivider"></div>
                     <div className="footerDocuments">
                         <a href="">Документ 1</a>
                         <a href="">Документ 2</a>
-                        <a href="">Документ 3</a>
-                        <a href="">Документ 4</a>
+                        <a href="">Политика конфиденциальности</a>
+                        <a href="">Публичная оферта</a>
                     </div>
-                    <div className="footerRights">
+                    <div className="footerCred">
                         <p>© Lorem, ipsum dolor.</p>
+                        <p>Разработка сервиса - <span>timofeyershovv@gmail.com</span>, <span>lubuntum@gmail.com</span></p>
                     </div>
                 </div>
             </div>
