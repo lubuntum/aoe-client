@@ -42,7 +42,7 @@ export const AccountPage = () =>{
             <div className="contentWrapper">
                 <div className="accountWrapper">
                     <div className="accountGrid">
-                        <PageTitle pageTitleText={"#Личный кабинет#"} className={"accountGridItem1"}/>
+                        <PageTitle pageTitleText={"#Личный# кабинет"} className={"accountGridItem1"}/>
 
                         {customer !== undefined ? <UserInfo customer={customer} className={"accountGridItem2"}/> : 
                                                   <UserInfoLoading className={"accountGridItem2"}/>}
@@ -54,7 +54,7 @@ export const AccountPage = () =>{
 
                         <UserChangePassword className={"accountGridItem5"}/>
 
-                        <PageTitle pageTitleText={"#Пройденные варианты#"} className={"accountGridItem6"}/>
+                        <PageTitle pageTitleText={"#Пройденные# варианты"} className={"accountGridItem6"}/>
 
                         <ResultsGrid className={"accountGridItem7"}/>
                     </div>
