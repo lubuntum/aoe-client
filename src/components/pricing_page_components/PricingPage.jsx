@@ -1,5 +1,7 @@
 import "./css/pricing.css"
 
+import { useMemo } from "react"
+
 import baseBackground from "../../res/images/base_subscription_background.png"
 import proBackground from "../../res/images/pro_subscription_background.png"
 import paymentBackground from "../../res/images/payment_balance_backgorund.png"
@@ -13,21 +15,27 @@ import { PageTitle } from "../reusible_components/PageTitle"
 import { Tooltip } from "../reusible_components/Tooltip"
 
 export const PricingPage = () => {
-    const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
-    const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
+    const proPricing = useMemo(() => ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."], []);
+    const paymentPricing = useMemo(() => ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"], []);
 
-    const baseDescription = ["План доступен после регистрации", 
-                             "Моментальный доступ к 5 вариантам", 
-                             "Хранение результатов в течении 24 часов"]
+    const baseDescription = useMemo(() => [
+        "План доступен после регистрации", 
+        "Моментальный доступ к 5 вариантам", 
+        "Хранение результатов в течении 24 часов"
+    ], []);
 
-    const proDescription = ["Моментальный доступ ко всем 50+ вариантам", 
-                            "Хранение результатов пока активна подписка", 
-                            "Приветственный баланс на 1 проверку"]
+    const proDescription = useMemo(() => [
+        "Моментальный доступ ко всем 50+ вариантам", 
+        "Хранение результатов пока активна подписка", 
+        "Приветственный баланс на 1 проверку"
+    ], []);
 
-    const paymentDescription = ["Срок действия баланса - 270 дней",
-                                <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 задания: 50₽</p>,
-                                <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 экзамена: 200₽</p>,
-                                <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 400₽</p>]
+    const paymentDescription = useMemo(() => [
+        "Срок действия баланса - 270 дней",
+        <p key={`paymentDescription0`}><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 задания: 50₽</p>,
+        <p key={`paymentDescription1`}><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 экзамена: 200₽</p>,
+        <p key={`paymentDescription2`}><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 400₽</p>
+    ], []);
 
     return (<>
         <HeaderMain/>

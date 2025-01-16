@@ -1,20 +1,22 @@
+import { useMemo } from "react"
 import "./css/page_title.css"
 
-export const PageTitle = ({pageTitleText, className}) => {
-    const formatText = (text) => {
-        const regex = /#(.*?)#/g
-        const parts = text.split(regex)
-        return parts.map((part, index) => {
-            if (index % 2 === 1) {
-                return <span key={index}>{part}</span>
-            }
-            return part
-        })
-    }
+const formatText = (text) => {
+    const regex = /#(.*?)#/g
+    const parts = text.split(regex)
+    return parts.map((item, index) => {
+        if (index % 2 === 1) {
+            return <span key={index}>{item}</span>
+        }
+        return item
+    })
+}
 
-    return (<>
+export const PageTitle = ({pageTitleText, className}) => {
+    const formatedText = useMemo(() => formatText(pageTitleText), [pageTitleText])
+    return (
         <div className={`pageTitleContainer ${className}`}>
-            <h1>{formatText(pageTitleText)}</h1>
+            <h1>{formatedText}</h1>
         </div>
-    </>)
+    )
 }

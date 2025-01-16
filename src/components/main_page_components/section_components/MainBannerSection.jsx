@@ -1,11 +1,11 @@
 import React from "react"
 
-import { Button } from "../reusible_components/Button"
+import { Button } from "../../reusible_components/Button"
 
-import bannerImage from "../../res/images/banner_image_education_amico.svg"
+import bannerImage from "../../../res/images/banner_image_education_amico.svg"
 
 export const MainBannerSection = React.memo(() => {
-    return (<>
+    return (
         <div className="contentWrapper">
             <div className='bannerWrapper'>
                 <div className="bannerContainer">
@@ -18,7 +18,7 @@ export const MainBannerSection = React.memo(() => {
                             Excepturi mollitia autem, quae accusamus in reiciendis deleniti quisquam suscipit 
                             voluptates beatae magnam consequuntur voluptas ipsam sint iste. 
                             Est incidunt labore sunt sequi officia!</p>
-                        <Button key={0}
+                        <Button key={"mainBannerTest0"}
                                 buttonType={"testVariants"}
                                 buttonPadding={"0 20px"}
                                 buttonText={"Пройти пробные варианты"}
@@ -30,5 +30,5 @@ export const MainBannerSection = React.memo(() => {
                 </div>
             </div>
         </div>
-    </>)
+    )
 })

@@ -39,4 +39,10 @@
     .headerFixedContainer {
         width: calc(100% - 40px);
     }
+    .optionsLoginContainer button:nth-child(1) {
+        display: none;
+    }
+    .optionsLoginContainer button:nth-child(2) {
+        display: flex;
+    }
 }
