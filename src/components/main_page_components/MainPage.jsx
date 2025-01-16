@@ -1,8 +1,9 @@
 import "../../App.css"
 import "./css/main.css"
 import "./css/main_media.css"
-
 import bannerImage from "../../res/images/banner_image_education_amico.svg"
+
+
 import baseBackground from "../../res/images/base_subscription_background.png"
 import proBackground from "../../res/images/pro_subscription_background.png"
 import { ReactComponent as DuckIcon } from "../../res/icons/duck-svgrepo-com.svg"
@@ -13,12 +14,12 @@ import { ReactComponent as BatIcon } from "../../res/icons/bat-svgrepo-com.svg"
 import { ReactComponent as ChameleonIcon } from "../../res/icons/chameleon-svgrepo-com.svg"
 
 import { HeaderMain } from '../header_components/HeaderMain'
-import { MainAdvantages } from "./MainAdvantages"
+import { MainBannerSection } from "./MainBannerSection"
+import { MainAdvantagesSection } from "./MainAdvantagesSection"
 import { MainUses } from "./MainUses"
 import { PricingSubscriptionCard } from "../pricing_page_components/PricingSubscriptionCard"
 import { MainFAQ } from "./MainFAQ"
 import { FooterMain } from "../footer_components/FooterMain"
-import { Button } from "../reusible_components/Button"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { useEffect, useState } from "react"
 
@@ -86,39 +87,10 @@ export const MainPage = () => {
         <HeaderMain onScrollToSection={scrollToSection}/>
         <div className="mainContentContainer">
             <div id="section0" className='sectionWrapper'>
-                <div className="contentWrapper">
-                    <div className='bannerWrapper'>
-                        <div className="bannerContainer">
-                            <div className="bannerInfoContainer">
-                                <h1>Lorem ipsum dolor <span>sit amet</span> consectetur, adipisicing elit.</h1>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa explicabo cum accusantium repellendus impedit dignissimos aperiam labore sapiente voluptatum necessitatibus quas, ipsa corporis doloribus nemo, odit praesentium vel fugit quo deserunt voluptatibus laborum voluptates illo odio? Excepturi mollitia autem, quae accusamus in reiciendis deleniti quisquam suscipit voluptates beatae magnam consequuntur voluptas ipsam sint iste. Est incidunt labore sunt sequi officia!</p>
-                                <Button key={0}
-                                        buttonType={"testVariants"}
-                                        buttonPadding={"0 20px"}
-                                        buttonText={"Пройти пробные варианты"}
-                                        buttonFunc={()=>{}}/>
-                            </div>
-                            <div className="bannerImageContainer">
-                                <img src={bannerImage} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <MainBannerSection/>
             </div>
             <div id="section1" className='sectionWrapper'>
-                <div className="contentWrapper">
-                    <div className='advantagesWrapper'>
-                        <PageTitle pageTitleText={"#6 плюсов# которые помогут Вам лучше подготовиться к экзамену"}/>
-                        <div className="advantagesContainer">
-                            <MainAdvantages advantageImage={<DuckIcon className="svgIcon"/>} advantageText={"Первое наименование"}/>
-                            <MainAdvantages advantageImage={<SnakeIcon className="svgIcon"/>} advantageText={"Второе наименование"}/>
-                            <MainAdvantages advantageImage={<CatIcon className="svgIcon"/>} advantageText={"Третье наименование"}/>
-                            <MainAdvantages advantageImage={<HuskyIcon className="svgIcon"/>} advantageText={"Четвертое наименование"}/>
-                            <MainAdvantages advantageImage={<BatIcon className="svgIcon"/>} advantageText={"Пятое наименование"}/>
-                            <MainAdvantages advantageImage={<ChameleonIcon className="svgIcon"/>} advantageText={"Шестое наименование"}/>
-                        </div>
-                    </div>
-                </div>
+                <MainAdvantagesSection/>
             </div>
             <div id="section2" className='sectionWrapper'>
                 <div className="contentWrapper">

@@ -1,5 +1,7 @@
-export const MainAdvantages = ({advantageImage, advantageText}) => {
-    return (<>
+import React from "react"
+
+export const MainAdvantages = React.memo(({advantageImage, advantageText}) => {
+    return (
         <div className="advantageCard">
             <div className="advantageCardImage">
                 {advantageImage}
@@ -8,5 +10,5 @@ export const MainAdvantages = ({advantageImage, advantageText}) => {
                 {advantageText}
             </div>
         </div>
-    </>)
-}
+    )
+})
