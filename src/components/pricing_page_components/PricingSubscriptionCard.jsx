@@ -3,7 +3,14 @@ import { DropdownList } from "../reusible_components/DropdownList"
 import { useLocation } from "react-router-dom"
 import routes from "../../routes"
 
-export const PricingSubscriptionCard = ({className, contentSwap, subscriptionType, subscriptionName, subscriptionDescription, subscriptionIsActive, subscriptionBG, subscriptionPricing}) => {
+export const PricingSubscriptionCard = ({className, 
+                                         contentSwap, 
+                                         subscriptionType, 
+                                         subscriptionName, 
+                                         subscriptionDescription, 
+                                         subscriptionIsActive, 
+                                         subscriptionBG,
+                                         subscriptionPricing}) => {
     const location = useLocation()
     const handleSelect = (subscriptionPricing) => {
         console.log(subscriptionPricing)
@@ -11,6 +18,9 @@ export const PricingSubscriptionCard = ({className, contentSwap, subscriptionTyp
 
     return (<>
         <div className={`pricngSubscriptionCardContainer ${className}`} style={{backgroundImage: `url(${subscriptionBG})`}}>
+            {subscriptionType === "base" ?
+                <div className="pricingSubscriptionBackgorund" style={{backgroundImage: `url(${subscriptionBG})`}}></div> : 
+                <div className="pricingSubscriptionBackgorund" style={{backgroundImage: `url(${subscriptionBG})`, transform: contentSwap ? "none" : "scaleX(-1)"}}></div>}
             <div className="pricingSubscriptionCardContent">
                 <div className={`pricingSubscriptionCardName ${contentSwap === false ? "" : "contentSwapName"}`}>
                     <p>{subscriptionName}</p>

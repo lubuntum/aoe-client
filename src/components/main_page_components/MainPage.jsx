@@ -1,5 +1,6 @@
 import "../../App.css"
 import "./css/main.css"
+import "./css/main_media.css"
 
 import bannerImage from "../../res/images/banner_image_education_amico.svg"
 import baseBackground from "../../res/images/base_subscription_background.png"
@@ -19,9 +20,12 @@ import { MainFAQ } from "./MainFAQ"
 import { FooterMain } from "../footer_components/FooterMain"
 import { Button } from "../reusible_components/Button"
 import { PageTitle } from "../reusible_components/PageTitle"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const MainPage = () => {
+    const [baseContentSwap, setBaseContentSwap] = useState(false)
+    const [proContentSwap, setProContentSwap] = useState(true)
+
     const baseDescription = ["План доступен после регистрации", 
                              "Моментальный доступ к 5 вариантам", 
                              "Хранение результатов в течении 24 часов"]
@@ -49,6 +53,23 @@ export const MainPage = () => {
         },
     ]
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 1200) {
+                setBaseContentSwap(false)
+                setProContentSwap(false)
+            } else {
+                setBaseContentSwap(false)
+                setProContentSwap(true)
+            }
+        }
+        handleResize()
+        window.addEventListener("resize", handleResize)
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
     const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId)
         if (section) {
@@ -72,8 +93,8 @@ export const MainPage = () => {
                                 <h1>Lorem ipsum dolor <span>sit amet</span> consectetur, adipisicing elit.</h1>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa explicabo cum accusantium repellendus impedit dignissimos aperiam labore sapiente voluptatum necessitatibus quas, ipsa corporis doloribus nemo, odit praesentium vel fugit quo deserunt voluptatibus laborum voluptates illo odio? Excepturi mollitia autem, quae accusamus in reiciendis deleniti quisquam suscipit voluptates beatae magnam consequuntur voluptas ipsam sint iste. Est incidunt labore sunt sequi officia!</p>
                                 <Button key={0}
+                                        buttonType={"testVariants"}
                                         buttonPadding={"0 20px"}
-                                        buttonWidth={"300px"}
                                         buttonText={"Пройти пробные варианты"}
                                         buttonFunc={()=>{}}/>
                             </div>
@@ -123,14 +144,14 @@ export const MainPage = () => {
                         <PageTitle pageTitleText={"Преимущества #улучшеной подписки#"}/>
                         <div className="subscriptionAdvantagesContainer">
                             <PricingSubscriptionCard className={""}
-                                                     contentSwap={false}
+                                                     contentSwap={baseContentSwap}
                                                      subscriptionType={"base"}
                                                      subscriptionName={"Базовый план"}
                                                      subscriptionDescription={baseDescription}
                                                      subscriptionIsActive={"Активен"}
                                                      subscriptionBG={baseBackground}/>
                             <PricingSubscriptionCard className={""}
-                                                     contentSwap={true}
+                                                     contentSwap={proContentSwap}
                                                      subscriptionType={"pro"}
                                                      subscriptionName={"Улучшеный план"}
                                                      subscriptionDescription={proDescription}

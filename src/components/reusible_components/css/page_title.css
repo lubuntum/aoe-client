@@ -3,15 +3,18 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    text-align: center;
+    text-align: start;
     background-color: var(--white);
     border-radius: 1.25rem;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
     height: 100px;
 }
 .pageTitleContainer h1 {
     font-size: 2rem;
-    margin-left: 40px;
     font-weight: 500;
     color: var(--black);
 }
@@ -19,4 +22,28 @@
     font-size: 2rem;
     font-weight: 600;
     color: var(--emphasis);
+}
+
+
+@media (max-width: 1400px) { 
+    .pageTitleContainer {
+        height: 80px;
+    }
+    .pageTitleContainer h1 {
+        font-size: 1.50rem;
+    }
+    .pageTitleContainer h1 span {
+        font-size: 1.50rem;
+    }
+}
+@media (max-width: 1024px) { 
+    .pageTitleContainer {
+        height: auto;
+    }
+}
+@media (max-width: 630px) { 
+    .pageTitleContainer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

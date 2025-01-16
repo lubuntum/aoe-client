@@ -20,17 +20,17 @@
 }
 .footerColumn:first-child {
     align-items: start;
-    width: 80%;
+    width: 70%;
 }
 .footerColumn {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: end;
-    text-align: end;
+    align-items: start;
+    text-align: start;
 }
 .footerColumn p:first-child {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--black);
     margin-bottom: 10px;

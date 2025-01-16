@@ -37,6 +37,9 @@
     line-height: 30px;
     width: 90%;
 }
+.bannerInfoContainer .testVariants {
+    width: 300px;
+}
 .bannerImageContainer {
     display: flex;
     justify-content: center;
@@ -145,9 +148,9 @@
 }
 .usesCardText {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    text-align: center;
+    text-align: start;
     color: var(--black);
     font-size: 1.25rem;
     font-weight: 600;
@@ -211,6 +214,9 @@
     transition-timing-function: ease;
     margin-top: 20px;
 }
+.accordionContent:last-child {
+    margin-top: 0;
+}
 .accordionAnswer {
     user-select: none;
     padding-left: 40px;
@@ -229,6 +235,9 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 20px;
+}
+.accordionDetails[open] + .accordionContent:last-child {
+    margin-top: 20px;
 }
 
 

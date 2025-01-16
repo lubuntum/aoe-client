@@ -1,4 +1,5 @@
 import "./css/footer.css"
+import "./css/footer_media.css"
 
 import { useLocation, useNavigate } from "react-router-dom"
 import routes from "../../routes"

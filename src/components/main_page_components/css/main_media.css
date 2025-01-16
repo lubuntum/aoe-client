@@ -1,0 +1,175 @@
+@media (max-width: 1430px) {
+    .bannerInfoContainer {
+        width: 50%;
+        justify-content: space-around;
+    }
+    .bannerInfoContainer h1 {
+        font-size: 3rem;
+    }
+    .bannerInfoContainer p {
+        font-size: 1rem;
+        line-height: 25px;
+    }
+    .bannerImageContainer {
+        width: 50%;
+    }
+    .advantagesContainer {
+        flex-wrap: wrap;
+    }
+    .advantageCard {
+        flex: 1 1 calc(30% - 20px);
+    }
+    .usesImageContrainer {
+        width: 50%;
+    }
+    .usesContainer {
+        width: 50%;
+    }
+    .usesCardText {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+@media (max-width: 1390px) {
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
+        font-size: 1.50rem;
+    }
+}
+@media (max-width: 1200px) {
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
+        font-size: 2rem;
+    }
+    .subscriptionAdvantagesContainer {
+        flex-direction: column;
+        height: 100%;
+    }
+    .subscriptionAdvantagesContainer .pricngSubscriptionCardContainer {
+        height: 300px;
+    }
+}
+@media (max-width: 1100px) {
+    .bannerWrapper {
+        padding-bottom: 0;
+    }
+    .bannerInfoContainer {
+        width: 50%;
+        gap: 40px;
+    }
+    .bannerInfoContainer h1 {
+        font-size: 2.5rem;
+    }
+}
+@media (max-width: 1024px) {
+    .bannerInfoContainer {
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    .bannerInfoContainer p {
+        font-size: 1.25rem;
+        line-height: 30px;
+    }
+    .bannerImageContainer {
+        display: none;
+    }
+    .usesImageContrainer {
+        display: none;
+    }
+    .usesContainer {
+        width: 100%;
+    }
+
+
+    .advantagesWrapper,
+    .usesWrapper, 
+    .subscriptionAdvantagesWrapper,
+    .partnersWrapper,
+    .faqWrapper {
+        padding-bottom: 0;
+    }
+}
+@media (max-width: 1000px) {
+    .advantageCard {
+        flex: 1 1 calc(40% - 20px);
+    }
+}
+@media (max-width: 768px) {
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardContent {
+        display: flex;
+        justify-content: space-between;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription {
+        min-width: 270px;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 630px) {
+    .bannerInfoContainer h1 {
+        font-size: 1.875rem;
+    }
+    .bannerInfoContainer p {
+        font-size: 1rem;
+        line-height: 25px;
+    }
+    .advantageCard {
+        flex: 1 1 calc(60% - 20px);
+        padding: 20px;
+        gap: 20px;
+    }
+    .advantageCardText {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .usesCardText {
+        font-weight: 500;
+    }
+    .usesCardImage .svgIcon {
+        min-width: 75px;
+        min-height: 75px;
+    }
+    .subscriptionAdvantagesContainer .pricngSubscriptionCardContainer {
+        height: auto;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardContent {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:last-child {
+        display: none;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription {
+        min-width: 100%;
+    }
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription p {
+        font-weight: 500;
+    }
+    .accrodionSummary {
+        font-weight: 500;
+    }
+    .accordionDetails[open] + .accordionContent {
+        font-weight: 500;
+    }
+}
+@media (max-width: 425px) {
+    .testVariants {
+        width: 100% !important;
+    }
+    .advantageCardImage .svgIcon {
+        min-height: 60px;
+        min-width: 60px;
+        height: 60px;
+        width: 60px;
+    }
+    .usesCard {
+        gap: 20px;
+    }
+    .usesCardImage .svgIcon {
+        min-width: 60px;
+        min-height: 60px;
+        width: 60px;
+        height: 60px
+    }
+}

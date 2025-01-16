@@ -21,3 +21,12 @@
 	margin: 0 auto;
 	max-width: 1440px;
 }
+
+@media (max-width: 425px) {
+	.pageWrapper {
+		margin: 0;
+	}
+	.sectionWrapper {
+		border-radius: 0;
+	}
+}
