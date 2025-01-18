@@ -50,6 +50,7 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
     useEffect(()=>{
         const getExamsData = async () => {
             const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
+            console.log(response.data)
             const examsTemp = response.data
             examsTemp.sort(sortExams)
             
@@ -210,7 +211,7 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                                     <div className="resultsRecordsTableBodyItem">
                                         <div className="resultsRecordsGradeWrapper">
                                             <p className={`recordGrade ${setGradeColor(exam?.expressTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
-                                            {exam?.expressTotalGrade} / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
+                                             {exam.expressCheckStatus?.status === "completed" ? `${exam?.expressTotalGrade} / ${TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}`: `-- / ${TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}`}
                                             </p>
                                             <Button key={2}
                                                     buttonType={"ghost protocol"}
@@ -221,8 +222,8 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
 
                                     <div className="resultsRecordsTableBodyItem">
                                         <div className="resultsRecordsGradeWrapper">
-                                            <p className={`recordGrade ${setGradeColor(exam?.expressTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
-                                                -- / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}
+                                            <p className={`recordGrade ${setGradeColor(exam?.expertTotalGrade, TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}`}>
+                                            {exam.expertCheckStatus?.status === "completed" ? `${exam?.expertTotalGrade} / ${TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}`: `-- / ${TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}`}
                                             </p>
                                             <Button key={3}
                                                     buttonType={"ghost protocol"}
