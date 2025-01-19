@@ -10,10 +10,12 @@ export const PricingSubscriptionCard = ({className,
                                          subscriptionDescription, 
                                          subscriptionIsActive, 
                                          subscriptionBG,
-                                         subscriptionPricing}) => {
+                                         subscriptionTypesDesc,
+                                         subscriptionTypesRef}) => {
     const location = useLocation()
-    const handleSelect = (subscriptionPricing) => {
-        console.log(subscriptionPricing)
+    const handleSelect = (subscriptionTypesDesc, index) => {
+        console.log(subscriptionTypesRef.current[index])
+        //TODO send request for buying subscription for user (other stuff on the server side)
     }
 
     return (<>
@@ -41,7 +43,7 @@ export const PricingSubscriptionCard = ({className,
                             <p>Бесплатно</p>
                         </div> : 
                         <div className="subscriptionOptions">
-                            <DropdownList options={subscriptionPricing} onSelect={handleSelect}/>
+                            {subscriptionTypesDesc && <DropdownList options={subscriptionTypesDesc} onSelect={handleSelect}/>}
                             <Button buttonType={"alt"}
                                     buttonPadding={"0 20px"}
                                     buttonWidth={""}

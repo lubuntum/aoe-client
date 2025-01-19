@@ -9,9 +9,9 @@ export const DropdownList = ({options, onSelect}) => {
     const toggleDropdown = () => {
         setIsOpen(!isOpen)
     }
-    const handleOptionClick = (option) => {
+    const handleOptionClick = (option, index) => {
         setSelectedOption(option)
-        onSelect(option)
+        onSelect(option, index)
         setIsOpen(false)
     }
     const handleClickOutside = (event) => {
@@ -37,7 +37,7 @@ export const DropdownList = ({options, onSelect}) => {
                     {options.map((option, index) => ( <>
                         <div key={index}
                              className="dropdownItem"
-                             onClick={()=>handleOptionClick(option)}>
+                             onClick={()=>handleOptionClick(option, index)}>
                             {option}
                         </div>
                     </>))}

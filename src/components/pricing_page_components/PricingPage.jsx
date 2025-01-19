@@ -11,10 +11,14 @@ import { FooterMain } from "../footer_components/FooterMain"
 
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Tooltip } from "../reusible_components/Tooltip"
+import { useEffect, useRef, useState } from "react"
+import { getAllValidSubscriptionTypes } from "../../modules/api_modules/subscriptionAPI"
 
 export const PricingPage = () => {
+    const subscriptionTypesRef = useRef(null)
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
     const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
+    const [subscriptionTypesDesc, setSubscriptionTypesDesc] = useState(null)
 
     const baseDescription = ["План доступен после регистрации", 
                              "Моментальный доступ к 5 вариантам", 
@@ -28,7 +32,18 @@ export const PricingPage = () => {
                                 <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 задания: 50₽</p>,
                                 <p><Tooltip tooltipText={"Экспрес проверка осуществляется индийскими экстрасенсами под героином"}/> Экспресс проверка 1 экзамена: 200₽</p>,
                                 <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 400₽</p>]
-
+    useEffect(()=>{
+        getAllValidSubscriptionsRequest(localStorage.getItem("token"))
+    }, [])
+    const getAllValidSubscriptionsRequest = async (token) => {
+        try {
+            const response = await getAllValidSubscriptionTypes(token)
+            subscriptionTypesRef.current = response.data
+            setSubscriptionTypesDesc(response.data.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
+        } catch(e){
+            console.log(e)
+        }
+    }
     return (<>
         <HeaderMain/>
         <div className='sectionWrapper'>
@@ -52,7 +67,8 @@ export const PricingPage = () => {
                                                  subscriptionDescription={proDescription}
                                                  subscriptionIsActive={"Активен"}
                                                  subscriptionBG={proBackground}
-                                                 subscriptionPricing={proPricing}/>
+                                                 subscriptionTypesDesc={subscriptionTypesDesc}
+                                                 subscriptionTypesRef={subscriptionTypesRef}/>
 
                         <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
 
