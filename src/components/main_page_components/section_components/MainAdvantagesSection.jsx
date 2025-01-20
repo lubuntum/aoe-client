@@ -12,18 +12,19 @@ import { ReactComponent as ChameleonIcon } from "../../../res/icons/chameleon-sv
 
 export const MainAdvantagesSection = React.memo(() => {
     const mainAdvantages = useMemo(() => [
-        {image: <DuckIcon className="svgIcon"/>, text: "Первое наименование"},
-        {image: <SnakeIcon className="svgIcon"/>, text: "Второе наименование"},
-        {image: <CatIcon className="svgIcon"/>, text: "Третье наименование"},
-        {image: <HuskyIcon className="svgIcon"/>, text: "Четвертое наименование"},
-        {image: <BatIcon className="svgIcon"/>, text: "Пятое наименование"},
-        {image: <ChameleonIcon className="svgIcon"/>, text: "Шестое наименование"}
+        {image: <DuckIcon className="svgIcon"/>, text: "#Максимальное соответствие реальному формату ЕГЭ# Наши задания точно повторяют формат реального экзамена, помогая тебе адаптироваться и снизить тревожность."},
+        {image: <SnakeIcon className="svgIcon"/>, text: "#Мгновенная обратная связь# После выполнения заданий ты сразу узнаешь свои баллы, что помогает выявить слабые места и улучшить свои навыки."},
+        {image: <HuskyIcon className="svgIcon"/>, text: "#Большой выбор тем# Широкий спектр тем обеспечит комплексную подготовку всех типов заданий устной части ЕГЭ."},
+        {image: <BatIcon className="svgIcon"/>, text: "#Экономия времени и денег# Обучайся в любом удобном месте и удобное время дешевле чем у репетитора."},
+        {image: <ChameleonIcon className="svgIcon"/>, text: "#Наглядное отслеживание прогресса# Отслеживай свой прогресс и мотивируй себя на новые достижения."},
+        {image: <CatIcon className="svgIcon"/>, text: "#Доступность 24/7# Готовься к экзамену в любое удобное время."},
+        {image: <ChameleonIcon className="svgIcon"/>, text: "#Индивидуальный подход# Выбирай темы и типы заданий, которые нужны именно тебе."},
     ], [])
 
     return (
         <div className="contentWrapper">
             <div className='advantagesWrapper'>
-                <PageTitle pageTitleText={"#6 плюсов# которые помогут Вам лучше подготовиться к экзамену"}/>
+                <PageTitle pageTitleText={"С нами ты #существенно# повысишь шансы сдать устную часть ЕГЭ на максимальный балл!"}/>
                 <div className="advantagesContainer">
                     {mainAdvantages.map((item, index) => (
                         <MainAdvantages key={`adv${index}`} advantageImage={item.image} advantageText={item.text}/>

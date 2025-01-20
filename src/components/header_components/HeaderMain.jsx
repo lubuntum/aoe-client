@@ -29,7 +29,7 @@ export const HeaderMain = ({onScrollToSection}) => {
             handleScroll()
             setTimeout(() => {
                 setIsScrolling(false)
-            }, 300)
+            }, 500)
         }
         window.addEventListener("scroll", handleScorllDebounced)
         return () => {

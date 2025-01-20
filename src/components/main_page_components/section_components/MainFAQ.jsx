@@ -5,7 +5,7 @@ export const MainFAQ = React.memo(({iterator, question, answer}) => {
         <details className="accordionDetails" name="faq">
             <summary className="accrodionSummary">
                 <span className="accordionTitle" role="term" aria-details={`faq${iterator}`}>
-                    {iterator} {question}
+                    <span>{iterator}</span> {question}
                 </span>
             </summary>
         </details>
