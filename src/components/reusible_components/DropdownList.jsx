@@ -10,14 +10,14 @@ export const DropdownList = ({options, onSelect}) => {
     const [selectedOption, setSelectedOption] = useState(options[0])
     const dropdownRef = useRef(null)
 
-    const toggleDropdown = useCallback(() => {
+    const toggleDropdown = () => {
         setIsOpen(!isOpen)
     }
     const handleOptionClick = (option, index) => {
         setSelectedOption(option)
         onSelect(option, index)
         setIsOpen(false)
-    }, [onSelect])
+    }
 
     const handleClickOutside = useCallback((event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -40,7 +40,7 @@ export const DropdownList = ({options, onSelect}) => {
             </div>
             {isOpen && (
                 <div className="dropdownMenu">
-                    {options.map((item, index) => ( <>
+                    {options.map((option, index) => ( <>
                         <div key={`dropdownItem${index}`}
                              className="dropdownItem"
                              onClick={()=>handleOptionClick(option, index)}>
