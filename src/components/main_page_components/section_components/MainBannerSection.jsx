@@ -10,14 +10,15 @@ export const MainBannerSection = React.memo(() => {
             <div className='bannerWrapper'>
                 <div className="bannerContainer">
                     <div className="bannerInfoContainer">
-                        <h1>Lorem ipsum dolor <span>sit amet</span> consectetur, adipisicing elit.</h1>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                            Culpa explicabo cum accusantium repellendus impedit dignissimos aperiam 
-                            labore sapiente voluptatum necessitatibus quas, ipsa corporis doloribus nemo, 
-                            odit praesentium vel fugit quo deserunt voluptatibus laborum voluptates illo odio? 
-                            Excepturi mollitia autem, quae accusamus in reiciendis deleniti quisquam suscipit 
-                            voluptates beatae magnam consequuntur voluptas ipsam sint iste. 
-                            Est incidunt labore sunt sequi officia!</p>
+                        <h1><span>Testmyeng</span> - сервис для подготовки к устной части ЕГЭ по английскому языку</h1>
+                        <p>Наш сервис создает атмосферу <span>настоящего экзамена</span>, 
+                            помогая тебе <span>уверенно</span> чувствовать себя на ЕГЭ. 
+                            Ты сможешь потренироваться в условиях, 
+                            максимально приближенных к реальному тестированию, 
+                            и сразу узнать свой балл. 
+                            А если хочешь получить развернутую обратную связь, 
+                            обращайся к нашим <span>экспертам!</span><br/><br/>
+                            <span>Улучшай</span> свои навыки говорения и добивайся <span>максимальных</span> результатов ЕГЭ вместе с <span>Testmyeng!</span></p>
                         <Button key={"mainBannerTest0"}
                                 buttonType={"testVariants"}
                                 buttonPadding={"0 20px"}
