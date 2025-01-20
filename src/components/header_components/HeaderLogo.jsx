@@ -1,11 +1,9 @@
-import { useLocation } from "react-router-dom"
+import React from "react"
 
-export const HeaderLogo = () => {
-    const location = useLocation()
-    
-    return (<>
+export const HeaderLogo = React.memo(() => {
+    return (
         <div className="headerLogoContainer">
             <p className="logo">LOGO</p>
         </div>
-    </>)
-}
+    )
+})

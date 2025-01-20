@@ -1,27 +1,37 @@
 import "./css/footer.css"
 import "./css/footer_media.css"
 
-import { useLocation, useNavigate } from "react-router-dom"
-import routes from "../../routes"
+import React, { useCallback } from "react"
 
+import { useLocation, useNavigate } from "react-router-dom"
 import { Button } from "../reusible_components/Button"
+import routes from "../../routes"
 
 import { ReactComponent as TelegramIcon } from "../../res/icons/telegram_24dp.svg"
 import { ReactComponent as VKIcon } from "../../res/icons/vk_24dp.svg"
 
-export const FooterMain = ({onScrollToSection}) => {
+
+export const FooterMain = React.memo(({onScrollToSection}) => {
     const location = useLocation()
     const navigate = useNavigate()
+
+    const createButtonFunc = useCallback((section) => {
+        return location.pathname === routes.HOME ?
+            onScrollToSection(section) :
+            navigate(routes.HOME)
+    }, [location.pathname, navigate, onScrollToSection])
+
     const buttonFooterNavigation = [
-        {text: "Главная", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section0") : ()=>navigate(routes.HOME)},
-        {text: "Преимущества", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section1") : ()=>navigate(routes.HOME)},
-        {text: "Как начать учиться", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section2") : ()=>navigate(routes.HOME)},
-        {text: "Партнеры", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section4") : ()=>navigate(routes.HOME)},
-        {text: "FAQ", func: location.pathname === routes.HOME ? ()=>onScrollToSection("section5") : ()=>navigate(routes.HOME)},
-        {text: "Пополнение баланса", func: ()=>{navigate(routes.PRICING)}},
-        {text: "Варианты", func: ()=>{navigate(routes.TASK)}},
+        {text: "Главная", func: () => createButtonFunc("section0")},
+        {text: "Преимущества", func: () => createButtonFunc("section1")},
+        {text: "Как начать учиться", func: () => createButtonFunc("section2")},
+        {text: "Партнеры", func: () => createButtonFunc("section4")},
+        {text: "FAQ", func: () => createButtonFunc("section5")},
+        {text: "Пополнение баланса", func: () => navigate(routes.PRICING)},
+        {text: "Варианты", func: () => navigate(routes.TASK)},
     ]
-    return (<>
+
+    return (
         <div className="sectionWrapper sectioFooterWrapper">
             <div className="contentWrapper">
                 <div className="footerWrapper">
@@ -29,8 +39,8 @@ export const FooterMain = ({onScrollToSection}) => {
                         <div className="footerLogo footerColumn">
                             <p className="logo">LOGO</p>
                             <div className="footerSocials">
-                                <a href=""><TelegramIcon className="svgIcon"/></a>
-                                <a href=""><VKIcon className="svgIcon"/></a>
+                                <a href="#"><TelegramIcon className="svgIcon"/></a>
+                                <a href="#"><VKIcon className="svgIcon"/></a>
                             </div>
                         </div>
                         <div className="footerAbout footerColumn">
@@ -39,11 +49,11 @@ export const FooterMain = ({onScrollToSection}) => {
                         </div>
                         <div className="footerNavigation footerColumn">
                             <p>Навигация</p>
-                            {buttonFooterNavigation.map((button, index) => (
-                                <Button key={`footer${index}`}
+                            {buttonFooterNavigation.map((item, index) => (
+                                <Button key={`footerLink${index}`}
                                         buttonType={"link"}
-                                        buttonText={button.text}
-                                        buttonFunc={button.func}/>
+                                        buttonText={item.text}
+                                        buttonFunc={item.func}/>
                             ))}
                         </div>
                         <div className="footerContact footerColumn">
@@ -52,10 +62,10 @@ export const FooterMain = ({onScrollToSection}) => {
                     </div>
                     <div className="footerBottomDivider"></div>
                     <div className="footerDocuments">
-                        <a href="">Документ 1</a>
-                        <a href="">Документ 2</a>
-                        <a href="">Политика конфиденциальности</a>
-                        <a href="">Публичная оферта</a>
+                        <a href="#">Документ 1</a>
+                        <a href="#">Документ 2</a>
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Публичная оферта</a>
                     </div>
                     <div className="footerCred">
                         <p>© Lorem, ipsum dolor.</p>
@@ -63,5 +73,5 @@ export const FooterMain = ({onScrollToSection}) => {
                 </div>
             </div>
         </div>
-    </>)
-}
+    )
+})

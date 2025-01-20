@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import React from "react"
 
-export const MainFAQ = ({iterator, question, answer}) => {
+export const MainFAQ = React.memo(({iterator, question, answer}) => {
     return (<>
         <details className="accordionDetails" name="faq">
             <summary className="accrodionSummary">
@@ -15,4 +15,4 @@ export const MainFAQ = ({iterator, question, answer}) => {
             </div>
         </div>
     </>)
-}
+})

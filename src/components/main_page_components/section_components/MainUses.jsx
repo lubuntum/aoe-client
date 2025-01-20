@@ -1,5 +1,7 @@
-export const MainUses = ({usesImage, usesText, usesIndex}) => {
-    return (<>
+import React from "react"
+
+export const MainUses = React.memo(({usesImage, usesText, usesIndex}) => {
+    return (
         <div className="usesCard">
             <div className="usesCardImage">
                 {usesImage}
@@ -11,5 +13,5 @@ export const MainUses = ({usesImage, usesText, usesIndex}) => {
                 {usesIndex}
             </div>
         </div>
-    </>)
-}
+    )
+})
