@@ -37,7 +37,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                 <div className="footerWrapper">
                     <div className="footerContentWrapper">
                         <div className="footerLogo footerColumn">
-                            <p className="logo">LOGO</p>
+                            <p className="logo"><span>Test</span>MyEng</p>
                             <div className="footerSocials">
                                 <a href="#"><TelegramIcon className="svgIcon"/></a>
                                 <a href="#"><VKIcon className="svgIcon"/></a>

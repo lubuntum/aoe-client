@@ -40,10 +40,14 @@
     font-weight: 500;
     column-rule: var(--black);
 }
-.logo {
+.footerLogo p {
     font-size: 2rem !important;
-    font-weight: 600 !important;
-    color: var(--black) !important;
+    font-weight: 600;
+    color: var(--black);
+}
+.footerLogo p span {
+    color: var(--blue);
+    font-weight: 700;
 }
 .footerSocials {
     display: flex;

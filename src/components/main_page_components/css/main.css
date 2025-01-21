@@ -69,10 +69,9 @@
 .advantageCard {
     display: flex;
     flex: 1 1 calc(25% - 20px);
-    justify-content: start;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     padding: 40px;
     background-color: var(--white-glassmorph-transparent);
     border-radius: 20px;
@@ -91,23 +90,22 @@
     width: 100%;
     height: 100%;
 }
-.advantageCardText p {
-    flex-direction: column;
+.advantageCardName {
     display: flex;
-    gap: 20px;
     justify-content: center;
-    text-align: center;
     align-items: center;
-    color: var(--black);
-    font-size: 1rem;
-    font-weight: 600;
-}
-.advantageCardText p span {
-    display: flex;
-    font-weight: 600;
-    font-size: 1.250rem;
     text-align: center;
     color: var(--emphasis);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.advantageCardDesc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 500;
 }
 
 
@@ -168,7 +166,7 @@
     text-align: start;
     color: var(--black);
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 .usesCardIterator {
     position: absolute;
@@ -196,9 +194,9 @@
 
 
 
-
-
-
+#section4 {
+    display: none;
+}
 
 
 .faqContainer {
@@ -213,7 +211,6 @@
     padding: 20px;
     height: 80px;
     align-items: center;
-    padding-left: 40px;
     background-color: var(--white-glassmorph-transparent);
     backdrop-filter: blur(3px);
     box-shadow: 0 0 5px var(--black-shadow);
@@ -258,6 +255,7 @@
 .accordionDetails[open] + .accordionContent:last-child {
     margin-top: 20px;
 }
+
 
 
 .advantagesWrapper,

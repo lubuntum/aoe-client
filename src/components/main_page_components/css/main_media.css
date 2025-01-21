@@ -19,6 +19,12 @@
     .advantageCard {
         flex: 1 1 calc(30% - 20px);
     }
+    .advantageCardName {
+        font-size: 1.125rem;
+    }
+    .advantageCardDesc {
+        font-size: 1rem;
+    }
     .usesImageContrainer {
         width: 50%;
     }
@@ -27,7 +33,6 @@
     }
     .usesCardText {
         font-size: 1rem;
-        font-weight: 600;
     }
 }
 @media (max-width: 1390px) {
@@ -119,7 +124,7 @@
         padding: 20px;
         gap: 20px;
     }
-    .advantageCardText {
+    .advantageCardDesc {
         font-size: 1rem;
         font-weight: 500;
     }
@@ -148,6 +153,9 @@
     }
     .accrodionSummary {
         font-weight: 500;
+    }
+    .accordionTitle span {
+        font-weight: 600;
     }
     .accordionDetails[open] + .accordionContent {
         font-weight: 500;
