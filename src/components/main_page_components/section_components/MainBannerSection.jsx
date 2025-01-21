@@ -10,7 +10,7 @@ export const MainBannerSection = React.memo(() => {
             <div className='bannerWrapper'>
                 <div className="bannerContainer">
                     <div className="bannerInfoContainer">
-                        <h1><span>Testmyeng</span> - сервис для подготовки к устной части ЕГЭ по английскому языку</h1>
+                        <h1><span>Testmyeng</span> - сервис подготовки к устной части ЕГЭ по английскому языку</h1>
                         <p>Наш сервис создает атмосферу <span>настоящего экзамена</span>, 
                             помогая тебе <span>уверенно</span> чувствовать себя на ЕГЭ. 
                             Ты сможешь потренироваться в условиях, 

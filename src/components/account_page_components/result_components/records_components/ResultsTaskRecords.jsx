@@ -15,10 +15,12 @@ import routes from "../../../../routes.js"
 import TASKS_MAX_GRADE from "../../../../modules/grade_modules/configMaxGrades.js"
 import { sortCustomerTasks, sortDate } from "../../../../modules/date_modules/sortingDate.js"
 
+import { AccountPopup } from "../../AccountPopup.jsx"
+
 import { Button } from "../../../reusible_components/Button.jsx"
 import { Loader } from "../../../reusible_components/Loader.jsx"
 
-export const ResultsTaskRecords = ({variant, task, className}) => {
+export const ResultsTaskRecords = ({variant, task, className, setContentPopup, setShowPopup}) => {
     const navigate = useNavigate()
 
     const [customerTasks, setCustomerTasks] = useState([])
@@ -140,6 +142,29 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         return statuses[status] || "default"
     }
 
+    const handleExpressClick = (customerTask) => {
+        console.log(customerTask)
+        setContentPopup(() => (props) => (
+            <AccountPopup warningMessage={"Внимание!"}
+                          messageText={`Вы выбрали экспресс проверку для ${task.taskType} задания, варианта: ${variant.theme}`}
+                          messageCost={"С вашего счета спишется:"}
+                          cost={"50"}
+                          messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
+                          acceptButton={<Button key={"resultButtonSend1"}
+                                                buttonText={"Да"}
+                                                buttonFunc={()=>{setShowPopup(false)
+                                                                 startExpressTask(customerTask)}}
+                                                buttonWidth={"100%"}/>}
+                          declineButton={<Button key={"resultButtonSend2"}
+                                                 buttonText={"Нет"}
+                                                 buttonType={"outline"}
+                                                 buttonFunc={()=>setShowPopup(false)}
+                                                 buttonWidth={"100%"}/>}
+                          {...props}/>
+        ))
+        setShowPopup(true);
+    }
+
     return (<>
         <div className={`resultsRecordsContainer ${className}`}>
             <div className="resultsRecordsDescription">
@@ -205,16 +230,16 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                                     getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
                                     getStatus(customerTask.expressCheckStatus?.status) === "checking" ||
                                     getStatus(customerTask.expressCheckStatus?.status) === "completed") ?
-                                        <Button key={0}
+                                        <Button key={"resultButtonBlock0"}
                                                 buttonType={"block"}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
                                                 buttonText={"Экспресс"}/> :
-                                        <Button key={1}
+                                        <Button key={"resultButtonSend0"}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
                                                 buttonText={"Экспресс"}
-                                                buttonFunc={()=>{startExpressTask(customerTask)}}/>}
+                                                buttonFunc={()=>handleExpressClick(customerTask)}/>}
                                 </div>    
                             </td>
                             <td>

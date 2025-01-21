@@ -17,6 +17,8 @@ import { setGradeFormat } from "../../../../modules/number_formation_modules/set
 import TASKS_MAX_GRADE from "../../../../modules/grade_modules/configMaxGrades.js"
 import { sortCustomerTasks, sortDate, sortExams } from "../../../../modules/date_modules/sortingDate.js"
 
+import { AccountPopup } from "../../AccountPopup.jsx"
+
 import { Button } from "../../../reusible_components/Button.jsx"
 import { Loader } from "../../../reusible_components/Loader.jsx"
 
@@ -25,7 +27,7 @@ import { Loader } from "../../../reusible_components/Loader.jsx"
     <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
 </div> */
 
-export const ResultsExamRecords = ({variant, examPicked, className}) => {
+export const ResultsExamRecords = ({variant, examPicked, className, setContentPopup, setShowPopup}) => {
     const navigate = useNavigate()
 
     const [exams, setExams] = useState([])
@@ -116,6 +118,28 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadExamResults},
     ]
 
+    const handleExamExpressClick = (examId, localStorage) => {
+        setContentPopup(() => (props) => (
+            <AccountPopup warningMessage={"Внимание!"}
+                          messageText={`Вы выбрали экспресс проверку для экзамена, варианта: ${variant.theme}`}
+                          messageCost={"С вашего счета спишется:"}
+                          cost={"200"}
+                          messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
+                          acceptButton={<Button key={"resultButtonSend4"}
+                                                buttonText={"Да"}
+                                                buttonFunc={()=>{setShowPopup(false)
+                                                                 sendExamToCheckQueue(examId, localStorage)}}
+                                                buttonWidth={"100%"}/>}
+                          declineButton={<Button key={"resultButtonSend5"}
+                                                 buttonText={"Нет"}
+                                                 buttonType={"outline"}
+                                                 buttonFunc={()=>setShowPopup(false)}
+                                                 buttonWidth={"100%"}/>}
+                          {...props}/>
+        ))
+        setShowPopup(true);
+    }
+
     return (<>
         <div className={`resultsRecordsContainer ${className}`}>
             <div className="resultsRecordsDescription">
@@ -181,14 +205,13 @@ export const ResultsExamRecords = ({variant, examPicked, className}) => {
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodyButtons">
-                                    <Button key={0}
+                                    <Button key={"resultButtonSend3"}
                                             buttonPadding={"0 20px"}
                                             buttonWidth={"100%"}
                                             buttonIcon={<BoltIcon className="svgIcon"/>}
                                             buttonText={"Экспресс"}
-                                            buttonFunc={() => {sendExamToCheckQueue(exam.id, localStorage.getItem("token"))}}/>
-
-                                    <Button key={1}
+                                            buttonFunc={()=>handleExamExpressClick(exam.id, localStorage.getItem("token"))}/>
+                                    <Button key={"resultButtonSend6"}
                                             buttonType={"block"}
                                             buttonPadding={"0 20px"}
                                             buttonWidth={"100%"}

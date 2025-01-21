@@ -1,4 +1,5 @@
 import "./css/account.css"
+import "./css/account_popup.css"
 import "./css/user.css"
 import "./css/results.css"
 import "../reusible_components/css/input.css"
@@ -16,12 +17,16 @@ import { UserSubscriptionLoading } from "./user_components/UserSubscriptionLoadi
 import { UserPromocode } from "./user_components/UserPromocode"
 import { UserChangePassword } from "./user_components/UserChangePassword"
 import { ResultsGrid } from "./result_components/ResultsGrid"
+import { Popup } from "../reusible_components/Popup"
 import { FooterMain } from "../footer_components/FooterMain"
 
 
 export const AccountPage = () =>{
     const [customer, setCustomer] = useState(undefined)
+    const [showPopup, setShowPopup] = useState(false)
+    const [contentPopup, setContentPopup] = useState()
     const [error, setError] = useState(undefined);
+    
     useEffect(() =>{
         const fetchData = async () =>{
             try{
@@ -36,8 +41,16 @@ export const AccountPage = () =>{
         fetchData()
     }, [])
 
+    useEffect(() => {
+        {document.body.style.overflow = showPopup ? "hidden" : "auto"}
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [showPopup])
+
     return (<>
         <HeaderMain/>
+        {showPopup && <Popup component={contentPopup} setShowPopup={setShowPopup}/>}
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="accountWrapper">
@@ -56,7 +69,7 @@ export const AccountPage = () =>{
 
                         <PageTitle pageTitleText={"#Пройденные# варианты"} className={"accountGridItem6"}/>
 
-                        <ResultsGrid className={"accountGridItem7"}/>
+                        <ResultsGrid className={"accountGridItem7"} setContentPopup={setContentPopup} setShowPopup={setShowPopup}/>
                     </div>
                 </div>
             </div>

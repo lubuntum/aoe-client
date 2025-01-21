@@ -1,11 +1,9 @@
-import "./css/popup.css"
+import "./css/popup.css";
 
-export const Popup = ({component, setShowPopup}) => {
-    const PopupContent = component
-
-    return (<>
+export const Popup = ({ component: Component, setShowPopup }) => {
+    return (
         <div className="popupContainer">
-            <PopupContent setShowPopup = {setShowPopup}/>
+            <Component setShowPopup={setShowPopup}/>
         </div>
-    </>)
+    )
 }

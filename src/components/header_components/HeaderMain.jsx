@@ -43,6 +43,7 @@ export const HeaderMain = ({onScrollToSection}) => {
             try {
                 const response = await getHeaderData(localStorage.getItem("token"))
                 setHeaderData(response.data)
+                console.log(response.data)
             } catch(e) {
                 logout()
             }   
