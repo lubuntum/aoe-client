@@ -21,7 +21,7 @@ export const PricingPage = () => {
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
     const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
     const [subscriptionTypesDesc, setSubscriptionTypesDesc] = useState(null)
-
+    const [error, setError] = useState(null)
     const baseDescription = useMemo(() => [
         "План доступен после регистрации", 
         "Моментальный доступ к 5 вариантам", 
@@ -56,7 +56,7 @@ export const PricingPage = () => {
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
                     <div className="pricingGrid">
-                        <PageTitle pageTitleText={"Приобрести #подписку#"} className={"pricingGridItem1"}/>
+                        <PageTitle pageTitleText={error ? error : "Приобрести #подписку#"} className={"pricingGridItem1"}/>
 
                         <PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
@@ -65,7 +65,7 @@ export const PricingPage = () => {
                                                  subscriptionDescription={baseDescription}
                                                  subscriptionIsActive={"Активен"}
                                                  subscriptionBG={baseBackground}/>
-
+                        {subscriptionTypesDesc ? 
                         <PricingSubscriptionCard className={"pricingGridItem3"} 
                                                  contentSwap={true}
                                                  subscriptionType={"pro"}
@@ -74,8 +74,10 @@ export const PricingPage = () => {
                                                  subscriptionIsActive={"Активен"}
                                                  subscriptionBG={proBackground}
                                                  subscriptionTypesDesc={subscriptionTypesDesc}
-                                                 subscriptionTypesRef={subscriptionTypesRef}/>
-
+                                                 subscriptionTypesRef={subscriptionTypesRef}
+                                                 setError = {setError}/> : 
+                                                 <p>loading...</p>}
+ 
                         <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
 
                         <PricingBalanceCard className={"pricingGridItem5"}

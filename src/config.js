@@ -47,3 +47,4 @@ export const API_ADMIN_GET_CUSTOMER_ID_BY_EMAIL = "/api/admin/customer-id-by-ema
 
 //subscriptions
 export const API_SUBSCRIPTION_GET_ALL_VALID = "/api/subscription/valid-subscriptions"
+export const API_SUBSCRIPTION_PURCHASE = "/api/subscription/purchase-subscription"
