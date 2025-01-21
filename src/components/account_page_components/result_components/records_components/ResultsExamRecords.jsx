@@ -21,14 +21,13 @@ import { AccountPopup } from "../../AccountPopup.jsx"
 
 import { Button } from "../../../reusible_components/Button.jsx"
 import { Loader } from "../../../reusible_components/Loader.jsx"
-
-/*<div className="resultsViewerTableBodyItem">
-    <p><span className={setGradeColor(exam?.expertTotalGrade, 20)}>{setGradeFormat(exam.expertTotalGrade)}</span> / {TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}</p>
-    <a className="btn ghostBtn" style={{width: "40px"}}><ProtocolIcon className="ghostBtnSvg"/></a>
-</div> */
+import routes from "../../../../routes.js"
+import { getHeaderData } from "../../../../modules/api_modules/accountAPI.js"
 
 export const ResultsExamRecords = ({variant, examPicked, className, setContentPopup, setShowPopup}) => {
     const navigate = useNavigate()
+
+    const [currentBalance, setCurrentBalance] = useState(0)
 
     const [exams, setExams] = useState([])
     const [currentItems, setCurrentItems] = useState([])
@@ -47,7 +46,6 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
         setCurrentPage(pageNum)
         setCurrentItems(currentItemsTemp)
     }
-
 
     useEffect(()=>{
         const getExamsData = async () => {
@@ -119,26 +117,71 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
     ]
 
     const handleExamExpressClick = (examId, localStorage) => {
-        setContentPopup(() => (props) => (
-            <AccountPopup warningMessage={"Внимание!"}
-                          messageText={`Вы выбрали экспресс проверку для экзамена, варианта: ${variant.theme}`}
-                          messageCost={"С вашего счета спишется:"}
-                          cost={"200"}
-                          messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
-                          acceptButton={<Button key={"resultButtonSend4"}
-                                                buttonText={"Да"}
-                                                buttonFunc={()=>{setShowPopup(false)
-                                                                 sendExamToCheckQueue(examId, localStorage)}}
-                                                buttonWidth={"100%"}/>}
-                          declineButton={<Button key={"resultButtonSend5"}
-                                                 buttonText={"Нет"}
-                                                 buttonType={"outline"}
-                                                 buttonFunc={()=>setShowPopup(false)}
-                                                 buttonWidth={"100%"}/>}
-                          {...props}/>
-        ))
-        setShowPopup(true);
+        if (currentBalance < 200) {
+            setContentPopup(() => (props) => (
+                <AccountPopup
+                    warningMessage={"Внимание!"}   
+                    messageText={"На вашем счету недостаточно средств для проверки!"}
+                    messageCost={"На вашем счету должно быть минимум:"}
+                    cost={"200"} 
+                    messageConfirmation={"Пожалуйста пополните счет для отправки Вашего ответа!"}
+                    acceptButton={<Button
+                        key={"balanceButtonSend2"}
+                        buttonText={"Пополнить"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)
+                            navigate(routes.PRICING)}}
+                        />}
+                    declineButton={<Button
+                        key={"balanceButtonSend3"}
+                        buttonText={"Отмена"}
+                        buttonType={"outline"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)}}
+                        />}
+                    {...props}
+                />))
+            setShowPopup(true)
+        } else {
+            setContentPopup(() => (props) => (
+                <AccountPopup 
+                    warningMessage={"Внимание!"}
+                    messageText={`Вы выбрали экспресс проверку для экзамена, варианта: ${variant.theme}`}
+                    messageCost={"С вашего счета спишется:"}
+                    cost={"200"}
+                    messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
+                    acceptButton={<Button 
+                        key={"resultButtonSend4"}
+                        buttonText={"Да"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)
+                            sendExamToCheckQueue(examId, localStorage)}}/>}
+                    declineButton={<Button 
+                        key={"resultButtonSend5"}
+                        buttonText={"Нет"}
+                        buttonType={"outline"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>setShowPopup(false)}/>}
+                    {...props}
+                />))
+            setShowPopup(true)
+        }
     }
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const response = await getHeaderData(localStorage.getItem("token"))
+                setCurrentBalance(response.data.currentBalance)
+            } catch(e) {
+                console.error(e)
+            }
+        }
+        fetchBalance()
+    }, [handleExamExpressClick])
 
     return (<>
         <div className={`resultsRecordsContainer ${className}`}>
@@ -151,42 +194,12 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
             <table className="resultsRecordsTable">
                 <thead>
                     <tr>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>№</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Пройдено</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem headerItemIcons">
-                                <BoltIcon className="resultsRecordsSvgIcon"/>
-                                <p>Отправить на проверку</p>
-                                <FaceIcon className="resultsRecordsSvgIcon"/>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem headerItemIcons">
-                                <BoltIcon className="resultsRecordsSvgIcon"/>
-                                <p>Дата отправки</p>
-                                <FaceIcon className="resultsRecordsSvgIcon"/>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem headerItemIcons">
-                                <BoltIcon className="resultsRecordsSvgIcon"/>
-                                <p>Результаты</p>
-                                <FaceIcon className="resultsRecordsSvgIcon"/>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Действия</p>
-                            </div>
-                        </th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>№</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Пройдено</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem headerItemIcons"><BoltIcon className="resultsRecordsSvgIcon"/><p>Отправить на проверку</p><FaceIcon className="resultsRecordsSvgIcon"/></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem headerItemIcons"><BoltIcon className="resultsRecordsSvgIcon"/><p>Дата отправки</p><FaceIcon className="resultsRecordsSvgIcon"/></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem headerItemIcons"><BoltIcon className="resultsRecordsSvgIcon"/><p>Результаты</p><FaceIcon className="resultsRecordsSvgIcon"/></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Действия</p></div></th>
                     </tr>
                 </thead>
 
