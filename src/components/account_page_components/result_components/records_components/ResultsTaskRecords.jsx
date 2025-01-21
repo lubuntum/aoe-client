@@ -122,7 +122,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
             console.log(response.data)
             await getCustomerTasksData()
         } catch(e) {
-            console.log(e)
+            console.log(e)//e, e.response.message.data
         }
     }
 
