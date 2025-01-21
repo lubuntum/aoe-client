@@ -16,14 +16,12 @@ export const HeaderOptions = ({headerData}) => {
 
     const buttonsOptionsContainer = useMemo(() => [
         {text: "Личный кабинет", type: "link", padding: "", icon: "", func: ()=>navigate(routes.ACCOUNT)},
-        {text: "", type: "admin", padding: "", icon: <AdminIcon className={"svgIcon"}/>, func: ()=>navigate(routes.ADMIN)}
     ], [navigate])
 
     const buttonsOptionsLoginContainer = useMemo(() => [
         {text: "Войти", padding: "0 20px", icon: "", func: ()=>navigate(routes.AUTORIZATION)},
         {text: "", padding: "", icon: <LoginIcon className={"svgIcon"}/>, func: ()=>navigate(routes.AUTORIZATION)}
     ], [navigate])
-    
     return (
         <div className="headerOptionsContainer">
             {isAuth ? (
@@ -35,6 +33,7 @@ export const HeaderOptions = ({headerData}) => {
                                     buttonType={"balance"}
                                     buttonPadding="0 20px"
                                     buttonFunc={() => navigate(routes.PRICING)}/>
+                            
                             {buttonsOptionsContainer.map((item, index) => (
                                 <Button key={`headerOptionsLogin${index}`}
                                         buttonType={item.type}
@@ -43,6 +42,7 @@ export const HeaderOptions = ({headerData}) => {
                                         buttonIcon={item.icon}
                                         buttonFunc={item.func}/>
                             ))}
+                            {headerData.roles?.includes("admin") && <Button buttonType="admin" buttonIcon={<AdminIcon className={"svgIcon"}/>} buttonFunc={()=>navigate(routes.ADMIN)}/>}
                         </>
                     ) : <Loader/>
                     }
