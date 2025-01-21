@@ -52,7 +52,7 @@ export const AutorizationPage = () => {
                         </div>
 
                         <div className="registrationContainer">
-                            <Registration toggle={handleCreateAccount} disabledButton={disabledButton}/>
+                            <Registration toggle={handleCreateAccount} setPanelToggle={setPanelToggle} disabledButton={disabledButton}/>
                         </div>
 
                         <div className="overlayContainer">

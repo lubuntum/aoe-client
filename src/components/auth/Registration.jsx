@@ -11,7 +11,7 @@ export const PsdStrengthContainer = ({psdStyle}) => {
     return (<div className={`passwordStrength ${psdStyle}`}></div>)
 }
 
-export const Registration = ({toggle, disabledButton}) => {
+export const Registration = ({toggle, disabledButton, setPanelToggle}) => {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [secondName, setSecondName] = useState("");
@@ -53,9 +53,9 @@ export const Registration = ({toggle, disabledButton}) => {
             const response = await registration(user)
             setStatus(response.data)
             setError(null)
-            navigate(routes.LOGIN)
+            setPanelToggle(true)
         } catch (err) {
-            if (err.response) setError(err.response.data.error)
+            err.response ? setError(err.response.data.error) : setError("Ой, непредвиденная ошибка")
         } 
     }
 
@@ -68,7 +68,8 @@ export const Registration = ({toggle, disabledButton}) => {
 
     return (<>
         <p className="registrationTitle">Регистрация</p>
-
+        {error && <p style={{color:"red"}}>{error}</p>}
+        {status && <p style={{color: "green"}}>{status}</p>}
         <div className="defInpContainer" style={{width: "350px"}}>
             <input className="defInp" 
                     type="text" 
