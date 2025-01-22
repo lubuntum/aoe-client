@@ -28,14 +28,16 @@ export const AdminPage = () => {
     const [isAdmin, setIsAdmin] = useState(false)
     const {logout} = useAuth()
     useEffect(() => {
-        {showPopup ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"}
+        {document.body.style.overflow = showPopup ? "hidden" : "auto"}
         return () => {
             document.body.style.overflow = "auto"
         }
     }, [showPopup])
+
     useEffect(()=>{
         validate()
     },[])
+    
     const validate = async () => {
         try {
             const response = await validateAdmin(localStorage.getItem("token"))

@@ -15,7 +15,7 @@ import { EmptyContainer } from "../../reusible_components/EmptyContainer"
 
 import { getCustomerCompletedVariants } from "../../../modules/api_modules/accountAPI"
 
-export const ResultsGrid = ({className}) =>{
+export const ResultsGrid = ({className, setContentPopup, setShowPopup}) =>{
     const [currentVariant, setCurrentVariant] = useState()
     const [currentTask, setCurrentTask] = useState()
     const [examPicked, setExamPicked] = useState(false)
@@ -80,8 +80,8 @@ export const ResultsGrid = ({className}) =>{
             currentTask ? <ResultsTaskViewer task={currentTask} className={"resultGridItem3"}/> : 
                           <EmptyContainer emptyText={"Задание не выбрано"} className={"resultGridItem3"}/>}
 
-            {examPicked ? <ResultsExamRecords variant={currentVariant} examPicked={examPicked} className={"resultGridItem4"}/> : 
-            currentTask ? <ResultsTaskRecords variant={currentVariant} task={currentTask} className={"resultGridItem4"}/> : 
+            {examPicked ? <ResultsExamRecords variant={currentVariant} examPicked={examPicked} className={"resultGridItem4"} setContentPopup={setContentPopup} setShowPopup={setShowPopup}/> : 
+            currentTask ? <ResultsTaskRecords variant={currentVariant} task={currentTask} className={"resultGridItem4"} setContentPopup={setContentPopup} setShowPopup={setShowPopup}/> : 
                           <EmptyContainer emptyText={"Задание не выбрано"} className={"resultGridItem4 resultEmptyRecords"}/>}
         </div>
     </>)

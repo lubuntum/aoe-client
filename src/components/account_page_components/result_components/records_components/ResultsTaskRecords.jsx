@@ -7,19 +7,24 @@ import { ReactComponent as ProtocolIcon } from "../../../../res/icons/receipt_lo
 import { ReactComponent as ExpandIcon } from "../../../../res/icons/quick_reference_all_24dp_gi.svg"
 
 import { ResultsOptionButtons } from "./ResultsOptionButtons.jsx"
-import { getCustomerExamsByVariant, getCustomerTasksByTask, sendCustomerTaskToCheckQueue, startExpressCheckForTask } from "../../../../modules/api_modules/resultAPI.js"
+import { getCustomerTasksByTask, sendCustomerTaskToCheckQueue } from "../../../../modules/api_modules/resultAPI.js"
 
 import { setGradeColor } from "../../../../modules/number_formation_modules/setGradeColorRecognition.js"
 import { setGradeFormat } from "../../../../modules/number_formation_modules/setGradeNumberFormat.js"
 import routes from "../../../../routes.js"
 import TASKS_MAX_GRADE from "../../../../modules/grade_modules/configMaxGrades.js"
-import { sortCustomerTasks, sortDate } from "../../../../modules/date_modules/sortingDate.js"
+import { sortCustomerTasks } from "../../../../modules/date_modules/sortingDate.js"
+
+import { AccountPopup } from "../../AccountPopup.jsx"
 
 import { Button } from "../../../reusible_components/Button.jsx"
 import { Loader } from "../../../reusible_components/Loader.jsx"
+import { getHeaderData } from "../../../../modules/api_modules/accountAPI.js"
 
-export const ResultsTaskRecords = ({variant, task, className}) => {
+export const ResultsTaskRecords = ({variant, task, className, setContentPopup, setShowPopup}) => {
     const navigate = useNavigate()
+
+    const [currentBalance, setCurrentBalance] = useState(0)
 
     const [customerTasks, setCustomerTasks] = useState([])
     const [currentItems, setCurrentItems] = useState([])
@@ -39,11 +44,11 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         setCurrentItems(currentItemsTemp)
     }
 
-
     useEffect(()=>{
         getCustomerTasksData()
         console.log(`current task in panel => ${task.id}`)
-    },[task])
+    }, [task])
+
     const getCustomerTasksData = async () => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
@@ -90,7 +95,6 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
     }
 
     const shareCustomerTask = async (customerTaskId) => {
-        
         try{
             const resultsUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTaskId}&taskId=${task.id}`
             await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
@@ -98,12 +102,12 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         } catch(err) {
             console.error(`Failed to copy ${err}`)
         }
-        
     }
 
     const downloadCustomerTaskAudio = (customerTaskId) => {
         console.log("download")
     }
+
     const startExpressTask = async (customerTask) => {
         const tempTranscribeService = "assemblyai"//TEMP
         const tempAIService = "vsegpt"//TEMP
@@ -140,6 +144,75 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
         return statuses[status] || "default"
     }
 
+    const handleExpressClick = (customerTask) => {
+        if (currentBalance < 50) {
+            setContentPopup(() => (props) => (
+                <AccountPopup
+                    warningMessage={"Внимание!"}
+                    messageText={"На вашем счету недостаточно средств для проверки!"}
+                    messageCost={"На вашем счету должно быть минимум:"}
+                    cost={"50"} 
+                    messageConfirmation={"Пожалуйста пополните счет для отправки Вашего ответа!"}
+                    acceptButton={<Button
+                        key={"balanceButtonSend0"}
+                        buttonText={"Пополнить"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)
+                            navigate(routes.PRICING)}}
+                        />}
+                    declineButton={<Button
+                        key={"balanceButtonSend1"}
+                        buttonText={"Отмена"}
+                        buttonType={"outline"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)}}
+                        />}
+                    {...props}
+                />))
+            setShowPopup(true)
+        } else {
+            setContentPopup(() => (props) => (
+                <AccountPopup 
+                    warningMessage={"Внимание!"}
+                    messageText={`Вы выбрали экспресс проверку для ${task.taskType} задания, варианта: ${variant.theme}`}
+                    messageCost={"С вашего счета спишется:"}
+                    cost={"50"}
+                    messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
+                    acceptButton={<Button 
+                        key={"resultButtonSend1"}
+                        buttonText={"Да"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>{
+                            setShowPopup(false)
+                            startExpressTask(customerTask)}}
+                        />}
+                    declineButton={<Button 
+                        key={"resultButtonSend2"}
+                        buttonText={"Нет"}
+                        buttonType={"outline"}
+                        buttonWidth={"100%"}
+                        buttonFunc={()=>setShowPopup(false)}
+                    />}
+                    {...props}
+                />))
+            setShowPopup(true)
+        }
+    }
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const response = await getHeaderData(localStorage.getItem("token"))
+                setCurrentBalance(response.data.currentBalance)
+            } catch(e) {
+                console.error(e)
+            }
+        }
+        fetchBalance()
+    }, [handleExpressClick])
+
     return (<>
         <div className={`resultsRecordsContainer ${className}`}>
             <div className="resultsRecordsDescription">
@@ -151,36 +224,12 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
             <table className="resultsRecordsTable">
                 <thead>
                     <tr>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>№</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Пройдено</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Отправить на проверку</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Дата отправки</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Результаты</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div className="resultsRecordsTableHeaderItem">
-                                <p>Действия</p>
-                            </div>
-                        </th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>№</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Пройдено</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Отправить на проверку</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Дата отправки</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Результаты</p></div></th>
+                        <th><div className="resultsRecordsTableHeaderItem"><p>Действия</p></div></th>
                     </tr>
                 </thead>
 
@@ -199,22 +248,17 @@ export const ResultsTaskRecords = ({variant, task, className}) => {
                             </td>
                             <td>
                                 <div className="resultsRecordsTableBodyButtons">
-                                    {(getStatus(customerTask.expressCheckStatus?.status) === "incomplete" ||
-                                    getStatus(customerTask.expressCheckStatus?.status) === "insufficient" ||
-                                    getStatus(customerTask.expressCheckStatus?.status) === "untranscribed" ||
-                                    getStatus(customerTask.expressCheckStatus?.status) === "transcribed" ||
-                                    getStatus(customerTask.expressCheckStatus?.status) === "checking" ||
-                                    getStatus(customerTask.expressCheckStatus?.status) === "completed") ?
-                                        <Button key={0}
+                                    {getStatus(customerTask.expressCheckStatus?.status) === "completed" ?
+                                        <Button key={"resultButtonBlock0"}
                                                 buttonType={"block"}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
                                                 buttonText={"Экспресс"}/> :
-                                        <Button key={1}
+                                        <Button key={"resultButtonSend0"}
                                                 buttonPadding={"0 20px"}
                                                 buttonWidth={"100%"}
                                                 buttonText={"Экспресс"}
-                                                buttonFunc={()=>{startExpressTask(customerTask)}}/>}
+                                                buttonFunc={()=>handleExpressClick(customerTask)}/>}
                                 </div>    
                             </td>
                             <td>

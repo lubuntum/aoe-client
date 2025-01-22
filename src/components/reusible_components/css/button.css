@@ -149,6 +149,21 @@
 
 
 
+.outline {
+    background-color: transparent;
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 0 transparent;
+}
+.outline span {
+    color: var(--blue);
+}
+.outline .svgIcon {
+    fill: var(--blue);
+}
+.outline:hover {
+    border: 2px solid var(--yellow);
+}
+
 .protocol {
     position: absolute;
     right: 0;

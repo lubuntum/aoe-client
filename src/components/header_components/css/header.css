@@ -6,7 +6,7 @@
     max-width: 1440px;
     max-height: 80px;
     width: calc(100% - 80px);
-	z-index: 9999;
+    z-index: 10;
     transition: all .2s ease;
 }
 .headerWrapper {
@@ -17,6 +17,7 @@
     border-radius: 20px;
     max-height: 80px;
     padding: 20px;
+    padding-left: 40px;
     z-index: 9999;
     transition: all .2s ease;
 }
@@ -39,6 +40,10 @@
     font-size: 2rem;
     font-weight: 600;
     color: var(--black);
+}
+.headerLogoContainer p span {
+    font-weight: 700;
+    color: var(--blue);
 }
 .headerBurgerContainer input[type="checkbox"] {
     display: none;
