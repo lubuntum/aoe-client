@@ -1,5 +1,6 @@
 import "../../App.css"
 import "./css/main.css"
+import "./css/main_banner.css"
 import "./css/main_media.css"
 
 import { HeaderMain } from '../header_components/HeaderMain'
