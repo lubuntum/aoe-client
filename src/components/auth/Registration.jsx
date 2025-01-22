@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { registration } from "../../modules/api_modules/authAPI"
 import { getCurrentDate } from "../../modules/date_modules/currentDate"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { checkPsdStrength } from "../../modules/password_modules/checkPasswordStrength"
 import { CheckPsdStrength } from "../utils/CheckPsdStrength"
 
 import routes from "../../routes";
+import { Checkbox } from "../reusible_components/Checkbox";
 
 export const PsdStrengthContainer = ({psdStyle}) => {
     return (<div className={`passwordStrength ${psdStyle}`}></div>)
@@ -17,6 +18,7 @@ export const Registration = ({toggle, disabledButton, setPanelToggle}) => {
     const [secondName, setSecondName] = useState("");
     const [pass, setPass] = useState("")
     const [repeatPass, setRepeatPass] = useState("")
+    const location = useLocation()
 
     const handlePassChange = (e) => {
         setPass(e.target.value)
@@ -50,6 +52,7 @@ export const Registration = ({toggle, disabledButton, setPanelToggle}) => {
         }
         try {
             const user = assembleUserData()
+            console.log(user)
             const response = await registration(user)
             setStatus(response.data)
             setError(null)
@@ -60,14 +63,15 @@ export const Registration = ({toggle, disabledButton, setPanelToggle}) => {
     }
 
     const assembleUserData = () => {
-        const username = email.split("@")[0];
+        //const username = email.split("@")[0];
         return {"email" : email, "name" : name, 
-                "secondName": secondName, "username":username, "password":pass,
-                 registrationDate: getCurrentDate()}
+                "secondName": secondName, "password":pass,
+                 registrationDate: getCurrentDate(), 
+                 isPartnerProposal: location.pathname === routes.PARTNERSHIP_AUTHORIZATION}
     }
 
     return (<>
-        <p className="registrationTitle">Регистрация</p>
+        <p className="registrationTitle">{location.pathname === routes.PARTNERSHIP_AUTHORIZATION ? "Регистрация партнеров" : "Регистрация"}</p>
         {error && <p style={{color:"red"}}>{error}</p>}
         {status && <p style={{color: "green"}}>{status}</p>}
         <div className="defInpContainer" style={{width: "350px"}}>
@@ -121,7 +125,7 @@ export const Registration = ({toggle, disabledButton, setPanelToggle}) => {
                     onChange={handleRepPassChange}></input>
                 <CheckPsdStrength psdStrengthStyle = {checkPsdStrength(repeatPass)}/>
         </div>
-
+        
         <a className="btn defaultBtn" onClick={sendCustomerData} style={{width: "350px"}}>Регистрация</a>
 
         <div className="orContainer">

@@ -49,6 +49,8 @@ const Main = () => {
                 <Route path={routes.LESSON_SESSION} element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
                 <Route path={routes.RESULTS} element = {<ProtectedRoute component={<ExamComplitionResultsPage/>}/>}/>
                 <Route path={routes.TASK_RESULT} element = {<ProtectedRoute component={<TaskComplitionResultsPage/>}/>}/>
+
+                <Route path={routes.PARTNERSHIP_AUTHORIZATION} element = {<ProtectedRoute component={<AutorizationPage/>}/>} />
             </Routes>
         </div>
     )

@@ -1,4 +1,4 @@
-const AUTORIZATION = "/autorization";
+const AUTORIZATION = "/auth";
 const HOME = "/home";
 const ACCOUNT = "/account";
 const TASK = "/tasks";
@@ -7,6 +7,7 @@ const RESULTS = "/results"
 const TASK_RESULT = "/task-result"
 const ADMIN = "/admin"
 const PRICING = "/pricing"
+const PARTNERSHIP_AUTHORIZATION = "/partnership/auth"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -16,7 +17,8 @@ const routes = {
     RESULTS,
     TASK_RESULT,
     ADMIN,
-    PRICING
+    PRICING,
+    PARTNERSHIP_AUTHORIZATION
 }
 
 export default routes
