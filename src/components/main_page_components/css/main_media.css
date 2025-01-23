@@ -1,183 +1,175 @@
-@media (max-width: 1430px) {
-    .bannerInfoContainer {
-        width: 50%;
-        justify-content: space-around;
-    }
-    .bannerInfoContainer h1 {
-        font-size: 3rem;
-    }
-    .bannerInfoContainer p {
-        font-size: 1rem;
-        line-height: 25px;
-    }
-    .bannerImageContainer {
-        width: 50%;
-    }
-    .advantagesContainer {
-        flex-wrap: wrap;
-    }
-    .advantageCard {
-        flex: 1 1 calc(30% - 20px);
-    }
-    .advantageCardName {
-        font-size: 1.125rem;
-    }
-    .advantageCardDesc {
-        font-size: 1rem;
-    }
-    .usesImageContrainer {
-        width: 50%;
-    }
-    .usesContainer {
-        width: 50%;
-    }
-    .usesCardText {
-        font-size: 1rem;
-    }
-}
-@media (max-width: 1390px) {
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
-        font-size: 1.50rem;
-    }
-}
-@media (max-width: 1200px) {
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
-        font-size: 2rem;
-    }
-    .subscriptionAdvantagesContainer {
-        flex-direction: column;
-        height: 100%;
-    }
-    .subscriptionAdvantagesContainer .pricngSubscriptionCardContainer {
-        height: 300px;
-    }
-}
-@media (max-width: 1100px) {
-    .bannerWrapper {
-        padding-bottom: 0;
-    }
-    .bannerInfoContainer {
-        width: 50%;
-        gap: 40px;
-    }
-    .bannerInfoContainer h1 {
-        font-size: 2.5rem;
-    }
-}
-@media (max-width: 1024px) {
-    .bannerInfoContainer {
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-    }
-    .bannerInfoContainer p {
-        font-size: 1.25rem;
-        line-height: 30px;
-    }
-    .bannerImageContainer {
-        display: none;
-    }
-    .usesImageContrainer {
-        display: none;
-    }
-    .usesContainer {
-        width: 100%;
-    }
-
-
-    .advantagesWrapper,
-    .usesWrapper, 
-    .subscriptionAdvantagesWrapper,
-    .partnersWrapper,
-    .faqWrapper {
-        padding-bottom: 0;
-    }
-}
-@media (max-width: 1000px) {
+@media (max-width: 1440px) {
     .advantageCard {
         flex: 1 1 calc(40% - 20px);
     }
 }
-@media (max-width: 768px) {
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardContent {
-        display: flex;
-        justify-content: space-between;
+
+@media (max-width: 1370px) {
+    .bannerContainerItem:nth-child(1) {
+        justify-content: start;
+        gap: 20px;
     }
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription {
-        min-width: 270px;
-    }
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
-        font-size: 1.5rem;
+    .bannerContainerItem:nth-child(1) p:nth-child(2) {
+        font-size: 2.25rem;
     }
 }
-@media (max-width: 630px) {
-    .bannerInfoContainer h1 {
-        font-size: 1.875rem;
+
+@media (max-width: 1280px) {
+    .bannerContainerItem:nth-child(5) {
+        padding: 20px;
+        justify-content: space-between;
     }
-    .bannerInfoContainer p {
-        font-size: 1rem;
-        line-height: 25px;
+    .bannerItem5Decal1 {
+        display: none;
+    }
+    .usesImageContrainer {
+        display: none;
+    }
+    .usesContainer {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .usesCard {
+        width: 100%;
+        flex: 1 1 calc(40% - 20px);
+    }
+    .usesCardIterator {
+        top: -13px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 1240px) {
+    .bannerContainerItem:nth-child(1) {
+        padding: 30px;
+        gap: 40px;
+    }
+    .bannerContainerItem:nth-child(1) p:nth-child(2) {
+        font-size: 2rem;
+    }
+    .bannerItem1Decal {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .subscriptionAdvantagesContainer {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media (max-width: 1150px) {
+    .bannerContainer {
+        grid-template-columns: auto auto auto 300px;
+    }
+    .bannerContainerItem:nth-child(1) {
+        grid-column: span 3;
+        padding: 40px;
+    }
+    .bannerContainerItem:nth-child(1) p:nth-child(2) {
+        font-size: 2.25rem;
+    }
+    .bannerContainerItem:nth-child(3) {
+        display: none;
+    } 
+    .bannerContainerItem:nth-child(4) {
+        display: none;
+    }
+    .bannerContainerItem:nth-child(5) {
+        grid-column: span 4;
+    } 
+}
+
+@media (max-width: 1024px) {
+    .bannerWrapper {
+        padding-top: 100px;
+    }
+    .bannerContainer {
+        grid-template-rows: auto auto;
+    }
+    .bannerContainerItem:nth-child(1) {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        grid-column: span 4;
+        border: none;
+        padding: 0;
+    }
+    .bannerContainerItem:nth-child(1) p:nth-child(1) {
+        font-size: 2.5rem;
+    }
+    .bannerContainerItem:nth-child(2) {
+        display: none;
+    }
+    .bannerContainerItem:nth-child(5) {
+        padding: 0;
+        grid-column: span 4;
+        border: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bannerContainer {
+        grid-template-rows: 200px auto;
+    }
+    .bannerContainerItem:nth-child(1) p:nth-child(1) {
+        display: none;
+    }
+    .advantagesWrapper {
+        padding-bottom: 0;
     }
     .advantageCard {
         flex: 1 1 calc(60% - 20px);
-        padding: 20px;
-        gap: 20px;
     }
-    .advantageCardDesc {
-        font-size: 1rem;
-        font-weight: 500;
+    .usesWrapper {
+        padding-bottom: 0;
     }
-    .usesCardText {
-        font-weight: 500;
+    .usesCard {
+        flex: 1 1 calc(60% - 20px);
+        padding-left: 20px;
     }
-    .usesCardImage .svgIcon {
-        min-width: 75px;
-        min-height: 75px;
+    .subscriptionAdvantagesWrapper {
+        padding-bottom: 0;
     }
-    .subscriptionAdvantagesContainer .pricngSubscriptionCardContainer {
-        height: auto;
+    .accrodionSummary .accordionTitle span {
+        margin-left: 0;
     }
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardContent {
-        flex-direction: column;
-        gap: 40px;
+}
+
+@media (max-width: 630px) {
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:first-child {
+        font-size: 1.5rem;
     }
     .subscriptionAdvantagesContainer .pricingSubscriptionCardName p:last-child {
         display: none;
     }
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription {
-        min-width: 100%;
-    }
-    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription p {
-        font-weight: 500;
-    }
-    .accrodionSummary {
-        font-weight: 500;
-    }
-    .accordionTitle span {
-        font-weight: 600;
-    }
-    .accordionDetails[open] + .accordionContent {
-        font-weight: 500;
-    }
-}
-@media (max-width: 425px) {
-    .testVariants {
-        width: 100% !important;
-    }
-    .advantageCardImage .svgIcon {
-        min-height: 60px;
-        min-width: 60px;
-        height: 60px;
-        width: 60px;
-    }
-    .usesCard {
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardContent {
+        display: flex;
+        flex-direction: column;
         gap: 20px;
     }
-    .usesCardImage .svgIcon {
-        min-width: 60px;
-        min-height: 60px;
-        width: 60px;
-        height: 60px
+    .subscriptionAdvantagesContainer .pricingSubscriptionCardDescription {
+        width: 80%;
+    }
+}
+
+@media (max-width: 574px) {
+    .bannerContainerItem:nth-child(1) p:nth-child(1) {
+        font-size: 2rem;
+    }
+    .bannerContainerItem:nth-child(1) p:nth-child(2) {
+        font-size: 2rem;
+    }
+    .bannerContainerItem:nth-child(5) p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .bannerContainerItem:nth-child(1) p:nth-child(2) {
+        font-size: 1.5rem;
     }
 }

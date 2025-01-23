@@ -1,4 +1,4 @@
-@media (max-width: 1280px) {
+@media (max-width: 1350px) {
     .headerUnauthNavbarContainer {
         gap: 20px;
     }
@@ -7,7 +7,10 @@
         gap: 20px;
     }
 }
-@media (max-width: 1220px) {
+@media (max-width: 1350px) {
+    .headerWrapper {
+        padding-left: 20px;
+    }
     .headerUnauthNavbarContainer {
         display: none;
     }
@@ -35,7 +38,7 @@
         display: none;
     }
 }
-@media (max-width: 425px) {
+@media (max-width: 500px) {
     .headerFixedContainer {
         width: calc(100% - 40px);
     }

@@ -22,7 +22,7 @@
 	max-width: 1440px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 500px) {
 	.pageWrapper {
 		margin: 0;
 	}
