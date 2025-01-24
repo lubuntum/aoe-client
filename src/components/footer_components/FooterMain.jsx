@@ -51,21 +51,23 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                             <p>Навигация</p>
                             {buttonFooterNavigation.map((item, index) => (
                                 <Button key={`footerLink${index}`}
-                                        buttonType={"link"}
+                                        buttonType={"link footerButtonLink"}
                                         buttonText={item.text}
                                         buttonFunc={item.func}/>
                             ))}
                         </div>
                         <div className="footerContact footerColumn">
                             <p>Контакты</p>
+                            <p><span>ФИО: </span>Осипов Вячеслав Сергеевич</p>
+                            <p><span>Email: </span>osipowvs@gmail.com</p>
+                            <p><span>Номер тел.: </span>+7(902)014-3737</p>
+                            <p><span>ИНН: </span>190113488903</p>
                         </div>
                     </div>
                     <div className="footerBottomDivider"></div>
                     <div className="footerDocuments">
-                        <a href="#">Документ 1</a>
-                        <a href="#">Документ 2</a>
-                        <a href="#">Политика конфиденциальности</a>
-                        <a href="#">Публичная оферта</a>
+                        <a onClick={()=>navigate(routes.PRIVACY_POLICE)}>Privacy Police</a>
+                        <a onClick={()=>navigate(routes.USER_AGREEMENT)}>Пользовательское соглашение</a>
                     </div>
                     <div className="footerCred">
                         <p>© Lorem, ipsum dolor.</p>

@@ -8,6 +8,8 @@ const TASK_RESULT = "/task-result"
 const ADMIN = "/admin"
 const PRICING = "/pricing"
 const PARTNERSHIP_AUTHORIZATION = "/partnership/auth"
+const USER_AGREEMENT = "/user-agreement"
+const PRIVACY_POLICE = "/privacy-police"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -18,7 +20,9 @@ const routes = {
     TASK_RESULT,
     ADMIN,
     PRICING,
-    PARTNERSHIP_AUTHORIZATION
+    PARTNERSHIP_AUTHORIZATION,
+    USER_AGREEMENT,
+    PRIVACY_POLICE
 }
 
 export default routes

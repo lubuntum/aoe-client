@@ -15,7 +15,7 @@ export const MainBannerSection = React.memo(() => {
                 <div className="bannerContainer">
                     <div className="bannerContainerItem bannerItem1">
                         <p>TestMy<span>Eng</span></p>
-                        <p>Сервис для подготовки к устной части ЕГЭ по английскому языку</p>
+                        <p>Сервис подготовки к устной части ЕГЭ по английскому языку</p>
                         <div className="bannerItem1Decal bannerDecal"></div>
                     </div>
                     <div className="bannerContainerItem bannerItem2">

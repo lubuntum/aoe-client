@@ -2,7 +2,15 @@ import { useAuth } from "./AuthProvider"
 import { Navigate, useLocation } from "react-router-dom";
 import routes from "../../routes";
 //Роуты куда может попасть неавторизованный пользователь
-const unAuthRoutesAccess = [routes.HOME, routes.AUTORIZATION, routes.PARTNERSHIP_AUTHORIZATION, routes.TASK, routes.RESULTS, routes.TASK_RESULT, routes.LESSON_SESSION]
+const unAuthRoutesAccess = [routes.HOME, 
+                            routes.AUTORIZATION, 
+                            routes.PARTNERSHIP_AUTHORIZATION, 
+                            routes.TASK, 
+                            routes.RESULTS, 
+                            routes.TASK_RESULT, 
+                            routes.LESSON_SESSION,
+                            routes.USER_AGREEMENT,
+                            routes.PRIVACY_POLICE]
 const ProtectedRoute = ({component}) => {
     const {isAuth, loading} = useAuth();
     const location = useLocation()

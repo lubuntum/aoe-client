@@ -40,6 +40,8 @@
     font-size: 2rem;
     font-weight: 600;
     color: var(--black);
+    user-select: none;
+    cursor: pointer;
 }
 .headerLogoContainer p span {
     font-weight: 700;

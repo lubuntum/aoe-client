@@ -137,6 +137,9 @@
     .accrodionSummary .accordionTitle span {
         margin-left: 0;
     }
+    .faqWrapper {
+        padding-bottom: 0;
+    }
 }
 
 @media (max-width: 630px) {
