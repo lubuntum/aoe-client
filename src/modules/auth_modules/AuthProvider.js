@@ -28,7 +28,7 @@ const AuthProvider = ({children}) =>{
         localStorage.removeItem("user_email")
         localStorage.removeItem("token")
         setIsAuth(false)
-        navigate('/autorization')
+        navigate(`${routes.AUTORIZATION}`)
     }
     const saveEmail = (email) => {
         localStorage.setItem(USER_EMAIL, email)

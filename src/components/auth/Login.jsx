@@ -2,12 +2,15 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
 import { Checkbox } from "../reusible_components/Checkbox"
+import { useLocation } from "react-router-dom"
+import routes from "../../routes"
 
 export const Login = ({toggle, disabledButton}) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [rememberMe, setRememberMe] = useState(false)
     const [error, setError] = useState(null)
+    const location = useLocation()
 
     const {login} = useAuth()
     const {saveEmail, getEmail} = useAuth()
@@ -61,7 +64,7 @@ export const Login = ({toggle, disabledButton}) => {
 
     return (<>
         {error && <p>{error}</p>}
-        <p className="loginTitle">Service</p>
+        <p className="loginTitle">{location.pathname === routes.PARTNERSHIP_AUTHORIZATION ? "Our partners" : "TestMyEng"}</p>
 
         <div className="defInpContainer" style={{width: "350px"}}>
             <input className="defInp" 

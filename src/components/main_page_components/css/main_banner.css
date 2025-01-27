@@ -1,0 +1,230 @@
+.bannerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 150px;
+    height: calc(100vh - 80px);
+}
+.bannerContainer {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 300px auto 300px 300px;
+    grid-template-rows: 300px 300px;
+    height: 100%;
+}
+.bannerContainerItem {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+}
+.bannerItem1 {
+    grid-column: span 2;
+}
+.bannerItem5 {
+    grid-column: span 3;
+}
+
+
+
+
+
+
+
+.bannerContainerItem:first-child {
+    background-color: transparent;
+    border: 5px solid var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+.bannerContainerItem:first-child p:nth-child(1) {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.bannerContainerItem:first-child p span {
+    font-weight: 700;
+    color: var(--blue);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--blue);
+}
+.bannerContainerItem:first-child p:nth-child(2) {
+    font-weight: 600;
+    font-size: 2.75rem;
+}
+.bannerItem1Decal {
+    position: absolute;
+    background-color: var(--blue);
+    border-radius: 15px 0;
+    width: 60px;
+    height: 60px;
+    right: 15px;
+    bottom: 15px;
+}
+.bannerDecal {
+    box-shadow: 5px 10px 15px var(--black-shadow);
+}
+
+
+
+.bannerContainerItem:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.bannerContainerItem:nth-child(2) p:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    border-radius: 1000px;
+    width: 125px;
+    height: 125px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--white);
+}
+.bannerContainerItem:nth-child(2) p:last-child {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+.bannerContainerItem:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.bannerContainerItem:nth-child(2) p:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    box-shadow: 5px 10px 15px var(--black-shadow);
+    border-radius: 1000px;
+    width: 125px;
+    height: 125px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--white);
+}
+.bannerContainerItem:nth-child(2) p:last-child {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+.bannerContainerItem:nth-child(3) {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.magicpattern { 
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 300 300%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%22300%22 height=%22300%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h300v300H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%23fff%22 d=%22M0 0h300v300H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23f6705e96%22 stroke-width=%22.54%22 fill=%22none%22 mask=%22url(%23b)%22%3E%3Cpath d=%22M0 0h38.077v38.077H0zM114.231 0h38.077v38.077h-38.077zM228.462 0h38.077v38.077h-38.077zM304.615 0h38.077v38.077h-38.077zM342.692 0h38.077v38.077h-38.077zM380.769 0h38.077v38.077h-38.077zM418.846 0h38.077v38.077h-38.077zM456.923 0H495v38.077h-38.077zM76.154 38.077h38.077v38.077H76.154zM114.231 38.077h38.077v38.077h-38.077zM152.308 38.077h38.077v38.077h-38.077zM266.538 38.077h38.077v38.077h-38.077zM342.692 38.077h38.077v38.077h-38.077zM380.769 38.077h38.077v38.077h-38.077zM418.846 38.077h38.077v38.077h-38.077zM456.923 38.077H495v38.077h-38.077zM0 76.154h38.077v38.077H0zM38.077 76.154h38.077v38.077H38.077zM114.231 76.154h38.077v38.077h-38.077zM152.308 76.154h38.077v38.077h-38.077zM190.385 76.154h38.077v38.077h-38.077zM266.538 76.154h38.077v38.077h-38.077zM304.615 76.154h38.077v38.077h-38.077zM342.692 76.154h38.077v38.077h-38.077zM380.769 76.154h38.077v38.077h-38.077zM418.846 76.154h38.077v38.077h-38.077zM456.923 76.154H495v38.077h-38.077zM38.077 114.231h38.077v38.077H38.077zM114.231 114.231h38.077v38.077h-38.077zM152.308 114.231h38.077v38.077h-38.077zM228.462 114.231h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 114.231h38.077v38.077h-38.077zM304.615 114.231h38.077v38.077h-38.077zM342.692 114.231h38.077v38.077h-38.077zM380.769 114.231h38.077v38.077h-38.077zM418.846 114.231h38.077v38.077h-38.077zM0 152.308h38.077v38.077H0zM38.077 152.308h38.077v38.077H38.077zM114.231 152.308h38.077v38.077h-38.077zM152.308 152.308h38.077v38.077h-38.077zM190.385 152.308h38.077v38.077h-38.077zM266.538 152.308h38.077v38.077h-38.077zM304.615 152.308h38.077v38.077h-38.077zM342.692 152.308h38.077v38.077h-38.077zM380.769 152.308h38.077v38.077h-38.077zM418.846 152.308h38.077v38.077h-38.077zM456.923 152.308H495v38.077h-38.077zM0 190.385h38.077v38.077H0zM38.077 190.385h38.077v38.077H38.077zM76.154 190.385h38.077v38.077H76.154zM114.231 190.385h38.077v38.077h-38.077zM152.308 190.385h38.077v38.077h-38.077zM190.385 190.385h38.077v38.077h-38.077zM228.462 190.385h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 190.385h38.077v38.077h-38.077zM342.692 190.385h38.077v38.077h-38.077zM380.769 190.385h38.077v38.077h-38.077zM456.923 190.385H495v38.077h-38.077zM38.077 228.462h38.077v38.077H38.077zM114.231 228.462h38.077v38.077h-38.077zM228.462 228.462h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 228.462h38.077v38.077h-38.077zM304.615 228.462h38.077v38.077h-38.077zM380.769 228.462h38.077v38.077h-38.077zM418.846 228.462h38.077v38.077h-38.077zM456.923 228.462H495v38.077h-38.077zM38.077 266.538h38.077v38.077H38.077zM76.154 266.538h38.077v38.077H76.154z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M228.462 266.538h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 266.538h38.077v38.077h-38.077zM304.615 266.538h38.077v38.077h-38.077zM342.692 266.538h38.077v38.077h-38.077zM380.769 266.538h38.077v38.077h-38.077zM418.846 266.538h38.077v38.077h-38.077zM456.923 266.538H495v38.077h-38.077zM0 304.615h38.077v38.077H0zM38.077 304.615h38.077v38.077H38.077zM76.154 304.615h38.077v38.077H76.154zM152.308 304.615h38.077v38.077h-38.077zM228.462 304.615h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 304.615h38.077v38.077h-38.077zM342.692 304.615h38.077v38.077h-38.077zM456.923 304.615H495v38.077h-38.077zM0 342.692h38.077v38.077H0zM38.077 342.692h38.077v38.077H38.077zM76.154 342.692h38.077v38.077H76.154zM114.231 342.692h38.077v38.077h-38.077zM152.308 342.692h38.077v38.077h-38.077zM190.385 342.692h38.077v38.077h-38.077zM228.462 342.692h38.077v38.077h-38.077zM304.615 342.692h38.077v38.077h-38.077zM380.769 342.692h38.077v38.077h-38.077zM456.923 342.692H495v38.077h-38.077zM38.077 380.769h38.077v38.077H38.077zM76.154 380.769h38.077v38.077H76.154zM114.231 380.769h38.077v38.077h-38.077zM190.385 380.769h38.077v38.077h-38.077zM228.462 380.769h38.077v38.077h-38.077z%22 stroke-width=%22.891%22%2F%3E%3Cpath d=%22M266.538 380.769h38.077v38.077h-38.077zM304.615 380.769h38.077v38.077h-38.077zM342.692 380.769h38.077v38.077h-38.077zM418.846 380.769h38.077v38.077h-38.077zM456.923 380.769H495v38.077h-38.077zM0 418.846h38.077v38.077H0zM38.077 418.846h38.077v38.077H38.077zM114.231 418.846h38.077v38.077h-38.077zM152.308 418.846h38.077v38.077h-38.077zM190.385 418.846h38.077v38.077h-38.077zM304.615 418.846h38.077v38.077h-38.077zM380.769 418.846h38.077v38.077h-38.077zM418.846 418.846h38.077v38.077h-38.077zM456.923 418.846H495v38.077h-38.077zM38.077 456.923h38.077V495H38.077zM76.154 456.923h38.077V495H76.154zM114.231 456.923h38.077V495h-38.077zM152.308 456.923h38.077V495h-38.077zM190.385 456.923h38.077V495h-38.077zM266.538 456.923h38.077V495h-38.077zM304.615 456.923h38.077V495h-38.077zM342.692 456.923h38.077V495h-38.077zM418.846 456.923h38.077V495h-38.077z%22 stroke-width=%22.891%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%2236%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23fff%22 stop-opacity=%22.64%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
+}
+.bannerItem3Decal1 {
+    position: absolute;
+    background-color: var(--emphasis);
+    width: 75px;
+    height: 75px;
+    left: 50%;
+    top: 40%;
+    border-radius: 0 15px;
+    transform: translate(-50%, -40%);
+}
+.bannerItem3Decal2 {
+    position: absolute;
+    background-color: var(--blue);
+    width: 45px;
+    height: 45px;
+    left: 55%;
+    top: 68%;
+    border-radius: 10px 0;
+    transform: translate(-55%, -68%);
+}
+
+
+
+.bannerContainerItem:nth-child(4) {
+    display: grid;
+    grid-template-columns: 100px 150px;
+    grid-template-rows: 150px 100px;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--white);
+    overflow: hidden;
+}
+.bannerItem4Cell1 {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}
+.bannerItem4Cell4 {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}
+.bannerItem4Decal1 {
+    background-color: var(--blue);
+    width: 75px;
+    height: 75px;
+    border-radius: 13px 0;
+}
+.bannerItem4Decal2 {
+    background-color: var(--emphasis);
+    width: 100%;
+    height: 100%;
+    border-radius: 0 15px;
+}
+.bannerItem4Decal3 {
+    background-color: var(--blue);
+    width: 75px;
+    height: 75px;
+    border-radius: 13px 0;
+}
+
+
+
+.bannerContainerItem:last-child {
+    padding: 40px;
+    padding-bottom: 20px;
+    background-color: transparent;
+    border: 5px solid var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.bannerContainerItem:last-child p {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
+}
+.bannerContainerItem:last-child p span {
+    color: var(--emphasis);
+    font-weight: 600;
+}
+.bannerItem5Decal1 {
+    position: absolute;
+    background-color: var(--emphasis);
+    border-radius: 0 13px;
+    width: 50px;
+    height: 50px;
+    left: 15px;
+    bottom: 15px;
+}

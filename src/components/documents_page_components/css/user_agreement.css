@@ -1,0 +1,35 @@
+.userAgreementWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 100px;
+}
+.userAgreementContainer {
+    display: flex;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 20px;
+    height: calc(100vh - 300px);
+}
+.userAgreementText {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: justify;
+}
+.agreementTitle {
+    font-weight: 600;
+    margin-left: 40px;
+}
+.userAgreementText p a {
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.userAgreementText p span {
+    font-weight: 600;
+}

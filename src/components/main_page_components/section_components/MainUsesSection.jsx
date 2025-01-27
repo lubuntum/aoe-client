@@ -14,10 +14,22 @@ import { ReactComponent as HuskyIcon } from "../../../res/icons/husky-svgrepo-co
 
 export const MainUsesSection = React.memo(() => {
     const mainUses = useMemo(() => [
-        {image: <DuckIcon className="svgIcon"/>, text: "Создай аккаунт"},
-        {image: <SnakeIcon className="svgIcon"/>, text: "Изучи планы по улучшению подписки"},
-        {image: <CatIcon className="svgIcon"/>, text: "Пополни баланс"},
-        {image: <HuskyIcon className="svgIcon"/>, text: "Оттачивай навыки говорения и забирай высший балл!"}
+        {
+            image: <DuckIcon className="svgIcon"/>, 
+            text: "Создай аккаунт"
+        },
+        {
+            image: <SnakeIcon className="svgIcon"/>, 
+            text: "Изучи планы по улучшению подписки"
+        },
+        {
+            image: <CatIcon className="svgIcon"/>, 
+            text: "Пополни баланс"
+        },
+        {
+            image: <HuskyIcon className="svgIcon"/>, 
+            text: "Оттачивай навыки говорения и забирай высший балл!"
+        }
     ], [])
 
     return (
@@ -30,7 +42,7 @@ export const MainUsesSection = React.memo(() => {
                     </div>
                     <div className="usesContainer">
                         {mainUses.map((item, index) => (
-                            <MainUses key={`uses${index}`} usesIndex={setNumberFormat(index + 1)} usesImage={item.image} usesText={item.text}/>
+                            <MainUses key={`uses${index}`} iterator={setNumberFormat(index + 1)} usesImage={item.image} usesText={item.text}/>
                         ))}
                     </div>
                 </div>

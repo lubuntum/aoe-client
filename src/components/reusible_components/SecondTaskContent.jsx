@@ -48,10 +48,10 @@ export const SecondTaskContent = ({task}) => {
             </div>
 
             <div className={taskUnderTopic}>
+                <p>{task.taskContent.imgTitle}</p>
                 <div className={taskImg}>
                     <img src={`${SERVER_API_URL}/${task.taskContent.img}`} alt=""/>
                 </div>
-                <p>{task.taskContent.imgTitle}</p>
             </div>
         </div>
     </>)

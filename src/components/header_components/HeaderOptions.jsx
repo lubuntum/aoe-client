@@ -42,6 +42,7 @@ export const HeaderOptions = ({headerData}) => {
                                         buttonIcon={item.icon}
                                         buttonFunc={item.func}/>
                             ))}
+                            {headerData.roles?.includes("partner") && <Button buttonType="link" buttonPadding="15px" buttonText={"Partner"}/>}
                             {headerData.roles?.includes("admin") && <Button buttonType="admin" buttonIcon={<AdminIcon className={"svgIcon"}/>} buttonFunc={()=>navigate(routes.ADMIN)}/>}
                         </>
                     ) : <Loader/>

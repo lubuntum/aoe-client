@@ -1,5 +1,10 @@
 import "../../App.css"
 import "./css/main.css"
+import "./css/main_banner.css"
+import "./css/main_adv.css"
+import "./css/main_uses.css"
+import "./css/main_subs.css"
+import "./css/main_faq.css"
 import "./css/main_media.css"
 
 import { HeaderMain } from '../header_components/HeaderMain'
