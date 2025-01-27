@@ -1,0 +1,36 @@
+.table th,
+.table td {
+  /* Styles for both <th> and <td> */
+  padding: 5px;
+  text-align: left;
+  background: var(--background);
+  border-radius: 7px;
+}
+.table th {
+  text-align: center;
+}
+.table {
+  overflow-x: scroll;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.table td:last-child {
+  border: none;
+  background: none;
+}
+
+.table-wrapper {
+  display: grid;
+  background: white;
+  padding: 10px;
+  border-radius: 15px;
+  overflow-x: scroll;
+}
+.partner-money {
+  width: 80px;
+  height: 25px;
+  margin: 5px;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
