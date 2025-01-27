@@ -1,17 +1,20 @@
-.userAgreementWrapper {
+.userAgreementWrapper,
+.privacyPoliceWrapper {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding-top: 100px;
 }
-.userAgreementContainer {
+.userAgreementContainer,
+.privacyPoliceContainer {
     display: flex;
-    padding: 40px;
+    padding: 20px;
     background-color: var(--white);
     border-radius: 20px;
     height: calc(100vh - 300px);
 }
-.userAgreementText {
+.userAgreementText,
+.privacyPoliceText {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -21,15 +24,24 @@
     line-height: 25px;
     text-align: justify;
 }
-.agreementTitle {
+.privacyPoliceContainer table {
+    border-collapse: collapse;
+}
+.privacyPoliceContainer table tr td {
+    border: 1px solid var(--black);
+    padding: 10px;
+}
+.docTitle {
     font-weight: 600;
     margin-left: 40px;
 }
-.userAgreementText p a {
+.userAgreementText p a,
+.privacyPoliceText p a {
     cursor: pointer;
     font-weight: 500;
     text-decoration: underline;
 }
-.userAgreementText p span {
+.userAgreementText p span,
+.privacyPoliceText p span {
     font-weight: 600;
 }
