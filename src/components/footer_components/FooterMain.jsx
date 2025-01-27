@@ -61,7 +61,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                             <p><span>ФИО: </span>Осипов Вячеслав Сергеевич</p>
                             <p><span>Email: </span>osipowvs@gmail.com</p>
                             <p><span>Номер тел.: </span>+7(902)014-3737</p>
-                            <p><span>ИНН: </span>190113488903</p>
+                            <p><span>ИНН: </span>1900012716</p>
                         </div>
                     </div>
                     <div className="footerBottomDivider"></div>

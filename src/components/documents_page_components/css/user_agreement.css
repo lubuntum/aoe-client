@@ -6,7 +6,7 @@
 }
 .userAgreementContainer {
     display: flex;
-    padding: 40px;
+    padding: 20px;
     background-color: var(--white);
     border-radius: 20px;
     height: calc(100vh - 300px);
