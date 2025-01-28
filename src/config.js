@@ -51,3 +51,4 @@ export const API_SUBSCRIPTION_PURCHASE = "/api/subscription/purchase-subscriptio
 
 export const API_PARTNER_GET_ALL = "/api/partner/get-all"
 export const API_PARTNER_PARTNERSHIP_PROCEDURE = "/api/partner/partnership-procedure"
+export const API_PARTNER_PAY_TO_PARTNER_AMOUNT = "/api/partner/pay"
