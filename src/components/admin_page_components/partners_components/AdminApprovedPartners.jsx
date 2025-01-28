@@ -1,21 +1,49 @@
 import { useEffect, useState } from "react"
 import { Button } from "../../reusible_components/Button"
 import "../css/admin_page_partners.css"
+import { payToPartnerAmount } from "../../../modules/api_modules/partnerAPI"
+import { checkMoneyFormat } from "../../utils/moneyFormat"
 
 export const AdminApprovedPartners = ({partners, updatePartners}) => {
     const [approvedPartners, setApprovedPartners] = useState([])
+    const [inputValues, setInputValues] = useState({})
         useEffect(()=>{
-            console.log(partners)
-            setApprovedPartners(partners.filter((p) => p.isApproved === true))
+            const approved = partners.filter((p) => p.isApproved === true)
+            setApprovedPartners(approved)
+
+            const initialInputValues = {}
+            approved.forEach(p => {
+                initialInputValues[p.id] = ''
+            })
+            setInputValues(initialInputValues)
         }, [partners])
 
+        const handleInputChange = (id, value) => {
+            setInputValues(prev => ({
+                ...prev,
+                [id]: value
+            }))
+        }
+
         const payToPartner = async (partner) => {
-            if (partner.recieved === null || partner.recieved === undefined){
-                console.log("Please enter some recieved sum for partner")
+            if (inputValues[partner.id] === null || inputValues[partner.id] === undefined){
+                console.log("Please enter some amount sum for partner")
                 return
             }
-            console.log(partner.recieved)
-            const response = null
+            if (!checkMoneyFormat(inputValues[partner.id])) {
+                console.log("Wrong money format")
+                return 
+            }
+            try{
+                const response = await payToPartnerAmount(localStorage.getItem("token"), partner.id, inputValues[partner.id])
+                await updatePartners()
+                setInputValues(prev => ({
+                    ...prev,
+                    [partner.id]: ''
+                }))
+            } catch(e) {
+                console.log(e)
+            }
         }
 
 
@@ -55,7 +83,8 @@ export const AdminApprovedPartners = ({partners, updatePartners}) => {
                                     <td>{p.BIK ? p.BIK : "Не найдено"}</td>
                                     <td>{p.KPP ? p.KPP : "Не найдено"}</td>
                                     <td>{p.RS ? p.RS : "Не найдено"}</td>
-                                    <td><input className="partner-money" type="number" step="0.01" min="0" placeholder="0.00₽" onChange={(e)=>{p.recieved = e.target.value; console.log(p)}} /></td>
+                                    <td><input className="partner-money" type="number" step="0.01" min="0" placeholder="0.00₽" 
+                                        value={inputValues[p.id] || ''} onChange={(e)=>{handleInputChange(p.id, e.target.value)}} disabled = {p.revenue <= 0} /></td>
                                     <td>{`${p.revenue}₽`}</td>
                                     <td>{p.revenue > 0 ? 
                                         <Button buttonText={"Оплатить"} buttonPadding="5px 15px" buttonType="good" buttonFunc={()=>{payToPartner(p)}}/> : 
