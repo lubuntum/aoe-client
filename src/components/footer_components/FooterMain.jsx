@@ -45,7 +45,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                         </div>
                         <div className="footerAbout footerColumn">
                             <p>Про нас</p>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt suscipit unde nam?</p>
+                            <p>Сервис подготовки к устной части ЕГЭ по английскому языку с котиками и печеньками.</p>
                         </div>
                         <div className="footerNavigation footerColumn">
                             <p>Навигация</p>
@@ -70,7 +70,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                         <a onClick={()=>navigate(routes.USER_AGREEMENT)}>Пользовательское соглашение</a>
                     </div>
                     <div className="footerCred">
-                        <p>© Lorem, ipsum dolor.</p>
+                        <p>© ООО "Цифровые образовательные решения"</p>
                     </div>
                 </div>
             </div>
