@@ -1,10 +1,8 @@
 import axios from "axios"
 import { API_SUBSCRIPTION_GET_ALL_VALID, API_SUBSCRIPTION_PURCHASE, SERVER_API_URL } from "../../config"
 
-export const getAllValidSubscriptionTypes = async (token) => {
-    const response = await axios.get(`${SERVER_API_URL}${API_SUBSCRIPTION_GET_ALL_VALID}` , {
-        headers:{"Authorization": token}
-    })
+export const getAllValidSubscriptionTypes = async () => {
+    const response = await axios.get(`${SERVER_API_URL}${API_SUBSCRIPTION_GET_ALL_VALID}`)
     return response;
 }
 

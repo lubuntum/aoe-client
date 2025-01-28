@@ -40,11 +40,11 @@ export const PricingPage = () => {
         <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 700₽</p>]
 
     useEffect(()=>{
-        getAllValidSubscriptionsRequest(localStorage.getItem("token"))
+        getAllValidSubscriptionsRequest()
     }, [])
-    const getAllValidSubscriptionsRequest = async (token) => {
+    const getAllValidSubscriptionsRequest = async () => {
         try {
-            const response = await getAllValidSubscriptionTypes(token)
+            const response = await getAllValidSubscriptionTypes()
             subscriptionTypesRef.current = response.data
             setSubscriptionTypesDesc(response.data.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
         } catch(e){

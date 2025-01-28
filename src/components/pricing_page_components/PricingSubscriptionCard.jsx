@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 import { Button } from "../reusible_components/Button"
 import { DropdownList } from "../reusible_components/DropdownList"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import routes from "../../routes"
 import { purchaseSubscription } from "../../modules/api_modules/subscriptionAPI"
@@ -19,12 +19,15 @@ export const PricingSubscriptionCard = ({className,
     const [pickedSubType, setPickedSubType] = useState((subscriptionTypesRef && subscriptionTypesRef.current) ? subscriptionTypesRef.current[0] : null)
     
     const location = useLocation()
+    const navigation = useNavigate()
     const handleSelect = (subscriptionTypesDesc, index) => {
         console.log(subscriptionTypesRef.current[index])
         setPickedSubType(subscriptionTypesRef.current[index])
         //TODO send request for buying subscription for user (other stuff on the server side)
     }
     const handlePurchaseSubscription = async () => {
+        const token = localStorage.getItem("token")
+        if (!token) navigation(routes.AUTORIZATION)
         try {
             const response = await purchaseSubscription(localStorage.getItem("token"), pickedSubType.id)
             if (response.data) console.log("congrac, sub is purchased")

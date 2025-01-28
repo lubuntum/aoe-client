@@ -10,7 +10,8 @@ const unAuthRoutesAccess = [routes.HOME,
                             routes.TASK_RESULT, 
                             routes.LESSON_SESSION,
                             routes.USER_AGREEMENT,
-                            routes.PRIVACY_POLICE]
+                            routes.PRIVACY_POLICE,
+                            routes.PRICING]
 const ProtectedRoute = ({component}) => {
     const {isAuth, loading} = useAuth();
     const location = useLocation()
