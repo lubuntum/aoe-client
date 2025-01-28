@@ -22,6 +22,7 @@ export const HeaderOptions = ({headerData}) => {
         {text: "Войти", padding: "0 20px", icon: "", func: ()=>navigate(routes.AUTORIZATION)},
         {text: "", padding: "", icon: <LoginIcon className={"svgIcon"}/>, func: ()=>navigate(routes.AUTORIZATION)}
     ], [navigate])
+    
     return (
         <div className="headerOptionsContainer">
             {isAuth ? (

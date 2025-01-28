@@ -22,10 +22,10 @@ export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
     const buttonsBurgerContainer = [
         {text: "Главная", func: createButtonFunc("section0")},
         {text: "Преимущества", func: createButtonFunc("section1")},
-        {text: "Как начать учиться", func: createButtonFunc("section2")},
+        {text: "Как пользоваться", func: createButtonFunc("section2")},
         {text: "Подписка", func: createButtonFunc("section3")},
         {text: "FAQ", func: createButtonFunc("section5") },
-        {text: "Пополнение баланса", func: ()=>navigate(routes.PRICING)},
+        {text: isAuth ? "Пополнение баланса" : "Услуги и цены", func: ()=>navigate(routes.PRICING)},
         {text: "Варианты", func: ()=>navigate(routes.TASK)}
     ]
 
