@@ -40,6 +40,19 @@
 }
 
 
+.copyPopup {
+    position: absolute;
+    background-color: var(--glassmorph-transparent);
+    color: var(--white);
+    backdrop-filter: blur(3px);
+    padding: 5px 10px;
+    border-radius: 10px;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    font-size: 1rem;
+}
+
+
 
 .link {
     min-height: 0;

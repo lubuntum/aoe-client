@@ -58,7 +58,8 @@ export const TaskComplitionResultsPage = () => {
                                                 buttonPadding={"0 20px"}
                                                 buttonIcon={<LinkIcon className="svgIcon"/>}
                                                 buttonText={"Cсылка"}
-                                                buttonFunc={()=>{}}/>
+                                                buttonFunc={()=>console.log("copied")}
+                                                isCopyButton={true}/>
                                     </div>
                                 </div>
                             </>}

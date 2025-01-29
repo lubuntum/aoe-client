@@ -69,7 +69,8 @@ export const ExamComplitionResultsPage = () => {
                                                         buttonPadding={"0 20px"}
                                                         buttonIcon={<LinkIcon className="svgIcon"/>}
                                                         buttonText={"Cсылка"}
-                                                        buttonFunc={()=>{}}/>
+                                                        isCopyButton={true}
+                                                        buttonFunc={()=>console.log("copied!")}/>
                                             </div>
                                         </div>
                                     </div>

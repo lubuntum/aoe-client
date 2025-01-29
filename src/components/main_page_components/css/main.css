@@ -15,6 +15,7 @@
 .faqWrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
     padding-top: 100px;
     padding-bottom: 100px;

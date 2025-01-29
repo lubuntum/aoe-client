@@ -112,7 +112,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
 
     const optionsButtons = [
         {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToExamResults},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareExamResults},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareExamResults, isCopy: true},
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadExamResults},
     ]
 
@@ -280,7 +280,8 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                                                               hoveredButton={hoveredButton}
                                                               rowIndex={rowIndex}
                                                               handleMouseEnter={handleMouseEnter}
-                                                              handleMouseLeave={handleMouseLeave}/>))}
+                                                              handleMouseLeave={handleMouseLeave}
+                                                              isCopyButton={btn.isCopy}/>))}
                                 </div>
                             </td>
                         </tr>

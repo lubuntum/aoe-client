@@ -1,5 +1,11 @@
 import React, { useMemo } from "react"
 
+import { useAuth } from "../../../modules/auth_modules/AuthProvider"
+import { useNavigate } from "react-router-dom"
+import routes from "../../../routes"
+
+import { Button } from "../../reusible_components/Button"
+
 import { PageTitle } from "../../reusible_components/PageTitle"
 import { MainAdvantages } from "./MainAdvantages"
 
@@ -11,6 +17,8 @@ import { ReactComponent as HuskyIcon } from "../../../res/icons/husky-svgrepo-co
 import { ReactComponent as BatIcon } from "../../../res/icons/bat-svgrepo-com.svg"
 
 export const MainAdvantagesSection = React.memo(() => {
+    const navigate = useNavigate()
+    const { isAuth } = useAuth()
     const mainAdvantages = useMemo(() => [
         {
             image: <DuckIcon className="svgIcon"/>, 
@@ -43,6 +51,14 @@ export const MainAdvantagesSection = React.memo(() => {
                         <MainAdvantages key={`adv${index}`} iterator={setNumberFormat(index + 1)} advantageImage={item.image} advantageName={item.name} advantageDescription={item.desc}/>
                     ))}
                 </div>
+                {!isAuth && 
+                <div className="advantageButton">
+                    <Button key={"AdvantagesButton1"}
+                            buttonText={"Регистрация"}
+                            buttonType={"outline"}
+                            buttonFunc={()=>navigate(routes.AUTORIZATION)}
+                            buttonWidth={"200px"}/>
+                </div>}
             </div>
         </div>
     )

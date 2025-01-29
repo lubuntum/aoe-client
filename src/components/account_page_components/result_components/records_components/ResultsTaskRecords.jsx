@@ -130,7 +130,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
 
     const optionsButtons = [
         {id: 0, text: 'Подробнее', icon: <ExpandIcon className="svgIcon"/>, fnc: navigateToCustomerTask},
-        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareCustomerTask},
+        {id: 1, text: 'Ссылка', icon: <LinkIcon className="svgIcon"/>, fnc: shareCustomerTask, isCopy: true},
         {id: 2, text: 'Скачать', icon: <DownloadIcon className="svgIcon"/>, fnc: downloadCustomerTaskAudio},
     ]
     
@@ -317,7 +317,8 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
                                                               hoveredButton={hoveredButton}
                                                               rowIndex={rowIndex}
                                                               handleMouseEnter={handleMouseEnter}
-                                                              handleMouseLeave={handleMouseLeave}/>))}
+                                                              handleMouseLeave={handleMouseLeave}
+                                                              isCopyButton={btn.isCopy}/>))}
                                 </div>
                             </td>
                         </tr>

@@ -4,6 +4,12 @@
     flex-direction: row;
     gap: 20px;
 }
+.advantageButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .advantageCard {
     position: relative;
     flex: 1 1 calc(20% - 20px);
