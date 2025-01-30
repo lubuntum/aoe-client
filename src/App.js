@@ -26,6 +26,7 @@ import { UserAgreement } from './components/documents_page_components/UserAgreem
 import { PrivacyPolice } from './components/documents_page_components/PrivacyPolice'
 
 import routes from "./routes"
+import { PartnerPage } from './components/partner_page_components/PartnerPage';
 
 function App() {
     return (
@@ -54,6 +55,7 @@ const Main = () => {
                 <Route path={routes.RESULTS}                   element = {<ProtectedRoute component={<ExamComplitionResultsPage/>}/>}/>
                 <Route path={routes.TASK_RESULT}               element = {<ProtectedRoute component={<TaskComplitionResultsPage/>}/>}/>
                 <Route path={routes.PARTNERSHIP_AUTHORIZATION} element = {<ProtectedRoute component={<AutorizationPage/>}/>}/>
+                <Route path={routes.PARTNER}                   element = {<ProtectedRoute component={<PartnerPage/>}/>}/>
                 <Route path={routes.USER_AGREEMENT}            element = {<ProtectedRoute component={<UserAgreement/>}/>}/>
                 <Route path={routes.PRIVACY_POLICE}            element = {<ProtectedRoute component={<PrivacyPolice/>}/>}/>
             </Routes>

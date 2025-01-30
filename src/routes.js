@@ -8,6 +8,7 @@ const TASK_RESULT = "/task-result"
 const ADMIN = "/admin"
 const PRICING = "/pricing"
 const PARTNERSHIP_AUTHORIZATION = "/partnership/auth"
+const PARTNER = "/partner"
 const USER_AGREEMENT = "/user-agreement"
 const PRIVACY_POLICE = "/privacy-police"
 const routes = {
@@ -21,6 +22,7 @@ const routes = {
     ADMIN,
     PRICING,
     PARTNERSHIP_AUTHORIZATION,
+    PARTNER,
     USER_AGREEMENT,
     PRIVACY_POLICE
 }
