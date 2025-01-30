@@ -4,7 +4,7 @@ export const USER_EMAIL = "user_email"
 
 export const GUEST_NAME = "Гость"
 //Линк сервера
-export const SERVER_API_URL = "http://localhost:8080"
+export const SERVER_API_URL = "https://192.168.65.55:8080"
 //Роуты для валидации
 export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"
@@ -52,3 +52,5 @@ export const API_SUBSCRIPTION_PURCHASE = "/api/subscription/purchase-subscriptio
 export const API_PARTNER_GET_ALL = "/api/partner/get-all"
 export const API_PARTNER_PARTNERSHIP_PROCEDURE = "/api/partner/partnership-procedure"
 export const API_PARTNER_PAY_TO_PARTNER_AMOUNT = "/api/partner/pay"
+
+export const API_PARTNERSHIP_APPLY_PROMOCODE = "/api/partner/apply-promocode"
