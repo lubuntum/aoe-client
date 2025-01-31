@@ -54,5 +54,6 @@ export const API_PARTNER_PARTNERSHIP_PROCEDURE = "/api/partner/partnership-proce
 export const API_PARTNER_PAY_TO_PARTNER_AMOUNT = "/api/partner/pay"
 export const API_PARTNER_GET = "/api/partner"
 export const API_PARTNER_TYPES = "/api/partner/types"
+export const API_PARTNER_UPDATE = "/api/partner/update"
 
 export const API_PARTNERSHIP_APPLY_PROMOCODE = "/api/partner/apply-promocode"

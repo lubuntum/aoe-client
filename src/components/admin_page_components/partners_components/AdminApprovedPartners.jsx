@@ -79,10 +79,10 @@ export const AdminApprovedPartners = ({partners, updatePartners}) => {
                                     <td>{p.email}</td>
                                     <td>{p.phoneNumber ? p.phoneNumber : "Не найдено" }</td>
                                     <td>{p.type}</td>
-                                    <td>{p.INN ? p.INN : "Не найдено"}</td>
-                                    <td>{p.BIK ? p.BIK : "Не найдено"}</td>
-                                    <td>{p.KPP ? p.KPP : "Не найдено"}</td>
-                                    <td>{p.RS ? p.RS : "Не найдено"}</td>
+                                    <td>{p.inn ? p.inn : "Не найдено"}</td>
+                                    <td>{p.bik ? p.bik : "Не найдено"}</td>
+                                    <td>{p.kpp ? p.kpp : "Не найдено"}</td>
+                                    <td>{p.rs ? p.rs : "Не найдено"}</td>
                                     <td><input className="partner-money" type="number" step="0.01" min="0" placeholder="0.00₽" 
                                         value={inputValues[p.id] || ''} onChange={(e)=>{handleInputChange(p.id, e.target.value)}} disabled = {p.revenue <= 0} /></td>
                                     <td>{`${p.revenue}₽`}</td>

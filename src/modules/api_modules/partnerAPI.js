@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_PARTNER_GET, API_PARTNER_GET_ALL, API_PARTNER_PARTNERSHIP_PROCEDURE, API_PARTNER_PAY_TO_PARTNER_AMOUNT, API_PARTNER_TYPES, API_PARTNERSHIP_APPLY_PROMOCODE, SERVER_API_URL } from "../../config"
+import { API_PARTNER_GET, API_PARTNER_GET_ALL, API_PARTNER_PARTNERSHIP_PROCEDURE, API_PARTNER_PAY_TO_PARTNER_AMOUNT, API_PARTNER_TYPES, API_PARTNER_UPDATE, API_PARTNERSHIP_APPLY_PROMOCODE, SERVER_API_URL } from "../../config"
 
 export const getAllPartners = async (token) => {
     const response = await axios.get(`${SERVER_API_URL}${API_PARTNER_GET_ALL}`, {
@@ -43,4 +43,10 @@ export const getAllPartnerTypes = async (token) => {
         headers:{"Authorization": token}
     })
     return response
+}
+export const updatePartnerData = async (token, partner) => {
+    const response = await axios.post(`${SERVER_API_URL}${API_PARTNER_UPDATE}`, partner, {
+        headers:{"Authorization": token}
+    })
+    return response;
 }

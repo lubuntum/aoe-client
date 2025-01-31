@@ -1,17 +1,24 @@
 import "./css/partner_page.css"
 import { useEffect, useRef, useState } from "react"
-import { getAllPartnerTypes, getPartnerData } from "../../modules/api_modules/partnerAPI"
+import { getAllPartnerTypes, getPartnerData, updatePartnerData } from "../../modules/api_modules/partnerAPI"
 import { HeaderMain } from "../header_components/HeaderMain"
 import { FooterMain } from "../footer_components/FooterMain"
 import { DropdownList } from "../reusible_components/DropdownList"
 import { Button } from "../reusible_components/Button"
 
 export const PartnerPage = () => {
-    const [partner, setPartner] = useState(null)
+    const partnerRef = useRef(null)
 
     const [partnerTypesText, setPartnerTypesText] = useState(null)
-    const pickedPartnerTypeRef = useRef(null)
+    const [pickedPartnerType, setPickedPartnerType] = useState(null)
     const partnerTypesRef = useRef(null)
+
+    const [partnerName, setPartnerName] = useState('')
+    const [partnerNumber, setPartnerNumber] = useState('')
+    const [INN, setINN] = useState('')
+    const [KPP, setKPP] = useState('')
+    const [BIK, setBIK] = useState('')
+    const [RS, setRS] = useState('')
 
     const [error, setError] = useState(null)
     useEffect(()=>{
@@ -22,7 +29,14 @@ export const PartnerPage = () => {
         try {
             const response = await getPartnerData(localStorage.getItem("token"))
             await loadPartnerTypes()
-            setPartner(response.data)
+            partnerRef.current = response.data
+            setPartnerName(partnerRef.current.partnerName)
+            setPartnerNumber(partnerRef.current.partnerNumber)
+            setINN(partnerRef.current.inn)
+            setKPP(partnerRef.current.kpp)
+            setBIK(partnerRef.current.bik)
+            setRS(partnerRef.current.rs)
+            setPickedPartnerType(partnerRef.current.type)
         } catch(e) {
             setError(e.response.data.error)
         }
@@ -32,8 +46,19 @@ export const PartnerPage = () => {
         partnerTypesRef.current = response.data
         setPartnerTypesText(response.data.map(t=>t.type))
     }
-    const handleSelectPartnerTypes = (type, index) => {
-        pickedPartnerTypeRef.current = partnerTypesRef.current[index]
+    const handleSelectPartnerTypes = (event) => {
+        console.log(event.target.value)
+        setPickedPartnerType(partnerTypesRef.current[event.target.value].type)
+    }
+    const updatePartner = async () => {
+        partnerRef.current.partnerName = partnerName
+        partnerRef.current.partnerNumber = partnerNumber
+        partnerRef.current.inn = INN
+        partnerRef.current.kpp = KPP
+        partnerRef.current.bik = BIK
+        partnerRef.current.rs = RS
+        partnerRef.current.type = pickedPartnerType
+        updatePartnerData(localStorage.getItem("token"), partnerRef.current)
     }
 
     return(
@@ -43,14 +68,24 @@ export const PartnerPage = () => {
             <div className="contentWrapper">
                 <div className="partnerPage">
                     <div className="partnerWrapper">
-                        <input className="partnerInputTemp" type="text" value={partner?.partnerName} placeholder="Наименование организации" />
-                        {partnerTypesText && <DropdownList onSelect={handleSelectPartnerTypes} options={partnerTypesText} />}
-                        <input className="partnerInputTemp" type="text" value={partner?.partnerNumber} placeholder="Номер телефона" />
-                        <input className="partnerInputTemp" type="text" value={partner?.INN} placeholder="Банковский ИНН" />
-                        <input className="partnerInputTemp" type="text" value={partner?.KPP} placeholder="КПП" />
-                        <input className="partnerInputTemp" type="text" value={partner?.BIK} placeholder="БИК" />
-                        <input className="partnerInputTemp" type="text" value={partner?.RS} placeholder="РС" />
-                        <Button buttonText={"Сохранить"} buttonPadding="0px 10px" buttonFunc={()=>{}}/>
+                        <input className="partnerInputTemp" type="text" value={partnerName} onChange={(e)=> {setPartnerName(e.target.value)}} placeholder="Наименование организации" />
+                        {partnerTypesText &&
+                        <div>
+                            <select value={pickedPartnerType ? pickedPartnerType : '' } className="partnerInputTemp" onChange={handleSelectPartnerTypes} id="typesSelect">
+                                <option value=""> {pickedPartnerType ? `Текущее : ${pickedPartnerType}` : "Выберите тип организации"} </option>
+                                {partnerTypesText.map((type, index)=> (
+                                    <option key={index} value={index}>
+                                        {type}
+                                    </option>
+                                ))}
+                            </select>    
+                        </div>}
+                        <input className="partnerInputTemp" type="text" value={partnerNumber} onChange={(e)=> {setPartnerNumber(e.target.value)}} placeholder="Номер телефона" />
+                        <input className="partnerInputTemp" type="text" value={INN} onChange={(e)=> {setINN(e.target.value)}} placeholder="Банковский ИНН" />
+                        <input className="partnerInputTemp" type="text" value={KPP} onChange={(e)=> {setKPP(e.target.value)}} placeholder="КПП" />
+                        <input className="partnerInputTemp" type="text" value={BIK} onChange={(e)=> {setBIK(e.target.value)}} placeholder="БИК" />
+                        <input className="partnerInputTemp" type="text" value={RS} onChange={(e)=> {setRS(e.target.value)}} placeholder="РС" />
+                        <Button buttonText={"Сохранить"} buttonPadding="0px 10px" buttonFunc={updatePartner}/>
                     </div>
                     
                 </div>
