@@ -10,6 +10,8 @@
 	--good: #00be8c;
 	--warn: #ffd166;
 	--bad: #ef476f;
+	--bad-transparent: rgba(94, 14, 32, 0.5);
+	--good-transparent: rgba(31, 104, 84, 0.5);
 	--glassmorph-transparent: rgba(0, 0, 0, .5);
 	--white-glassmorph-transparent: rgba(255, 255, 255, .5);
 	--black-shadow: rgba(0, 0, 0, .25);

@@ -27,3 +27,29 @@
     border: 1px solid var(--blue);
     box-shadow: 0 0 5px var(--blue);
 }
+.inputContainer input:valid + .strengthIndicator {
+    opacity: 1;
+}
+.strengthIndicator {
+    position: absolute;
+    width:10px;
+    height: 20px;
+    top: 50%;
+    left: 10px;
+    border-radius: 3px;
+    transform: translate(0, -50%);
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.strengthIndicator.passwordGood {
+    background-color: var(--good);
+    box-shadow: 0 0 3px var(--good);
+}
+.strengthIndicator.passwordMiddle {
+    background-color: var(--warn);
+    box-shadow: 0 0 3px var(--warn);
+}
+.strengthIndicator.passwordBad {
+    background-color: var(--bad);
+    box-shadow: 0 0 3px var(--bad);
+}

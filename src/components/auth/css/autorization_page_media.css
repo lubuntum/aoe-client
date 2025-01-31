@@ -1,0 +1,62 @@
+@media (max-width: 735px) {
+    .loginContainer,
+    .registrationContainer {
+        width: 500px;
+    }
+}
+@media (max-width: 638px) {
+    .autorizationWrapper {
+        height: calc(100vh - 40px);
+    }
+    .autorizationContainer {
+        width: 100%;
+    }
+    .loginContainer,
+    .registrationContainer {
+        width: 100%;
+        padding: 20px;
+    }
+    .loginContainerInputs,
+    .registrationContainerInputs {
+        margin-top: 105px;
+    }
+    .loginContainer h2,
+    .registrationContainer h2 {
+        top: 40px;
+        font-size: 1.25rem;
+    }
+    .loginContainerImage,
+    .registrationContainerImage {
+        height: 100px;
+    }
+    .forgetContainer {
+        margin: 0;
+        font-size: 0.825rem;
+    }
+    .forgetContainer button span {
+        font-size: 0.825rem;
+    }
+    .documentsCheckContainer {
+        margin: 0;
+        gap: 10px;
+    }
+    .documentsCheck {
+        gap: 5px;
+        font-size: 0.825rem;
+    }
+    .documentsCheck button span {
+        font-size: 0.825rem;
+    }
+    .orContainer {
+        gap: 10px;
+    }
+    .orContainer .hl {
+        display: none;
+    }
+
+    .loginContainerPopup {
+        height: 100px;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
