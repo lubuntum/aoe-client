@@ -16,7 +16,7 @@ import { AdminPage } from "./components/admin_page_components/AdminPage"
 import { PricingPage } from "./components/pricing_page_components/PricingPage"
 import { VariantsPage } from "./components/variants_page_components/VariantsPage"
 
-import { AutorizationPage } from './components/auth/AutorizationPage'
+import { AutorizationPage } from './components/auth_page_components/AutorizationPage'
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage'
 
 import { ExamComplitionResultsPage } from "./components/task_complition_results_components/ExamComplitionResultsPage"
