@@ -37,6 +37,9 @@
     .headerOptionsContainer .admin {
         display: none;
     }
+    .headerOptionsContainer .partner {
+        display: none;
+    }
 }
 @media (max-width: 500px) {
     .headerFixedContainer {

@@ -41,7 +41,8 @@ export const InputField = ({inputType = "text",
                    value={inputValue}
                    placeholder={inputPlaceholder}
                    required
-                   onChange={inputOnChange}></input>
+                   onChange={inputOnChange}
+                   autoComplete="off"></input>
             
             {inputType === "password" && (
                 <div className={`strengthIndicator ${passwordStrength}`}></div>

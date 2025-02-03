@@ -9,6 +9,7 @@ import routes from "../../routes.js"
 import { ReactComponent as LogoutIcon } from "../../res/icons/logout_24dp_gi.svg"
 import { ReactComponent as LoginIcon } from "../../res/icons/login_24dp_gi.svg"
 import { ReactComponent as AdminIcon } from "../../res/icons/admin_24dp_gi.svg"
+import { ReactComponent as PartnerIcon } from "../../res/icons/partner_24dp_gi.svg"
 
 export const HeaderOptions = ({headerData}) => {
     const { logout, isAuth } = useAuth()
@@ -43,7 +44,7 @@ export const HeaderOptions = ({headerData}) => {
                                         buttonIcon={item.icon}
                                         buttonFunc={item.func}/>
                             ))}
-                            {headerData.roles?.includes("partner") && <Button buttonType="link" buttonPadding="15px" buttonText={"Партнер"} buttonFunc={()=>{navigate(routes.PARTNER)}}/>}
+                            {headerData.roles?.includes("partner") && <Button buttonType="partner" buttonIcon={<PartnerIcon className={"svgIcon"}/>} buttonFunc={()=>{navigate(routes.PARTNER)}}/>}
                             {headerData.roles?.includes("admin") && <Button buttonType="admin" buttonIcon={<AdminIcon className={"svgIcon"}/>} buttonFunc={()=>navigate(routes.ADMIN)}/>}
                         </>
                     ) : <Loader/>

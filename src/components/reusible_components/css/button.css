@@ -84,6 +84,11 @@
     background-color: var(--emphasis);
     box-shadow: 0 0 5px var(--emphasis);
 }
+.partner {
+    padding: 0;
+    background-color: var(--emphasis);
+    box-shadow: 0 0 5px var(--emphasis);
+}
 
 
 

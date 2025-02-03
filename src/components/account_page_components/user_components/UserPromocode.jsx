@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { applyPromocodeForCustomer } from "../../../modules/api_modules/partnerAPI"
 import { Button } from "../../reusible_components/Button"
+import { InputField } from "../../reusible_components/InputField"
 
 export const UserPromocode = ({className}) => {
     const [error, setError] = useState(null)
@@ -35,14 +36,11 @@ export const UserPromocode = ({className}) => {
             <p>Промокод</p>
             {error && <div style={{color:"red", opacity:0.7, fontSize:12}}>{error}</div>}
             {status && <div style={{color:"green", opacity:0.7, fontSize:12}}>{status}</div>}
-            <div className="inputContainer">
-                <input type="text"
-                       placeholder="Введите промокод" 
-                       value={promocode}
-                       onChange={(e)=>{handleInput(e.target.value)}}
-                       required>
-                </input>
-            </div>
+            <InputField key={"userPromocodeInput0"}
+                        inputType={"text"}
+                        inputValue={promocode}
+                        inputPlaceholder={"Промокод"}
+                        inputOnChange={(e)=>{setPromocode(e.target.value)}}/>
 
             <Button buttonType={""}
                     buttonPadding={"0 20px"}

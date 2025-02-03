@@ -14,6 +14,8 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
     const [registrationEmail, setRegistrationEmail] = useState(null)
     const [registrationName, setRegistrationName] = useState(null)
     const [registrationSecondName, setRegistrationSecondName] = useState(null)
+    const [registrationPatronymic, setRegistrationPatronymic] = useState(null)
+    const [phoneNumber, setPhoneNumber] = useState(null)
     const [registrationPassword, setRegistrationPassword] = useState(null)
     const [registrationRepPassword, setRegistrationRepPassword] = useState(null)
 
@@ -28,6 +30,30 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
 
     const handleUserAgreementChecked = () => {
         setUserAgreement(!userAgreement)
+    }
+
+    const handleFormatPhoneNumber = (value) => {
+        const numbers = value.replace(/\D/g, '').substring(0, 11)
+        let formatted = ""
+        if (numbers.length === 0) return "" 
+
+        formatted += "+"
+        formatted += numbers.charAt(0) === "7" ? "7" : numbers.charAt(0)
+        formatted += " "
+
+        if (numbers.length > 1) {
+            formatted += "(" + numbers.substring(1, 4)
+        }
+        if (numbers.length > 4) {
+            formatted += ") " + numbers.substring(4, 7)
+        }
+        if (numbers.length > 7) {
+            formatted += " " + numbers.substring(7, 9)
+        }
+        if (numbers.length > 9) {
+            formatted += "-" + numbers.substring(9, 11)
+        }
+        return formatted
     }
 
     const assembleData = () => {
@@ -55,9 +81,9 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                 setRegistrationConfirm(true)
             } else {
                 setPopup(null)
-                setLoginToggle(true)
                 setRegistrationConfirm(true)
                 navigate(routes.AUTORIZATION)
+                setLoginToggle(true)
             }
         } catch (err) {
             setPopup("Ой, произошла непредвиденная ошибка!")
@@ -120,6 +146,19 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                                 inputValue={registrationSecondName}
                                 inputPlaceholder={"Фамилия"}
                                 inputOnChange={(e)=>{setRegistrationSecondName(e.target.value)}}/>
+                    {location.pathname === routes.PARTNERSHIP_AUTHORIZATION && <>
+                    <InputField key={"registrationInput5"}
+                                inputType={"text"}
+                                inputValue={registrationPatronymic}
+                                inputPlaceholder={"Отчество"}
+                                inputOnChange={(e)=>{setRegistrationPatronymic(e.target.value)}}/>
+
+                    <InputField key={"registrationInput6"}
+                                inputType={"text"}
+                                inputValue={phoneNumber}
+                                inputPlaceholder={"Номер телефона"}
+                                inputOnChange={(e)=>{const formatted = handleFormatPhoneNumber(e.target.value)
+                                                     setPhoneNumber(formatted)}}/></>}
                                 
                     <InputField key={"registrationInput3"}
                                 inputType={"password"}
