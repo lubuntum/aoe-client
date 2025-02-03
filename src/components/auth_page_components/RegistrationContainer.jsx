@@ -32,15 +32,18 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
         setUserAgreement(!userAgreement)
     }
 
-    const handleFormatPhoneNumber = (value) => {
-        const numbers = value.replace(/\D/g, '').substring(0, 11)
+    const handleFormatPhoneNumber = (e) => {
+        const numbers = e.target.value.replace(/\D/g, '').substring(0, 11)
         let formatted = ""
-        if (numbers.length === 0) return "" 
-
+        if (numbers.length === 0) return ""
+        
         formatted += "+"
+        
         formatted += numbers.charAt(0) === "7" ? "7" : numbers.charAt(0)
-        formatted += " "
 
+        if (e.target.value === formatted) return ""
+        formatted += " "
+        
         if (numbers.length > 1) {
             formatted += "(" + numbers.substring(1, 4)
         }
@@ -60,6 +63,8 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
         return {"email": registrationEmail,
                 "name": registrationName,
                 "secondName": registrationSecondName,
+                "patronymic": registrationPatronymic,
+                "phoneNumber": phoneNumber, 
                 "password": registrationPassword,
                 registrationDate: getCurrentDate(),
                 isPartnerProposal: location.pathname === routes.PARTNERSHIP_AUTHORIZATION,
@@ -157,7 +162,7 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                                 inputType={"text"}
                                 inputValue={phoneNumber}
                                 inputPlaceholder={"Номер телефона"}
-                                inputOnChange={(e)=>{const formatted = handleFormatPhoneNumber(e.target.value)
+                                inputOnChange={(e)=>{const formatted = handleFormatPhoneNumber(e)
                                                      setPhoneNumber(formatted)}}/></>}
                                 
                     <InputField key={"registrationInput3"}

@@ -57,6 +57,7 @@ export const AdminApprovedPartners = ({partners, updatePartners}) => {
                                 <th>Организция</th>
                                 <th>Имя</th>
                                 <th>Фамилия</th>
+                                <th>Отчество</th>
                                 <th>Почта</th>
                                 <th>Номер</th>
                                 <th>Тип</th>
@@ -76,6 +77,7 @@ export const AdminApprovedPartners = ({partners, updatePartners}) => {
                                     <td>{p.partnerName ? p.partnerName : "Не найдено" }</td>
                                     <td>{p.name}</td>
                                     <td>{p.secondName}</td>
+                                    <td>{p.patronymic}</td>
                                     <td>{p.email}</td>
                                     <td>{p.phoneNumber ? p.phoneNumber : "Не найдено" }</td>
                                     <td>{p.type}</td>

@@ -28,6 +28,7 @@ export const AdminNotApprovedPartners = ({partners, updatePartners}) => {
                         {notApprovedPartners && 
                         (<> <th>Имя</th>
                             <th>Фамилия</th>
+                            <th>Отчество</th>
                             <th>Почта</th>
                             <th>Телефон</th>
                             <th>Тип</th>
@@ -41,6 +42,7 @@ export const AdminNotApprovedPartners = ({partners, updatePartners}) => {
                             (<tr key={p.id}>
                                 <td>{p.name}</td>
                                 <td>{p.secondName}</td>
+                                <td>{p.patronymic}</td>
                                 <td>{p.email}</td>
                                 <td>{p.phoneNumber ? p.phoneNumber : "Не найдено"}</td>
                                 <td>{p.type}</td>
