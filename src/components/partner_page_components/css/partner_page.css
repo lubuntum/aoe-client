@@ -6,12 +6,39 @@
 }
 .partnerWrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 .partnerInputTemp {
   width: 250px;
   padding: 5px 10px;
   margin: 5px;
+}
+
+.partnerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 300px;
+  padding: 5px;
+}
+.partnerForm button {
+  margin-top: 5px;
+}
+.partnerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  padding: 5px;
+}
+.partnership {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  width: 260px;
+  padding: 5px 5px 15px 5px;
 }

@@ -20,6 +20,9 @@ export const PartnerPage = () => {
     const [BIK, setBIK] = useState('')
     const [RS, setRS] = useState('')
 
+    const [partnerships, setPartnerships] = useState(null)
+    const [promocodeUsageCount, setPromocodeUsageCount] = useState(null)
+
     const [error, setError] = useState(null)
     useEffect(()=>{
         loadPartnerData()
@@ -29,7 +32,9 @@ export const PartnerPage = () => {
         try {
             const response = await getPartnerData(localStorage.getItem("token"))
             await loadPartnerTypes()
+            console.log(`Data = ${response.data}`)
             partnerRef.current = response.data
+            console.log(response.data)
             setPartnerName(partnerRef.current.partnerName)
             setPartnerNumber(partnerRef.current.partnerNumber)
             setINN(partnerRef.current.inn)
@@ -37,6 +42,8 @@ export const PartnerPage = () => {
             setBIK(partnerRef.current.bik)
             setRS(partnerRef.current.rs)
             setPickedPartnerType(partnerRef.current.type)
+            setPartnerships(response.data.partnerships)
+            setPromocodeUsageCount(response.data.promocodeUsageCount)
         } catch(e) {
             setError(e.response.data.error)
         }
@@ -51,6 +58,7 @@ export const PartnerPage = () => {
         setPickedPartnerType(partnerTypesRef.current[event.target.value].type)
     }
     const updatePartner = async () => {
+        console.log(partnerRef.current)
         partnerRef.current.partnerName = partnerName
         partnerRef.current.partnerNumber = partnerNumber
         partnerRef.current.inn = INN
@@ -68,24 +76,41 @@ export const PartnerPage = () => {
             <div className="contentWrapper">
                 <div className="partnerPage">
                     <div className="partnerWrapper">
-                        <input className="partnerInputTemp" type="text" value={partnerName} onChange={(e)=> {setPartnerName(e.target.value)}} placeholder="Наименование организации" />
-                        {partnerTypesText &&
-                        <div>
-                            <select value={pickedPartnerType ? pickedPartnerType : '' } className="partnerInputTemp" onChange={handleSelectPartnerTypes} id="typesSelect">
-                                <option value=""> {pickedPartnerType ? `Текущее : ${pickedPartnerType}` : "Выберите тип организации"} </option>
-                                {partnerTypesText.map((type, index)=> (
-                                    <option key={index} value={index}>
-                                        {type}
-                                    </option>
-                                ))}
-                            </select>    
-                        </div>}
-                        <input className="partnerInputTemp" type="text" value={partnerNumber} onChange={(e)=> {setPartnerNumber(e.target.value)}} placeholder="Номер телефона" />
-                        <input className="partnerInputTemp" type="text" value={INN} onChange={(e)=> {setINN(e.target.value)}} placeholder="Банковский ИНН" />
-                        <input className="partnerInputTemp" type="text" value={KPP} onChange={(e)=> {setKPP(e.target.value)}} placeholder="КПП" />
-                        <input className="partnerInputTemp" type="text" value={BIK} onChange={(e)=> {setBIK(e.target.value)}} placeholder="БИК" />
-                        <input className="partnerInputTemp" type="text" value={RS} onChange={(e)=> {setRS(e.target.value)}} placeholder="РС" />
-                        <Button buttonText={"Сохранить"} buttonPadding="0px 10px" buttonFunc={updatePartner}/>
+                        <div className="partnerForm">
+                            <input className="partnerInputTemp" type="text" value={partnerName} onChange={(e)=> {setPartnerName(e.target.value)}} placeholder="Наименование организации" />
+                            
+                            {partnerTypesText &&
+                            <div>
+                                <select value={pickedPartnerType ? pickedPartnerType : '' } className="partnerInputTemp" onChange={handleSelectPartnerTypes} id="typesSelect">
+                                    <option value=""> {pickedPartnerType ? `Текущее : ${pickedPartnerType}` : "Выберите тип организации"} </option>
+                                    {partnerTypesText.map((type, index)=> (
+                                        <option key={index} value={index}>
+                                            {type}
+                                        </option>
+                                    ))}
+                                </select>    
+                            </div>}
+                            <input className="partnerInputTemp" type="text" value={partnerNumber} onChange={(e)=> {setPartnerNumber(e.target.value)}} placeholder="Номер телефона" />
+                            <input className="partnerInputTemp" type="text" value={INN} onChange={(e)=> {setINN(e.target.value)}} placeholder="Банковский ИНН" />
+                            <input className="partnerInputTemp" type="text" value={KPP} onChange={(e)=> {setKPP(e.target.value)}} placeholder="КПП" />
+                            <input className="partnerInputTemp" type="text" value={BIK} onChange={(e)=> {setBIK(e.target.value)}} placeholder="БИК" />
+                            <input className="partnerInputTemp" type="text" value={RS} onChange={(e)=> {setRS(e.target.value)}} placeholder="РС" />
+                            <Button buttonText={"Сохранить"} buttonPadding="15px 10px" buttonFunc={updatePartner}/>
+                        </div>
+                        <div className="partnerInfo">
+                            {promocodeUsageCount && <p style={{padding:"5px"}}>Активных подписчиков: {promocodeUsageCount}</p>}
+                            {partnerships && 
+                            partnerships.map((p, index) => (
+                            <div className="partnership">
+                                <p>Партнерская программа №{index+1}</p>
+                                <p>Промокод : {p.promocode}</p>
+                                <p>Доля от проверок: {(p.partnerRate*100).toFixed(0)}%</p>
+                                <p>Скидка пользователям: { Number(p.discount*100).toFixed(0)}%</p>
+                                <p>Дата выдачи: {p.contractDate}</p>
+                            </div>
+                            ))
+                            }
+                        </div>
                     </div>
                     
                 </div>
