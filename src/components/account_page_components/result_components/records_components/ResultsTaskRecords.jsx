@@ -91,14 +91,13 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
 
     const navigateToCustomerTask = (customerTaskId) => {
         const resultsUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTaskId}&taskId=${task.id}`
-        navigate(resultsUrl)
+        window.open(resultsUrl, "_blank")
     }
 
     const shareCustomerTask = async (customerTaskId) => {
         try{
             const resultsUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTaskId}&taskId=${task.id}`
             await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
-            console.log('Copied')
         } catch(err) {
             console.error(`Failed to copy ${err}`)
         }

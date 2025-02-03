@@ -31,6 +31,8 @@ export const TaskComplitionResultsPage = () => {
             const customerTaskResponse = await getCustomerTaskByCustomerTaskId(customerTaskId)
             setTask(taskResponse.data)
             setCustomerTask(customerTaskResponse.data)
+            console.log(taskResponse.data)
+            console.log(customerTaskResponse.data)
         }
         loadCustomerTaskByTask()
     },[])

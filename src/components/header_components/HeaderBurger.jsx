@@ -57,6 +57,13 @@ export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
                             buttonText={"Кабинет админа"} 
                             buttonFunc={()=>navigate(routes.ADMIN)}/>
                 )}
+
+                {isAuth && headerData?.roles.includes("partner") && (
+                    <Button key={`headerBurger9`}
+                            buttonType={"link"}
+                            buttonText={"Кабинет партнера"} 
+                            buttonFunc={()=>navigate(routes.PARTNER)}/>
+                )}
             </nav>
         </div>
     )

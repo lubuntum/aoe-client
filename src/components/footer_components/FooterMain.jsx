@@ -66,8 +66,8 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                     </div>
                     <div className="footerBottomDivider"></div>
                     <div className="footerDocuments">
-                        <a onClick={()=>navigate(routes.PRIVACY_POLICE)}>Privacy Police</a>
-                        <a onClick={()=>navigate(routes.USER_AGREEMENT)}>Пользовательское соглашение</a>
+                        <a onClick={()=>{window.open(routes.PRIVACY_POLICE, "_blank")}}>Privacy Police</a>
+                        <a onClick={()=>{window.open(routes.USER_AGREEMENT, "_blank")}}>Пользовательское соглашение</a>
                     </div>
                     <div className="footerCred">
                         <p>© ООО "Цифровые образовательные решения"</p>

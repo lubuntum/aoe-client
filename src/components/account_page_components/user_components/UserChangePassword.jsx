@@ -4,6 +4,7 @@ import { checkPsdStrength } from "../../../modules/password_modules/checkPasswor
 import { PasswordStrength } from "../../reusible_components/PasswordStrength.jsx"
 
 import { Button } from "../../reusible_components/Button.jsx"
+import { InputField } from "../../reusible_components/InputField.jsx"
 
 export const UserChangePassword = ({className}) => {
 
@@ -32,34 +33,24 @@ export const UserChangePassword = ({className}) => {
             <p>Сменить пароль</p>
 
             <div className="userChangePasswordGrid">
-                <div className="inputContainer">
-                    <input type="password"
-                           placeholder="Новый пароль"
-                           required
-                           value={pass}
-                           onChange={handlePassChange}>
-                    </input>
-                    <PasswordStrength strengthStyle={checkPsdStrength(pass)}/>
-                </div>
+                <InputField key={"userChangePassInput0"}
+                            inputType={"password"}
+                            inputValue={pass}
+                            inputPlaceholder={"Пароль"}
+                            inputOnChange={(e)=>{setPass(e.target.value)}}/>
 
-                <div className="inputContainer">
-                    <input type="password"
-                           placeholder="Повторите пароль"
-                           required
-                           value={repeatPass}
-                           onChange={handleRepPassChange}>
-                    </input>
-                    <PasswordStrength strengthStyle={checkPsdStrength(repeatPass)}/>
-                </div>
+                <InputField key={"userChangePassInput1"}
+                            inputType={"password"}
+                            inputValue={repeatPass}
+                            inputPlaceholder={"Повторите пароль"}
+                            inputOnChange={(e)=>{setRepeatPass(e.target.value)}}/>
 
-                <div className="inputContainer">
-                    <input type="password"
-                           placeholder="Старый пароль"
-                           required
-                           value={oldPass}
-                           onChange={handleOldPassChange}>
-                    </input>
-                </div>
+                <InputField key={"userChangePassInput2"}
+                            inputType={"password"}
+                            inputValue={oldPass}
+                            inputPlaceholder={"Старый пароль"}
+                            hideIndicator={true}
+                            inputOnChange={(e)=>{setOldPass(e.target.value)}}/>
 
                 <Button buttonType={""}
                         buttonPadding={"0 20px"}

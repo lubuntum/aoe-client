@@ -93,14 +93,13 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
 
     const navigateToExamResults = (examId) => {
         const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
-        navigate(resultsUrl)
+        window.open(resultsUrl, "_blank")
     }
 
     const shareExamResults = async (examId) => {
         try{
             const resultsUrl = `/results?variantId=${variant.id}&examId=${examId}`
             await navigator.clipboard.writeText(`${window.location.host}${resultsUrl}`)
-            console.log('Copied')
         } catch(err) {
             console.error(`Failed to copy ${err}`)
         }
