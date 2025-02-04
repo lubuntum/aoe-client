@@ -24,6 +24,7 @@ export const PartnerPage = () => {
     const [promocodeUsageCount, setPromocodeUsageCount] = useState(null)
 
     const [error, setError] = useState(null)
+    const [status, setStatus] = useState(null)
     useEffect(()=>{
         loadPartnerData()
     },[])
@@ -45,7 +46,7 @@ export const PartnerPage = () => {
             setPartnerships(response.data.partnerships)
             setPromocodeUsageCount(response.data.promocodeUsageCount)
         } catch(e) {
-            setError(e.response.data.error)
+            setError("Ошибка при загрузке данных")
         }
     }
     const loadPartnerTypes = async () => {
@@ -58,15 +59,27 @@ export const PartnerPage = () => {
         setPickedPartnerType(partnerTypesRef.current[event.target.value].type)
     }
     const updatePartner = async () => {
-        console.log(partnerRef.current)
-        partnerRef.current.partnerName = partnerName
-        partnerRef.current.partnerNumber = partnerNumber
-        partnerRef.current.inn = INN
-        partnerRef.current.kpp = KPP
-        partnerRef.current.bik = BIK
-        partnerRef.current.rs = RS
-        partnerRef.current.type = pickedPartnerType
-        updatePartnerData(localStorage.getItem("token"), partnerRef.current)
+        try{
+            partnerRef.current.partnerName = partnerName
+            partnerRef.current.partnerNumber = partnerNumber
+            partnerRef.current.inn = INN
+            partnerRef.current.kpp = KPP
+            partnerRef.current.bik = BIK
+            partnerRef.current.rs = RS
+            partnerRef.current.type = pickedPartnerType
+            const response = await updatePartnerData(localStorage.getItem("token"), partnerRef.current)
+            if (!response.data){
+                
+                setStatus(null)
+                setError("Ошибка на стороне сервера")
+                return
+            }
+            setStatus("Данные успешно обновлены")
+            setError(null)
+        } catch(err) {
+            setError("Произошла непредвиденная ошибка")
+            setStatus(null)
+        }
     }
 
     return(
@@ -90,16 +103,22 @@ export const PartnerPage = () => {
                                     ))}
                                 </select>    
                             </div>}
-                            <input className="partnerInputTemp" type="text" value={partnerNumber} onChange={(e)=> {setPartnerNumber(e.target.value)}} placeholder="Номер телефона" />
-                            <input className="partnerInputTemp" type="text" value={INN} onChange={(e)=> {setINN(e.target.value)}} placeholder="Банковский ИНН" />
-                            <input className="partnerInputTemp" type="text" value={KPP} onChange={(e)=> {setKPP(e.target.value)}} placeholder="КПП" />
-                            <input className="partnerInputTemp" type="text" value={BIK} onChange={(e)=> {setBIK(e.target.value)}} placeholder="БИК" />
-                            <input className="partnerInputTemp" type="text" value={RS} onChange={(e)=> {setRS(e.target.value)}} placeholder="РС" />
-                            <Button buttonText={"Сохранить"} buttonPadding="15px 10px" buttonFunc={updatePartner}/>
+                            <input className="partnerInputTemp" type="tel" value={partnerNumber} onChange={(e)=> {setPartnerNumber(e.target.value)}} placeholder="Номер телефона" />
+                            <input className="partnerInputTemp" type="number" value={INN} onChange={(e)=> {setINN(e.target.value)}} placeholder="Банковский ИНН" />
+                            <input className="partnerInputTemp" type="number" value={KPP} onChange={(e)=> {setKPP(e.target.value)}} placeholder="КПП" />
+                            <input className="partnerInputTemp" type="number" value={BIK} onChange={(e)=> {setBIK(e.target.value)}} placeholder="БИК" />
+                            <input className="partnerInputTemp" type="number" value={RS} onChange={(e)=> {setRS(e.target.value)}} placeholder="РС" />
+                            <div className="statusInfo">
+                                <Button buttonText={"Сохранить"} buttonPadding="15px 10px" buttonFunc={updatePartner}/>
+                                {status && <p style={{color: "green"}}>{status}</p>}
+                                {error && <p style={{color: "red"}}>{error}</p>}
+                            </div>
+                            
                         </div>
                         <div className="partnerInfo">
-                            {promocodeUsageCount && <p style={{padding:"5px"}}>Активных подписчиков: {promocodeUsageCount}</p>}
-                            {partnerships && 
+                            <p style={{padding:"5px"}}>{promocodeUsageCount ? `Активных подписчиков: ${promocodeUsageCount}`: "У вас пока нет подписчиков"}</p>
+                            <p style={{padding:"5px"}}>Доля: {(partnerRef.current && partnerRef.current.revenue ) ? `${partnerRef.current.revenue}` : "0"} ₽</p>
+                            {partnerships &&
                             partnerships.map((p, index) => (
                             <div className="partnership">
                                 <p>Партнерская программа №{index+1}</p>
