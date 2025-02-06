@@ -31,8 +31,6 @@ export const TaskComplitionResultsPage = () => {
             const customerTaskResponse = await getCustomerTaskByCustomerTaskId(customerTaskId)
             setTask(taskResponse.data)
             setCustomerTask(customerTaskResponse.data)
-            console.log(taskResponse.data)
-            console.log(customerTaskResponse.data)
         }
         loadCustomerTaskByTask()
     },[])
@@ -53,6 +51,7 @@ export const TaskComplitionResultsPage = () => {
                                     <div className="taskComplitionOptions">
                                         <Button key={0}
                                                 buttonPadding={"0 20px"}
+                                                buttonType={"outline"}
                                                 buttonIcon={<DownloadIcon className="svgIcon"/>}
                                                 buttonText={"Скачать"}
                                                 buttonFunc={()=>{}}/>

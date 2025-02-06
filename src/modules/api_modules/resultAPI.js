@@ -43,7 +43,12 @@ export const startExpressCheckForTask = async (customerTask, transcriptionServic
     )
     return response
 }
-export const sendCustomerTaskToCheckQueue = async (customerTask, transcriptionService, aiService, aiModel, textDistanceMethod, task, sessionKey) => {
+export const sendCustomerTaskToCheckQueue = async (customerTask, task, sessionKey) => {
+    const transcriptionService = "assemblyai"//TEMP
+    const aiService = "vsegpt"//TEMP
+    const aiModel = "openai/gpt-4"//TEMP
+    const textDistanceMethod = "levenshtein";
+
     const taskDTO = prepareTaskDTO(task)
     const request = prepareRequestData(customerTask, transcriptionService, aiService, aiModel, textDistanceMethod, taskDTO)
     const response = await axios.post(`${SERVER_API_URL}${API_TASK_EXPRESS_QUEUE}`, request,

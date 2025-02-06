@@ -81,12 +81,12 @@ export const LessonSessionPage = () => {
         audioResultsRef.current.push(audioResult)
         //audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
         if (variant.pickedTaskType) {
-            speak("This is the end of the test", async ()=>{
+            speak("This is the end of the test", async ()=>{//isLoadingTrue
                 await endTaskSession()
             })
             return
         }
-        if (currentTask.taskType >= 4) {
+        if (currentTask.taskType >= 4) {//isLoadingTrue
             speak("This is the end of the test", async ()=>{
                 await endExamSession()
             })

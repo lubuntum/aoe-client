@@ -134,7 +134,7 @@
 
 
 
-/*Стили для records*/
+/*Стили для таблицы records*/
 .resultsRecordsContainer {
     display: flex;
     flex-direction: column;
@@ -144,6 +144,8 @@
     background-color: var(--white);
     padding: 20px;
 }
+
+/*Стили для хлебных крошек таблицы records*/
 .resultsRecordsDescription {
     display: flex;
     flex-direction: row;
@@ -156,36 +158,13 @@
     background-color: var(--background);
     padding: 5px 20px;
 }
+
+/*Стили для самой таблицы непосредственно*/
 .resultsRecordsTable {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-}
-.resultsRecordsTableHeaderItem,
-.resultsRecordsTableBodyItem {
-    height: 40px;
-    background-color: var(--background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 100%;
-}
-.resultsRecordsTableBodyButtons,
-.resultsRecordsTableBodySendDate,
-.resultsRecordsTableBodyGrade {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 20px;
-}
-.resultsRecordsGradeWrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    position: relative;
 }
 .resultsRecordsTable thead tr,
 .resultsRecordsTable tbody tr {
@@ -193,72 +172,129 @@
     flex-direction: row;
     gap: 20px;
 }
-.resultsRecordsTable tbody tr {
+.resultsRecordsTable tbody tr:not(:last-child) {
     padding-bottom: 20px;
 }
-.resultsRecordsTable tbody tr:last-child {
-    padding-bottom: 0;
-}
-.resultsRecordsTable thead tr th:nth-child(1),
-.resultsRecordsTable tbody tr td:nth-child(1) {
-    width: 40px;
-}
-.resultsRecordsTable thead tr th:nth-child(2),
-.resultsRecordsTable tbody tr td:nth-child(2) {
-    width: 130px;
-}
-.resultsRecordsTable thead tr th:nth-child(3),
-.resultsRecordsTable tbody tr td:nth-child(3) {
-    width: 350px;
-}
-.resultsRecordsTable thead tr th:nth-child(4),
-.resultsRecordsTable tbody tr td:nth-child(4),
-.resultsRecordsTable thead tr th:nth-child(5),
-.resultsRecordsTable tbody tr td:nth-child(5) {
-    width: 310px;
-}
-.resultsRecordsTable thead tr th:nth-child(6),
-.resultsRecordsTable tbody tr td:nth-child(6) {
-    width: 160px;
-}
-.resultsRecordsTable thead tr p {
-    font-size: 1rem;
-    font-weight: 600;
-}
-.resultsRecordsTable tbody tr p {
-    font-size: 1rem;
-    font-weight: 400;
-}
-.headerItemIcons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 20px;
-}
-.resultsRecordsSvgIcon {
-    fill: var(--black)
-}
-.recordGrade {
+.resultsRecordsHeaderNumber,
+.resultsRecordsHeaderDate,
+.resultsRecordsHeaderButtons,
+.resultsRecordsHeaderExpress,
+.resultsRecordsHeaderExpert,
+.resultsRecordsHeaderOptions,
+.resultsTaskRecordsHeaderExpress {
+    height: 40px;
+    background-color: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 600 !important;
-    width: 100%;
-    height: 100%;
-    border-bottom: 3px solid transparent;
+    gap: 10px;
     border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    user-select: none;
+}
+.resultsRecordsHeaderExpress .svgIcon,
+.resultsRecordsHeaderExpert .svgIcon,
+.resultsTaskRecordsHeaderExpress .svgIcon {
+    fill: var(--black);
+}
+.resultsRecordsBodyNumber,
+.resultsRecordsBodyDate,
+.resultsRecordsBodyButtons,
+.resultsRecordsBodyExpress,
+.resultsRecordsBodyExpert,
+.resultsRecordsBodyOptions,
+.resultsTaskRecordsBodyExpress {
+    height: 40px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    user-select: none;
+}
+.resultsRecordsBodyButtons,
+.resultsRecordsBodyOptions {
+    background-color: transparent;
+}
+.resultsRecordsHeaderNumber,
+.resultsRecordsBodyNumber {
+    min-width: 40px;
+}
+.resultsRecordsHeaderDate,
+.resultsRecordsBodyDate {
+    min-width: 120px;
+}
+.resultsRecordsHeaderButtons,
+.resultsRecordsBodyButtons {
+    min-width: 420px;
+}
+.resultsRecordsHeaderExpress,
+.resultsRecordsBodyExpress,
+.resultsRecordsHeaderExpert,
+.resultsRecordsBodyExpert {
+    min-width: 280px;
+    position: relative;
+}
+.resultsRecordsHeaderOptions,
+.resultsRecordsBodyOptions {
+    min-width: 160px;
+    max-width: 160px;
+}
+.resultsTaskRecordsHeaderExpress,
+.resultsTaskRecordsBodyExpress {
+    min-width: 580px;
+}
+.moreResultsExpress,
+.moreResultsExpert {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+.moreResultsExpress .svgIcon,
+.moreResultsExpert .svgIcon {
+    fill: var(--blue);
+}
+.moreResultsTooltip {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 450px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: var(--tooltip-background);
+    backdrop-filter: blur(3px);
+    color: var(--white);
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    bottom: 125%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all .2s ease;
 }
-.gradeBad {
-    border-bottom: 3px solid var(--bad);
+.tasksResultsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
-.gradeMiddle {
-    border-bottom: 3px solid var(--warn);
+.resultsRecordsBodyExpress:hover .moreResultsTooltip {
+    visibility: visible;
+    opacity: 1;
 }
-.gradeGood {
-    border-bottom: 3px solid var(--good);
-}
-
 
 
 /*Стили для пагинации*/
@@ -289,6 +325,7 @@
 }
 .resultsRecordsOptions .svgIcon {
     fill: var(--white);
+    transition: all .1s ease;
 }
 .resultsRecordsOptions:hover {
     background-color: var(--yellow);
@@ -301,6 +338,7 @@
 .resultsRecordsTableOptions {
     display: flex;
     justify-content: space-between;
+    transition: all .1s ease;
 }
 .resultsRecordsTableOptions a {
     display: flex;

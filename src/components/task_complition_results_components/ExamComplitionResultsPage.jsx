@@ -59,22 +59,23 @@ export const ExamComplitionResultsPage = () => {
                                         <div className="taskComplitionAudio taskComplitionExamAudio">
                                             <p>Ваша запись:</p>
                                             <audio controls src={`${SERVER_API_URL}/${result.customerTask.audioPath}`}></audio>
-                                            <div className="taskComplitionOptions">
-                                                <Button key={0}
-                                                        buttonPadding={"0 20px"}
-                                                        buttonIcon={<DownloadIcon className="svgIcon"/>}
-                                                        buttonText={"Скачать"}
-                                                        buttonFunc={()=>{}}/>
-                                                <Button key={1}
-                                                        buttonPadding={"0 20px"}
-                                                        buttonIcon={<LinkIcon className="svgIcon"/>}
-                                                        buttonText={"Cсылка"}
-                                                        isCopyButton={true}
-                                                        buttonFunc={()=>console.log("copied!")}/>
-                                            </div>
                                         </div>
                                     </div>
                                 </>))}
+                                <div className="taskComplitionOptions">
+                                    <Button key={0}
+                                            buttonPadding={"0 20px"}
+                                            buttonType={"outline"}
+                                            buttonIcon={<DownloadIcon className="svgIcon"/>}
+                                            buttonText={"Скачать"}
+                                            buttonFunc={()=>{}}/>
+                                    <Button key={1}
+                                            buttonPadding={"0 20px"}
+                                            buttonIcon={<LinkIcon className="svgIcon"/>}
+                                            buttonText={"Cсылка"}
+                                            isCopyButton={true}
+                                            buttonFunc={()=>console.log("copied!")}/>
+                                </div>
                             </>}
                         </div>
                     </div>

@@ -164,6 +164,13 @@
 .ghost .svgIcon {
     fill: var(--blue);
 }
+.paginationActive {
+    background-color: var(--yellow);
+    box-shadow: 0 0 5px var(--yellow);
+}
+.paginationActive span {
+    color: var(--black) !important;
+}
 
 
 
