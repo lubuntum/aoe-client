@@ -1,0 +1,30 @@
+.partnerFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+}
+.partnerFormContainerItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.partnerFormContainerItem p:first-child {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 30px;
+}
+.partnerFormContainerItem .dropdownToggle {
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    padding: 0 35px;
+}
+
+.partnerFormContainerItem .dropdown .dropdownMenu {
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    bottom: -325%;
+    z-index: 999;
+}

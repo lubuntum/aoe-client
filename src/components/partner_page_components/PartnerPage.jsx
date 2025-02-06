@@ -1,7 +1,14 @@
 import "./css/partner_page.css"
+import "./css/partner_info.css"
+import "./css/partner_form.css"
+import "./css/partner_promocode.css"
 import { useEffect, useRef, useState } from "react"
 import { getAllPartnerTypes, getPartnerData, updatePartnerData } from "../../modules/api_modules/partnerAPI"
 import { HeaderMain } from "../header_components/HeaderMain"
+import { PageTitle } from "../reusible_components/PageTitle"
+import { PartnerInfo } from "./PartnerInfo"
+import { PartnerForm } from "./PartnerForm"
+import { PartnerPromocode } from "./PartnerPromocode"
 import { FooterMain } from "../footer_components/FooterMain"
 import { DropdownList } from "../reusible_components/DropdownList"
 import { Button } from "../reusible_components/Button"
@@ -82,13 +89,28 @@ export const PartnerPage = () => {
         }
     }
 
-    return(
-        <>
+    return (<>
         <HeaderMain/>
         <div className="sectionWrapper">
             <div className="contentWrapper">
-                <div className="partnerPage">
-                    <div className="partnerWrapper">
+                <div className="partnerWrapper">
+                    <div className="partnerGrid">
+                        <PageTitle pageTitleText={"Кабинет #партнера#"} className={"partnerGridItem1"}/>
+
+                        <PartnerInfo className={"partnerGridItem2"}/>
+
+                        <PartnerForm className={"partnerGridItem3"}/>
+
+                        <PageTitle pageTitleText={"Текущие #промокоды#"} className={"partnerGridItem4"}/>
+
+                        <PartnerPromocode className={"partnerGridItem5"}/>
+
+
+
+
+
+
+
                         <div className="partnerForm">
                             <input className="partnerInputTemp" type="text" value={partnerName} onChange={(e)=> {setPartnerName(e.target.value)}} placeholder="Наименование организации" />
                             
@@ -137,6 +159,5 @@ export const PartnerPage = () => {
         </div>
         
         <FooterMain/>
-        </>
-    )
+        </>)
 }
