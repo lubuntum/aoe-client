@@ -29,6 +29,7 @@
   margin-top: 5px;
 }
 .partnerInfo {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,4 +42,10 @@
   justify-content: baseline;
   width: 260px;
   padding: 5px 5px 15px 5px;
+}
+.statusInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
