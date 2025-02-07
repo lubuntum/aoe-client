@@ -23,20 +23,19 @@
 }   
 .partnerPromocodeContainerItem .promocodeName {
     background-color: var(--background);
-    position: relative;
-    border-radius: 10px;
-    display: flex;
     height: 40px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    border-radius: 10px;
+}
+.partnerPromocodeContainerItem .promocodeName button span {
     font-size: .875rem;
     font-weight: 500;
 }
 .partnerPromocodeContainerItem .promocodeName .svgIcon {
-    position: absolute;
-    fill: var(--black);
-    left: 15px;
+    width: 18px;
+    height: 18px;
 }
 .partnerPromocodeContainerItem .promocodeDetails {
     background-color: var(--background);

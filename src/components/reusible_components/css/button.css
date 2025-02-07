@@ -68,6 +68,9 @@
     font-weight: 500;
     transition: all .2s ease;
 }
+.link .svgIcon {
+    fill: var(--black);
+}
 .link:hover {
     background-color: transparent;
     box-shadow: 0 0 0 transparent;
@@ -75,6 +78,9 @@
 .link:hover span {
     color: var(--blue);
     border-bottom: 1px solid var(--blue);
+}
+.link:hover .svgIcon {
+    fill: var(--blue) !important;
 }
 
 

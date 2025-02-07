@@ -1,13 +1,33 @@
-import { ReactComponent as LinkIcon } from "../../res/icons/link_24dp_gi.svg"
+import { Button } from "../reusible_components/Button"
+
+import { ReactComponent as CopyIcon } from "../../res/icons/content_copy_24dp_gi.svg"
+import { useState } from "react"
 
 export const PartnerPromocode = ({className}) => {
+    const [promocode, setPromocode] = useState("TME_ADAQDA21CZ")
+
+    const handleCopyClick = () => {
+        navigator.clipboard.writeText(promocode).then(() => {
+            console.log("Copied!")
+        }).catch(err => {
+            console.error("Failed to copy", err)
+        })
+    }
+
     return (
         <div className={`partnerPromocodeContainer ${className}`}>
             <div className="partnerPromocodeScroll">
                 <div className="partnerPromocodeContainerItem">
                     <div className="promocodeName">
-                        <p>TME_PASHAABOBA</p>
-                        <LinkIcon className="svgIcon"/>
+                        <Button key={"promocodeButton0"}
+                                buttonText={promocode}
+                                buttonType={"link"}
+                                buttonIcon={<CopyIcon className="svgIcon"/>}
+                                buttonWidth={"100%"}
+                                buttonHeight={"100%"}
+                                isCopyButton={true}
+                                buttonFunc={handleCopyClick}/>
+                        
                     </div>
                     <div className="promocodeDetails">
                         <p>Программа №1</p>
@@ -22,8 +42,15 @@ export const PartnerPromocode = ({className}) => {
 
                 <div className="partnerPromocodeContainerItem">
                     <div className="promocodeName">
-                        <p>TME_PASHAABOBA</p>
-                        <LinkIcon className="svgIcon"/>
+                        <Button key={"promocodeButton0"}
+                                buttonText={promocode}
+                                buttonType={"link"}
+                                buttonIcon={<CopyIcon className="svgIcon"/>}
+                                buttonWidth={"100%"}
+                                buttonHeight={"100%"}
+                                isCopyButton={true}
+                                buttonFunc={handleCopyClick}/>
+                        
                     </div>
                     <div className="promocodeDetails">
                         <p>Программа №1</p>
@@ -38,8 +65,15 @@ export const PartnerPromocode = ({className}) => {
 
                 <div className="partnerPromocodeContainerItem">
                     <div className="promocodeName">
-                        <p>TME_PASHAABOBA</p>
-                        <LinkIcon className="svgIcon"/>
+                        <Button key={"promocodeButton0"}
+                                buttonText={promocode}
+                                buttonType={"link"}
+                                buttonIcon={<CopyIcon className="svgIcon"/>}
+                                buttonWidth={"100%"}
+                                buttonHeight={"100%"}
+                                isCopyButton={true}
+                                buttonFunc={handleCopyClick}/>
+                        
                     </div>
                     <div className="promocodeDetails">
                         <p>Программа №1</p>
@@ -54,8 +88,15 @@ export const PartnerPromocode = ({className}) => {
 
                 <div className="partnerPromocodeContainerItem">
                     <div className="promocodeName">
-                        <p>TME_PASHAABOBA</p>
-                        <LinkIcon className="svgIcon"/>
+                        <Button key={"promocodeButton0"}
+                                buttonText={promocode}
+                                buttonType={"link"}
+                                buttonIcon={<CopyIcon className="svgIcon"/>}
+                                buttonWidth={"100%"}
+                                buttonHeight={"100%"}
+                                isCopyButton={true}
+                                buttonFunc={handleCopyClick}/>
+                        
                     </div>
                     <div className="promocodeDetails">
                         <p>Программа №1</p>
