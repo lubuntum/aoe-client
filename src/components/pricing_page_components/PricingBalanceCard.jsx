@@ -1,8 +1,15 @@
 import React, { useCallback } from "react"
 import { Button } from "../reusible_components/Button"
+import { createPayment } from "../../modules/api_modules/paymentAPI"
+import { useNavigate } from "react-router-dom"
 
 export const PricingBalanceCard = React.memo(({className, paymentBG, paymentPricing, paymentDescription}) => {
-    const handleButtonClick = useCallback(() => {
+    const navigate = useNavigate()
+    const handleButtonClick = useCallback( async (price) => {
+        console.log(price.replace(/\D/g, ''))
+        const response = await createPayment(localStorage.getItem("token"), price.replace(/\D/g, ''))
+        console.log(response)
+        window.location.href = response.data.confirmation.confirmation_url
 
     }, [])
 
@@ -10,14 +17,14 @@ export const PricingBalanceCard = React.memo(({className, paymentBG, paymentPric
         <div className={`pricngBalanceCardContainer ${className}`} style={{backgroundImage: `url(${paymentBG})`}}>
             <div className="pricingBalanceCardContent">
                 <div className="pricingBalanceCardPrices">
-                    {paymentPricing.map((item, index) => (
+                    {paymentPricing.map((price, index) => (
                         <div className="cardPriceContainer" key={`pricingBalance${index}`}>
-                            <div className="cardPrice">+ {item}</div>
+                            <div className="cardPrice">+ {price}</div>
                             <div className="cardButton">
                                 <Button buttonType={"alt"}
                                         buttonWidth={"100%"}
                                         buttonText={"Пополнить"}
-                                        buttonFunc={handleButtonClick}/>
+                                        buttonFunc={()=> {handleButtonClick(price)}}/>
                             </div>
                         </div>
                     ))}
