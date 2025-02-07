@@ -59,7 +59,6 @@ export const MainBannerSection = React.memo(() => {
                                 buttonWidth={"250px"}/> : 
                         <Button key={"BannerButton1"}
                                 buttonText={"Регистрация"}
-                                buttonType={"outline"}
                                 buttonFunc={()=>navigate(routes.AUTORIZATION)}
                                 buttonWidth={"200px"}/>}
                     </div>

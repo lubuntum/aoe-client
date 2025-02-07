@@ -37,7 +37,6 @@ export const HeaderMenu = React.memo(({onScrollToSection}) => {
 
     const buttonsAuthNavbarContainer = [
         {text: "Главная", func: createButtonFunc("section0")},
-        {text: "Пополнение баланса", func: () => navigate(routes.PRICING)},
         {text: "Варианты", func: () => navigate(routes.TASK)}
     ]
 
@@ -58,7 +57,7 @@ export const HeaderMenu = React.memo(({onScrollToSection}) => {
                         <div className="headerCollapseContainer">
                             <input type="checkbox" id="headerCollapseCheckbox"></input>
                             <button className="button" style={{padding: "0 20px"}} onClick={() => document.getElementById("headerCollapseCheckbox").checked = !document.getElementById("headerCollapseCheckbox").checked}>
-                                <span><MenuIcon className="svgIcon"/> Меню</span>
+                                <span><MenuIcon className="svgIcon"/>Меню</span>
                             </button>
 
                             <nav>

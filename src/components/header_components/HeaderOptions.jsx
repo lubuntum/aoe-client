@@ -29,13 +29,7 @@ export const HeaderOptions = ({headerData}) => {
             {isAuth ? (
                 <>
                     {headerData ? (
-                        <>
-                            <Button key={`headerBalance0`}
-                                    buttonText={`Баланс: ${headerData.currentBalance || 0} ₽`}
-                                    buttonType={"balance"}
-                                    buttonPadding="0 20px"
-                                    buttonFunc={() => navigate(routes.PRICING)}/>
-                            
+                        <>  
                             {buttonsOptionsContainer.map((item, index) => (
                                 <Button key={`headerOptionsLogin${index}`}
                                         buttonType={item.type}
@@ -44,13 +38,26 @@ export const HeaderOptions = ({headerData}) => {
                                         buttonIcon={item.icon}
                                         buttonFunc={item.func}/>
                             ))}
-                            {headerData.roles?.includes("partner") && <Button buttonType="partner" buttonIcon={<PartnerIcon className={"svgIcon"}/>} buttonFunc={()=>{navigate(routes.PARTNER)}}/>}
-                            {headerData.roles?.includes("admin") && <Button buttonType="admin" buttonIcon={<AdminIcon className={"svgIcon"}/>} buttonFunc={()=>navigate(routes.ADMIN)}/>}
+
+                            <Button key={`headerBalance0`}
+                                    buttonText={`Баланс ${headerData.currentBalance || 0} ₽`}
+                                    buttonType={"balance"}
+                                    buttonPadding={"0 20px"}
+                                    buttonFunc={() => navigate(routes.PRICING)}/>
+
+                            {headerData.roles?.includes("partner") && <Button buttonType="partner" 
+                                                                              buttonIcon={<PartnerIcon className={"svgIcon"}/>} 
+                                                                              buttonText={"Партнер"}
+                                                                              buttonPadding={"0 20px"}
+                                                                              buttonFunc={()=>{navigate(routes.PARTNER)}}/>}
+                            {headerData.roles?.includes("admin") && <Button buttonType="admin" 
+                                                                            buttonIcon={<AdminIcon className={"svgIcon"}/>} 
+                                                                            buttonFunc={()=>navigate(routes.ADMIN)}/>}
                         </>
                     ) : <Loader/>
                     }
                     <Button key={`logout0`}
-                            buttonIcon={<LogoutIcon className={"svgIcon"}/>}
+                            buttonIcon={<LogoutIcon className={"svgIcon"}/>}dasd
                             buttonFunc={logout}/>
                 </>
             ) : (

@@ -55,7 +55,6 @@ export const MainAdvantagesSection = React.memo(() => {
                 <div className="advantageButton">
                     <Button key={"AdvantagesButton1"}
                             buttonText={"Регистрация"}
-                            buttonType={"outline"}
                             buttonFunc={()=>navigate(routes.AUTORIZATION)}
                             buttonWidth={"200px"}/>
                 </div>}

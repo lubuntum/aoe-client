@@ -1,15 +1,49 @@
-.partnerPage {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 100px;
-}
 .partnerWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 100px;
 }
+.partnerGrid {
+    display: grid;
+    grid-template-rows: 100px 305px 100px auto;
+    grid-template-columns: 820px 600px;
+    gap: 20px;
+}
+.partnerGridItem1 {
+    grid-column: span 2;
+}
+.partnerGridItem2 {
+	grid-column: span 1;
+}
+.partnerGridItem3 {
+  	grid-column: span 1;
+  	grid-row: span 3;
+}
+.partnerGridItem4 {
+    grid-column: span 1;
+}
+.partnerGridItem5 {
+    grid-column: span 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .partnerInputTemp {
   width: 250px;
   padding: 5px 10px;

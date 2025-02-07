@@ -1,0 +1,68 @@
+.partnerPromocodeContainer {
+    display: flex;
+    padding: 20px;
+    padding-bottom: 5px;
+    background-color: var(--white);
+    border-radius: 20px;
+}
+.partnerPromocodeScroll {
+    height: 100%;
+    display: flex;
+    padding-bottom: 5px;
+    gap: 20px;
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+.partnerPromocodeContainerItem {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 246px;
+    scroll-snap-align: center;
+}   
+.partnerPromocodeContainerItem .promocodeName {
+    background-color: var(--background);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.partnerPromocodeContainerItem .promocodeName button span {
+    font-size: .875rem;
+    font-weight: 500;
+}
+.partnerPromocodeContainerItem .promocodeName .svgIcon {
+    width: 18px;
+    height: 18px;
+}
+.partnerPromocodeContainerItem .promocodeDetails {
+    background-color: var(--background);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    font-size: .875rem;
+    font-weight: 500;
+}
+.partnerPromocodeContainerItem .promocodeDetails p span {
+    color: var(--emphasis);
+    font-weight: 600;
+}
+.partnerPromocodeContainerItem .promocodeSum {
+    background-color: var(--background);
+    border-radius: 10px;
+    height: 40px;
+    padding: 10px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    font-size: .875rem;
+    font-weight: 500;
+}
+.partnerPromocodeContainerItem .promocodeSum p span {
+    color: var(--blue);
+    font-weight: 600;
+}

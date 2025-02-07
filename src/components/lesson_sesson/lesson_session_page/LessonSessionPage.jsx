@@ -4,6 +4,7 @@ import "./css/lesson.css"
 import { useEffect, useRef, useState } from "react"
 import { HeaderMain } from "../../header_components/HeaderMain"
 import { MicroPerfomance } from "../micro_perfomance/MicroPerfomance"
+import { LessonUploadLoading } from "./LessonUploadLoading"
 import { createPath, useLocation , useNavigate} from "react-router-dom"
 import {getTasksByVariantId} from "../../../modules/api_modules/variantAPI"
 import { PrepareTimer } from "../prepare_timer/PrepareTimer"
@@ -49,6 +50,8 @@ export const LessonSessionPage = () => {
 
     const [stage, setStage] = useState(stages.prepare_reading)
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const {speak} = useLessonSpeaker();
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
@@ -81,12 +84,12 @@ export const LessonSessionPage = () => {
         audioResultsRef.current.push(audioResult)
         //audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
         if (variant.pickedTaskType) {
-            speak("This is the end of the test", async ()=>{
+            speak("This is the end of the test", async ()=>{//isLoadingTrue
                 await endTaskSession()
             })
             return
         }
-        if (currentTask.taskType >= 4) {
+        if (currentTask.taskType >= 4) {//isLoadingTrue
             speak("This is the end of the test", async ()=>{
                 await endExamSession()
             })
@@ -99,16 +102,20 @@ export const LessonSessionPage = () => {
 
     const endTaskSession = async () => {
         const sessionKey = localStorage.getItem("token")
+        setIsLoading(true)
         const customerTask = await saveTaskResult(sessionKey)
         const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
+        setIsLoading(false)
         navigate(resultUrl)
     }
 
     const endExamSession = async () => {
         const sessionKey = localStorage.getItem("token")
+        setIsLoading(true)
         const exam = await createExam(sessionKey)
         await saveTasksResults(sessionKey, exam) // поменять 
         const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
+        setIsLoading(false)
         navigate(resultsUrl)
     }
     const createExam = async (sessionKey) => {
@@ -135,21 +142,22 @@ export const LessonSessionPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="lessonWrapper">
-                    {!microCheck && 
-                        <MicroPerfomance setMicroCheck = {setMicroCheck}/>
-                    }
-                    {microCheck && 
-                    (<>
+                    {!microCheck && <MicroPerfomance setMicroCheck = {setMicroCheck}/>}
+
+                    {(microCheck && !isLoading) && (<>
                         {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
-                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} stage={stage} setStage={setStage} task={currentTask}/> : 
-                        (<>
-                            <CurrentTaskSessionComponent task = {currentTask} stage = {stage} 
-                                setStage = {setStage} handleNextTask = {handleNextTask} />
-                        </>)}
-                        
-                    </>)
-                        
-                    }
+                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} 
+                                          stage={stage} 
+                                          setStage={setStage} 
+                                          task={currentTask}/> : (<>
+                            <CurrentTaskSessionComponent task = {currentTask} 
+                                                         stage = {stage} 
+                                                         setStage = {setStage} 
+                                                         handleNextTask = {handleNextTask}/>
+                        </>)} 
+                    </>)}
+
+                    {(microCheck && isLoading) && <LessonUploadLoading/>}
                 </div>
             </div>
         </div>
