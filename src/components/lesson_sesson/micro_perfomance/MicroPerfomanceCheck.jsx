@@ -5,7 +5,7 @@ import { ReactComponent as MicOff } from "../../../res/icons/mic_off_24dp_gi.svg
 
 export const MicroPerfomanceCheck = ({setMicroCheck}) => {
     const {mediaBlobUrl, isRecording, startRecording, stopRecording, microphonePermission} = useMediaRecorder(false)
-    console.log(microphonePermission)
+
     return (<>
         <div className="microPerfomanceContent">
             <p>Чтобы убедиться, что Ваш микрофон работает правильно, выполните следующие шаги:

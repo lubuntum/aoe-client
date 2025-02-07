@@ -4,6 +4,7 @@ import "./css/lesson.css"
 import { useEffect, useRef, useState } from "react"
 import { HeaderMain } from "../../header_components/HeaderMain"
 import { MicroPerfomance } from "../micro_perfomance/MicroPerfomance"
+import { LessonUploadLoading } from "./LessonUploadLoading"
 import { createPath, useLocation , useNavigate} from "react-router-dom"
 import {getTasksByVariantId} from "../../../modules/api_modules/variantAPI"
 import { PrepareTimer } from "../prepare_timer/PrepareTimer"
@@ -48,6 +49,8 @@ export const LessonSessionPage = () => {
     const [microCheck, setMicroCheck] = useState(false)
 
     const [stage, setStage] = useState(stages.prepare_reading)
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const {speak} = useLessonSpeaker();
     useEffect(()=>{
@@ -99,16 +102,20 @@ export const LessonSessionPage = () => {
 
     const endTaskSession = async () => {
         const sessionKey = localStorage.getItem("token")
+        setIsLoading(true)
         const customerTask = await saveTaskResult(sessionKey)
         const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
+        setIsLoading(false)
         navigate(resultUrl)
     }
 
     const endExamSession = async () => {
         const sessionKey = localStorage.getItem("token")
+        setIsLoading(true)
         const exam = await createExam(sessionKey)
         await saveTasksResults(sessionKey, exam) // поменять 
         const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
+        setIsLoading(false)
         navigate(resultsUrl)
     }
     const createExam = async (sessionKey) => {
@@ -135,21 +142,22 @@ export const LessonSessionPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="lessonWrapper">
-                    {!microCheck && 
-                        <MicroPerfomance setMicroCheck = {setMicroCheck}/>
-                    }
-                    {microCheck && 
-                    (<>
+                    {!microCheck && <MicroPerfomance setMicroCheck = {setMicroCheck}/>}
+
+                    {(microCheck && !isLoading) && (<>
                         {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
-                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} stage={stage} setStage={setStage} task={currentTask}/> : 
-                        (<>
-                            <CurrentTaskSessionComponent task = {currentTask} stage = {stage} 
-                                setStage = {setStage} handleNextTask = {handleNextTask} />
-                        </>)}
-                        
-                    </>)
-                        
-                    }
+                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} 
+                                          stage={stage} 
+                                          setStage={setStage} 
+                                          task={currentTask}/> : (<>
+                            <CurrentTaskSessionComponent task = {currentTask} 
+                                                         stage = {stage} 
+                                                         setStage = {setStage} 
+                                                         handleNextTask = {handleNextTask}/>
+                        </>)} 
+                    </>)}
+
+                    {(microCheck && isLoading) && <LessonUploadLoading/>}
                 </div>
             </div>
         </div>
