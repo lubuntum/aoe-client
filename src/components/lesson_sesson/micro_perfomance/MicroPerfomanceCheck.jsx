@@ -8,7 +8,10 @@ export const MicroPerfomanceCheck = ({setMicroCheck}) => {
     console.log(microphonePermission)
     return (<>
         <div className="microPerfomanceContent">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, doloremque. Dicta quas at, nobis culpa quo dignissimos impedit repellendus debitis ea nulla aut, hic repudiandae quisquam rerum iure fugit illum? Illum cupiditate accusamus, nulla ipsa rem ullam dignissimos qui voluptas.</p>
+            <p>Чтобы убедиться, что Ваш микрофон работает правильно, выполните следующие шаги:
+            <br/>1. Нажмите на зеленую кнопку ниже, чтобы предоставить разрешение на использование микрофона. Также убедитесь, что Вы разрешили доступ в настройках браузера.
+            <br/>2. После получения разрешения начнется запись Вашего голоса, говорите в микрофон в течение нескольких секунд. Для завершения записи нажмите на зеленую кнопку.
+            <br/>3. После завершения записи, вы может прослушать записанный звук. Убедитесь, что вы слышите свой голос!</p>
             
             <div className="microPerfomanceStatusIcon">
                 {microphonePermission === "denied" ?  <>
