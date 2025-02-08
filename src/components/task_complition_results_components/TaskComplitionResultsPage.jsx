@@ -40,7 +40,7 @@ export const TaskComplitionResultsPage = () => {
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className='taskComplitionWrapper'>
-                    <PageTitle pageTitleText={"#Ответ# на {наименование варианта} - {номер} задание"} className={""}/>
+                    <PageTitle pageTitleText={`#Ответ# на ${task.taskType} задание`} className={""}/>
                     <div className="taskComplitionContainer">
                         <div className="taskComplitionInnerContainer">
                             {task && <>

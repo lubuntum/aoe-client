@@ -48,7 +48,7 @@ export const ExamComplitionResultsPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="taskComplitionWrapper">
-                    <PageTitle pageTitleText={`#Ответы# на {наименование варианта} - Экзамен`} className={""}/>
+                    <PageTitle pageTitleText={`#Ответы# Экзамен`} className={""}/>
                     <div className="taskComplitionContainer">
                         <div className="taskComplitionInnerContainer">
                             {tasks && <>

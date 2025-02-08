@@ -5,17 +5,28 @@ import { useNavigate } from "react-router-dom"
 
 export const PricingBalanceCard = React.memo(({className, paymentBG, paymentPricing, paymentDescription}) => {
     const navigate = useNavigate()
-    const [customerPrice, setCustomerPrice] = useState(null)
+    const [inputFormatErr, setInputFormatErr] = useState(false)
+    const [customerPrice, setCustomerPrice] = useState('')
+    const regex = /^(?:\d+|\d+\.\d{1,2})$/
     const handleButtonClick = useCallback( async (price) => {
         if (price === undefined || price === null || price <= 0) return
-        console.log(price.replace(/\D/g, ''))
-        const response = await createPayment(localStorage.getItem("token"), price.replace(/\D/g, ''))
-        console.log(response)
+        price = price.replace(/[^0-9.,]/g, "")
+        if (!regex.test(price) || price === '') {
+            console.log(`Wrong format ${price}`)
+            return
+        }
+        const response = await createPayment(localStorage.getItem("token"), price)
         window.location.href = response.data.confirmation.confirmation_url
 
     }, [])
-    const handleCustomerPrice = (value) => {
-        setCustomerPrice(value.replace(/\D/g, ''))
+    const handleCustomerPrice = (price) => {
+        if (!regex.test(price) || price === '') {
+            setInputFormatErr(true)
+            setCustomerPrice(null)
+            return
+        }
+        setInputFormatErr(false)
+        setCustomerPrice(price)
     }
     return (
         <div className={`pricngBalanceCardContainer ${className}`} style={{backgroundImage: `url(${paymentBG})`}}>
@@ -36,7 +47,7 @@ export const PricingBalanceCard = React.memo(({className, paymentBG, paymentPric
                         <div className="cardPrice">Своя сумма</div>
                         <div className="cardOptions">
                             <div className="inputContainer">
-                                <input onChange={(e)=>{handleCustomerPrice(e.target.value)}} type="text" placeholder="Сумма" required></input>
+                                <input style={{color:inputFormatErr ? "red": "initial"}} onChange={(e)=>{handleCustomerPrice(e.target.value)}} type="text" placeholder="Сумма" required></input>
                             </div>
                             <Button buttonType={"alt"}
                                     buttonWidth={"70%"}

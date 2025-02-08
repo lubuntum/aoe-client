@@ -19,6 +19,7 @@ import { UserChangePassword } from "./user_components/UserChangePassword"
 import { ResultsGrid } from "./result_components/ResultsGrid"
 import { Popup } from "../reusible_components/Popup"
 import { FooterMain } from "../footer_components/FooterMain"
+import { paymentStatus } from "../../modules/api_modules/paymentAPI"
 
 
 export const AccountPage = () =>{
@@ -39,6 +40,7 @@ export const AccountPage = () =>{
             }
         }
         fetchData()
+        checkPaymentStatus()
     }, [])
 
     useEffect(() => {
@@ -47,7 +49,13 @@ export const AccountPage = () =>{
             document.body.style.overflow = "auto"
         }
     }, [showPopup])
-
+    const checkPaymentStatus = async () => {
+        try {
+            const response = await paymentStatus(localStorage.getItem("token"))
+        } catch(e) {
+            console.err(e)
+        }
+    }
     return (<>
         <HeaderMain/>
         {showPopup && <Popup component={contentPopup} setShowPopup={setShowPopup}/>}
