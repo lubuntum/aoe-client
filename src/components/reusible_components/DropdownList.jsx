@@ -5,9 +5,9 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { ReactComponent as UnfoldMore } from "../../res/icons/unfold_more_24dp_gi.svg"
 
 
-export const DropdownList = ({options, onSelect}) => {
+export const DropdownList = ({options, onSelect, defaultOption = null}) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOption, setSelectedOption] = useState(options[0])
+    const [selectedOption, setSelectedOption] = useState(defaultOption ? defaultOption : options[0])
     const dropdownRef = useRef(null)
 
     const toggleDropdown = () => {
