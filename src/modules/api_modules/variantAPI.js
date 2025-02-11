@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_ADMIN_DELETE_VARIANT, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_ADMIN_VARIANT_VISIBILITY, API_ADMIN_VARIANTS, API_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../config";
+import { API_ADMIN_DELETE_VARIANT, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_ADMIN_VARIANT_VISIBILITY, API_ADMIN_VARIANTS, API_AVAILABLE_VARIANTS, API_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../config";
 import { getCurrentDate } from "../date_modules/currentDate";
 
 export const getVisibleVariants = async () => {
@@ -14,7 +14,12 @@ export const getAllVariants = async (token) => {
     })
     return response;
 }
-
+export const getAvailableVariants = async (token) => {
+    const response = await axios.get(`${SERVER_API_URL}${API_AVAILABLE_VARIANTS}`, {
+        headers: {"Authorization" : token}
+    })
+    return response
+}
 export const getTasksByVariantId = async (variantId) => {
     const url = API_VARIANT_TASKS_DATA.replace("%d", variantId)
     const response = await axios.get(`${SERVER_API_URL}${url}`);

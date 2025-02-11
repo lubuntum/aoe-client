@@ -5,15 +5,17 @@ import { useEffect, useState } from 'react'
 import { HeaderMain } from "../header_components/HeaderMain"
 import { VariantsContent } from './VariantsContent'
 import { VariantsEmpty } from "./VariantsEmpty"
-import { getVisibleVariants } from "../../modules/api_modules/variantAPI"
+import { getAvailableVariants, getVisibleVariants } from "../../modules/api_modules/variantAPI"
 import { FooterMain } from '../footer_components/FooterMain'
+import { useAuth } from '../../modules/auth_modules/AuthProvider'
 
 export const VariantsPage = () => {
     const [variants, setVariants] = useState(undefined);
+    const {isAuth} = useAuth()
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                const response = await getVisibleVariants();
+                const response = await getAvailableVariants(localStorage.getItem("token") ? localStorage.getItem("token") : "unAuth")
                 setVariants(response.data);
             } catch(e) {
                 setVariants(null)

@@ -21,6 +21,7 @@ export const API_CUSTOMER_TASKS_BY_TASK = "/api/account/customer/customer-tasks-
 //lesson routes
 export const API_TASK_DATA = "/api/lesson/task/%d"
 export const API_VARIANTS_DATA = "/api/lesson/variants"//получение всех вариантов
+export const API_AVAILABLE_VARIANTS = "/api/lesson/variants-available"
 export const API_VARIANT_TASKS_DATA = "/api/lesson/variant/%d/tasks"//получение заданий по варинату
 export const API_VARIANT = "/api/lesson/variant/%d"//получение варианта с тасками
 export const API_SEND_EXAM_DATA = "/api/lesson/exam"//создание экзамена
