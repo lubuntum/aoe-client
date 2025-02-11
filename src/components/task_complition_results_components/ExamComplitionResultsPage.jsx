@@ -41,6 +41,15 @@ export const ExamComplitionResultsPage = () => {
         result.sort((a,b) => a.task.taskType - b.task.taskType)
         return result;
     }
+
+    const shareTask = async () => {
+        try {
+            const url = window.location.href
+            navigator.clipboard.writeText(url)
+        } catch (err) {
+            console.error("Failed copy", err)
+        }
+    }
     
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (<>
@@ -48,7 +57,7 @@ export const ExamComplitionResultsPage = () => {
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="taskComplitionWrapper">
-                    <PageTitle pageTitleText={`#Ответы# Экзамен`} className={""}/>
+                    <PageTitle pageTitleText={`#Ответы# на экзамен`} className={""}/>
                     <div className="taskComplitionContainer">
                         <div className="taskComplitionInnerContainer">
                             {tasks && <>
@@ -65,7 +74,7 @@ export const ExamComplitionResultsPage = () => {
                                 <div className="taskComplitionOptions">
                                     <Button key={0}
                                             buttonPadding={"0 20px"}
-                                            buttonType={"outline"}
+                                            buttonType={"block"}
                                             buttonIcon={<DownloadIcon className="svgIcon"/>}
                                             buttonText={"Скачать"}
                                             buttonFunc={()=>{}}/>
@@ -74,7 +83,7 @@ export const ExamComplitionResultsPage = () => {
                                             buttonIcon={<LinkIcon className="svgIcon"/>}
                                             buttonText={"Cсылка"}
                                             isCopyButton={true}
-                                            buttonFunc={()=>console.log("copied!")}/>
+                                            buttonFunc={shareTask}/>
                                 </div>
                             </>}
                         </div>

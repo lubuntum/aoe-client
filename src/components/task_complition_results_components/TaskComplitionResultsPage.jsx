@@ -35,6 +35,15 @@ export const TaskComplitionResultsPage = () => {
         loadCustomerTaskByTask()
     },[])
 
+    const shareTask = async () => {
+        try {
+            const url = window.location.href
+            navigator.clipboard.writeText(url)
+        } catch (err) {
+            console.error("Failed copy", err)
+        }
+    }
+
     return (<>
         <HeaderMain/>
         <div className='sectionWrapper'>
@@ -51,7 +60,7 @@ export const TaskComplitionResultsPage = () => {
                                     <div className="taskComplitionOptions">
                                         <Button key={0}
                                                 buttonPadding={"0 20px"}
-                                                buttonType={"outline"}
+                                                buttonType={"block"}
                                                 buttonIcon={<DownloadIcon className="svgIcon"/>}
                                                 buttonText={"Скачать"}
                                                 buttonFunc={()=>{}}/>
@@ -59,7 +68,7 @@ export const TaskComplitionResultsPage = () => {
                                                 buttonPadding={"0 20px"}
                                                 buttonIcon={<LinkIcon className="svgIcon"/>}
                                                 buttonText={"Cсылка"}
-                                                buttonFunc={()=>console.log("copied")}
+                                                buttonFunc={shareTask}
                                                 isCopyButton={true}/>
                                     </div>
                                 </div>

@@ -10,6 +10,8 @@ import ProtectedRoute from "./modules/auth_modules/ProtectedRoute"
 import AuthProvider from "./modules/auth_modules/AuthProvider"
 import { ScrollToTop } from "./components/reusible_components/ScrollToTop"
 
+import { PageTracking } from "./hooks/metrica/PageTracking"
+
 import { MainPage } from "./components/main_page_components/MainPage"
 import { AccountPage } from './components/account_page_components/AccountPage'
 import { AdminPage } from "./components/admin_page_components/AdminPage"
@@ -41,6 +43,8 @@ function App() {
 }
 
 const Main = () => {
+    PageTracking()
+
     return (
         <div className='pageWrapper'>
             <Routes>
