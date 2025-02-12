@@ -4,7 +4,7 @@ export const USER_EMAIL = "user_email"
 
 export const GUEST_NAME = "Гость"
 //Линк сервера
-export const SERVER_API_URL = "http://localhost:8080"
+export const SERVER_API_URL = "https://192.168.65.55:8080"
 //Роуты для валидации
 export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"
@@ -24,6 +24,7 @@ export const API_VARIANTS_DATA = "/api/lesson/variants"//получение вс
 export const API_AVAILABLE_VARIANTS = "/api/lesson/variants-available"
 export const API_VARIANT_TASKS_DATA = "/api/lesson/variant/%d/tasks"//получение заданий по варинату
 export const API_VARIANT = "/api/lesson/variant/%d"//получение варианта с тасками
+export const API_VARIANTS_AVAILABLE_COUNT = "/api/lesson/variants-available-count" //все видимые варианты для пользователя
 export const API_SEND_EXAM_DATA = "/api/lesson/exam"//создание экзамена
 export const API_SEND_USER_TASK_DATA = "/api/lesson/user-task" //Отправка результата выполнения задания
 export const API_CUSTOMER_TASKS_BY_EXAM_DATA = "/api/lesson/result"

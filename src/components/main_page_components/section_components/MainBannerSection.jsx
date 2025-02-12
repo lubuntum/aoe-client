@@ -1,14 +1,27 @@
-import React from "react"
+import React, { useCallback, useEffect, useState } from "react"
 
 import { Button } from "../../reusible_components/Button"
 
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 import { useNavigate } from "react-router-dom"
 import routes from "../../../routes"
+import { getAvailableVariantsCount } from "../../../modules/api_modules/variantAPI"
 
 export const MainBannerSection = React.memo(() => {
     const navigate = useNavigate()
     const { isAuth } = useAuth()
+    const [variantsCount, setVaraintsCount] = useState(0)
+    const loadAvailableVariantsCount = useCallback(async () => {
+        try {
+            const response = await getAvailableVariantsCount()
+            setVaraintsCount(response.data)
+        } catch(err) {
+            console.error("Cant load available variants")
+        }
+    }, [])
+    useEffect(()=>{
+        loadAvailableVariantsCount()
+    },[loadAvailableVariantsCount])
     return (
         <div className="contentWrapper">
             <div className='bannerWrapper'>
@@ -19,8 +32,8 @@ export const MainBannerSection = React.memo(() => {
                         <div className="bannerItem1Decal bannerDecal"></div>
                     </div>
                     <div className="bannerContainerItem bannerItem2">
-                        <p>50+</p>
-                        <p>Вариантов для тренировки</p>
+                        <p>{variantsCount}</p>
+                        <p>Всего вариантов для тренировки</p>
                     </div>
                     <div className="bannerContainerItem bannerItem3">
                         <div className="magicpattern"></div>
