@@ -8,7 +8,7 @@ export const PartnerInfo = ({className, partner}) => {
                 <div className="partnerInfoBioContainer">
                     <div className="partnerInfoBioContainerItem">
                         <p>Имя</p>
-                        <p>{partner.partnerName ? partner.partnerName : "Нет данных"}</p>
+                        <p>{partner.name ? partner.name : "Нет данных"}</p>
                     </div>
 
                     <div className="partnerInfoBioContainerItem">
@@ -28,7 +28,7 @@ export const PartnerInfo = ({className, partner}) => {
 
                     <div className="partnerInfoBioContainerItem">
                         <p>Отчество</p>
-                        <p>{partner.patronynic ? partner.patronymic : "Нет данных"}</p>
+                        <p>{partner.patronymic ? partner.patronymic : "Нет данных"}</p>
                     </div>
 
                     <div className="partnerInfoBioContainerItem">

@@ -139,6 +139,12 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                                 inputValue={registrationEmail}
                                 inputPlaceholder={"Электронная почта"}
                                 inputOnChange={(e)=>{setRegistrationEmail(e.target.value)}}/>
+                                
+                    <InputField key={"registrationInput2"}
+                                inputType={"text"}
+                                inputValue={registrationSecondName}
+                                inputPlaceholder={"Фамилия"}
+                                inputOnChange={(e)=>{setRegistrationSecondName(e.target.value)}}/>
 
                     <InputField key={"registrationInput1"}
                                 inputType={"text"}
@@ -146,11 +152,6 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                                 inputPlaceholder={"Имя"}
                                 inputOnChange={(e)=>{setRegistrationName(e.target.value)}}/>
                                 
-                    <InputField key={"registrationInput2"}
-                                inputType={"text"}
-                                inputValue={registrationSecondName}
-                                inputPlaceholder={"Фамилия"}
-                                inputOnChange={(e)=>{setRegistrationSecondName(e.target.value)}}/>
                     {location.pathname === routes.PARTNERSHIP_AUTHORIZATION && <>
                     <InputField key={"registrationInput5"}
                                 inputType={"text"}

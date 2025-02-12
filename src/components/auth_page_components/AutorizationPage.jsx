@@ -21,7 +21,7 @@ export const AutorizationPage = () => {
             <div className="contentWrapper">
                 <div className="autorizationWrapper">
                     {location.pathname !== routes.PARTNERSHIP_AUTHORIZATION ? <>
-                    <LoginContainer handleToggle={handleToggle} loginToggle={loginToggle} registrationConfirm={registrationConfirm}/>
+                    <LoginContainer handleToggle={handleToggle} loginToggle={loginToggle} setLoginToggle={setLoginToggle} registrationConfirm={registrationConfirm}/>
                     <RegistrationContainer handleToggle={handleToggle} loginToggle={loginToggle} setLoginToggle={setLoginToggle} setRegistrationConfirm={setRegistrationConfirm}/></> :
 
                     <RegistrationContainer setRegistrationConfirm={setRegistrationConfirm}/>}

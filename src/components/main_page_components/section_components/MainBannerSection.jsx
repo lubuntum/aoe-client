@@ -33,7 +33,7 @@ export const MainBannerSection = React.memo(() => {
                     </div>
                     <div className="bannerContainerItem bannerItem2">
                         <p>{variantsCount}</p>
-                        <p>Всего вариантов для тренировки</p>
+                        <p>вариантов для тренировки</p>
                     </div>
                     <div className="bannerContainerItem bannerItem3">
                         <div className="magicpattern"></div>

@@ -26,8 +26,7 @@ export const MainSubscriptionSection = React.memo(() => {
         subscriptionType: "pro", 
         subscriptionName: "Улучшеный план",
         subscriptionDescription: ["Моментальный доступ ко всем 50+ вариантам", 
-                                  "Хранение результатов пока активна подписка", 
-                                  "Приветственный баланс на 1 проверку"
+                                  "Хранение результатов пока активна подписка"
                                 ],
         subscriptionIsActive: "Активен",
         subscriptionBG: proBackground

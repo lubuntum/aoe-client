@@ -9,7 +9,7 @@ import { Checkbox } from "../reusible_components/Checkbox"
 import { encryptData } from "../../modules/crypto_modules/cryptoData"
 import { decryptData } from "../../modules/crypto_modules/cryptoData"
 
-export const LoginContainer = ({handleToggle, loginToggle, registrationConfirm}) => {
+export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, registrationConfirm}) => {
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -53,6 +53,10 @@ export const LoginContainer = ({handleToggle, loginToggle, registrationConfirm})
             setPopup("Регистрация успешна! Мы отправили вам сообщение на почту для подтверждения аккаунта!")
         }
     }, [registrationConfirm])
+
+    useEffect(() => {
+        setLoginToggle(true)
+    }, [setLoginToggle])
 
     const collectDataByToken = async(token) => {
         saveEmail(loginEmail)
