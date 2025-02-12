@@ -90,6 +90,7 @@ export const HeaderMain = ({onScrollToSection, updateData = false, setUpdateData
         }
         updateHeader()
     }, [updateData, fetchHeaderData, setUpdateData])
+    
     return (
         <div className="headerFixedContainer" style={{top: `${headerTop}px`}}>
             <div className="headerWrapper" >

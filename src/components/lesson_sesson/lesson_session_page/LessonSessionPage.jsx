@@ -20,6 +20,7 @@ import { createExamRequest, saveUserTaskRequest } from "../../../modules/api_mod
 import routes from '../../../routes'
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
+import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -51,6 +52,8 @@ export const LessonSessionPage = () => {
     const [stage, setStage] = useState(stages.prepare_reading)
 
     const [isLoading, setIsLoading] = useState(false)
+
+    const { isAuth } = useAuth()
 
     const {speak} = useLessonSpeaker();
     useEffect(()=>{
@@ -101,22 +104,31 @@ export const LessonSessionPage = () => {
     }
 
     const endTaskSession = async () => {
-        const sessionKey = localStorage.getItem("token")
         setIsLoading(true)
-        const customerTask = await saveTaskResult(sessionKey)
-        const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
-        setIsLoading(false)
-        navigate(resultUrl)
+        if (isAuth) {
+            const sessionKey = localStorage.getItem("token")
+            const customerTask = await saveTaskResult(sessionKey)
+            const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
+            setIsLoading(false)
+            navigate(resultUrl)
+        } else {
+            console.log("Абоба")
+        }
     }
 
     const endExamSession = async () => {
-        const sessionKey = localStorage.getItem("token")
         setIsLoading(true)
-        const exam = await createExam(sessionKey)
-        await saveTasksResults(sessionKey, exam) // поменять 
-        const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
-        setIsLoading(false)
-        navigate(resultsUrl)
+        if (isAuth) {
+            const sessionKey = localStorage.getItem("token")
+            const exam = await createExam(sessionKey)
+            await saveTasksResults(sessionKey, exam) // поменять 
+            const resultsUrl = `/results?variantId=${variant.id}&examId=${exam.id}`
+            setIsLoading(false)
+            navigate(resultsUrl)
+        } else {
+            console.log("Абоба")
+        }
+
     }
     const createExam = async (sessionKey) => {
         const response = await createExamRequest(variant.id, sessionKey)
