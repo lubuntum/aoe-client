@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { ReactComponent as BoltIcon } from "../../../../res/icons/bolt_24dp_gi.svg"
@@ -24,7 +24,7 @@ import routes from "../../../../routes.js"
 import { getHeaderData } from "../../../../modules/api_modules/accountAPI.js"
 import { setNumberFormat } from "../../../../modules/number_formation_modules/setNumberFormat.js"
 
-export const ResultsExamRecords = ({variant, examPicked, className, setContentPopup, setShowPopup}) => {
+export const ResultsExamRecords = ({variant, examPicked, className, setContentPopup, setShowPopup, setUpdateHeaderData}) => {
     const navigate = useNavigate()
 
     const [currentBalance, setCurrentBalance] = useState(0)
@@ -50,8 +50,9 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
     useEffect(()=>{
         getExamsData()
     },[examPicked, variant])
+    
 
-    const getExamsData = async () => {
+    const getExamsData = useCallback(async () => {
         const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
         const examsTemp = response.data
         examsTemp.sort(sortExams)
@@ -66,7 +67,14 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
         setHoveredButton(Array(currentItemsTemp.length).fill(null))
         timeoutRef.current = Array(currentItemsTemp.length).fill(null)
         setExams(examsTemp)
-    }
+    }, [currentPage, variant])
+
+    useEffect(()=>{
+        const updateInterval = setInterval(()=>{
+            getExamsData()
+        }, 60 * 1000)
+        return () => clearInterval(updateInterval)
+    }, [getExamsData])
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
@@ -114,6 +122,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
         try {
             const response = await sendExamToCheckQueue(examId, localStorage.getItem("token"))
             await getExamsData()
+            setUpdateHeaderData(true)
         } catch (err) {
             console.error("Failed to start exam check", err)
         }
@@ -217,8 +226,8 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                             <td><div className="resultsRecordsBodyDate">{exam.examCompleteDate.split(" ")[0]}</div></td>
                             <td>
                                 <div className="resultsRecordsBodyButtons">
-                                    {(exam.expressCheckStatus?.status !== null && exam.expressCheckStatus?.status === "checking") ||
-                                    (exam.expressCheckStatus?.status !== null && exam.expressCheckStatus?.status === "completed") ?
+                                    {(exam.expressCheckStatus?.status !== undefined && exam.expressCheckStatus?.status === "checking") ||
+                                    (exam.expressCheckStatus?.status !== undefined && exam.expressCheckStatus?.status === "completed") ?
 
                                         <Button key={"examExpressSendButton0"}
                                                 buttonPadding={"0 10px 0 3px"}

@@ -24,7 +24,7 @@ const debounce = (func, delay) => {
     }
 }
 
-export const HeaderMain = ({onScrollToSection}) => {
+export const HeaderMain = ({onScrollToSection, updateData = false, setUpdateData = null}) => {
     const { isAuth, logout } = useAuth()
     const [headerData, setHeaderData] = useState()
     const [headerTop, setHeaderTop] = useState(40)
@@ -67,19 +67,29 @@ export const HeaderMain = ({onScrollToSection}) => {
         }
     }, [debouncedHandleScroll, debouncedHandleResize, updateHeaderTop])
 
+    const fetchHeaderData = useCallback(async () => {
+        try {
+            const response = await getHeaderData(localStorage.getItem("token"))
+            console.log("Fetched the header data")
+            setHeaderData(response.data)
+        } catch (e) {
+            logout()
+        }   
+    }, [logout])
+
     useEffect(()=>{
         if (!isAuth) return
-        const fetchData = async () => {
-            try {
-                const response = await getHeaderData(localStorage.getItem("token"))
-                setHeaderData(response.data)
-            } catch (e) {
-                logout()
-            }   
+        fetchHeaderData()
+    }, [isAuth, logout, fetchHeaderData])
+    
+    useEffect(()=>{
+        if (updateData === false) return
+        const updateHeader = async () => {
+            await fetchHeaderData()
+            setUpdateData(false)
         }
-        fetchData()
-    }, [isAuth, logout])
-
+        updateHeader()
+    }, [updateData, fetchHeaderData, setUpdateData])
     return (
         <div className="headerFixedContainer" style={{top: `${headerTop}px`}}>
             <div className="headerWrapper" >

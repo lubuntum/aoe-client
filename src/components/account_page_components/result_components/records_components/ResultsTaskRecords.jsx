@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { ReactComponent as BoltIcon } from "../../../../res/icons/bolt_24dp_gi.svg"
@@ -21,7 +21,7 @@ import { Loader } from "../../../reusible_components/Loader.jsx"
 import { getHeaderData } from "../../../../modules/api_modules/accountAPI.js"
 import { setNumberFormat } from "../../../../modules/number_formation_modules/setNumberFormat.js"
 
-export const ResultsTaskRecords = ({variant, task, className, setContentPopup, setShowPopup}) => {
+export const ResultsTaskRecords = ({variant, task, className, setContentPopup, setShowPopup, setUpdateHeaderData}) => {
     const navigate = useNavigate()
 
     const [currentBalance, setCurrentBalance] = useState(0)
@@ -48,7 +48,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
         getCustomerTasksData()
     }, [task, variant])
 
-    const getCustomerTasksData = async () => {
+    const getCustomerTasksData = useCallback(async () => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
         taskTemp.sort(sortCustomerTasks)
@@ -63,7 +63,12 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
         setHoveredButton(Array(currentItemsTemp.length).fill(null))
         timeoutRef.current = Array(currentItemsTemp.length).fill(null)
         setCustomerTasks(taskTemp)
-    }
+    }, [])
+
+    useEffect(()=>{
+        const updateDataInterval = setInterval( ()=>{ getCustomerTasksData()}, 35 * 1000)
+        return () => clearInterval(updateDataInterval)
+    },[getCustomerTasksData])
 
     const handleMouseEnter = (rowIndex, buttonIndex) => {
         if (timeoutRef.current[rowIndex]) {
@@ -111,6 +116,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
         try {
             const response = await sendCustomerTaskToCheckQueue(customerTask, task, localStorage.getItem("token"))
             await getCustomerTasksData()
+            setUpdateHeaderData(true)
         } catch (err) {
             console.error("Failed to start express check", err)
         }

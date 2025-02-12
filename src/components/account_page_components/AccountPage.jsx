@@ -26,6 +26,7 @@ export const AccountPage = () =>{
     const [customer, setCustomer] = useState(undefined)
     const [showPopup, setShowPopup] = useState(false)
     const [contentPopup, setContentPopup] = useState()
+    const [updateHeaderData, setUpdateHeaderData] = useState(false)
     const [error, setError] = useState(undefined);
     
     useEffect(() =>{
@@ -57,7 +58,7 @@ export const AccountPage = () =>{
         }
     }
     return (<>
-        <HeaderMain/>
+        <HeaderMain updateData={updateHeaderData} setUpdateData={setUpdateHeaderData}/>
         {showPopup && <Popup component={contentPopup} setShowPopup={setShowPopup}/>}
         <div className="sectionWrapper">
             <div className="contentWrapper">
@@ -77,7 +78,7 @@ export const AccountPage = () =>{
 
                         <PageTitle pageTitleText={"#Пройденные# варианты"} className={"accountGridItem6"}/>
 
-                        <ResultsGrid className={"accountGridItem7"} setContentPopup={setContentPopup} setShowPopup={setShowPopup}/>
+                        <ResultsGrid className={"accountGridItem7"} setContentPopup={setContentPopup} setShowPopup={setShowPopup} setUpdateHeaderData={setUpdateHeaderData}/>
                     </div>
                 </div>
             </div>
