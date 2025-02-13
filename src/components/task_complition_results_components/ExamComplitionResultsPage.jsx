@@ -13,6 +13,7 @@ import { FooterMain } from "../footer_components/FooterMain"
 import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
+import { useAuth } from "../../modules/auth_modules/AuthProvider"
 
 export const ExamComplitionResultsPage = () => {
     const query = new URLSearchParams(useLocation().search)
@@ -21,9 +22,11 @@ export const ExamComplitionResultsPage = () => {
     const [tasks, setTasks] = useState()
     const [customerTasks, setCustomerTasks] = useState()
     const [customerResults, setCustomerResults] = useState()
+    const {checkAuth} = useAuth()
 
     useEffect(()=>{
         const loadTaskByVariantId = async () => {
+            checkAuth()
             const tasksResonse = await getTasksByVariantId(variantId)
             const customerTasksResponse = await getCustomerTaskByExamId(examId)
             setCustomerResults(mergeData(tasksResonse.data, customerTasksResponse.data))

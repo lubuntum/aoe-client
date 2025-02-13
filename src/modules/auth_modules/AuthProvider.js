@@ -37,9 +37,16 @@ const AuthProvider = ({children}) =>{
         if (isAuth) return localStorage.getItem(USER_EMAIL)
         return GUEST_NAME
     }
+    const checkAuth = () => {
+        if (localStorage.getItem("token")){
+            setIsAuth(true)
+            return true
+        }
+        return false
+    }
     
     return (
-        <AuthContext.Provider value = {{isAuth, login, logout, saveEmail, getEmail, loading}}>
+        <AuthContext.Provider value = {{isAuth, login, logout, saveEmail, getEmail, loading, checkAuth}}>
             {children}
         </AuthContext.Provider>
     )

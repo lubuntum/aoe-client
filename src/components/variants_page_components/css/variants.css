@@ -1,151 +1,159 @@
 .variantsWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 100px;
 }
 .variantsContentWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 .variantsGrid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(300px, auto);
-    gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(300px, auto);
+  gap: 20px;
 }
 .variantCardContainer {
-    position: relative;
-    width: 100%;
-    max-height: 300px;
-    height: 300px;
-    background-color: var(--white);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all .2s ease;
+  position: relative;
+  width: 100%;
+  max-height: 300px;
+  height: 300px;
+  background-color: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.2s ease;
 }
 .variantCardImage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
 }
 .variantCardImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .variantCardOptionsWrapper {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transition: all .2s ease;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: all 0.2s ease;
 }
 .variantCardContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 100%;
-    height: 50px;
-    background-color: var(--glassmorph-transparent);
-    backdrop-filter: blur(3px);
-    transition: all .2s ease ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  height: 50px;
+  background-color: var(--glassmorph-transparent);
+  backdrop-filter: blur(3px);
+  transition: all 0.2s ease;
 }
 .variantCardTitle {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--white);
 }
 .variantCardButtons {
-    display: none;
+  display: none;
 }
 .variantCardTasksButtons {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 .variantCardOptionsButtons {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 .variantCardOptionsWrapper:hover {
-    padding: 0;
+  padding: 0;
 }
 .variantCardOptionsWrapper:hover > .variantCardContent {
-    bottom: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    padding-top: 60px;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-top: 60px;
 }
 .variantCardOptionsWrapper:hover > .variantCardContent .variantCardButtons {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 20px 20px 20px;
-    opacity: 0;
-    animation: buttonsKeys .2s ease .2s 1 normal forwards;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px 20px 20px;
+  opacity: 0;
+  animation: buttonsKeys 0.2s ease 0.2s 1 normal forwards;
 }
 .variantIsVisibleContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 20px;
-    left: 20px;
-    position: absolute;
-    background-color: var(--good);
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px var(--good);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  left: 20px;
+  position: absolute;
+  background-color: var(--good);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--good);
+}
+.variantDeleteContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
 }
 .variantIsVisibleContainer .svgIcon {
-    fill: var(--white);
+  fill: var(--white);
 }
 
 @keyframes buttonsKeys {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
-
-
 
 .variantsEmptyContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--white);
-    border-radius: 20px;
-    height: calc(100vh - 180px);
-    font-size: 3rem;
-    font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 20px;
+  height: calc(100vh - 180px);
+  font-size: 3rem;
+  font-weight: 400;
 }
 .variantsEmptyContainer p:nth-child(2) {
-    font-size: 4rem;
-    font-weight: 400;
+  font-size: 4rem;
+  font-weight: 400;
 }

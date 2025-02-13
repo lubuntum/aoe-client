@@ -53,8 +53,6 @@ export const LessonSessionPage = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const { isAuth } = useAuth()
-
     const {speak} = useLessonSpeaker();
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
@@ -105,20 +103,20 @@ export const LessonSessionPage = () => {
 
     const endTaskSession = async () => {
         setIsLoading(true)
-        if (isAuth) {
+        if (localStorage.getItem("token")) {
             const sessionKey = localStorage.getItem("token")
             const customerTask = await saveTaskResult(sessionKey)
             const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
             setIsLoading(false)
             navigate(resultUrl)
         } else {
-            console.log("Абоба")
+            console.error("Please enter to account")
         }
     }
 
     const endExamSession = async () => {
         setIsLoading(true)
-        if (isAuth) {
+        if (localStorage.getItem("token")) {
             const sessionKey = localStorage.getItem("token")
             const exam = await createExam(sessionKey)
             await saveTasksResults(sessionKey, exam) // поменять 
@@ -126,7 +124,7 @@ export const LessonSessionPage = () => {
             setIsLoading(false)
             navigate(resultsUrl)
         } else {
-            console.log("Абоба")
+            console.error("Please enter to account")
         }
 
     }
@@ -169,7 +167,8 @@ export const LessonSessionPage = () => {
                         </>)} 
                     </>)}
 
-                    {(microCheck && isLoading) && <LessonUploadLoading/>}
+                    {(microCheck && isLoading) && <LessonUploadLoading 
+                        variant={variant} endExamSession={endExamSession} endTaskSession={endTaskSession}/>}
                 </div>
             </div>
         </div>

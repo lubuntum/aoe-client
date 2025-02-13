@@ -9,7 +9,7 @@ import routes from '../../routes'
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
 export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
-    const {isAuth} = useAuth()
+    const {isAuth, checkAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
 

@@ -8,7 +8,7 @@ import routes from '../../routes'
 import { ReactComponent as MenuIcon } from "../../res/icons/menu_24dp_gi.svg"
 
 export const HeaderMenu = React.memo(({onScrollToSection}) => {
-    const {isAuth} = useAuth()
+    const {isAuth, checkAuth} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
 

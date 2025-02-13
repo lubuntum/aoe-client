@@ -13,6 +13,7 @@ import { FooterMain } from "../footer_components/FooterMain"
 import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
+import { useAuth } from "../../modules/auth_modules/AuthProvider"
 /** TODO сделать API к получению getTaskByTaskId и getCustomerTaskByCustomerTaskId 
  * Затем сделать API для получения CustomerTasks для панели результатов по заданию
  * Сделать транскрибацию react-speech-recognition во время записи ответа
@@ -25,8 +26,13 @@ export const TaskComplitionResultsPage = () => {
     const [task, setTask] = useState()
     const [customerTask, setCustomerTask] = useState()
 
+    const [updateHeader, setUpdateHeader] = useState(false)
+
+    const{checkAuth} = useAuth()
+
     useEffect(() => {
         const loadCustomerTaskByTask = async () => {
+            checkAuth()
             const taskResponse = await getTaskByTaskId(taskId)
             const customerTaskResponse = await getCustomerTaskByCustomerTaskId(customerTaskId)
             setTask(taskResponse.data)
@@ -45,7 +51,7 @@ export const TaskComplitionResultsPage = () => {
     }
 
     return (<>
-        <HeaderMain/>
+        <HeaderMain updateData={updateHeader} setUpdateData={setUpdateHeader}/>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className='taskComplitionWrapper'>

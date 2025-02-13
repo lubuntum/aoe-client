@@ -12,7 +12,7 @@ import { ReactComponent as AdminIcon } from "../../res/icons/admin_24dp_gi.svg"
 import { ReactComponent as PartnerIcon } from "../../res/icons/partner_24dp_gi.svg"
 
 export const HeaderOptions = ({headerData}) => {
-    const { logout, isAuth } = useAuth()
+    const { logout, isAuth, checkAuth } = useAuth()
     const navigate = useNavigate()
 
     const buttonsOptionsContainer = useMemo(() => [

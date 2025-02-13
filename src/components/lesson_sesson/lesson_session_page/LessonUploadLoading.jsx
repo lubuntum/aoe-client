@@ -1,11 +1,32 @@
+import { useCallback, useEffect } from "react"
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 import routes from "../../../routes"
 import { Button } from "../../reusible_components/Button"
 import { Loader } from "../../reusible_components/Loader"
 
-export const LessonUploadLoading = () => {
+export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) => {
     const { isAuth } = useAuth()
 
+    const endSession = useCallback(async () => {
+        if (variant.pickedTaskType){
+            await endTaskSession()
+            return
+        }
+        await endExamSession()
+        
+    }, [variant, endExamSession, endTaskSession])
+
+    useEffect(()=>{
+        const checkAuthProcess = setInterval(()=>{
+            if (localStorage.getItem("token")) {
+                endSession()
+                //setUpdateData(true)
+                return
+            }
+        }, 5000)
+        return () => clearInterval(checkAuthProcess)        
+    }, [isAuth, variant, endSession])
+    
     return (
         <div className="lessonUploadLoadingContainer">
             {isAuth ? 

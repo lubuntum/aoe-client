@@ -25,7 +25,7 @@ const debounce = (func, delay) => {
 }
 
 export const HeaderMain = ({onScrollToSection, updateData = false, setUpdateData = null}) => {
-    const { isAuth, logout } = useAuth()
+    const { isAuth, logout, checkAuth} = useAuth()
     const [headerData, setHeaderData] = useState()
     const [headerTop, setHeaderTop] = useState(40)
 
@@ -85,6 +85,7 @@ export const HeaderMain = ({onScrollToSection, updateData = false, setUpdateData
     useEffect(()=>{
         if (updateData === false) return
         const updateHeader = async () => {
+            checkAuth()
             await fetchHeaderData()
             setUpdateData(false)
         }
