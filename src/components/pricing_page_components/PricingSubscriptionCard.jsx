@@ -5,7 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 import routes from "../../routes"
 import { purchaseSubscription } from "../../modules/api_modules/subscriptionAPI"
-
+const STATUSES = {
+    IDLE: "IDLE",
+    SUCCESS: "SUCCESS"
+}
 export const PricingSubscriptionCard = ({className, 
                                          contentSwap, 
                                          subscriptionType, 
@@ -17,7 +20,7 @@ export const PricingSubscriptionCard = ({className,
                                          subscriptionTypesRef,
                                          setError}) => {
     const [pickedSubType, setPickedSubType] = useState((subscriptionTypesRef && subscriptionTypesRef.current) ? subscriptionTypesRef.current[0] : null)
-    
+    const [status, setStatus] = useState(STATUSES.IDLE)
     const location = useLocation()
     const navigation = useNavigate()
     const handleSelect = (subscriptionTypesDesc, index) => {
@@ -30,7 +33,8 @@ export const PricingSubscriptionCard = ({className,
         if (!token) navigation(routes.AUTORIZATION)
         try {
             const response = await purchaseSubscription(localStorage.getItem("token"), pickedSubType.id)
-            if (response.data) console.log("congrac, sub is purchased")
+            if (response.data) setStatus(STATUSES.SUCCESS)
+            setTimeout(()=>{setStatus(STATUSES.IDLE)}, 3000)
         } catch(e) {
             setError(e.response.data?.error)
         }
@@ -62,9 +66,9 @@ export const PricingSubscriptionCard = ({className,
                         </div> ) : (
                         <div className="subscriptionOptions">
                             {subscriptionTypesDesc && <DropdownList options={subscriptionTypesDesc} onSelect={handleSelect}/>}
-                            <Button buttonType={"alt"}
+                            <Button buttonType={status === STATUSES.SUCCESS ? "block" : "alt"}
                                     buttonPadding={"0 20px"}
-                                    buttonText={"Приобрести"}
+                                    buttonText={status === STATUSES.IDLE ? "Приобрести" : "Приобретено"}
                                     buttonFunc={handlePurchaseSubscription}
                                     />
                         </div>)}
