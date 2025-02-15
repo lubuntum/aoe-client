@@ -10,7 +10,7 @@ import { setNumberFormat } from "../../modules/number_formation_modules/setNumbe
 import routes from '../../routes.js';
 import { useEffect, useState } from "react";
 
-export const VariantCard = ({variant, index}) => {
+export const VariantCard = ({variant, index, isActive = true}) => {
     const navigate = useNavigate()
     const navigateToTaskSession = (taskType) => {
         variant.pickedTaskType = taskType
@@ -43,7 +43,9 @@ export const VariantCard = ({variant, index}) => {
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
                         <p><span>{setNumberFormat(index)} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
+                        {!isActive && <p style={{color:"white"}}>Регистрация или подписка</p>}
                     </div>
+                    {isActive && 
                     <div className="variantCardButtons">
                         <div className="variantCardTasksButtons">
                             {Array.from({length:4}, (_, index) => (
@@ -64,6 +66,7 @@ export const VariantCard = ({variant, index}) => {
                                     buttonText={"Экзамен"}
                                     buttonFunc={()=>{navigate(routes.LESSON_SESSION, {state: variant})}}/>
                     </div>
+                    } 
                 </div>
             </div>
         </div>

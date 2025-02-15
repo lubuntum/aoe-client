@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_SUBSCRIPTION_GET_ALL_VALID, API_SUBSCRIPTION_PURCHASE, SERVER_API_URL } from "../../config"
+import { API_SUBSCRIPTION_CHECK_SUB, API_SUBSCRIPTION_GET_ALL_VALID, API_SUBSCRIPTION_PURCHASE, SERVER_API_URL } from "../../config"
 
 export const getAllValidSubscriptionTypes = async () => {
     const response = await axios.get(`${SERVER_API_URL}${API_SUBSCRIPTION_GET_ALL_VALID}`)
@@ -11,6 +11,12 @@ export const purchaseSubscription = async (token, subscriptionTypeId) => {
     param.append("subscriptionTypeId", subscriptionTypeId)
     const response = await axios.post(`${SERVER_API_URL}${API_SUBSCRIPTION_PURCHASE}`, param, {
         headers : {"Authorization" : token}
+    })
+    return response
+}
+export const checkSubscription = async (token) => {
+    const response = await axios.get(`${SERVER_API_URL}${API_SUBSCRIPTION_CHECK_SUB}`, {
+        headers: {Authorization: token}
     })
     return response
 }

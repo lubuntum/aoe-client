@@ -1,10 +1,12 @@
 export const USER_DATA_KEY  = "user_data"
 export const USER_NAME = "user_name"
 export const USER_EMAIL = "user_email"
+export const VISITORS_VARIANTS_AVAILABLE = 3
+export const AUTH_VARIANTS_AVAILABLE = 5
 
 export const GUEST_NAME = "Гость"
 //Линк сервера
-export const SERVER_API_URL = "http://localhost:8080"
+export const SERVER_API_URL = "https://192.168.65.55:8080"
 //Роуты для валидации
 export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"
@@ -22,6 +24,7 @@ export const API_CUSTOMER_TASKS_BY_TASK = "/api/account/customer/customer-tasks-
 export const API_TASK_DATA = "/api/lesson/task/%d"
 export const API_VARIANTS_DATA = "/api/lesson/variants"//получение всех вариантов
 export const API_AVAILABLE_VARIANTS = "/api/lesson/variants-available"
+export const API_AVAILABLE_VARIANTS_BY_PAGE = "/api/lesson/variants-pageable"
 export const API_VARIANT_TASKS_DATA = "/api/lesson/variant/%d/tasks"//получение заданий по варинату
 export const API_VARIANT = "/api/lesson/variant/%d"//получение варианта с тасками
 export const API_VARIANTS_AVAILABLE_COUNT = "/api/lesson/variants-available-count" //все видимые варианты для пользователя
@@ -51,6 +54,7 @@ export const API_ADMIN_GET_CUSTOMER_ID_BY_EMAIL = "/api/admin/customer-id-by-ema
 //subscriptions
 export const API_SUBSCRIPTION_GET_ALL_VALID = "/api/subscription/valid-subscriptions"
 export const API_SUBSCRIPTION_PURCHASE = "/api/subscription/purchase-subscription"
+export const API_SUBSCRIPTION_CHECK_SUB = "/api/subscription/check-subscription"
 
 export const API_PARTNER_GET_ALL = "/api/partner/get-all"
 export const API_PARTNER_PARTNERSHIP_PROCEDURE = "/api/partner/partnership-procedure"

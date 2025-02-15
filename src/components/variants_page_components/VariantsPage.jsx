@@ -5,33 +5,43 @@ import { useEffect, useState } from 'react'
 import { HeaderMain } from "../header_components/HeaderMain"
 import { VariantsContent } from './VariantsContent'
 import { VariantsEmpty } from "./VariantsEmpty"
-import { getAvailableVariants, getVisibleVariants } from "../../modules/api_modules/variantAPI"
+import { getAvailableVariants, getAvailableVariantsByPage, getVisibleVariants } from "../../modules/api_modules/variantAPI"
 import { FooterMain } from '../footer_components/FooterMain'
 import { useAuth } from '../../modules/auth_modules/AuthProvider'
+import { checkSubscription } from '../../modules/api_modules/subscriptionAPI'
 
 export const VariantsPage = () => {
     const [variants, setVariants] = useState(undefined);
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isSub, setIsSub] = useState(false)
     const {isAuth} = useAuth()
+    
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                const response = await getAvailableVariants(localStorage.getItem("token") ? localStorage.getItem("token") : "unAuth")
+                //const response = await getAvailableVariants(localStorage.getItem("token") ? localStorage.getItem("token") : "unAuth")
+                const response = await getAvailableVariantsByPage(currentPage, 9)
+                const token = localStorage.getItem("token")
+                if (token){
+                    const isSubResponse = await checkSubscription(token ? token : "unAuth")
+                    setIsSub(isSubResponse?.data ? isSubResponse.data : false)
+                }
+                else setIsSub(false)
                 setVariants(response.data);
             } catch(e) {
                 setVariants(null)
             }
         }
         fetchData()
-    }, [])
-    const variantsLength = Array.isArray(variants) ? variants.length : 0
+    }, [currentPage])
 
     return (<>
         <HeaderMain/>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className='variantsWrapper'>
-                    {variantsLength ? 
-                        <VariantsContent variants={variants}/> :
+                    {variants ? 
+                        <VariantsContent variants={variants} setCurrentPage={setCurrentPage} isSub={isSub}/> :
                         <VariantsEmpty/>
                     }
                 </div>
