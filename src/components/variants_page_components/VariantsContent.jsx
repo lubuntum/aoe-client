@@ -6,6 +6,7 @@ import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { AUTH_VARIANTS_AVAILABLE, VISITORS_VARIANTS_AVAILABLE } from "../../config"
 
 export const VariantsContent = ({variants, setCurrentPage, isSub}) => {
+    console.log(variants)
     const {isAuth} = useAuth()
     const displayVariants = (size) => {
         console.log(size)
@@ -20,11 +21,18 @@ export const VariantsContent = ({variants, setCurrentPage, isSub}) => {
             <p>Ошибка загрузки вариантов, обновите страницу</p>
         )
     }
+
+    const displayAvailableVariants = () => {
+        if (isSub) return displayVariants(variants.pageable.pageSize)
+        if (isAuth && variants.pageable.pageNumber === 0) return displayVariants(AUTH_VARIANTS_AVAILABLE)
+        if(variants.pageable.pageNumber > 0) return displayVariants(0)
+        return displayVariants(VISITORS_VARIANTS_AVAILABLE)
+    }
     
     return (<>
         <div className='variantsContentWrapper'>
             <PageTitle pageTitleText={"Выберите #вариант# для прохождения"}/>
-            {isSub ? displayVariants(variants.pageable.pageSize) : isAuth ? displayVariants(AUTH_VARIANTS_AVAILABLE) : displayVariants(VISITORS_VARIANTS_AVAILABLE)}
+            {displayAvailableVariants()}
             <div className="resultsRecordsTablePagination">
                 {Array.from({length: variants.totalPages}, (_, index)=>(
                     <Button key={index + 1}
