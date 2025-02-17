@@ -12,11 +12,11 @@ const formatText = (text) => {
     })
 }
 
-export const PageTitle = ({pageTitleText, className}) => {
+export const PageTitle = ({pageTitleText, className, titleStyle = null}) => {
     const formatedText = useMemo(() => formatText(pageTitleText), [pageTitleText])
     return (
         <div className={`pageTitleContainer ${className}`}>
-            <h1>{formatedText}</h1>
+            <h1 style={titleStyle && titleStyle}>{formatedText}</h1>
         </div>
     )
 }

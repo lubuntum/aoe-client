@@ -10,15 +10,16 @@ const STATUSES = {
     SUCCESS: "SUCCESS"
 }
 export const PricingSubscriptionCard = ({className, 
-                                         contentSwap, 
-                                         subscriptionType, 
-                                         subscriptionName, 
-                                         subscriptionDescription, 
-                                         subscriptionIsActive, 
-                                         subscriptionBG,
-                                         subscriptionTypesDesc,
-                                         subscriptionTypesRef,
-                                         setError}) => {
+                                        contentSwap, 
+                                        subscriptionType, 
+                                        subscriptionName, 
+                                        subscriptionDescription, 
+                                        subscriptionIsActive, 
+                                        subscriptionBG,
+                                        subscriptionTypesDesc,
+                                        subscriptionTypesRef,
+                                        setError,
+                                        setUpdateHeaderData}) => {
     const [pickedSubType, setPickedSubType] = useState((subscriptionTypesRef && subscriptionTypesRef.current) ? subscriptionTypesRef.current[0] : null)
     const [status, setStatus] = useState(STATUSES.IDLE)
     const location = useLocation()
@@ -33,7 +34,10 @@ export const PricingSubscriptionCard = ({className,
         if (!token) navigation(routes.AUTORIZATION)
         try {
             const response = await purchaseSubscription(localStorage.getItem("token"), pickedSubType.id)
-            if (response.data) setStatus(STATUSES.SUCCESS)
+            if (response.data) {
+                setStatus(STATUSES.SUCCESS)
+                setUpdateHeaderData(true)
+            }
             setTimeout(()=>{setStatus(STATUSES.IDLE)}, 3000)
         } catch(e) {
             setError(e.response.data?.error)

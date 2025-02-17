@@ -21,6 +21,7 @@ export const PricingPage = () => {
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
     const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
     const [subscriptionTypesDesc, setSubscriptionTypesDesc] = useState(null)
+    const [updateHeaderData, setUpdateHeaderData] = useState(false)
     const [error, setError] = useState(null)
     const baseDescription = useMemo(() => [
         "План доступен после регистрации", 
@@ -51,12 +52,12 @@ export const PricingPage = () => {
         }
     }
     return (<>
-        <HeaderMain/>
+        <HeaderMain updateData={updateHeaderData} setUpdateData={setUpdateHeaderData}/>
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
                     <div className="pricingGrid">
-                        <PageTitle pageTitleText={error ? error : "Приобрести #подписку#"} className={"pricingGridItem1"}/>
+                        <PageTitle pageTitleText={error ? "Пополните кошелек" : "Приобрести #подписку#"} className={"pricingGridItem1"} titleStyle={error && {color:"red"}}/>
 
                         <PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
@@ -75,7 +76,8 @@ export const PricingPage = () => {
                                                  subscriptionBG={proBackground}
                                                  subscriptionTypesDesc={subscriptionTypesDesc}
                                                  subscriptionTypesRef={subscriptionTypesRef}
-                                                 setError = {setError}/> : 
+                                                 setError = {setError}
+                                                 setUpdateHeaderData={setUpdateHeaderData}/> : 
                                                  <p>loading...</p>}
  
                         <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
