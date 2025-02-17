@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import { AdminVariantPopupName } from "./AdminVariantPopupName.jsx"
 import { AdminVariantPopupFirstTask } from "./AdminVariantPopupFirstTask.jsx"
@@ -54,30 +54,30 @@ export const AdminVariantPopup = ({setShowPopup}) => {
                   firstImg: null,
                   secondImg: null})
 
-    //Ловит изменения в поле имени варианта
-    useEffect(() => {
-        variantValidation()
+    //Функция валидации имени и картинки варианта
+    const variantValidation = useCallback(() => {
+        setVariantValidate(hasAllValues(variantValues))
     }, [variantValues])
 
-    //Ловит изменения в полях для тасков
-    useEffect(() => {
-        taskValidation()
-    }, [firstTaskValues, secondTaskValues, thirdTaskValues, fourthTaskValues])
-
-    //Функция валидации имени и картинки варианта
-    const variantValidation = () => {
-        setVariantValidate(hasAllValues(variantValues))
-    }
-
     //Функция валидации полей тасков
-    const taskValidation = () => {
+    const taskValidation = useCallback(() => {
         const taskValidateTemp = [...taskValidate]
         taskValidateTemp[0] = hasAllValues(firstTaskValues)
         taskValidateTemp[1] = hasAllValues(secondTaskValues)
         taskValidateTemp[2] = hasAllValues(thirdTaskValues)
         taskValidateTemp[3] = hasAllValues(fourthTaskValues)
         setTaskValidate(taskValidateTemp)
-    }
+    }, [firstTaskValues, secondTaskValues, thirdTaskValues, fourthTaskValues])
+
+    //Ловит изменения в поле имени варианта
+    useEffect(() => {
+        variantValidation()
+    }, [variantValidation])
+
+    //Ловит изменения в полях для тасков
+    useEffect(() => {
+        taskValidation()
+    }, [firstTaskValues, secondTaskValues, thirdTaskValues, fourthTaskValues, taskValidation])
 
     //Функция для сброса всех значений при добавлении варианта
     const resetAllValues = () => {
