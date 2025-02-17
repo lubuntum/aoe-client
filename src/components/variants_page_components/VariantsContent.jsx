@@ -9,12 +9,11 @@ export const VariantsContent = ({variants, setCurrentPage, isSub}) => {
     console.log(variants)
     const {isAuth} = useAuth()
     const displayVariants = (size) => {
-        console.log(size)
         return (
             variants.content ? <>
                 <div className='variantsGrid'>
                     {variants.content.map((variant, i)=>(
-                        <VariantCard variant={variant} isActive={(i < size)} index={i+1}/>
+                        <VariantCard variant={variant} isActive={(i < size)} index={i+1 + (variants.pageable.pageSize * variants.pageable.pageNumber)}/>
                     ))}
                 </div> 
             </> : 
