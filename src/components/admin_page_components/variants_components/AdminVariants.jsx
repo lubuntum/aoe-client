@@ -10,11 +10,11 @@ import { useEffect, useState } from "react"
 import { getAllVariants } from "../../../modules/api_modules/variantAPI"
 import { sortVariants } from "../../../modules/date_modules/sortingDate"
 
-export const AdminVariants = ({setShowPopup}) => {
+export const AdminVariants = ({setShowPopup, showPopup}) => {
     const [variants, setVariants] = useState(null)
     useEffect(() => {
         downloadVariants()
-    }, [])
+    }, [showPopup])
     const downloadVariants = async () => {
         const response = await getAllVariants(localStorage.getItem("token"))
         console.log(response.data)

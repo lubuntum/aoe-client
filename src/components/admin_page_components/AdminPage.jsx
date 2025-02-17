@@ -49,7 +49,7 @@ export const AdminPage = () => {
         
     }
     const AdminContentComponents = {
-        1:{component: AdminVariants, title: "Варианты", props: {setShowPopup}, popupContent: AdminVariantPopup},
+        1:{component: AdminVariants, title: "Варианты", props: {setShowPopup, showPopup}, popupContent: AdminVariantPopup},
         2:{component: AdminPartners, title: "Партнеры"},
         3:{component: AdminPrompts, title: "Промпты"},
         4:{component: AdminPricing, title: "Тарифы"},
