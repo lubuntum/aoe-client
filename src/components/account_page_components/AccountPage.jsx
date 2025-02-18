@@ -54,7 +54,7 @@ export const AccountPage = () =>{
         try {
             const response = await paymentStatus(localStorage.getItem("token"))
         } catch(e) {
-            console.err(e)
+            console.error(e)
         }
     }
     return (<>
