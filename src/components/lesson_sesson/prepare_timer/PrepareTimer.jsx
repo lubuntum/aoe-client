@@ -18,9 +18,12 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
         speak("Start speaking please",() => {setStage(stages.speak)})
     }
     const {time, resetTimer} = useTimer(sec,speakStageText)
+    const skipTimer = () => {
+        stage === stages.prepare_reading ? setStage(stages.reading) : setStage(stages.speak)
+    }
     return (<>
         <div className="prepareTimerContent">
-            <div className="progressBarContainer">
+            <div className="progressBarContainer" >
                 <svg xmlns="http://www.w3.org/200/svg" version="1.1">
                     <circle className="progressBarBack" cx={"50%"} cy={"50%"} r={"45%"}/>
                 </svg>
