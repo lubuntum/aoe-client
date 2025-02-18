@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
+import { ReactComponent as LockIcon } from "../../res/icons/lock_24dp_gi.svg"
+
 import { Button } from "../reusible_components/Button.jsx";
 import { Loader } from "../reusible_components/Loader.jsx";
 
@@ -36,10 +38,11 @@ export const VariantCard = ({variant, index, isActive = true}) => {
             <div className="variantCardImage">
                 {imageExists ? 
                     <img src={imagePath} alt=""/> :
-                    <><Loader/><p>Finding Image</p></>
+                    <><Loader/><p>Finding Image...</p></>
                 }
             </div>
             <div className="variantCardOptionsWrapper">
+                {isActive ?
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
                         <p><span>{setNumberFormat(index)} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
@@ -49,25 +52,27 @@ export const VariantCard = ({variant, index, isActive = true}) => {
                     <div className="variantCardButtons">
                         <div className="variantCardTasksButtons">
                             {Array.from({length:4}, (_, index) => (
-                                <Button buttonType={"alt"}
+                                <Button key={"variantTaskButton0"}
+                                        buttonType={"alt"}
                                         buttonPadding={"0 20px"}
                                         buttonWidth={"100%"}
-                                        buttonHeight={""}
-                                        buttonIcon={""}
                                         buttonText={index+1}
                                         buttonFunc={()=>{navigateToTaskSession(index+1)}}/>
                             ))}
                         </div>
-                        <Button buttonType={"alt"}
-                                    buttonPadding={"0 20px"}
-                                    buttonWidth={""}
-                                    buttonHeight={""}
-                                    buttonIcon={""}
-                                    buttonText={"Экзамен"}
-                                    buttonFunc={()=>{navigate(routes.LESSON_SESSION, {state: variant})}}/>
+                        <Button key={"variantExamButton0"}
+                                buttonType={"alt"}
+                                buttonPadding={"0 20px"}
+                                buttonText={"Экзамен"}
+                                buttonFunc={()=>{navigate(routes.LESSON_SESSION, {state: variant})}}/>
                     </div>
                     } 
-                </div>
+                </div> :
+                <div className="variantCardBlock">
+                    <p>Доступен после регистрации или после оформления подписки</p>
+                    <LockIcon className="svgIcon"/>
+                    <p><span>{setNumberFormat(index)} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
+                </div>}
             </div>
         </div>
     </>)

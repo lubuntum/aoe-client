@@ -52,7 +52,6 @@ export const AdminPrompts = () => {
     return (<>
         {tasksTypes && <> 
             <div className="adminPrompHintContainer">
-                <AdminPromptHint type={tasksTypes.find(t => t.id === currentTaskTypeId).type}/>
                 <AdminTaskPrompt currentTaskTypeId = {currentTaskTypeId} tasksTypes = {tasksTypes} updatePromptForTaskType = {updatePromptForTaskType}/>
             </div>
 

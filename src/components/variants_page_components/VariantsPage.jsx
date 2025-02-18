@@ -1,4 +1,5 @@
 import './css/variants.css'
+import "./css/variants_media.css"
 
 import { useEffect, useState } from 'react'
 

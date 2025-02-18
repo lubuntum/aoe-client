@@ -16,6 +16,7 @@ export const HeaderOptions = ({headerData}) => {
     const navigate = useNavigate()
 
     const buttonsOptionsContainer = useMemo(() => [
+        {text: "Подписка", type: "link", padding: "", icon: "", func: ()=>navigate(routes.PRICING)},
         {text: "Личный кабинет", type: "link", padding: "", icon: "", func: ()=>navigate(routes.ACCOUNT)},
     ], [navigate])
 
