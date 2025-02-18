@@ -10,7 +10,7 @@
 .autorizationContainer {
     position: absolute;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
     transition: opacity .5s ease, transform .5s ease;
     pointer-events: none;
     display: flex;
