@@ -5,7 +5,7 @@ import { Button } from "../../reusible_components/Button"
 import { Loader } from "../../reusible_components/Loader"
 
 export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) => {
-    const { isAuth } = useAuth()
+    const { isAuth, checkAuth } = useAuth()
 
     const endSession = useCallback(async () => {
         if (variant.pickedTaskType){
@@ -17,6 +17,10 @@ export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) =
     }, [variant, endExamSession, endTaskSession])
 
     useEffect(()=>{
+        if (checkAuth()) {
+            console.log("Вы лох!")
+            return
+        }
         const checkAuthProcess = setInterval(()=>{
             if (localStorage.getItem("token")) {
                 endSession()

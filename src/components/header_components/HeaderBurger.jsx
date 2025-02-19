@@ -25,8 +25,6 @@ export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
         {text: "Как пользоваться", func: createButtonFunc("section2")},
         {text: "Преимущества подписки", func: createButtonFunc("section3")},
         {text: "FAQ", func: createButtonFunc("section5") },
-        {text: !isAuth ? "Услуги и цены" : "Подписка", func: ()=>navigate(routes.PRICING)},
-        {text: "Варианты", func: ()=>navigate(routes.TASK)}
     ]
 
     return (
@@ -37,12 +35,36 @@ export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
             </button>
 
             <nav>
-                {buttonsBurgerContainer.map((item, index) => (
+                {!isAuth && buttonsBurgerContainer.map((item, index) => (
                     <Button key={`headerBurger${index}`}
                             buttonType={"link"}
                             buttonText={item.text}
                             buttonFunc={item.func}/>
                 ))}
+
+                {isAuth && (
+                    <Button key={`headerBurger3`}
+                            buttonType={"link"}
+                            buttonText={"Главная"} 
+                            buttonFunc={createButtonFunc("section0")}/>
+                )}
+
+                <Button key={`headerBurger4`}
+                        buttonType={"link"}
+                        buttonText={"Варианты"} 
+                        buttonFunc={()=>navigate(routes.TASK)}/>
+
+                {isAuth ? (
+                    <Button key={`headerBurger5`}
+                            buttonType={"link"}
+                            buttonText={"Подписка"} 
+                            buttonFunc={()=>navigate(routes.PRICING)}/>
+                ) : (
+                    <Button key={`headerBurger6`}
+                            buttonType={"link"}
+                            buttonText={"Услуги и цены"} 
+                            buttonFunc={()=>navigate(routes.PRICING)}/>
+                )}
                 
                 {isAuth && (
                     <Button key={`headerBurger7`}
@@ -50,16 +72,23 @@ export const HeaderBurger = React.memo(({headerData, onScrollToSection}) => {
                             buttonText={"Личный кабинет"} 
                             buttonFunc={()=>navigate(routes.ACCOUNT)}/>
                 )}
+
+                {(isAuth && headerData) && (
+                    <Button key={`headerBurger8`}
+                            buttonType={"link"}
+                            buttonText={`Баланс: ${headerData.currentBalance || 0} ₽`} 
+                            buttonFunc={()=>navigate(routes.PRICING)}/>
+                )}
                 
                 {isAuth && headerData?.roles.includes("admin") && (
-                    <Button key={`headerBurger8`}
+                    <Button key={`headerBurger9`}
                             buttonType={"link"}
                             buttonText={"Кабинет админа"} 
                             buttonFunc={()=>navigate(routes.ADMIN)}/>
                 )}
 
                 {isAuth && headerData?.roles.includes("partner") && (
-                    <Button key={`headerBurger9`}
+                    <Button key={`headerBurger10`}
                             buttonType={"link"}
                             buttonText={"Кабинет партнера"} 
                             buttonFunc={()=>navigate(routes.PARTNER)}/>

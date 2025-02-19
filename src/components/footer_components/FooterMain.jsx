@@ -25,9 +25,9 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
         {text: "Главная", func: () => createButtonFunc("section0")},
         {text: "Преимущества", func: () => createButtonFunc("section1")},
         {text: "Как начать учиться", func: () => createButtonFunc("section2")},
-        {text: "Подписка", func: () => createButtonFunc("section3")},
+        {text: "Преимущества подписки", func: () => createButtonFunc("section3")},
         {text: "FAQ", func: () => createButtonFunc("section5")},
-        {text: "Пополнение баланса", func: () => navigate(routes.PRICING)},
+        {text: "Услуги и цены", func: () => navigate(routes.PRICING)},
         {text: "Варианты", func: () => navigate(routes.TASK)},
     ]
 

@@ -1,10 +1,10 @@
 .microPerfomanceContent {
     display: flex;
     flex-direction: column;
+    gap: 60px;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: calc(100vh - 300px);
     padding-bottom: 20px;
     padding-top: 40px;
     padding-left: 40px;
@@ -41,8 +41,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
 }
 .microOff {
@@ -57,8 +57,8 @@
 }
 .microIconSvg {
     fill: var(--white);
-    width: 125px;
-    height: 125px;
+    width: 80px;
+    height: 80px;
 }
 .microRecord input {
     display: none;

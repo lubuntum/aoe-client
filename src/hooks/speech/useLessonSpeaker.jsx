@@ -6,11 +6,14 @@ export const useLessonSpeaker = () => {
     useEffect(()=>{
         const synth = window.speechSynthesis
         const findEnglishVoice = () => {
-            const synth = window.speechSynthesis
             const voices = synth.getVoices()
-            voice.current = voices.find(voice => voice.lang === 'en-US' || voice.lang === 'en-GB')
-            //return voices.find(voice => voice.lang === 'en-US' || voice.lang === 'en-GB')
-        }
+            // Сначала ищем британский голос
+            voice.current = voices.find(voice => voice.lang === 'en-GB')
+            // Если британский голос не найден, ищем любой английский голос
+            if (!voice.current) {
+                voice.current = voices.find(voice => voice.lang === 'en-US')
+            }
+        };
         if (synth.onvoiceschanged !== undefined)
             synth.onvoiceschanged = findEnglishVoice
         findEnglishVoice()
@@ -37,7 +40,7 @@ export const useLessonSpeaker = () => {
             else {
                 const synth = window.speechSynthesis
                 const voices = synth.getVoices()
-                voice.current = voices.find(voice => voice.lang === 'en-US' || voice.lang === 'en-GB')
+                voice.current = voices.find(voice => voice.lang === 'en-GB' || voice.lang === 'en-US');
                 //onEndCallback()
             }
             speechTemp.onend = () => {

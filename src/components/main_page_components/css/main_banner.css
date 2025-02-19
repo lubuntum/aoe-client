@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 20px;
     padding-top: 150px;
-    height: calc(100vh - 80px);
+    padding-bottom: 100px;
 }
 .bannerContainer {
     display: grid;

@@ -199,3 +199,31 @@
     position: absolute;
     right: 0;
 }
+
+
+
+.simple {
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 0 transparent;
+    transition: all .2s ease;
+}
+.simple span {
+    color: var(--white);
+    transition: all .2s ease;
+}
+.simple .svgIcon {
+    fill: var(--white);
+    transition: all .2s ease;
+}
+.simple:hover {
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 0 transparent;
+}
+.simple:hover span {
+    color: var(--gray);
+}
+.simple:hover .svgIcon {
+    fill: var(--gray);
+}

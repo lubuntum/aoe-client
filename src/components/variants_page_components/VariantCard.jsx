@@ -69,7 +69,7 @@ export const VariantCard = ({variant, index, isActive = true}) => {
                     } 
                 </div> :
                 <div className="variantCardBlock">
-                    <p>Доступен после регистрации или после оформления подписки</p>
+                    <p>Доступен после регистрации или оформления подписки</p>
                     <LockIcon className="svgIcon"/>
                     <p><span>{setNumberFormat(index)} </span>{variant.theme ? variant.theme : "Тема не найдена"}</p>
                 </div>}

@@ -85,7 +85,7 @@
 
 @media (max-width: 1024px) {
     .bannerWrapper {
-        padding-top: 100px;
+        padding-top: 150px;
     }
     .bannerContainer {
         grid-template-rows: auto auto;
@@ -106,12 +106,17 @@
     }
     .bannerContainerItem:nth-child(5) {
         padding: 0;
+        gap: 40px;
         grid-column: span 4;
         border: none;
     }
 }
 
 @media (max-width: 768px) {
+    .bannerWrapper {
+        padding-top: 80px;
+        padding-bottom: 0;
+    }
     .bannerContainer {
         grid-template-rows: 200px auto;
     }
