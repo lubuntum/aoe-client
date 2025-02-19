@@ -18,7 +18,6 @@ export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) =
 
     useEffect(()=>{
         if (checkAuth()) {
-            console.log("Вы лох!")
             return
         }
         const checkAuthProcess = setInterval(()=>{
