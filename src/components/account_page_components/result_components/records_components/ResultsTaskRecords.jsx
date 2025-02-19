@@ -48,7 +48,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
         getCustomerTasksData()
     }, [task, variant])
 
-    const getCustomerTasksData = useCallback(async () => {
+    const getCustomerTasksData = async () => {
         const response = await getCustomerTasksByTask(localStorage.getItem("token"),task)
         const taskTemp = response.data
         taskTemp.sort(sortCustomerTasks)
@@ -63,7 +63,7 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
         setHoveredButton(Array(currentItemsTemp.length).fill(null))
         timeoutRef.current = Array(currentItemsTemp.length).fill(null)
         setCustomerTasks(taskTemp)
-    }, [])
+    }
 
     useEffect(()=>{
         const updateDataInterval = setInterval( ()=>{ getCustomerTasksData()}, 35 * 1000)
@@ -245,10 +245,11 @@ export const ResultsTaskRecords = ({variant, task, className, setContentPopup, s
                                 <div className="resultsTaskRecordsBodyExpress">
                                     {(customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "checking") ||
                                     (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "untranscribed") ||
-                                    (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "transcribed") ||
+                                    (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "transcribed") ?
+                                        <Loader/> :
                                     (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "incomplete") ||
                                     (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "insufficient") ?
-                                        <Loader/> :
+                                        `Ошибка проверки` :
                                     (customerTask.expressCheckStatus?.status !== null && customerTask.expressCheckStatus?.status === "completed") ?
                                         `${setNumberFormat(customerTask.taskResults[0]?.result.grade)} / ${setNumberFormat(TASKS_MAX_GRADE[task.taskType])}` :
                                         "Не проверено"}

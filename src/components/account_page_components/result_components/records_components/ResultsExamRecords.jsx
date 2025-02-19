@@ -52,7 +52,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
     },[examPicked, variant])
     
 
-    const getExamsData = useCallback(async () => {
+    const getExamsData = async () => {
         const response = await getCustomerExamsByVariant(localStorage.getItem("token"), variant)
         const examsTemp = response.data
         examsTemp.sort(sortExams)
@@ -67,7 +67,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
         setHoveredButton(Array(currentItemsTemp.length).fill(null))
         timeoutRef.current = Array(currentItemsTemp.length).fill(null)
         setExams(examsTemp)
-    }, [currentPage, variant])
+    }
 
     useEffect(()=>{
         const updateInterval = setInterval(()=>{
@@ -245,7 +245,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                                                 buttonFunc={()=>handleExamExpressClick(exam.id)}/>}
 
                                     {(exam.expertCheckStatus?.status !== null && exam.expertCheckStatus?.status === "checking") ||
-                                    (exam.expertCheckStatus?.status !== null && exam.expertCheckStatus?.status === "checking") ?
+                                    (exam.expertCheckStatus?.status !== null && exam.expertCheckStatus?.status === "completed") ?
 
                                         <Button key={"examExpertbutton0"}
                                                 buttonType={"block"}
