@@ -79,6 +79,10 @@ export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, regis
             }
             collectDataByToken(response.data.token)
         } catch(err) {
+            if(err && err.status === 403){
+                setPopup("Пожалуйста подтвердите почту")
+                return
+            }
             setPopup("Неверный логин или пароль. Попробуйте снова!")
             console.error("Login Failed", err)
         }
