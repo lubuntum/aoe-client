@@ -9,7 +9,7 @@ import { Checkbox } from "../reusible_components/Checkbox"
 import { encryptData } from "../../modules/crypto_modules/cryptoData"
 import { decryptData } from "../../modules/crypto_modules/cryptoData"
 
-export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, registrationConfirm}) => {
+export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, registrationConfirm, setForgetPassword}) => {
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -129,7 +129,7 @@ export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, regis
                     <Button key={"loginButton0"}
                             buttonType={"link"}
                             buttonText={"Забыли пароль?"}
-                            buttonFunc={()=>(console.log(loginEmail, loginPassword))}/>
+                            buttonFunc={() => setForgetPassword(true)}/>
                 </div>
                 <div className="orContainer">
                     <Button key={"loginButton1"}

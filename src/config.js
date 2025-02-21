@@ -12,6 +12,7 @@ export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"
 export const API_VALIDATE_CREDENTIAL_BY_KEY = "/api/auth/validate"
 export const API_EMAIL_CONFIRMATION = "/api/email/confirm"
+export const API_EMAIL_RESET_PASSWORD = "/api/email/reset-password"
 
 //Роуты для Data
 //account routes
