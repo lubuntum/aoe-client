@@ -46,16 +46,15 @@ export const UserChangePassword = ({className}) => {
         }
         try {
             const response = await resetPasswordForCustomerAuth(oldPass, pass, localStorage.getItem("token"))
-            if (response.data)
-                setStatus(statuses.SUCCESS)
-        } catch {
+            response.data ? setStatus(statuses.SUCCESS) : setStatus(statuses.ERROR)
+        } catch(err) {
             setStatus(statuses.ERROR)
         }
     }
 
     return (<>
         <div className={`userChangePasswordContainer ${className}`}>
-            {status === localStatuses.ERROR && <p style={{color:"red"}}>Ошибка при смене пароля</p> }
+            {status === statuses.ERROR && <p style={{color:"red"}}>Ошибка при смене пароля</p> }
             {status === localStatuses.EMPTY && <p style={{color:"red"}}>Заполните все поля</p> }
             {status === localStatuses.PASS_NOT_EQUAL && <p style={{color:"red"}}>Пароли не равны</p> }
             {status === localStatuses.PASS_TOO_SHORT && <p style={{color:"red"}}>Пароль короткий</p> }
