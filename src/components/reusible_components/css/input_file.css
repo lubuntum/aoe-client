@@ -1,0 +1,42 @@
+.inputFileContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    min-height: 40px;
+}
+.inputFileContainer label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid var(--blue);
+    transition: all .2s ease;
+}
+.inputFileContainer label p {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    text-align: start !important;
+    justify-content: start !important;
+    align-items: start !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    color: var(--blue);
+    transition: all .2s ease;
+}
+.inputFileContainer label:hover {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+    box-shadow: 0 0 5px var(--yellow);
+    cursor: pointer;
+}
+.inputFileContainer label:hover p {
+    color: var(--black);
+}
+.inputFileContainer input {
+    display: none;
+}

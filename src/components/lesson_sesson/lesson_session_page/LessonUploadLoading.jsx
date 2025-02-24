@@ -43,6 +43,7 @@ export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) =
 
             <div className="lessonUploadLoadingUnAuthContainer">
                 <p>Для сохранения пройденного задания, войдите ИЛИ зарегистрируйтесь!</p>
+                <p>После завершения, вас автоматически перекинет на страницу с результатами!</p>
                 <Button key={"sessionButton0"}
                         buttonText={"Регистрация"}
                         buttonPadding={"0 20px"}

@@ -1,0 +1,147 @@
+.addVariantWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 100px;
+}
+.addVariantNameContainer {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 125px;
+    gap: 20px;
+}
+.addVariantNameContainer p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 30px;
+}
+.addVariantNameWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+
+
+
+.addVariantTaskContainer {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+}
+.addVariantTaskWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.addVariantTaskWrapper p:first-child {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 30px;
+}
+.addVariantTaskWrapper p{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 30px;
+}
+.addVariantTopicsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+.addVariantTopicItem {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.addVariantTopicItem p {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    margin-left: 30px !important;
+}
+.addVariantImgConatiner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.addVariantImgConatiner p {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    margin-left: 30px !important;
+}
+.addVariantImgWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.addVariantQuestionWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.addVariantQuestionItem {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.addVariantQuestionItem p {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    margin-left: 30px !important;
+}
+.addVariantQuestionContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.addVariantImgWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.addVariantImgWrapper p {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    margin-left: 30px !important;
+}
+.addVariantImgContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+
+
+
+.addVariantOptionContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+.addVariantOptionsSwitch {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.addVariantOptionsComplete {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+.addVariantOptionsStatus {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 1rem;
+    font-weight: 600;
+}

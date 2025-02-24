@@ -10,7 +10,7 @@ import { Loader } from "../../reusible_components/Loader"
 import { ReactComponent as VisibilityOffIcon } from "../../../res/icons/visibility_off_24dp_gi.svg"
 import { ReactComponent as VisibilityOnIcon } from "../../../res/icons/visibility_24dp_gi.svg"
 import { ReactComponent as DeleteIcon } from "../../../res/icons/delete_24dp_gi.svg"
-import { ReactComponent as ExpandIcon } from "../../../res/icons/quick_reference_all_24dp_gi.svg"
+import { ReactComponent as EditIcon } from "../../../res/icons/edit_24dp_gi.svg"
 const STATUS = {
     IDLE: "IDLE",
     IS_LOADING: "IS_LOADING",
@@ -68,52 +68,33 @@ export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}
                 <div className="variantCardContent">
                     <div className="variantCardTitle">
                     {status === STATUS.HAS_ERROR ?
-                    
-                    <p>Возможно кто-то прошел вариант</p> :
-                    <p><span>{setNumberFormat(index + 1)}</span> {variant.theme}</p>
+                        <p>Кто-то уже прошел вариант</p> :
+                        <p><span>{setNumberFormat(index + 1)}</span> {variant.theme}</p>
                     }
                         
                     </div>
                     <div className="variantCardButtons">
                         <div className="variantCardOptionsButtons">
                             <Button buttonType={"alt"}
-                                    buttonPadding={"0 20px"}
-                                    buttonWidth={"100%"}
-                                    buttonHeight={""}
-                                    buttonIcon={<ExpandIcon className="svgIcon"/>}
-                                    buttonText={"Детально"}
+                                    buttonIcon={<EditIcon className="svgIcon"/>}
                                     buttonFunc={()=>{}}/>
                             {variant.isVisible ? 
                                 <Button buttonType={"bad"}
-                                        buttonPadding={"0 20px"}
-                                        buttonWidth={"100%"}
-                                        buttonHeight={""}
                                         buttonIcon={<VisibilityOffIcon className="svgIcon"/>}
-                                        buttonText={"Скрыть"}
                                         buttonFunc={()=>{changeVariantVisibility(variant.id, !variant.isVisible)}}/> :
                                 <Button buttonType={"good"}
-                                        buttonPadding={"0 20px"}
-                                        buttonWidth={"100%"}
-                                        buttonHeight={""}
                                         buttonIcon={<VisibilityOnIcon className="svgIcon"/>}
-                                        buttonText={"Показать"}
                                         buttonFunc={()=>{changeVariantVisibility(variant.id, !variant.isVisible)}}/>}
+                            <Button buttonType={"bad"}
+                                    buttonIcon={<DeleteIcon className="svgIcon"/>}
+                                    buttonFunc={()=>{handleDeleteVariant(variant.id)}}/>
                         </div>
                     </div>
                 </div>
                 {variant.isVisible &&
-                <div className="variantIsVisibleContainer">
+                    <div className="variantIsVisibleContainer">
                         <VisibilityOnIcon className="svgIcon"/>
-                </div>}
-                <div className="variantDeleteContainer">
-                    <Button className="btn" 
-                            buttonIcon={<DeleteIcon className="svgIcon"/>}
-                            buttonWidth={"100%"}
-                            buttonType="bad"
-                            buttonFunc={()=>{handleDeleteVariant(variant.id)}}>
-                    </Button>
-                </div>
-                
+                    </div>}
             </div>
         </div>
     </>)
