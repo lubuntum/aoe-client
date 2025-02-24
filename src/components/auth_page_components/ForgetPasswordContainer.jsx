@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Button } from "../reusible_components/Button"
 import { InputField } from "../reusible_components/InputField"
 import "./css/email_confirmation_page.css"
+import "./css/autorization_page.css"
+import "./css/autorization_page_media.css"
 import { resetPasswordCustomerEmailRequest, resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
 /**
  * TODO добавить компонент для перехода по ссылке и сброс самого пароля.
@@ -17,7 +19,7 @@ export const ForgetPasswordContainer = ({setForgetPassword}) => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [status, setStatus] = useState(statuses.IDLE)
-    const resetPassword = async () => {
+    const resetPasswordEmail = async () => {
         const emailRegex = /\S+@\S+\.\S+/;
         if (!email || !password){
             setStatus(statuses.EMPTY)
@@ -44,7 +46,10 @@ export const ForgetPasswordContainer = ({setForgetPassword}) => {
                             buttonFunc={()=>setForgetPassword(false)}/>
                 </div>
                 <div className={`loginContainer`}>
-                        <div className={`loginContainerPopup } ${(status === statuses.SUCCESS) ? "popupGood" : ""}`}>Пожалуйста проверьте свою почту</div>
+                        <div className={`loginContainerPopup ${(status === statuses.SUCCESS) && "popupActive popupGood"}`}>Пожалуйста проверьте свою почту</div>
+                        <div className={`loginContainerPopup ${(status === statuses.EMPTY) && "popupActive"}`}>Заполните все поля</div>
+                        <div className={`loginContainerPopup ${(status === statuses.FORMAT_ERROR) && "popupActive"}`}>Напишите почту в верном формате</div>
+                        <div className={`loginContainerPopup ${(status === statuses.ERROR) && "popupActive"}`}>Возникла ошибка, попробуйте снова</div>
                         {status === statuses.IDLE &&
                         <h2>TestMy<span>Eng</span></h2>}
                         <div className="loginContainerImage">
@@ -70,13 +75,7 @@ export const ForgetPasswordContainer = ({setForgetPassword}) => {
                             buttonType={status === statuses.SUCCESS ? "block" : ""}
                             buttonText={"Сбросить"}
                             buttonWidth={"100%"}
-                            buttonFunc={()=>{resetPassword()}}/>
-                        <div style={{textAlign:"center"}}>
-                            {status === statuses.SUCCESS && <p className="successStatus">Проверьте почту</p>}
-                            {status === statuses.EMPTY && <p className="errorStatus">Заполните все поля</p>}
-                            {status === statuses.FORMAT_ERROR && <p className="errorStatus">Напишите почту в нужном формате</p>}
-                            {status === statuses.ERROR && <p className="errorStatus">Возникла ошибка, попробуйте снова</p>}
-                        </div>
+                            buttonFunc={()=>{resetPasswordEmail()}}/>
                         
                     </div>
             </div>

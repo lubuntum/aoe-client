@@ -12,7 +12,8 @@ const unAuthRoutesAccess = [routes.HOME,
                             routes.USER_AGREEMENT,
                             routes.PRIVACY_POLICE,
                             routes.PRICING,
-                            routes.EMAIL_CONFIRM]
+                            routes.EMAIL_CONFIRM,
+                            routes.RESET_PASSWORD]
 const ProtectedRoute = ({component}) => {
     const {isAuth, loading} = useAuth();
     const location = useLocation()

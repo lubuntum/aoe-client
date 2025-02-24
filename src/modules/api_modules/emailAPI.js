@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_EMAIL_CONFIRMATION, API_EMAIL_RESET_PASSWORD, SERVER_API_URL } from "../../config"
+import { API_EMAIL_CONFIRMATION, API_EMAIL_RESET_PASSWORD, API_RESET_PASSWORD, SERVER_API_URL } from "../../config"
 
 export const confirmCustomerEmailRequest = async (token) => {
     const response = await axios.get(`${SERVER_API_URL}${API_EMAIL_CONFIRMATION}`,{

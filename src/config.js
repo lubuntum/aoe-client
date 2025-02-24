@@ -13,6 +13,8 @@ export const API_LOGIN = "/api/auth/login"
 export const API_VALIDATE_CREDENTIAL_BY_KEY = "/api/auth/validate"
 export const API_EMAIL_CONFIRMATION = "/api/email/confirm"
 export const API_EMAIL_RESET_PASSWORD = "/api/email/reset-password"
+export const API_RESET_PASSWORD = "/api/auth/reset-password"
+export const API_RESET_PASSWORD_AUTH = "/api/auth/reset-password-auth"
 
 //Роуты для Data
 //account routes

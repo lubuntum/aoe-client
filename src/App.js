@@ -31,6 +31,7 @@ import routes from "./routes"
 import { PartnerPage } from './components/partner_page_components/PartnerPage';
 import { PaymentRedirect } from './components/payment_components/PaymentRedirect';
 import { EmailConfirmationPage } from './components/auth_page_components/EmailConfirmationPage';
+import { ResetPassword } from './components/auth_page_components/ResetPassword';
 
 function App() {
     return (
@@ -66,6 +67,7 @@ const Main = () => {
                 <Route path={routes.PRIVACY_POLICE}            element = {<ProtectedRoute component={<PrivacyPolice/>}/>}/>
                 <Route path={routes.PAYMENT_REDIRECT}          element = {<ProtectedRoute component={<PaymentRedirect/>}/>}/>
                 <Route path={routes.EMAIL_CONFIRM}             element = {<ProtectedRoute component={<EmailConfirmationPage/>} />} />
+                <Route path={routes.RESET_PASSWORD}            element = {<ProtectedRoute component={<ResetPassword/>}/>}/>
             </Routes>
         </div>
     )
