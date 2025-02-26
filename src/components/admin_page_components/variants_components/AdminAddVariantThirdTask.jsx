@@ -24,17 +24,17 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
         if (file) {
             onChange({
                 ...taskValues,
-                speakerAudio: file
+                speakerRecord: file
             })
         }
     }
 
     const handleAudioChange = (index, value) => {
-        const updatedAudioFiles = [...taskValues.audio]
+        const updatedAudioFiles = [...taskValues.questionsRecords]
         updatedAudioFiles[index] = value
         onChange({
             ...taskValues,
-            audio: updatedAudioFiles
+            questionsRecords: updatedAudioFiles
         })
     }
 
@@ -56,7 +56,7 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                           textareaHeight={"80px"}
                           textareaOnChange={(e)=>handleInputChange("speaker", e.target.value)}/>
                           
-                <InputFile inputFileName={taskValues.speakerAudio ? taskValues.speakerAudio.name : "Выберите файл озвучки"}
+                <InputFile inputFileName={taskValues.speakerRecord ? taskValues.speakerRecord.name : "Выберите файл озвучки"}
                            inputFileWidth={"300px"}
                            inputFileOnChange={handleSpeakerChange}
                            inputFileFor={"variantThirdTaskAudio0"}/>
@@ -72,7 +72,7 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                                             inputPlaceholder={"---"}
                                             inputOnChange={(e)=>handleQuestionChange(index, e.target.value)}/>
 
-                                <InputFile inputFileName={taskValues.audio[index] ? taskValues.audio[index].name : "Выберите файл озвучки"}
+                                <InputFile inputFileName={taskValues.questionsRecords[index] ? taskValues.questionsRecords[index].name : "Выберите файл озвучки"}
                                            inputFileWidth={"300px"}
                                            inputFileOnChange={(e) => handleAudioChange(index, e.target.files[0])}
                                            inputFileFor={`variantThirdTaskAudio${index + 1}`}/>

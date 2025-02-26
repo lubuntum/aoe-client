@@ -1,6 +1,6 @@
 import "./css/admin_add_variant_page.css"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 import { validateAdmin } from "../../../modules/validation_modules/adminValidation"
 import { HeaderMain } from "../../header_components/HeaderMain"
@@ -37,9 +37,9 @@ export const AdminAddVariantPage = () => {
     const [thirdTaskValues, setThirdTaskValues] = 
         useState({taskGuide: "",
                   speaker: "",
-                  speakerAudio: null,
+                  speakerRecord: null,
                   questions: Array(5).fill(""),
-                  audio: Array(5).fill(null)})
+                  questionsRecords: Array(5).fill(null)})
 
     const [fourthTaskValues, setFourthTaskValues] = 
         useState({taskGuide: "",
@@ -53,6 +53,9 @@ export const AdminAddVariantPage = () => {
     const [variantValidate, setVariantValidate] = useState(false)
     const [tasksValidate, setTasksValidate] = useState([false, false, false, false])
     const [status, setStatus] = useState("")
+
+    const imagesForSendingRef = useRef({img: null, firstImg: null, secondImg: null})
+    const recordsForSendingsRef = useRef({speakerRecord: null, questionsRecords: Array(5).fill(null)})
     
     useEffect(()=>{
         validate()
@@ -88,9 +91,9 @@ export const AdminAddVariantPage = () => {
         setThirdTaskValues({
             taskGuide: "",
             speaker: "",
-            speakerAudio: null,
+            speakerRecord: null,
             questions: Array(5).fill(""),
-            audio: Array(5).fill(null)})
+            questionsRecords: Array(5).fill(null)})
 
         setFourthTaskValues({
             taskGuide: "",
@@ -126,23 +129,6 @@ export const AdminAddVariantPage = () => {
         tasksValidation()
     }, [tasksValidation])
 
-
-    const handleVariantValues = (newValues) => {
-        setVariantValues(newValues)
-    }
-    const handleFirstTaskValues = (newValues) => {
-        setFirstTaskValues(newValues)
-    }
-    const handleSecondTaskValues = (newValues) => {
-        setSecondTaskValues(newValues)
-    }
-    const handleThirdTaskValues = (newValues) => {
-        setThirdTaskValues(newValues)
-    }
-    const handleFourthTaskValues = (newValues) => {
-        setFourthTaskValues(newValues)
-    }
-
     const convertValuesToArray = (value) => {
         const { taskText, ...rest } = value
         return { ...rest, taskText: [value.taskText] }
@@ -154,6 +140,24 @@ export const AdminAddVariantPage = () => {
     }
 
     const getRequestDataFromValues = () => {
+        const replaceFileForSedning = (sendData, original, key) => {
+            sendData[key] = original[key]
+            original[key] = "%s"
+        }
+        replaceFileForSedning(imagesForSendingRef.current, secondTaskValues, "img")
+        replaceFileForSedning(imagesForSendingRef.current, fourthTaskValues, "firstImg")
+        replaceFileForSedning(imagesForSendingRef.current, fourthTaskValues, "secondImg")
+        replaceFileForSedning(recordsForSendingsRef.current, thirdTaskValues, "speakerRecord")
+        thirdTaskValues.questionsRecords = 
+            thirdTaskValues.questionsRecords.map((record, index) => {
+                console.log(recordsForSendingsRef.current.questionsRecords)
+                recordsForSendingsRef.current.questionsRecords[index] = record
+                return "%s"
+                //replaceFileForSedning(recordsForSendingsRef.current.questionsRecords[index], record)
+            })
+            
+        console.log(imagesForSendingRef.current)
+        console.log(recordsForSendingsRef.current)
         return [{"taskType": 1, "taskContent": JSON.stringify(convertValuesToArray(firstTaskValues))},
                 {"taskType": 2, "taskContent": JSON.stringify(filterValuesForSending(secondTaskValues))},
                 {"taskType": 3, "taskContent": JSON.stringify(thirdTaskValues)},
@@ -186,20 +190,20 @@ export const AdminAddVariantPage = () => {
     }
 
     const print = () => {
+        console.log(getRequestDataFromValues())
         console.log("variant:---", variantValues)
         console.log("1:---", firstTaskValues)
         console.log("2:---", secondTaskValues)
         console.log("3:---", thirdTaskValues)
         console.log("4:---", fourthTaskValues)
-        console.log(getRequestDataFromValues())
         createVariant()
     }
 
     const AddVariantTasksComponents = {
-        1:{component: AdminAddVariantFirstTask, taskValues: firstTaskValues, onChange: handleFirstTaskValues},
-        2:{component: AdminAddVariantSecondTask, taskValues: secondTaskValues, onChange: handleSecondTaskValues},
-        3:{component: AdminAddVariantThirdTask, taskValues: thirdTaskValues, onChange: handleThirdTaskValues},
-        4:{component: AdminAddVariantFourthTask, taskValues: fourthTaskValues, onChange: handleFourthTaskValues}
+        1:{component: AdminAddVariantFirstTask, taskValues: firstTaskValues, onChange: setFirstTaskValues},
+        2:{component: AdminAddVariantSecondTask, taskValues: secondTaskValues, onChange: setSecondTaskValues},
+        3:{component: AdminAddVariantThirdTask, taskValues: thirdTaskValues, onChange: setThirdTaskValues},
+        4:{component: AdminAddVariantFourthTask, taskValues: fourthTaskValues, onChange: setFourthTaskValues}
     }
 
     const CurrentComponent = AddVariantTasksComponents[currentComponent]
@@ -210,7 +214,7 @@ export const AdminAddVariantPage = () => {
             <div className="sectionWrapper">
                 <div className="contentWrapper">
                     <div className="addVariantWrapper">
-                        <AdminAddVariantName variantValues={variantValues} onChange={handleVariantValues}/>
+                        <AdminAddVariantName variantValues={variantValues} onChange={setVariantValues}/>
 
                         <CurrentComponent.component taskValues={CurrentComponent.taskValues} onChange={CurrentComponent.onChange}/>
 
