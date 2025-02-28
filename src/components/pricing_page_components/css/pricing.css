@@ -1,32 +1,3 @@
-.pricingWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 100px;
-}
-.pricingGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px 300px 100px 300px;
-    gap: 20px;
-}
-.pricingGridItem1 {
-    grid-column: span 2;
-}
-.pricingGridItem2 {
-    grid-column: span 1;
-}
-.pricingGridItem3 {
-    grid-column: span 1;
-}
-.pricingGridItem4 {
-    grid-column: span 2;
-}
-.pricingGridItem5 {
-    grid-column: span 2;
-}
-
-
 
 .pricngSubscriptionCardContainer {
     display: flex;

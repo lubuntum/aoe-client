@@ -1,4 +1,5 @@
 import "./css/pricing.css"
+import "./css/new_pricing.css"
 
 import { useMemo } from "react"
 
@@ -7,6 +8,9 @@ import proBackground from "../../res/images/pro_subscription_background.png"
 import paymentBackground from "../../res/images/payment_balance_backgorund.png"
 
 import { HeaderMain } from "../header_components/HeaderMain"
+import { PricingBalance } from "./PricingBalance"
+import { PricingSubBase } from "./PrcingSubBase"
+import { PricingSubPro } from "./PrcingSubPro"
 import { PricingSubscriptionCard } from "./PricingSubscriptionCard"
 import { PricingBalanceCard } from "./PricingBalanceCard"
 import { FooterMain } from "../footer_components/FooterMain"
@@ -39,14 +43,26 @@ export const PricingPage = () => {
         <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспресс проверка 1 экзамена: 200₽</p>,
         <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 700₽</p>]
 
+    const pricingSubBaseDesc = useMemo(() => [
+        "Базовый план доступен после регистрации", 
+        "Моментальный доступ к 5 вариантам для прохождения", 
+        "Хранение результатов в течении 24 часов"
+    ], [])
+    const pricingSubProDesc = useMemo(() => [
+        "Моментальный доступ ко всем вариантам", 
+        "Приветственный баланс на 1 экспресс проверку",
+        "Хранение результатов пока активна подписка"
+    ], [])
+
     useEffect(()=>{
         getAllValidSubscriptionsRequest()
     }, [])
+
     const getAllValidSubscriptionsRequest = async () => {
         try {
             const response = await getAllValidSubscriptionTypes()
-            subscriptionTypesRef.current = response.data
-            setSubscriptionTypesDesc(response.data.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
+            subscriptionTypesRef.current = response.data.sort((a, b) => a.price - b.price)
+            setSubscriptionTypesDesc(subscriptionTypesRef.current.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
         } catch(e){
             console.log(e)
         }
@@ -57,7 +73,17 @@ export const PricingPage = () => {
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
                     <div className="pricingGrid">
-                        <PageTitle pageTitleText={error ? "Пополните кошелек" : "Приобрести #подписку#"} className={"pricingGridItem1"} titleStyle={error && {color:"red"}}/>
+                        <PageTitle pageTitleText={"Пополнить #баланс# / Приобрести #подписку#"} className={"pricingGridItem1"}/>
+
+                        <PricingBalance className={"pricingGridItem2"}/>
+
+                        <PricingSubBase className={"pricingGridItem3"}
+                                        pricingSubDesc={pricingSubBaseDesc}/>
+
+                        <PricingSubPro className={"pricingGridItem4"}
+                                       pricingSubDesc={pricingSubProDesc}
+                                       subscriptionTypesDesc={subscriptionTypesDesc}
+                                       subscriptionTypesRef={subscriptionTypesRef}/>
 
                         <PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
@@ -82,7 +108,7 @@ export const PricingPage = () => {
  
                         <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
 
-                        <PricingBalanceCard className={"pricingGridItem5"}
+                        <PricingBalanceCard className={"pricingGridItem8"}
                                             paymentBG={paymentBackground}
                                             paymentPricing={paymentPricing}
                                             paymentDescription={paymentDescription}/>

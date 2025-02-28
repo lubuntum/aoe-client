@@ -1,0 +1,156 @@
+.pricingWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 100px;
+}
+.pricingGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100px auto 120px;
+    gap: 20px;
+}
+.pricingGridItem1 {
+    grid-column: span 3;
+}
+.pricingGridItem2 {
+    grid-column: span 1;
+}
+.pricingGridItem3 {
+    grid-column: span 1;
+}
+.pricingGridItem4 {
+    grid-column: span 1;
+}
+.pricingGridItem8 {
+    grid-column: span 3;
+}
+
+
+.pricingBalanceContainer,
+.pricingSuProContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+}
+.pricingBalanceTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.pricingBalanceTitle p:nth-child(1),
+.pricingSubTitle p:nth-child(1) {
+    font-size: 1.500rem;
+    font-weight: 600;
+}
+.pricingBalanceTitle p:nth-child(2),
+.pricingSubTitle p:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+}
+.divider {
+    height: 1px;
+    background-color: var(--gray);
+    width: 100%;
+}
+.verticalDivider {
+    max-width: 5px;
+    min-width: 5px;
+    background-color: var(--blue);
+    border-radius: 50px;
+    height: 100%;
+}
+.pricingBalanceWrapper,
+.pricingSubWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.pricingBalanceItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.pricingBalanceName {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.pricingBalanceSumItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.pricingBalanceSumButton {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+.pricingBalanceSumButton .inputContainer {
+    width: 60%;
+}
+.pricingBalanceSumButton .button {
+    width: 40%;
+}
+
+
+
+.pricingSubContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 35px;
+    border-radius: 20px;
+    border: 5px solid var(--white);
+}
+.pricingSubTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+.pricingSubWrapper p {
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    padding-right: 25px;
+}
+.pricingSubWrapper {
+    height: 100%;
+    justify-content: space-between;
+}
+.pricingSubDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.pricingSubDescItem {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.prcingSubButton {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+.prcingSubButton .dropdown {
+    width: 60%;
+}
+.prcingSubButton .button {
+    width: 40%;
+}
+.pricingSubButtonEmpty {
+    width: 100%;
+    height: 40px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--white);
+}

@@ -11,6 +11,9 @@
     cursor: pointer;
     transition: all .2s ease;
 }
+.tooltipIcon .svgIcon {
+    fill: var(--black);
+}
 .tooltipText {
     background-color: var(--tooltip-background);
     backdrop-filter: blur(3px);
