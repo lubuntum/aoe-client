@@ -7,7 +7,7 @@
 .pricingGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 100px auto 120px;
+    grid-template-rows: 100px auto;
     gap: 20px;
 }
 .pricingGridItem1 {
@@ -22,13 +22,10 @@
 .pricingGridItem4 {
     grid-column: span 1;
 }
-.pricingGridItem8 {
-    grid-column: span 3;
-}
 
 
 .pricingBalanceContainer,
-.pricingSuProContainer {
+.pricingSubProContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -92,8 +89,15 @@
     gap: 20px;
     width: 100%;
 }
-.pricingBalanceSumButton .inputContainer {
+.pricingBalanceSumContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
     width: 60%;
+}
+.pricingBalanceSumContainer p {
+    font-weight: 500;
 }
 .pricingBalanceSumButton .button {
     width: 40%;
@@ -153,4 +157,14 @@
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 0 5px var(--white);
+}
+
+
+
+.pricingSubProWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }

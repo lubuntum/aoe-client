@@ -9,20 +9,27 @@ export const PricingBalance = ({className}) => {
     const [valuePlaceholder, setValuePlaceholder] = useState("Своя сумма")
     const handleChange = (event) => {
         const inputValue = event.target.value
-        const regex = /^\d+(\.\d{0,2})?$/
+        const regex = /^\d+(\,\d{0,2})?$/
         if (regex.test(inputValue) || inputValue === "") {
             setValue(inputValue)
         }
     }
-    const handleButtonClick = useCallback(async (price) => {
-        console.log(value)
+    
+    const handleCustomerButtonClick = useCallback(async (price) => {
         if (price === undefined || price === null || price <= 0 || price === "") {
             setValuePlaceholder("Введите сумму!")
             return
         }
         const response = await createPayment(localStorage.getItem("token"), price)
         window.location.href = response.data.confirmation.confirmation_url
-        console.log("aboba")
+    }, [])
+
+    const handleStaticButtonClick = useCallback(async (price) => {
+        if (price === undefined || price === null || price <=0 || price === "") {
+            return
+        }
+        const response = await createPayment(localStorage.getItem("token"), price)
+        window.location.href = response.data.confirmation.confirmation_url
     }, [])
 
     return (
@@ -41,7 +48,8 @@ export const PricingBalance = ({className}) => {
                     <Button key={`pricingBalanceButton0`}
                             buttonType={"outline"}
                             buttonWidth={"100%"}
-                            buttonText={"Пополнить на 50₽"}/>
+                            buttonText={"Пополнить на 50₽"}
+                            buttonFunc={()=>handleStaticButtonClick(50)}/>
                 </div>
                 <div className="pricingBalanceItem">
                     <div className="pricingBalanceName">
@@ -51,7 +59,8 @@ export const PricingBalance = ({className}) => {
                     <Button key={`pricingBalanceButton1`}
                             buttonType={"outline"}
                             buttonWidth={"100%"}
-                            buttonText={"Пополнить на 200₽"}/>
+                            buttonText={"Пополнить на 200₽"}
+                            buttonFunc={()=>handleStaticButtonClick(200)}/>
                 </div>
                 <div className="pricingBalanceItem">
                     <div className="pricingBalanceName">
@@ -61,7 +70,8 @@ export const PricingBalance = ({className}) => {
                     <Button key={`pricingBalanceButton2`}
                             buttonType={"outline"}
                             buttonWidth={"100%"}
-                            buttonText={"Пополнить на 700₽"}/>
+                            buttonText={"Пополнить на 700₽"}
+                            buttonFunc={()=>handleStaticButtonClick(700)}/>
                 </div>
                 <div className="pricingBalanceSumItem">
                     <div className="pricingBalanceName">
@@ -69,13 +79,16 @@ export const PricingBalance = ({className}) => {
                         <p>Своя сумма</p>
                     </div>
                     <div className="pricingBalanceSumButton">
-                        <InputField key={"pricngBalanceInput0"}
-                                    inputPlaceholder={valuePlaceholder}
-                                    inputValue={value}
-                                    inputOnChange={handleChange}/>
+                        <div className="pricingBalanceSumContainer">
+                            <InputField key={"pricngBalanceInput0"}
+                                        inputPlaceholder={valuePlaceholder}
+                                        inputValue={value}
+                                        inputOnChange={handleChange}/>
+                            <p>₽</p>
+                        </div>
                         <Button key={"pricingBalanceButton3"}
                                 buttonText={"Пополнить"}
-                                buttonFunc={()=>handleButtonClick(value)}/>
+                                buttonFunc={()=>handleCustomerButtonClick(value)}/>
                     </div>
                 </div>
             </div>

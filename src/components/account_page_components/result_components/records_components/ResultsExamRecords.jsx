@@ -139,10 +139,10 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
             setContentPopup(() => (props) => (
                 <AccountPopup
                     warningMessage={"Внимание!"}   
-                    messageText={"На вашем счету недостаточно средств для проверки!"}
-                    messageCost={"На вашем счету должно быть минимум:"}
+                    messageText={"На вашем балансе недостаточно средств для проверки!"}
+                    messageCost={"На вашем балансе должно быть минимум:"}
                     cost={"200"} 
-                    messageConfirmation={"Пожалуйста пополните счет для отправки Вашего ответа!"}
+                    messageConfirmation={"Пожалуйста пополните баланс для отправки Вашего ответа!"}
                     acceptButton={<Button
                         key={"balanceButtonSend2"}
                         buttonText={"Пополнить"}
@@ -167,7 +167,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                 <AccountPopup 
                     warningMessage={"Внимание!"}
                     messageText={`Вы выбрали экспресс проверку для экзамена, варианта: ${variant.theme}`}
-                    messageCost={"С вашего счета спишется:"}
+                    messageCost={"С вашего баланса спишется:"}
                     cost={"200"}
                     messageConfirmation={"Вы подтверждаете что хотите отправить ответ на проверку?"}
                     acceptButton={<Button 

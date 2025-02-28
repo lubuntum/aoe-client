@@ -1,5 +1,6 @@
 import "./css/pricing.css"
 import "./css/new_pricing.css"
+import "./css/pricing_popup.css"
 
 import { useMemo } from "react"
 
@@ -11,6 +12,8 @@ import { HeaderMain } from "../header_components/HeaderMain"
 import { PricingBalance } from "./PricingBalance"
 import { PricingSubBase } from "./PrcingSubBase"
 import { PricingSubPro } from "./PrcingSubPro"
+import { PricingSubProLoading } from "./PricingSubProLoading"
+import { Popup } from "../reusible_components/Popup"
 import { PricingSubscriptionCard } from "./PricingSubscriptionCard"
 import { PricingBalanceCard } from "./PricingBalanceCard"
 import { FooterMain } from "../footer_components/FooterMain"
@@ -22,6 +25,8 @@ import { getAllValidSubscriptionTypes } from "../../modules/api_modules/subscrip
 
 export const PricingPage = () => {
     const subscriptionTypesRef = useRef(null)
+    const [showPopup, setShowPopup] = useState(false)
+    const [contentPopup, setContentPopup] = useState()
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
     const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
     const [subscriptionTypesDesc, setSubscriptionTypesDesc] = useState(null)
@@ -54,6 +59,13 @@ export const PricingPage = () => {
         "Хранение результатов пока активна подписка"
     ], [])
 
+    useEffect(() => {
+        {document.body.style.overflow = showPopup ? "hidden" : "auto"}
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [showPopup])
+
     useEffect(()=>{
         getAllValidSubscriptionsRequest()
     }, [])
@@ -69,6 +81,7 @@ export const PricingPage = () => {
     }
     return (<>
         <HeaderMain updateData={updateHeaderData} setUpdateData={setUpdateHeaderData}/>
+        {showPopup && <Popup component={contentPopup} setShowPopup={setShowPopup}/>}
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
@@ -80,12 +93,17 @@ export const PricingPage = () => {
                         <PricingSubBase className={"pricingGridItem3"}
                                         pricingSubDesc={pricingSubBaseDesc}/>
 
+                        {subscriptionTypesDesc ? 
                         <PricingSubPro className={"pricingGridItem4"}
                                        pricingSubDesc={pricingSubProDesc}
                                        subscriptionTypesDesc={subscriptionTypesDesc}
-                                       subscriptionTypesRef={subscriptionTypesRef}/>
+                                       subscriptionTypesRef={subscriptionTypesRef}
+                                       setUpdateHeaderData={setUpdateHeaderData}
+                                       setContentPopup={setContentPopup}
+                                       setShowPopup={setShowPopup}/> : 
+                        <PricingSubProLoading className={"pricingGridItem4"}/>}
 
-                        <PricingSubscriptionCard className={"pricingGridItem2"} 
+                        {/*<PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
                                                  subscriptionType={"base"}
                                                  subscriptionName={"Базовый план"}
@@ -111,7 +129,7 @@ export const PricingPage = () => {
                         <PricingBalanceCard className={"pricingGridItem8"}
                                             paymentBG={paymentBackground}
                                             paymentPricing={paymentPricing}
-                                            paymentDescription={paymentDescription}/>
+                                            paymentDescription={paymentDescription}/>*/}
                     </div>
                 </div>
             </div>

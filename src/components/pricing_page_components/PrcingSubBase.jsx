@@ -6,7 +6,6 @@ import routes from "../../routes"
 export const PricingSubBase = ({className, pricingSubDesc}) => {
     const navigate = useNavigate()
     const { isAuth } = useAuth()
-    console.log(isAuth)
     
     return (
         <div className={`pricingSubContainer ${className}`}>

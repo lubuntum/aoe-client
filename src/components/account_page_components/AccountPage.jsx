@@ -50,6 +50,7 @@ export const AccountPage = () =>{
             document.body.style.overflow = "auto"
         }
     }, [showPopup])
+    
     const checkPaymentStatus = async () => {
         try {
             const response = await paymentStatus(localStorage.getItem("token"))
