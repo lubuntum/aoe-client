@@ -9,7 +9,7 @@ export const PricingBalance = ({className}) => {
     const [valuePlaceholder, setValuePlaceholder] = useState("Своя сумма")
     const handleChange = (event) => {
         const inputValue = event.target.value
-        const regex = /^\d+(\,\d{0,2})?$/
+        const regex = /^\d+(\.\d{0,2})?$/
         if (regex.test(inputValue) || inputValue === "") {
             setValue(inputValue)
         }
