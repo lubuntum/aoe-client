@@ -11,6 +11,8 @@ import { ReactComponent as VisibilityOffIcon } from "../../../res/icons/visibili
 import { ReactComponent as VisibilityOnIcon } from "../../../res/icons/visibility_24dp_gi.svg"
 import { ReactComponent as DeleteIcon } from "../../../res/icons/delete_24dp_gi.svg"
 import { ReactComponent as EditIcon } from "../../../res/icons/edit_24dp_gi.svg"
+import { useNavigate } from "react-router-dom"
+import routes from "../../../routes"
 const STATUS = {
     IDLE: "IDLE",
     IS_LOADING: "IS_LOADING",
@@ -19,6 +21,7 @@ const STATUS = {
 }
 export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}) => {
     const [status, setStatus] = useState(STATUS.IDLE)
+    const navigation = useNavigate()
     const changeVariantVisibility = async (variantId, visibility) => {
         const response = await updateVariantVisibility(variantId, visibility, localStorage.getItem("token"));
         const updatedVariant = response.data
@@ -55,6 +58,10 @@ export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}
             }, 5 * 1000)
         }
     }
+    const navigateToEditVariant = () => {
+        const param = new URLSearchParams({variantId: variant.id})
+        window.open(`${routes.EDIT_VARIANT}?${param.toString()}`, "_blank")
+    }
 
     return (<>
         <div className="variantCardContainer">
@@ -77,7 +84,7 @@ export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}
                         <div className="variantCardOptionsButtons">
                             <Button buttonType={"alt"}
                                     buttonIcon={<EditIcon className="svgIcon"/>}
-                                    buttonFunc={()=>{}}/>
+                                    buttonFunc={navigateToEditVariant}/>
                             {variant.isVisible ? 
                                 <Button buttonType={"bad"}
                                         buttonIcon={<VisibilityOffIcon className="svgIcon"/>}
