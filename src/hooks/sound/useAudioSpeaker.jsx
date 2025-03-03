@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 
 export const useAudioSpeaker = () => {
     const audioRef = useRef(null)
-    const speak = (url, onEnd) => {
+    const speakAudio = (url, onEnd) => {
         if (!url){
             onEnd()
             return
@@ -28,5 +28,5 @@ export const useAudioSpeaker = () => {
         audioRef.current = null
         onEnd()
     }
-    return {speak}
+    return {speakAudio}
 }
