@@ -1,0 +1,60 @@
+@media (max-width: 1340px) {
+    .pricingGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 100px auto 400px;
+        gap: 20px;
+    }
+    .pricingGridItem1 {
+        grid-column: span 2;
+        order: 0;
+    }
+    .pricingGridItem3 {
+        grid-column: span 2;
+        order: 3;
+    }
+}
+@media (max-width: 950px) {
+    .pricingGrid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 100px auto auto auto;
+        gap: 20px;
+    }
+    .pricingGridItem1 {
+        grid-column: span 1;
+        order: 0;
+    }
+    .pricingGridItem3 {
+        grid-column: span 1;
+        order: 3;
+    }
+}
+@media (max-width: 450px) {
+    .pricingBalanceTitle p:nth-child(1),
+    .pricingSubTitle p:nth-child(1) {
+        font-size: 1.25rem;
+    }
+    .pricingBalanceSumButton {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .pricingBalanceSumContainer {
+        width: 100%;
+    }
+    .pricingBalanceSumButton .button {
+        width: 100%;
+    }
+    .prcingSubButton {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .prcingSubButton .dropdown {
+        width: 100%;
+    }
+    .prcingSubButton .button {
+        width: 100%;
+    }
+}

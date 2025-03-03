@@ -1,4 +1,5 @@
 import "./css/task_complition_results.css"
+import "./css/task_complition_results_media.css"
 
 import { ReactComponent as DownloadIcon } from "../../res/icons/download_24dp_gi.svg"
 import { ReactComponent as LinkIcon } from "../../res/icons/link_24dp_gi.svg"

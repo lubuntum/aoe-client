@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .progressBarContainer {
+        height: 250px;
+        width: 250px;
+    }
+    .prepareTimer {
+        font-size: 2rem;
+        z-index: 999;
+    }
+    .prepareWarning {
+        font-size: 2rem;
+        width: 80%;
+        text-align: center;
+    }
+}

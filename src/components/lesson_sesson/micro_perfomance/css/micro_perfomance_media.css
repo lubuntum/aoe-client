@@ -1,0 +1,19 @@
+@media (max-width: 1024px) {
+    .microPerfomanceContent {
+        padding: 20px;
+    }
+    .microActions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+@media (max-width: 724px) {
+    .microActions audio {
+        width: 100%;
+    }
+    .microActions .button {
+        width: 100%;
+    }
+}

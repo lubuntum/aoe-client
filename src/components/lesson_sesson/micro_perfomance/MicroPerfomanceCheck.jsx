@@ -1,5 +1,7 @@
 import useMediaRecorder from "../../../hooks/useMediaRecorder"
 
+import { Button } from "../../reusible_components/Button"
+
 import { ReactComponent as MicOn } from "../../../res/icons/mic_24dp_gi.svg"
 import { ReactComponent as MicOff } from "../../../res/icons/mic_off_24dp_gi.svg"
 
@@ -37,7 +39,10 @@ export const MicroPerfomanceCheck = ({setMicroCheck}) => {
 
             <div className="microActions">
                 <audio controls src={mediaBlobUrl}><p>Ваш браузер не поддерживает audio тег</p></audio>
-                <a className="btn defaultBtn" style={{width:'300px'}} onClick={()=> {setMicroCheck(true)}}>Приступить к решению</a>
+                <Button key={"microPerfomanceButton0"}
+                        buttonText={"Приступить к решению"}
+                        buttonPadding={"0 20px"}
+                        buttonFunc={() => {setMicroCheck(true)}}/>
             </div>
         </div>
     </>)
