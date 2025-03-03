@@ -10,9 +10,15 @@ import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSound } from "../../../hooks/sound/useSound"
 import notification from "../../../res/wavs/beep.wav"
+import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker"
+import { speechUrls, topicsTaskTwoUrls } from "../../../speechUrls"
+const urlsQuestionRecordKeys = [
+    "QUESTION_ONE", "QUESTION_TWO", "QUESTION_THREE", "QUESTION_FOUR"
+]
 export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [topicNumber, setTopicNumber] = useState(0)
     const {speak} = useLessonSpeaker()
+    const {speakAudio} = useAudioSpeaker()
     const [studentAnswering, setStudentAnswering] = useState(false)
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
     const {playAndEvent} = useSound(notification)
@@ -28,10 +34,19 @@ export const SecondTaskSession = ({task, stage, setStage, handleNextTask}) => {
         setTopicNumber(topicNumber + 1)
     }
 
+    const speakQuestionNumber = () => {
+        try {
+            speakAudio(topicsTaskTwoUrls[topicNumber+1], ()=>{playAndEvent(() => {setStudentAnswering(true)})})
+        } catch(err) {
+            console.error("Error occured while speaking topic", err)
+            speak(`Question ${topicNumber+1}`,()=>{playAndEvent(() => {setStudentAnswering(true)})})
+        }
+    }
+
     if (stage === stages.speak) task.topicNumber = topicNumber
     if (stage === stages.speak && !studentAnswering) {
-        speak(`Question ${topicNumber+1}`,()=>{playAndEvent(() => {setStudentAnswering(true)})})
-        
+        //speak(`Question ${topicNumber+1}`,()=>{playAndEvent(() => {setStudentAnswering(true)})})
+        speakQuestionNumber()
     }
     if (stage === stages.speak && studentAnswering) startRecording()
 
