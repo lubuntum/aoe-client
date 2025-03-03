@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react"
 import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
 import { stages } from "../lesson_session_page/LessonSessionPage"
 import { useTimer } from "../../../hooks/useTimer"
+import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker"
+import { speechUrls } from "../../../speechUrls"
 
 export const PrepareTimer = ({sec, stage, setStage, task}) => {
     const stagesText = {
@@ -12,10 +14,20 @@ export const PrepareTimer = ({sec, stage, setStage, task}) => {
         [stages.prepare_speak] : "Get ready to the answer!"
     }
     const {speak} = useLessonSpeaker()
+    const {speakAudio} = useAudioSpeaker()
     const speakStageText = () => {
-        stage === stages.prepare_reading ?
-        speak(`Now we are ready to start, Task ${task.taskType}`, () => {setStage(stages.reading)}) :
-        speak("Start speaking please",() => {setStage(stages.speak)})
+        try {
+            console.log("CURRENT TASK ", task.taskType)
+            stage === stages.prepare_reading ?
+            speakAudio(speechUrls[task.taskType], () => setStage(stages.reading)) :
+            speakAudio(speechUrls["SPEAKING_START"], () => setStage(stages.speak))
+        } catch(err) {
+            console.error(`Error occurred while fetching urls ${err}`)
+            stage === stages.prepare_reading ?
+            speak(`Now we are ready to start, Task ${task.taskType}`, () => {setStage(stages.reading)}) :
+            speak("Start speaking please",() => {setStage(stages.speak)})
+        }
+        
     }
     const {time, resetTimer} = useTimer(sec,speakStageText)
     const skipTimer = () => {

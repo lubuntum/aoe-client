@@ -10,12 +10,16 @@ import { TasksContentWrapper } from "./TasksContentWrapper"
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSound } from "../../../hooks/sound/useSound";
 import notification from "../../../res/wavs/beep.wav"
+import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker";
+import { speechUrls } from "../../../speechUrls";
+import { SERVER_API_URL } from "../../../config";
 
 export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [studentAnswering, setStudentAnswering] = useState(false)
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
-    const {speak} = useLessonSpeaker();
+    const {speak} = useLessonSpeaker()
+    const {speakAudio} = useAudioSpeaker()
     const {playAndEvent} = useSound(notification)
 
     const handleNextQuestion = async () => {
@@ -31,14 +35,34 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const handleStudentAnswer  = () => {
         setStudentAnswering(true)
     }
-    
+
+    const speakerSpeechInto = () => {
+        console.log(task)
+        try {
+            if (!task.taskContent.speakerRecord) throw new Error("speakerRecord not found")
+            speakAudio(`${SERVER_API_URL}/${task.taskContent.speakerRecord}`, () => setStage(stages.prepare_speak))
+        } catch(err) {
+            console.error("Error occurred while speaker: ", err)
+            speak(task.taskContent.speaker[0], () => setStage(stages.prepare_speak))
+        }
+    }
+    const speakQuestion = () => {
+        try {
+            if (!task.taskContent.questionsRecords) throw new Error("questionsRecords not found")
+                playAndEvent(()=>speakAudio(`${SERVER_API_URL}/${task.taskContent.questionsRecords[questionNumber]}`, () => {playAndEvent(()=>{handleStudentAnswer()})}))
+        } catch (err) {
+            console.error("Error occured while speaking question: ", err)
+            playAndEvent(() => {speak(task.taskContent.questions[questionNumber], () => {playAndEvent(()=>{handleStudentAnswer()})})})
+        }
+    }
     //Всегда скрывать вопросы
     if(task !== undefined) task.hideQuestions = true;
     //Если этап чтения, то проговорить задание и перейти на этап подготовки
-    if(stage === stages.reading) speak(task.taskContent.speaker[0], () => setStage(stages.prepare_speak))
+    if(stage === stages.reading) speakerSpeechInto()
     // Если этап ответа и студент еще не должен отвечать, задать вопрос и дать студентку сказать
     if(stage === stages.speak && !studentAnswering) {
-        playAndEvent(() => {speak(task.taskContent.questions[questionNumber], () => {playAndEvent(()=>{handleStudentAnswer()})})})
+        speakQuestion()
+        //playAndEvent(() => {speak(task.taskContent.questions[questionNumber], () => {playAndEvent(()=>{handleStudentAnswer()})})})
         
     }
     // Если этап ответа и студент уже отвечает, начать запись его голоса

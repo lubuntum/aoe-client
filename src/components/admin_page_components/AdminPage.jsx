@@ -46,7 +46,6 @@ export const AdminPage = () => {
             setIsAdmin(false)
             logout()
         }
-        
     }
     const AdminContentComponents = {
         1:{component: AdminVariants, title: "Варианты", props: {setShowPopup, showPopup}, popupContent: AdminVariantPopup},
@@ -89,7 +88,7 @@ export const AdminPage = () => {
                     </div>
                 </div>
             </div>
-            <FooterMain/>
+        <FooterMain/>
         </>}
     </>)
 }

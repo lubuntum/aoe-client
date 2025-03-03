@@ -12,6 +12,8 @@ const PARTNER = "/partner"
 const USER_AGREEMENT = "/user-agreement"
 const PRIVACY_POLICE = "/privacy-police"
 const PAYMENT_REDIRECT = "/payment-redirect"
+const ADD_VARIANT = "/add-variant"
+const EDIT_VARIANT = "/edit-variant"
 const EMAIL_CONFIRM = "/confirmation"
 const RESET_PASSWORD = "/reset-password"
 const routes = {
@@ -29,6 +31,8 @@ const routes = {
     USER_AGREEMENT,
     PRIVACY_POLICE,
     PAYMENT_REDIRECT,
+    ADD_VARIANT,
+    EDIT_VARIANT,
     EMAIL_CONFIRM, 
     RESET_PASSWORD
 }
