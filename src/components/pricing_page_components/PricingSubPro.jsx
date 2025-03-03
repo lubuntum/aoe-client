@@ -4,11 +4,12 @@ import { DropdownList } from "../reusible_components/DropdownList"
 import { getHeaderData } from "../../modules/api_modules/accountAPI"
 import { purchaseSubscription } from "../../modules/api_modules/subscriptionAPI"
 import { PricingPopup } from "./PricingPopup"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import routes from "../../routes"
 
 export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc, subscriptionTypesRef, setContentPopup, setUpdateHeaderData, setShowPopup}) => {
     const navigate = useNavigate()
+    const location = useLocation()
     const [currentBalance, setCurrentBalance] = useState(0)
     const [pickedSubType, setPickedSubType] = useState((subscriptionTypesRef && subscriptionTypesRef.current) ? subscriptionTypesRef.current[0] : null)
     const handleSelect = (subscriptionTypesDesc, index) => {
@@ -107,7 +108,6 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
         <div className={`pricingSubProContainer ${className}`}>
             <div className="pricingSubTitle">
                 <p>Подписка</p>
-                <p>Активен</p>
             </div>
             <div className="divider"></div>
             <div className="pricingSubWrapper">
@@ -119,6 +119,7 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
                         </div>
                     ))}
                 </div>
+                {location.pathname !== routes.HOME &&
                 <div className="prcingSubButton">
                     {subscriptionTypesDesc &&
                     <DropdownList key={"prcingSubDropdown0"}
@@ -127,7 +128,7 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
                     <Button key={"pricingSubButton0"}
                             buttonText={"Приобрести"}
                             buttonFunc={handlePurchaseButtonClick}/>
-                </div>
+                </div>}
             </div>
         </div>
     )
