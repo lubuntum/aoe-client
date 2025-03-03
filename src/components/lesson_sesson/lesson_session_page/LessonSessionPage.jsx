@@ -21,6 +21,8 @@ import routes from '../../../routes'
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
+import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker"
+import { speechUrls } from "../../../speechUrls"
 /*
 TODO фишка сделать массив stages где будут хранится все стадии 
 прохождения экзамена, помимо стадии выделить текущее задания
@@ -53,7 +55,8 @@ export const LessonSessionPage = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const {speak} = useLessonSpeaker();
+    const {speak} = useLessonSpeaker()
+    const {speakAudio} = useAudioSpeaker()
     useEffect(()=>{
         const loadTasksByVariantId = async () => {
             const response = await getTasksByVariantId(variant.id)
@@ -80,20 +83,27 @@ export const LessonSessionPage = () => {
         }
         loadTasksByVariantId()
     }, [])
-
+    /**@param callback функция после окончания речи (закончить экзамен или задание)  */
+    const endSpeech = (callback) => {
+        try {
+            speakAudio(speechUrls["TEST_END"], async ()=>{//isLoadingTrue
+                await callback()
+            })
+        } catch (err) {
+            speak("This is the end of the test", async ()=>{//isLoadingTrue
+                await callback()
+            })
+        }
+    }
     const handleNextTask = (audioResult) => {
         audioResultsRef.current.push(audioResult)
         //audioResultsRef.current.forEach((audioRes, ind) => console.log(`${ind} ${audioRes.audio}`))
         if (variant.pickedTaskType) {
-            speak("This is the end of the test", async ()=>{//isLoadingTrue
-                await endTaskSession()
-            })
+            endSpeech(endTaskSession)
             return
         }
         if (currentTask.taskType >= 4) {//isLoadingTrue
-            speak("This is the end of the test", async ()=>{
-                await endExamSession()
-            })
+            endSpeech(endExamSession)
             return;
         }//Потом если == 4 или 1 задача закончить тест
         //TaskType всегда больше на единицу чем индекс сессии соотв. задания
