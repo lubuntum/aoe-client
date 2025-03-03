@@ -74,13 +74,21 @@ export const deleteVariantData = async (variantId) => {
         {headers : {Authorization : localStorage.getItem("token")}})
     return response
 }
-export const sendTasksForVariant = async (tasks, secondTaskImg, fourthTaskImg1, fourthTaskImg2, variantId) => {
+export const sendTasksForVariant = async (tasks, secondTaskImg, fourthTaskImg1, fourthTaskImg2, speakerRecord, questionsRecords, variantId) => {
     const formData = new FormData()
     formData.append("tasks", JSON.stringify(tasks))
     formData.append("img", secondTaskImg)
     formData.append("firstImg", fourthTaskImg1)
     formData.append("secondImg", fourthTaskImg2)
+    formData.append("speakerRecord", speakerRecord)
+    for(let i = 0; i < questionsRecords.length; i++){
+        formData.append("questionsRecords", questionsRecords[i])
+        console.log(`added to form ${questionsRecords[i]}`)
+    }
+        
     formData.append("variantId", variantId)
+    console.log(formData.getAll("questionsRecords"))
+    console.log(formData.get("img"))
     const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_TASKS}`,
         formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}}
     )

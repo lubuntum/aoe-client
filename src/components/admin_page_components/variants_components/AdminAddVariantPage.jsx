@@ -142,32 +142,35 @@ export const AdminAddVariantPage = () => {
     const getRequestDataFromValues = () => {
         const replaceFileForSedning = (sendData, original, key) => {
             sendData[key] = original[key]
-            original[key] = "%s"
+            original[key] = key
         }
-        replaceFileForSedning(imagesForSendingRef.current, secondTaskValues, "img")
-        replaceFileForSedning(imagesForSendingRef.current, fourthTaskValues, "firstImg")
-        replaceFileForSedning(imagesForSendingRef.current, fourthTaskValues, "secondImg")
-        replaceFileForSedning(recordsForSendingsRef.current, thirdTaskValues, "speakerRecord")
-        thirdTaskValues.questionsRecords = 
-            thirdTaskValues.questionsRecords.map((record, index) => {
-                console.log(recordsForSendingsRef.current.questionsRecords)
-                recordsForSendingsRef.current.questionsRecords[index] = record
-                return "%s"
-                //replaceFileForSedning(recordsForSendingsRef.current.questionsRecords[index], record)
-            })
-            
-        console.log(imagesForSendingRef.current)
-        console.log(recordsForSendingsRef.current)
+        imagesForSendingRef.current.img = secondTaskValues.img
+        secondTaskValues.img = "%img"
+        imagesForSendingRef.current.firstImg = fourthTaskValues.firstImg
+        fourthTaskValues.firstImg = "%firstImg"
+        imagesForSendingRef.current.secondImg = fourthTaskValues.secondImg
+        fourthTaskValues.secondImg = "%secondImg"
+        recordsForSendingsRef.current.speakerRecord = thirdTaskValues.speakerRecord
+        thirdTaskValues.speakerRecord = "%speakerRecord"
+        //console.log(imagesForSendingRef.current.img)
+        //console.log(secondTaskValues.img)
+        
         return [{"taskType": 1, "taskContent": JSON.stringify(convertValuesToArray(firstTaskValues))},
                 {"taskType": 2, "taskContent": JSON.stringify(filterValuesForSending(secondTaskValues))},
-                {"taskType": 3, "taskContent": JSON.stringify(thirdTaskValues)},
+                {"taskType": 3, "taskContent": JSON.stringify({...thirdTaskValues, 
+                    questionsRecords: thirdTaskValues.questionsRecords.map((record, index) => {
+                        recordsForSendingsRef.current.questionsRecords[index] = record //проверить!
+                        return `%questionRecord${index}`
+                        //replaceFileForSedning(recordsForSendingsRef.current.questionsRecords[index], record)
+                    })
+                })},
                 {"taskType": 4, "taskContent": JSON.stringify(filterValuesForSending(fourthTaskValues))}]
     }
 
     const createVariant = async () => {
         try {
-            //const response = await sendVariantData(variantValues)
-            //await sendTasksData(response.data)
+            const response = await sendVariantData(variantValues)
+            await sendTasksData(response.data)
             console.log("Variant created!")
         } catch (err) {
             console.error("Error while variant create!", err)
@@ -176,11 +179,17 @@ export const AdminAddVariantPage = () => {
 
     const sendTasksData = async (variant) => {
         try {
-            await sendTasksForVariant(getRequestDataFromValues())
+            await sendTasksForVariant(getRequestDataFromValues(),
+                                    imagesForSendingRef.current.img,
+                                    imagesForSendingRef.current.firstImg,
+                                    imagesForSendingRef.current.secondImg,
+                                    recordsForSendingsRef.current.speakerRecord,
+                                    recordsForSendingsRef.current.questionsRecords,//TODO не те файлы, строки
+                                    variant.id)
             setStatus("Вариант создан!")
             resetFields()
         } catch (err) {
-            status("Ошибка при создании варианта!")
+            setStatus("Ошибка при создании варианта!")
             console.log("Error while send tasks data!", err)
         } finally {
             setTimeout(() => {
@@ -190,7 +199,7 @@ export const AdminAddVariantPage = () => {
     }
 
     const print = () => {
-        console.log(getRequestDataFromValues())
+        //console.log(getRequestDataFromValues())
         console.log("variant:---", variantValues)
         console.log("1:---", firstTaskValues)
         console.log("2:---", secondTaskValues)

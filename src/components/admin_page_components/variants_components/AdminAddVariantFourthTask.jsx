@@ -84,12 +84,14 @@ export const AdminAddVariantFourthTask = ({taskValues, onChange}) => {
                         <InputFile inputFileName={taskValues.firstImg ? taskValues.firstImg.name : "Выберите 1-ое изображение"}
                                    inputFileWidth={"320px"}
                                    inputFileOnChange={handleFirstImgChange}
-                                   inputFileFor={"variantFourthTaskFirstimg"}/>
+                                   inputFileFor={"variantFourthTaskFirstimg"}
+                                   accept={"image/*"}/>
 
                         <InputFile inputFileName={taskValues.secondImg ? taskValues.secondImg.name : "Выберите 2-ое изображение"}
                                    inputFileWidth={"320px"}
                                    inputFileOnChange={handleSecondImgChange}
-                                   inputFileFor={"variantFourthTaskSecondimg"}/>
+                                   inputFileFor={"variantFourthTaskSecondimg"}
+                                   accept={"image/*"}/>
                     </div>
                 </div>
             </div>

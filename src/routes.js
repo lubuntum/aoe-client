@@ -12,7 +12,8 @@ const PARTNER = "/partner"
 const USER_AGREEMENT = "/user-agreement"
 const PRIVACY_POLICE = "/privacy-police"
 const PAYMENT_REDIRECT = "/payment-redirect"
-const ADD_VARIANT = "/add_variant"
+const ADD_VARIANT = "/add-variant"
+const EDIT_VARIANT = "/edit-variant"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -28,7 +29,8 @@ const routes = {
     USER_AGREEMENT,
     PRIVACY_POLICE,
     PAYMENT_REDIRECT,
-    ADD_VARIANT
+    ADD_VARIANT,
+    EDIT_VARIANT
 }
 
 export default routes

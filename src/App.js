@@ -31,6 +31,7 @@ import routes from "./routes"
 import { PartnerPage } from './components/partner_page_components/PartnerPage';
 import { PaymentRedirect } from './components/payment_components/PaymentRedirect';
 import { AdminAddVariantPage } from './components/admin_page_components/variants_components/AdminAddVariantPage';
+import { AdminEditVariantPage } from './components/admin_page_components/variants_components/edit_variant/AdminEditVariantPage';
 
 function App() {
     return (
@@ -66,6 +67,7 @@ const Main = () => {
                 <Route path={routes.PRIVACY_POLICE}            element = {<ProtectedRoute component={<PrivacyPolice/>}/>}/>
                 <Route path={routes.PAYMENT_REDIRECT}          element = {<ProtectedRoute component={<PaymentRedirect/>}/>}/>
                 <Route path={routes.ADD_VARIANT}               element = {<ProtectedRoute component={<AdminAddVariantPage/>}/>}/>
+                <Route path={routes.EDIT_VARIANT}              element = {<ProtectedRoute component={<AdminEditVariantPage/>}/>}/>
             </Routes>
         </div>
     )

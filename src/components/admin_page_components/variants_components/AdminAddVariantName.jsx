@@ -34,7 +34,8 @@ export const AdminAddVariantName = ({variantValues, onChange}) => {
                            inputFileName={variantValues.variantImg ? variantValues.variantImg.name : "Выберите изображение"}
                            inputFileWidth={"300px"}
                            inputFileOnChange={handleImgChange}
-                           inputFileFor={"variantImg"}/>
+                           inputFileFor={"variantImg"}
+                           accept={"image/*"}/>
             </div>
         </div>
     )

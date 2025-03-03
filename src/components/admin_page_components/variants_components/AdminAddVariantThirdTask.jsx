@@ -59,7 +59,8 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                 <InputFile inputFileName={taskValues.speakerRecord ? taskValues.speakerRecord.name : "Выберите файл озвучки"}
                            inputFileWidth={"300px"}
                            inputFileOnChange={handleSpeakerChange}
-                           inputFileFor={"variantThirdTaskAudio0"}/>
+                           inputFileFor={"variantThirdTaskAudio0"}
+                           accept={"audio/*"}/>
 
                 <div className="addVariantQuestionWrapper">
                     {taskValues.questions.map((question, index) => (
@@ -75,7 +76,8 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                                 <InputFile inputFileName={taskValues.questionsRecords[index] ? taskValues.questionsRecords[index].name : "Выберите файл озвучки"}
                                            inputFileWidth={"300px"}
                                            inputFileOnChange={(e) => handleAudioChange(index, e.target.files[0])}
-                                           inputFileFor={`variantThirdTaskAudio${index + 1}`}/>
+                                           inputFileFor={`variantThirdTaskAudio${index + 1}`}
+                                           accept={"audio/*"}/>
                             </div>
                         </div>
                     ))}

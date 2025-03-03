@@ -75,7 +75,8 @@ export const AdminAddVariantSecondTask = ({taskValues, onChange}) => {
                                    inputFileName={taskValues.img ? taskValues.img.name : "Выберите изображение"}
                                    inputFileWidth={"300px"}
                                    inputFileOnChange={handleImgChange}
-                                   inputFileFor={"variantSecondTaskImg"}/>
+                                   inputFileFor={"variantSecondTaskImg"}
+                                   accept={"image/*"}/>
 
                         <InputField key={"addVariantInput5"}
                                     inputType={"text"}
