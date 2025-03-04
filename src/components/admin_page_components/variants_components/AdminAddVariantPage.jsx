@@ -14,7 +14,7 @@ import { AdminAddVariantOptions } from "./AdminAddVariantOptions"
 import { hasAllValues } from "../../../modules/validation_modules/hasAllValuesValidation"
 import { sendTasksForVariant, sendVariantData } from "../../../modules/api_modules/variantAPI"
 
-export const AdminAddVariantPage = () => {
+export const AdminAddVariantPage = ({variant = null}) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const { logout } = useAuth()
 
@@ -48,6 +48,15 @@ export const AdminAddVariantPage = () => {
                   subTasks: Array(4).fill(""),
                   firstImg: null,
                   secondImg: null})
+
+    useEffect(() => {
+        if(variant) {
+            setFirstTaskValues(variant.variantTasks.find((task) => task.taskType.type === 1).taskContent)
+            setSecondTaskValues(variant.variantTasks.find((task) => task.taskType.type === 2).taskContent)
+            setThirdTaskValues(variant.variantTasks.find((task) => task.taskType.type === 3).taskContent)
+            setFourthTaskValues(variant.variantTasks.find((task) => task.taskType.type === 1).taskContent)
+        }
+    }, [variant])
 
     const [currentComponent, setCurrentComponent] = useState(1)
     const [variantValidate, setVariantValidate] = useState(false)
