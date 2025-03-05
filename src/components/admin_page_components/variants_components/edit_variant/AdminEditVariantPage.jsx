@@ -53,6 +53,6 @@ export const AdminEditVariantPage = () => {
 
     return (<>
         {status === variantEditStatuses.IDLE && <Loader />}
-        {status === variantEditStatuses.READY && <AdminAddVariantPage variant={variant}/>}
+        {status === variantEditStatuses.READY && <AdminAddVariantPage variant={variant} loadEditedVariant={getVariantByIdForEdit}/>}
     </>)
 }

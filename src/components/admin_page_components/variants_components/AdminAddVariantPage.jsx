@@ -12,9 +12,9 @@ import { AdminAddVariantThirdTask } from "./AdminAddVariantThirdTask"
 import { AdminAddVariantFourthTask } from "./AdminAddVariantFourthTask"
 import { AdminAddVariantOptions } from "./AdminAddVariantOptions"
 import { hasAllValues } from "../../../modules/validation_modules/hasAllValuesValidation"
-import { sendTasksForVariant, sendVariantData } from "../../../modules/api_modules/variantAPI"
+import { editVariant, editVarianTasks, sendTasksForVariant, sendVariantData } from "../../../modules/api_modules/variantAPI"
 
-export const AdminAddVariantPage = ({variant = null}) => {
+export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const { logout } = useAuth()
 
@@ -53,11 +53,13 @@ export const AdminAddVariantPage = ({variant = null}) => {
         if(variant) {
             setFirstTaskValues(variant.variantTasks.find((task) => task.taskType.type === 1).taskContent)
             setSecondTaskValues(variant.variantTasks.find((task) => task.taskType.type === 2).taskContent)
-            setThirdTaskValues(variant.variantTasks.find((task) => task.taskType.type === 3).taskContent)
-            setFourthTaskValues(variant.variantTasks.find((task) => task.taskType.type === 1).taskContent)
+            setThirdTaskValues((prev) => ({...prev, ...variant.variantTasks.find((task) => task.taskType.type === 3).taskContent}))
+            setFourthTaskValues(variant.variantTasks.find((task) => task.taskType.type === 4).taskContent)
+            
+            setVariantValues({variantName: variant.theme, variantImg: variant.imagePath})
         }
     }, [variant])
-
+    
     const [currentComponent, setCurrentComponent] = useState(1)
     const [variantValidate, setVariantValidate] = useState(false)
     const [tasksValidate, setTasksValidate] = useState([false, false, false, false])
@@ -153,14 +155,23 @@ export const AdminAddVariantPage = ({variant = null}) => {
             sendData[key] = original[key]
             original[key] = key
         }
-        imagesForSendingRef.current.img = secondTaskValues.img
-        secondTaskValues.img = "%img"
-        imagesForSendingRef.current.firstImg = fourthTaskValues.firstImg
-        fourthTaskValues.firstImg = "%firstImg"
-        imagesForSendingRef.current.secondImg = fourthTaskValues.secondImg
-        fourthTaskValues.secondImg = "%secondImg"
-        recordsForSendingsRef.current.speakerRecord = thirdTaskValues.speakerRecord
-        thirdTaskValues.speakerRecord = "%speakerRecord"
+        if (secondTaskValues.img instanceof File) {
+            imagesForSendingRef.current.img = secondTaskValues.img
+            secondTaskValues.img = "%img"
+        }
+        if (fourthTaskValues.firstImg instanceof File) {
+            imagesForSendingRef.current.firstImg = fourthTaskValues.firstImg
+            fourthTaskValues.firstImg = "%firstImg"
+        }
+        if (fourthTaskValues.secondImg instanceof File){
+            imagesForSendingRef.current.secondImg = fourthTaskValues.secondImg
+            fourthTaskValues.secondImg = "%secondImg"
+        }
+        if (thirdTaskValues.speakerRecord instanceof File) {
+            recordsForSendingsRef.current.speakerRecord = thirdTaskValues.speakerRecord
+            thirdTaskValues.speakerRecord = "%speakerRecord"
+        }
+        
         //console.log(imagesForSendingRef.current.img)
         //console.log(secondTaskValues.img)
         
@@ -168,8 +179,11 @@ export const AdminAddVariantPage = ({variant = null}) => {
                 {"taskType": 2, "taskContent": JSON.stringify(filterValuesForSending(secondTaskValues))},
                 {"taskType": 3, "taskContent": JSON.stringify({...thirdTaskValues, 
                     questionsRecords: thirdTaskValues.questionsRecords.map((record, index) => {
-                        recordsForSendingsRef.current.questionsRecords[index] = record //проверить!
-                        return `%questionRecord${index}`
+                        if (record instanceof File){
+                            recordsForSendingsRef.current.questionsRecords[index] = record //проверить!
+                            return `%questionRecord${index}`
+                        }
+                        return record
                         //replaceFileForSedning(recordsForSendingsRef.current.questionsRecords[index], record)
                     })
                 })},
@@ -185,7 +199,6 @@ export const AdminAddVariantPage = ({variant = null}) => {
             console.error("Error while variant create!", err)
         }
     }
-
     const sendTasksData = async (variant) => {
         try {
             await sendTasksForVariant(getRequestDataFromValues(),
@@ -206,6 +219,25 @@ export const AdminAddVariantPage = ({variant = null}) => {
             }, 3000)
         }
     }
+    const editTasksData = async () => {
+        const response = await editVarianTasks(getRequestDataFromValues(), 
+                                                imagesForSendingRef.current.img, 
+                                                imagesForSendingRef.current.firstImg,
+                                                imagesForSendingRef.current.secondImg,
+                                                recordsForSendingsRef.current.speakerRecord,
+                                                recordsForSendingsRef.current.questionsRecords,//TODO не те файлы, строки
+                                                variant.id)
+        await loadEditedVariant(variant.id)
+    }
+    const editVariantData = async () => {
+        try {
+            await editVariant({...variantValues, id: variant.id})
+            await editTasksData()
+            console.log("Variant created!")
+        } catch (err) {
+            console.error("Error while variant create!", err)
+        }
+    }
 
     const print = () => {
         //console.log(getRequestDataFromValues())
@@ -214,7 +246,10 @@ export const AdminAddVariantPage = ({variant = null}) => {
         console.log("2:---", secondTaskValues)
         console.log("3:---", thirdTaskValues)
         console.log("4:---", fourthTaskValues)
-        createVariant()
+        console.log(recordsForSendingsRef.current)
+        //if variant is not null then there is editing process
+        variant ? editVariantData() : createVariant()
+        //createVariant()
     }
 
     const AddVariantTasksComponents = {
