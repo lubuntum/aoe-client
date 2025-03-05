@@ -38,7 +38,9 @@ export const AdminAddVariantFourthTask = ({taskValues, onChange}) => {
             })
         }
     }
-
+    const showImageInfo = (data) => {
+        return !data ? "Выберите изображение" : data.name ? data.name : data
+    }
     return (
         <div className="addVariantTaskContainer">
             <div className="addVariantTaskWrapper">
@@ -81,13 +83,13 @@ export const AdminAddVariantFourthTask = ({taskValues, onChange}) => {
                 <div className="addVariantImgWrapper">
                     <p>Изображения к заданию</p>
                     <div className="addVariantImgContainer">
-                        <InputFile inputFileName={taskValues.firstImg ? taskValues.firstImg.name : "Выберите 1-ое изображение"}
+                        <InputFile inputFileName={showImageInfo(taskValues.firstImg)}
                                    inputFileWidth={"320px"}
                                    inputFileOnChange={handleFirstImgChange}
                                    inputFileFor={"variantFourthTaskFirstimg"}
                                    accept={"image/*"}/>
 
-                        <InputFile inputFileName={taskValues.secondImg ? taskValues.secondImg.name : "Выберите 2-ое изображение"}
+                        <InputFile inputFileName={showImageInfo(taskValues.secondImg)}
                                    inputFileWidth={"320px"}
                                    inputFileOnChange={handleSecondImgChange}
                                    inputFileFor={"variantFourthTaskSecondimg"}

@@ -19,7 +19,9 @@ export const AdminAddVariantName = ({variantValues, onChange}) => {
             })
         }
     }
-
+    const showImageInfo = (data) => {
+        return data === null ? "Выберите изображение" : data.name ? data.name : data
+    }
     return (
         <div className="addVariantNameContainer">
             <p>Наименование и изображение для варианта</p>
@@ -31,7 +33,7 @@ export const AdminAddVariantName = ({variantValues, onChange}) => {
                             inputOnChange={(e)=>handleInputChange("variantName", e.target.value)}/>
 
                 <InputFile key={"addVariantInputFile0"}
-                           inputFileName={variantValues.variantImg ? variantValues.variantImg.name : "Выберите изображение"}
+                           inputFileName={showImageInfo(variantValues.variantImg)}
                            inputFileWidth={"300px"}
                            inputFileOnChange={handleImgChange}
                            inputFileFor={"variantImg"}

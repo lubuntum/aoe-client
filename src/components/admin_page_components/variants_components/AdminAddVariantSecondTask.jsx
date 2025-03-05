@@ -29,7 +29,12 @@ export const AdminAddVariantSecondTask = ({taskValues, onChange}) => {
             })
         }
     }
-
+    /**
+     * data can have only three states - null, File, path depend on variant state(create, edit etc)
+     * */
+    const showImageInfo = (data) => {
+        return !data ? "Выберите изображение" : data.name ? data.name : data
+    }
     return (
         <div className="addVariantTaskContainer">
             <div className="addVariantTaskWrapper">
@@ -72,7 +77,7 @@ export const AdminAddVariantSecondTask = ({taskValues, onChange}) => {
                     <p>Изображение к заданию</p>
                     <div className="addVariantImgContainer">
                         <InputFile key={"addVariantInputFile0"}
-                                   inputFileName={taskValues.img ? taskValues.img.name : "Выберите изображение"}
+                                   inputFileName={showImageInfo(taskValues.img)}
                                    inputFileWidth={"300px"}
                                    inputFileOnChange={handleImgChange}
                                    inputFileFor={"variantSecondTaskImg"}

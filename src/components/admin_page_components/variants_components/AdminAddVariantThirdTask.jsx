@@ -37,7 +37,10 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
             questionsRecords: updatedAudioFiles
         })
     }
-
+    const showRecordInfo = (data) => {
+        return !data ? "Выберите файл озвучки" : data.name ?
+        data.name : data
+    }
     return (
         <div className="addVariantTaskContainer">
             <div className="addVariantTaskWrapper">
@@ -56,7 +59,7 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                           textareaHeight={"80px"}
                           textareaOnChange={(e)=>handleInputChange("speaker", e.target.value)}/>
                           
-                <InputFile inputFileName={taskValues.speakerRecord ? taskValues.speakerRecord.name : "Выберите файл озвучки"}
+                <InputFile inputFileName={showRecordInfo(taskValues.speakerRecord)}
                            inputFileWidth={"300px"}
                            inputFileOnChange={handleSpeakerChange}
                            inputFileFor={"variantThirdTaskAudio0"}
@@ -73,7 +76,7 @@ export const AdminAddVariantThirdTask = ({taskValues, onChange}) => {
                                             inputPlaceholder={"---"}
                                             inputOnChange={(e)=>handleQuestionChange(index, e.target.value)}/>
 
-                                <InputFile inputFileName={taskValues.questionsRecords[index] ? taskValues.questionsRecords[index].name : "Выберите файл озвучки"}
+                                <InputFile inputFileName={showRecordInfo(taskValues.questionsRecords[index]) }
                                            inputFileWidth={"300px"}
                                            inputFileOnChange={(e) => handleAudioChange(index, e.target.files[0])}
                                            inputFileFor={`variantThirdTaskAudio${index + 1}`}
