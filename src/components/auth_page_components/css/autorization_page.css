@@ -141,7 +141,11 @@
     height: 1px;
     background-color: var(--gray);
 }
-
+.createDeclineContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
 
 
 .loginContainerPopup {

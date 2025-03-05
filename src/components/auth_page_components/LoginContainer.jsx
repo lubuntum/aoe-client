@@ -90,12 +90,6 @@ export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, regis
 
     return (
         <div className={`autorizationContainer ${loginToggle ? "active" : ""}`}>
-            <div className="loginContainerBack">
-                <Button key={"loginTitleButton0"}
-                        buttonText={"Назад на главную"}
-                        buttonType={"link"}
-                        buttonFunc={()=>navigate(routes.HOME)}/>
-            </div>
             <div className={`loginContainer`}>
                 <div className={`loginContainerPopup ${popup !== null ? "popupActive" : ""} ${(registrationConfirm) ? "popupGood" : ""}`}>{popup}</div>
                 {popup === null &&
@@ -143,10 +137,17 @@ export const LoginContainer = ({handleToggle, loginToggle, setLoginToggle, regis
                         <div className="hl"></div>
                     </div>
 
-                    <Button key={"loginButton2"}
-                            buttonText={"Создать аккаунт"}
-                            buttonWidth={"100%"}
-                            buttonFunc={handleToggle}/>
+                    <div className="createDeclineContainer">
+                        <Button key={"loginButton2"}
+                                buttonText={"Создать аккаунт"}
+                                buttonWidth={"100%"}
+                                buttonFunc={handleToggle}/>
+                        <Button key={"cancelButton0"}
+                                buttonText={"На главную"}
+                                buttonType={"outline"}
+                                buttonWidth={"100%"}
+                                buttonFunc={()=>{navigate(routes.HOME)}}/>
+                    </div>
                 </div>
             </div>
 

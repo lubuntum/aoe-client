@@ -5,6 +5,8 @@ import "./css/email_confirmation_page.css"
 import "./css/autorization_page.css"
 import "./css/autorization_page_media.css"
 import { resetPasswordCustomerEmailRequest, resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
+import { useNavigate } from "react-router-dom"
+import routes from "../../routes"
 /**
  * TODO добавить компонент для перехода по ссылке и сброс самого пароля.
  */
@@ -16,6 +18,7 @@ const statuses = {
     FORMAT_ERROR: "FORMAT_ERROR"
 }
 export const ForgetPasswordContainer = ({setForgetPassword}) => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [status, setStatus] = useState(statuses.IDLE)
@@ -37,48 +40,39 @@ export const ForgetPasswordContainer = ({setForgetPassword}) => {
         }
     }
     return(
-        <>
-            <div className={`autorizationContainer active`}>
-                <div className="loginContainerBack">
-                    <Button key={"loginTitleButton0"}
-                            buttonText={"Логин"}
-                            buttonType={"link"}
-                            buttonFunc={()=>setForgetPassword(false)}/>
+        <div className={`autorizationContainer active`}>
+            <div className={`loginContainer`}>
+                <div className={`loginContainerPopup ${(status === statuses.SUCCESS) && "popupActive popupGood"}`}>Пожалуйста проверьте свою почту</div>
+                <div className={`loginContainerPopup ${(status === statuses.EMPTY) && "popupActive"}`}>Заполните все поля</div>
+                <div className={`loginContainerPopup ${(status === statuses.FORMAT_ERROR) && "popupActive"}`}>Напишите почту в верном формате</div>
+                <div className={`loginContainerPopup ${(status === statuses.ERROR) && "popupActive"}`}>Возникла ошибка, попробуйте снова</div>
+                {status === statuses.IDLE &&
+                    <h2>Сброс пароля</h2>}
+                <div className="loginContainerImage">
+                    {status === statuses.IDLE &&
+                    <div className="loginContainerImageBlur"></div>}
+                    <img src="https://img.freepik.com/premium-photo/people-generating-images-using-artificial-intelligence-laptop_23-2150794312.jpg?w=1380"></img>
                 </div>
-                <div className={`loginContainer`}>
-                        <div className={`loginContainerPopup ${(status === statuses.SUCCESS) && "popupActive popupGood"}`}>Пожалуйста проверьте свою почту</div>
-                        <div className={`loginContainerPopup ${(status === statuses.EMPTY) && "popupActive"}`}>Заполните все поля</div>
-                        <div className={`loginContainerPopup ${(status === statuses.FORMAT_ERROR) && "popupActive"}`}>Напишите почту в верном формате</div>
-                        <div className={`loginContainerPopup ${(status === statuses.ERROR) && "popupActive"}`}>Возникла ошибка, попробуйте снова</div>
-                        {status === statuses.IDLE &&
-                        <h2>TestMy<span>Eng</span></h2>}
-                        <div className="loginContainerImage">
-                            {status === statuses.IDLE &&
-                            <div className="loginContainerImageBlur"></div>}
-                            <img src="https://img.freepik.com/premium-photo/people-generating-images-using-artificial-intelligence-laptop_23-2150794312.jpg?w=1380"></img>
-                        </div>
-                        <div className="loginContainerInputs">
-                            <InputField key={"loginInput0"}
-                                        inputType={"text"}
-                                        inputValue={email}
-                                        inputPlaceholder={"Электронная почта"}
-                                        inputOnChange={(e)=>{setEmail(e.target.value)}}/>
-        
-                            <InputField key={"loginInput1"}
-                                        inputType={"password"}
-                                        inputValue={password}
-                                        inputPlaceholder={"Примерный пароль"}
-                                        hideIndicator={true}
-                                        inputOnChange={(e)=>{setPassword(e.target.value)}}/>
-                        </div>
-                        <Button key={"loginButton1"}
+                <div className="loginContainerInputs">
+                    <InputField key={"loginInput0"}
+                                inputType={"text"}
+                                inputValue={email}
+                                inputPlaceholder={"Электронная почта"}
+                                inputOnChange={(e)=>{setEmail(e.target.value)}}/>
+                </div>
+                <div className="createDeclineContainer">
+                    <Button key={"resetButton0"}
                             buttonType={status === statuses.SUCCESS ? "block" : ""}
-                            buttonText={"Сбросить"}
+                            buttonText={"Отправить"}
                             buttonWidth={"100%"}
                             buttonFunc={()=>{resetPasswordEmail()}}/>
-                        
-                    </div>
+                    <Button key={"cancelButton3"}
+                            buttonText={"Назад"}
+                            buttonType={"outline"}
+                            buttonWidth={"100%"}
+                            buttonFunc={()=>{setForgetPassword(false)}}/>
+                </div>  
             </div>
-        </>
+        </div>
     )
 }

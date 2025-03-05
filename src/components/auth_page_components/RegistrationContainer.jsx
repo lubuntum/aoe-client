@@ -118,12 +118,6 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
 
     return (
         <div className={`autorizationContainer ${!loginToggle ? "active" : location.pathname === routes.PARTNERSHIP_AUTHORIZATION ? "active" : ""}`}>
-            <div className="loginContainerBack">
-                <Button key={"registrationTitleButton0"}
-                        buttonText={"Назад на главную"}
-                        buttonType={"link"}
-                        buttonFunc={()=>navigate(routes.HOME)}/>
-            </div>
             <div className={`registrationContainer`}>
                 <div className={`loginContainerPopup ${popup !== null ? "popupActive" : ""}`}>{popup}</div>
                 {popup === null &&
@@ -206,11 +200,20 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                 </div>
 
                 <div className="orContainer">
-                    <Button key={"registrationButton0"}
-                            buttonText={"Регистрация"}
-                            buttonType={`${(privacyPolice && userAgreement) ? "" : "block"}`}
-                            buttonWidth={"100%"}
-                            buttonFunc={sendCustomerData}/>
+                    <div className="createDeclineContainer">
+                        <Button key={"registrationButton0"}
+                                buttonText={"Регистрация"}
+                                buttonType={`${(privacyPolice && userAgreement) ? "" : "block"}`}
+                                buttonWidth={"100%"}
+                                buttonFunc={sendCustomerData}/>
+                        {location.pathname === routes.PARTNERSHIP_AUTHORIZATION &&
+                        <Button key={"cancelButton1"}
+                                buttonText={"На главную"}
+                                buttonType={"outline"}
+                                buttonWidth={"100%"}
+                                buttonFunc={()=>{navigate(routes.HOME)}}/>}
+                    </div>
+
 
                     {location.pathname !== routes.PARTNERSHIP_AUTHORIZATION && <>
                     <div className="dividerContainer">
@@ -219,10 +222,17 @@ export const RegistrationContainer = ({handleToggle, loginToggle, setLoginToggle
                         <div className="hl"></div>
                     </div>
                     
-                    <Button key={"registrationButton1"}
-                            buttonText={"Войти в аккаунт"}
-                            buttonWidth={"100%"}
-                            buttonFunc={handleToggle}/></>}
+                    <div className="createDeclineContainer">
+                        <Button key={"registrationButton1"}
+                                buttonText={"Войти в аккаунт"}
+                                buttonWidth={"100%"}
+                                buttonFunc={handleToggle}/>
+                        <Button key={"cancelButton2"}
+                                buttonText={"На главную"}
+                                buttonType={"outline"}
+                                buttonWidth={"100%"}
+                                buttonFunc={()=>{navigate(routes.HOME)}}/>
+                    </div></>}
                 </div>
             </div>
 

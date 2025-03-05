@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Button } from "../reusible_components/Button"
 import { DropdownList } from "../reusible_components/DropdownList"
 import { getHeaderData } from "../../modules/api_modules/accountAPI"
@@ -6,6 +6,7 @@ import { purchaseSubscription } from "../../modules/api_modules/subscriptionAPI"
 import { PricingPopup } from "./PricingPopup"
 import { useLocation, useNavigate } from "react-router-dom"
 import routes from "../../routes"
+import { createPayment } from "../../modules/api_modules/paymentAPI"
 
 export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc, subscriptionTypesRef, setContentPopup, setUpdateHeaderData, setShowPopup}) => {
     const navigate = useNavigate()
@@ -17,6 +18,11 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
         //TODO send request for buying subscription for user (other stuff on the server side)
     }
 
+    const handleRemainsPurchase = useCallback(async (price) => {
+        const response = await createPayment(localStorage.getItem("token"), price)
+        window.location.href = response.data.confirmation.confirmation_url
+    }, [])
+
     const handlePurchaseSubscription = async () => {
         try {
             const response = await purchaseSubscription(localStorage.getItem("token"), pickedSubType.id)
@@ -25,7 +31,7 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
                 setContentPopup(() => (props) => (
                     <PricingPopup
                         warningMessage={"Успех!"}
-                        messageText={"Подписка на наш сервис успешно оформлена. Теперь у Вас есть доступ ко всем преимуществам и эксклюзивному контенту."}
+                        messageText={"Подписка на наш сервис успешно оформлена. Теперь у Вас есть доступ ко всем преимуществам и эксклюзивному контенту. Остаток времени подписки вы сможете увидеть в своем личном кабинете!"}
                         acceptButton={<Button key={"purchaseButton4"}
                                               buttonText={"Закрыть"}
                                               buttonWidth={"100%"}
@@ -46,17 +52,17 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
         if (currentBalance < pickedSubType.price) {
             setContentPopup(() => (props) => (
                 <PricingPopup 
-                    warningMessage={"Внимание!"}
+                    warningMessage={"Недостаточно средств!"}
                     messageText={"На Вашем балансе недостаточно средств для оформления подписки!"}
-                    messageCost={"На Вашем балансе должно быть минимум:"}
-                    cost={pickedSubType.price}
-                    messageConfirmation={"Подписка может быть оформлена сразу после оплаты в сервисе для платежей! Вы хотите оформить подписку сразу после оплаты?"}
+                    messageCost={"На Вашем балансе не хватает:"}
+                    cost={pickedSubType.price - currentBalance}
+                    messageConfirmation={"Хотите пополнить баланс на недостающую сумму? После пополнения вы сможете приобрести необходимую подписку на этой же странице!"}
                     acceptButton={<Button key={"purchaseButton0"}
                                           buttonText={"Да"}
                                           buttonWidth={"100%"}
                                           buttonFunc={()=>{
                                               setShowPopup(false)
-                                              console.log("Здесь надо перенаправить на оплату подписки!")}}/>}
+                                              handleRemainsPurchase(pickedSubType.price - currentBalance)}}/>}
                     declineButton={<Button key={"purchaseButton1"}
                                            buttonText={"Нет"}
                                            buttonType={"outline"}
@@ -70,7 +76,7 @@ export const PricingSubPro = ({className, pricingSubDesc, subscriptionTypesDesc,
             setContentPopup(() => (props) => (
                 <PricingPopup
                     warningMessage={"Внимание!"}
-                    messageText={`У Вас на балансе хватает денег для покупки подписки на ${pickedSubType.monthsCount} мес.`}
+                    messageText={`Вы хотите приобрести подписку на ${pickedSubType.monthsCount} мес.`}
                     messageCost={"С Вашего баланса спишется:"}
                     cost={pickedSubType.price}
                     messageConfirmation={"Вы подтверждаете что хотите приобрести подписку?"}
