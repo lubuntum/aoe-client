@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_ADMIN_DELETE_VARIANT, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_ADMIN_VARIANT_VISIBILITY, API_ADMIN_VARIANTS, API_AVAILABLE_VARIANTS, API_AVAILABLE_VARIANTS_BY_PAGE, API_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_AVAILABLE_COUNT, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../config";
+import { API_ADMIN_DELETE_VARIANT, API_ADMIN_EDIT_VARIANT, API_ADMIN_EDIT_VARIANT_TASKS, API_ADMIN_SEND_VARIANT, API_ADMIN_UPLOAD_TASKS, API_ADMIN_UPLOAD_VARIANT, API_ADMIN_VARIANT_VISIBILITY, API_ADMIN_VARIANTS, API_AVAILABLE_VARIANTS, API_AVAILABLE_VARIANTS_BY_PAGE, API_VARIANT, API_VARIANT_TASKS_DATA, API_VARIANTS_AVAILABLE_COUNT, API_VARIANTS_DATA, SERVER_API_URL, USER_DATA_KEY } from "../../config";
 import { getCurrentDate } from "../date_modules/currentDate";
 
 export const getVisibleVariants = async () => {
@@ -62,11 +62,38 @@ export const updateVariantVisibility = async (variantId, visibility, token) => {
 export const sendVariantData = async (variant) => {
     const formData = new FormData()
     formData.append('variantImg', variant.variantImg)
-    formData.append('variantName', variant.variantName)
+    formData.append('variantTheme', variant.variantName)
     formData.append('creationDate', getCurrentDate())
     
     const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_VARIANT}`,
          formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}})
+    return response
+}
+export const editVariant = async (variant) => {
+    console.log(variant)
+    const formData = new FormData()
+    formData.append('variantImg', variant.variantImg)
+    formData.append('variantTheme', variant.variantName)
+    const url = API_ADMIN_EDIT_VARIANT.replace("%d", variant.id)
+    console.log(`${SERVER_API_URL}${url}`)
+    const response = await axios.post(`${SERVER_API_URL}${url}`, formData, 
+        {headers: {Authorization: localStorage.getItem("token")}}
+    )
+    return response
+}
+export const editVarianTasks = async (tasks, secondTaskImg, fourthTaskImg1, fourthTaskImg2, speakerRecord, questionsRecords, variantId) => {
+    const formData = new FormData()
+    formData.append("tasks", JSON.stringify(tasks))
+    formData.append("img", secondTaskImg)
+    formData.append("firstImg", fourthTaskImg1)
+    formData.append("secondImg", fourthTaskImg2)
+    formData.append("speakerRecord", speakerRecord)
+    for(let i = 0; i < questionsRecords.length; i++)
+        formData.append("questionsRecords", questionsRecords[i])
+    const url = API_ADMIN_EDIT_VARIANT_TASKS.replace("%d", variantId)
+    const response = await axios.post(`${SERVER_API_URL}${url}`,
+        formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}}
+    )
     return response
 }
 export const deleteVariantData = async (variantId) => {
@@ -81,14 +108,11 @@ export const sendTasksForVariant = async (tasks, secondTaskImg, fourthTaskImg1, 
     formData.append("firstImg", fourthTaskImg1)
     formData.append("secondImg", fourthTaskImg2)
     formData.append("speakerRecord", speakerRecord)
-    for(let i = 0; i < questionsRecords.length; i++){
+    for(let i = 0; i < questionsRecords.length; i++)
         formData.append("questionsRecords", questionsRecords[i])
-        console.log(`added to form ${questionsRecords[i]}`)
-    }
         
     formData.append("variantId", variantId)
-    console.log(formData.getAll("questionsRecords"))
-    console.log(formData.get("img"))
+
     const response = await axios.post(`${SERVER_API_URL}${API_ADMIN_UPLOAD_TASKS}`,
         formData, {headers : {Authorization : localStorage.getItem("token"),"Content-Type": 'multipart/form-data'}}
     )
