@@ -149,6 +149,14 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
         const { desc, text, ...rest } = value
         return { ...rest, taskText: [value.text, value.desc] }
     }
+    const convertListForSending = (arr) => {
+        return arr.map((item, index) => {
+            if (!(item instanceof File)) 
+                return new File([], `empty-${index}`)
+            
+            return item
+        })
+    }
 
     const getRequestDataFromValues = () => {
         const replaceFileForSedning = (sendData, original, key) => {
@@ -171,7 +179,7 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
             recordsForSendingsRef.current.speakerRecord = thirdTaskValues.speakerRecord
             thirdTaskValues.speakerRecord = "%speakerRecord"
         }
-        
+        recordsForSendingsRef.current.questionsRecords = convertListForSending(recordsForSendingsRef.current.questionsRecords)
         //console.log(imagesForSendingRef.current.img)
         //console.log(secondTaskValues.img)
         
@@ -228,6 +236,9 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
                                                 recordsForSendingsRef.current.questionsRecords,//TODO не те файлы, строки
                                                 variant.id)
         await loadEditedVariant(variant.id)
+        setStatus("Вариант изменен успешно")
+        
+        
     }
     const editVariantData = async () => {
         try {
@@ -239,7 +250,7 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
         }
     }
 
-    const print = () => {
+    const sendData = () => {
         //console.log(getRequestDataFromValues())
         console.log("variant:---", variantValues)
         console.log("1:---", firstTaskValues)
@@ -247,9 +258,8 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
         console.log("3:---", thirdTaskValues)
         console.log("4:---", fourthTaskValues)
         console.log(recordsForSendingsRef.current)
-        //if variant is not null then there is editing process
         variant ? editVariantData() : createVariant()
-        //createVariant()
+
     }
 
     const AddVariantTasksComponents = {
@@ -260,7 +270,10 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
     }
 
     const CurrentComponent = AddVariantTasksComponents[currentComponent]
-
+    useEffect(()=>{
+        const timer = setTimeout(()=>setStatus(""),3500)
+        return ()=> clearTimeout(timer)
+    }, [status])
     return (<>
         {!isAdmin ? <p>Not found 404</p> : <>
         <HeaderMain/>
@@ -275,7 +288,8 @@ export const AdminAddVariantPage = ({variant = null, loadEditedVariant = null}) 
                                                 tasksValidate={tasksValidate}
                                                 variantValidate={variantValidate} 
                                                 status={status}
-                                                printFunc={print}/>
+                                                sendData={sendData}
+                                                variant={variant}/>
                     </div>
                 </div>
             </div>

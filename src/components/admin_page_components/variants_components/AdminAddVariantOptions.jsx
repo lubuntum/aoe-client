@@ -1,6 +1,6 @@
 import { Button } from "../../reusible_components/Button"
 
-export const AdminAddVariantOptions = ({setCurrentComponent, printFunc, tasksValidate, variantValidate, status}) => {
+export const AdminAddVariantOptions = ({setCurrentComponent, sendData, tasksValidate, variantValidate, status, variant = null}) => {
     const allTaskValid = tasksValidate.every(value => value === true)
 
     return (
@@ -17,17 +17,17 @@ export const AdminAddVariantOptions = ({setCurrentComponent, printFunc, tasksVal
             </div>
             <div className="addVariantOptionsComplete">
                 <div className="addVariantOptionsStatus">
-                    {status}
+                    {status && status}
                 </div>
                 {(variantValidate && allTaskValid) ? 
                 <Button key={"addVariantOptionsButton4"}
-                        buttonText={"Добавить"}
+                        buttonText={`${variant ? "Изменить" : "Добавить"}`}
                         buttonPadding={"0 20px"}
                         buttonWidth={"150px"}
-                        buttonFunc={printFunc}/> : 
+                        buttonFunc={sendData}/> : 
                 <Button key={"addVariantOptionsButton5"}
                         buttonType={"block"}
-                        buttonText={"Добавить"}
+                        buttonText={`${variant ? "Изменить" : "Добавить"}`}
                         buttonPadding={"0 20px"}
                         buttonWidth={"150px"}/>}
             </div>
