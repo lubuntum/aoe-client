@@ -25,7 +25,6 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
         {text: "Главная", func: () => createButtonFunc("section0")},
         {text: "Преимущества", func: () => createButtonFunc("section1")},
         {text: "Как начать учиться", func: () => createButtonFunc("section2")},
-        {text: "Преимущества подписки", func: () => createButtonFunc("section3")},
         {text: "FAQ", func: () => createButtonFunc("section5")},
         {text: "Услуги и цены", func: () => navigate(routes.PRICING)},
         {text: "Варианты", func: () => navigate(routes.TASK)},
@@ -60,7 +59,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                             <p>Контакты</p>
                             <p><span>ФИО: </span>Осипов Вячеслав Сергеевич</p>
                             <p><span>Email: </span>osipowvs@gmail.com</p>
-                            <p><span>Номер тел.: </span>+7(902)014-3737</p>
+                            <p><span>Тел.: </span>+7(902)014-3737</p>
                             <p><span>ИНН: </span>1900012716</p>
                         </div>
                     </div>

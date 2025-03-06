@@ -20,6 +20,9 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    padding: 0 35px;
     transition: all .2s ease;
 }
 .dropdownToggle .svgIcon {
@@ -38,6 +41,9 @@
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    z-index: 999;
 }
 .dropdownItem {
     display: flex;

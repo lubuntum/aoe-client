@@ -43,6 +43,7 @@ export const PartnerForm = ({className, partner, setPartner, partnerTypeText}) =
     const handlePartnerType = (value) => {
         handlePartnerChange("type", value)
     }
+    
     const loadPartnerData = async () => {
         try {
             const response = await updatePartnerData(localStorage.getItem("token"), partner)

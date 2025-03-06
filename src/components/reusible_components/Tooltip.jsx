@@ -6,7 +6,7 @@ export const Tooltip = ({tooltipText}) => {
     return (<>
         <div className="tooltipContainer">
             <div className="tooltipIcon">
-                <HelpIcon/>
+                <HelpIcon className="svgIcon"/>
             </div>
             <div className="tooltipText">
                 <p>{tooltipText}</p>

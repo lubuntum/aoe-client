@@ -1,4 +1,6 @@
 import "./css/pricing.css"
+import "./css/new_pricing.css"
+import "./css/pricing_popup.css"
 
 import { useMemo } from "react"
 
@@ -7,6 +9,11 @@ import proBackground from "../../res/images/pro_subscription_background.png"
 import paymentBackground from "../../res/images/payment_balance_backgorund.png"
 
 import { HeaderMain } from "../header_components/HeaderMain"
+import { PricingBalance } from "./PricingBalance"
+import { PricingSubBase } from "./PricingSubBase"
+import { PricingSubPro } from "./PricingSubPro"
+import { PricingSubProLoading } from "./PricingSubProLoading"
+import { Popup } from "../reusible_components/Popup"
 import { PricingSubscriptionCard } from "./PricingSubscriptionCard"
 import { PricingBalanceCard } from "./PricingBalanceCard"
 import { FooterMain } from "../footer_components/FooterMain"
@@ -18,6 +25,8 @@ import { getAllValidSubscriptionTypes } from "../../modules/api_modules/subscrip
 
 export const PricingPage = () => {
     const subscriptionTypesRef = useRef(null)
+    const [showPopup, setShowPopup] = useState(false)
+    const [contentPopup, setContentPopup] = useState()
     const proPricing = ["150₽ / 1 мес.", "300₽ / 2 мес.", "600₽ / 4 мес.", "800₽ / 6 мес.", "1250₽ / 9 мес."]
     const paymentPricing = ["50₽", "100₽", "200₽", "300₽", "600₽", "1200₽"]
     const [subscriptionTypesDesc, setSubscriptionTypesDesc] = useState(null)
@@ -39,27 +48,62 @@ export const PricingPage = () => {
         <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспресс проверка 1 экзамена: 200₽</p>,
         <p><Tooltip tooltipText={"Экспертная проверка осуществляется членом предметной комиссии ЕГЭ по английскому языку"}/> Экспертная проверка 1 экзамена: 700₽</p>]
 
+    const pricingSubBaseDesc = useMemo(() => [
+        "Базовый план доступен после регистрации", 
+        "Моментальный доступ к 5 вариантам для прохождения", 
+        "Хранение результатов в течении 24 часов"
+    ], [])
+    const pricingSubProDesc = useMemo(() => [
+        "Моментальный доступ ко всем вариантам", 
+        "Приветственный баланс на 1 экспресс проверку",
+        "Хранение результатов пока активна подписка"
+    ], [])
+
+    useEffect(() => {
+        {document.body.style.overflow = showPopup ? "hidden" : "auto"}
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [showPopup])
+
     useEffect(()=>{
         getAllValidSubscriptionsRequest()
     }, [])
+
     const getAllValidSubscriptionsRequest = async () => {
         try {
             const response = await getAllValidSubscriptionTypes()
-            subscriptionTypesRef.current = response.data
-            setSubscriptionTypesDesc(response.data.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
+            subscriptionTypesRef.current = response.data.sort((a, b) => a.price - b.price)
+            setSubscriptionTypesDesc(subscriptionTypesRef.current.map(s=>`${s.price}₽ / ${s.monthsCount} мес.`))
         } catch(e){
             console.log(e)
         }
     }
     return (<>
         <HeaderMain updateData={updateHeaderData} setUpdateData={setUpdateHeaderData}/>
+        {showPopup && <Popup component={contentPopup} setShowPopup={setShowPopup}/>}
         <div className='sectionWrapper'>
             <div className='contentWrapper'>
                 <div className="pricingWrapper">
                     <div className="pricingGrid">
-                        <PageTitle pageTitleText={error ? "Пополните кошелек" : "Приобрести #подписку#"} className={"pricingGridItem1"} titleStyle={error && {color:"red"}}/>
+                        <PageTitle pageTitleText={"Пополнить #баланс# / Приобрести #подписку#"} className={"pricingGridItem1"}/>
 
-                        <PricingSubscriptionCard className={"pricingGridItem2"} 
+                        <PricingBalance className={"pricingGridItem2"}/>
+
+                        <PricingSubBase className={"pricingGridItem3"}
+                                        pricingSubDesc={pricingSubBaseDesc}/>
+
+                        {subscriptionTypesDesc ? 
+                        <PricingSubPro className={"pricingGridItem4"}
+                                       pricingSubDesc={pricingSubProDesc}
+                                       subscriptionTypesDesc={subscriptionTypesDesc}
+                                       subscriptionTypesRef={subscriptionTypesRef}
+                                       setUpdateHeaderData={setUpdateHeaderData}
+                                       setContentPopup={setContentPopup}
+                                       setShowPopup={setShowPopup}/> : 
+                        <PricingSubProLoading className={"pricingGridItem4"}/>}
+
+                        {/*<PricingSubscriptionCard className={"pricingGridItem2"} 
                                                  contentSwap={false}
                                                  subscriptionType={"base"}
                                                  subscriptionName={"Базовый план"}
@@ -82,10 +126,10 @@ export const PricingPage = () => {
  
                         <PageTitle pageTitleText={"Пополнить #баланс#"} className={"pricingGridItem4"}/>
 
-                        <PricingBalanceCard className={"pricingGridItem5"}
+                        <PricingBalanceCard className={"pricingGridItem8"}
                                             paymentBG={paymentBackground}
                                             paymentPricing={paymentPricing}
-                                            paymentDescription={paymentDescription}/>
+                                            paymentDescription={paymentDescription}/>*/}
                     </div>
                 </div>
             </div>
