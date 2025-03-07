@@ -1,0 +1,21 @@
+@media (max-width: 780px) {
+    .taskComplitionAudio audio {
+        width: 100%;
+    }
+    .taskImgsContainerResult {
+        display: flex;
+        flex-direction: column;
+    }
+    .taskImgResult {
+        width: 100%;
+    }
+}
+@media (max-width: 425px) {
+    .taskComplitionOptions {
+        display: flex;
+        flex-direction: column;
+    }
+    .taskComplitionOptions .button {
+        width: 100%;
+    }
+}

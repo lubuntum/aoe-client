@@ -10,6 +10,7 @@ export const MicroPerfomance = ({setMicroCheck}) => {
     return (<>
         <div className="microCheckWrapper">
             <PageTitle pageTitleText={"#Проверка# микрофона"}/>
+            
             <MicroPerfomanceCheck setMicroCheck = {setMicroCheck}/>
         </div>
     </>)

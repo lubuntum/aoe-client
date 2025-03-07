@@ -54,7 +54,8 @@
     background-color: var(--white);
     border-radius: 20px;
     font-size: 1rem;
-    font-weight: 600;
+    line-height: 30px;
+    font-weight: 500;
     margin-bottom: 20px;
 }
 .accordionDetails[open] + .accordionContent:last-child {
