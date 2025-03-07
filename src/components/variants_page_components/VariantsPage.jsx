@@ -28,7 +28,13 @@ export const VariantsPage = () => {
                     setIsSub(isSubResponse?.data ? isSubResponse.data : false)
                 }
                 else setIsSub(false)
-                setVariants(response.data);
+                response.data.content = response.data.content.sort((a,b)=>{
+                    console.log(a)
+                    if (a.theme.toLowerCase() < b.theme.toLowerCase()) return -1
+                    if (a.theme.toLowerCase() > b.theme.toLowerCase()) return 1
+                    return 0
+                })
+                setVariants(response.data)
             } catch(e) {
                 setVariants(null)
             }

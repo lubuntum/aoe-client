@@ -14,7 +14,7 @@ export const speechUrls = {
     [TASK_TWO_START] : `${SERVER_API_URL}/speaker/task_two_start.mp3`,
     [TASK_THREE_START] : `${SERVER_API_URL}/speaker/task_three_start.mp3`,
     [TASK_FOUR_START] : `${SERVER_API_URL}/speaker/task_four_start.mp3`,
-    SPEAKING_START: `${SERVER_API_URL}/speaker/speaking_start.mp3`,
+    SPEAKING_START: `${SERVER_API_URL}/speaker/start_speaking.mp3`,
     TEST_END: `${SERVER_API_URL}/speaker/test_end.mp3`,
     
 }
