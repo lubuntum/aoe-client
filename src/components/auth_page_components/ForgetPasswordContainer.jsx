@@ -20,11 +20,11 @@ const statuses = {
 export const ForgetPasswordContainer = ({setForgetPassword}) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [password, setPassword] = useState("empty")
     const [status, setStatus] = useState(statuses.IDLE)
     const resetPasswordEmail = async () => {
         const emailRegex = /\S+@\S+\.\S+/;
-        if (!email || !password){
+        if (!email){
             setStatus(statuses.EMPTY)
             return
         }
