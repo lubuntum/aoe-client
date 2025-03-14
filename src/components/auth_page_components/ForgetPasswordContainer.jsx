@@ -1,78 +1,72 @@
 import { useState } from "react"
 import { Button } from "../reusible_components/Button"
 import { InputField } from "../reusible_components/InputField"
-import "./css/email_confirmation_page.css"
-import "./css/autorization_page.css"
-import "./css/autorization_page_media.css"
-import { resetPasswordCustomerEmailRequest, resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
-import { useNavigate } from "react-router-dom"
-import routes from "../../routes"
+import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
+import authStatuses from "../../modules/auth_modules/authStatuses"
+import { Loader } from "../reusible_components/Loader"
 /**
  * TODO добавить компонент для перехода по ссылке и сброс самого пароля.
  */
-const statuses = {
-    IDLE: "IDLE",
-    SUCCESS: "SUCCESS",
-    ERROR: "ERROR",
-    EMPTY: "EMPTY",
-    FORMAT_ERROR: "FORMAT_ERROR"
-}
-export const ForgetPasswordContainer = ({setForgetPassword}) => {
-    const navigate = useNavigate()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [status, setStatus] = useState(statuses.IDLE)
-    const resetPasswordEmail = async () => {
-        const emailRegex = /\S+@\S+\.\S+/;
-        if (!email || !password){
-            setStatus(statuses.EMPTY)
+export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
+    const [forgetEmail, setForgetEmail] = useState()
+    const [forgetProcessing, setForgetProcessing] = useState(false)
+
+    const handleSubmit = async() => {
+        setForgetProcessing(true)
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        if (!forgetEmail) {
+            setAuthorizationStatus(authStatuses.ERROR_FORGET_EMAIL_EMPTY)
+            setForgetProcessing(false)
             return
         }
-        if (!emailRegex.test(email)){
-            setStatus(statuses.FORMAT_ERROR)
+        if (!regex.test(forgetEmail)) {
+            setAuthorizationStatus(authStatuses.ERROR_EMAIL_NOT_VALID)
+            setForgetProcessing(false)
             return
         }
-        try{
-            const response = await resetPasswordEmailRequest(email, password)
-            setStatus(statuses.SUCCESS)
-        } catch(err) {
-            setStatus(statuses.ERROR)
+        try {
+            const response = await resetPasswordEmailRequest(forgetEmail)
+            setAuthorizationStatus(authStatuses.SUCCESS_FORGET_EMAIL_SEND)
+            setForgetProcessing(false)
+        } catch (err) {
+            setAuthorizationStatus(authStatuses.ERROR_FORGET_EMAIL_FAILED)
+            setForgetProcessing(false)
         }
     }
-    return(
-        <div className={`autorizationContainer active`}>
-            <div className={`loginContainer`}>
-                <div className={`loginContainerPopup ${(status === statuses.SUCCESS) && "popupActive popupGood"}`}>Пожалуйста проверьте свою почту</div>
-                <div className={`loginContainerPopup ${(status === statuses.EMPTY) && "popupActive"}`}>Заполните все поля</div>
-                <div className={`loginContainerPopup ${(status === statuses.FORMAT_ERROR) && "popupActive"}`}>Напишите почту в верном формате</div>
-                <div className={`loginContainerPopup ${(status === statuses.ERROR) && "popupActive"}`}>Возникла ошибка, попробуйте снова</div>
-                {status === statuses.IDLE &&
-                    <h2>Сброс пароля</h2>}
-                <div className="loginContainerImage">
-                    {status === statuses.IDLE &&
-                    <div className="loginContainerImageBlur"></div>}
-                    <img src="https://img.freepik.com/premium-photo/people-generating-images-using-artificial-intelligence-laptop_23-2150794312.jpg?w=1380"></img>
-                </div>
-                <div className="loginContainerInputs">
-                    <InputField key={"loginInput0"}
-                                inputType={"text"}
-                                inputValue={email}
-                                inputPlaceholder={"Электронная почта"}
-                                inputOnChange={(e)=>{setEmail(e.target.value)}}/>
-                </div>
-                <div className="createDeclineContainer">
-                    <Button key={"resetButton0"}
-                            buttonType={status === statuses.SUCCESS ? "block" : ""}
-                            buttonText={"Отправить"}
-                            buttonWidth={"100%"}
-                            buttonFunc={()=>{resetPasswordEmail()}}/>
-                    <Button key={"cancelButton3"}
-                            buttonText={"Назад"}
-                            buttonType={"outline"}
-                            buttonWidth={"100%"}
-                            buttonFunc={()=>{setForgetPassword(false)}}/>
-                </div>  
-            </div>
+
+    return(<>
+        <div className="authorizationTitle">
+            <p onClick={() => {handleReturnHome()}}>TestMy<span>Eng</span></p>
+            <p>&gt;</p>
+            <p>Сброс пароля</p>
         </div>
-    )
+
+        <div className="forgetContainerInputs">
+            <InputField key={"forgetInput0"}
+                        inputType={"text"}
+                        inputValue={forgetEmail}
+                        inputPlaceholder={"Электронная почта"}
+                        inputOnChange={(e) => {setForgetEmail(e.target.value)}}/>
+        </div>
+
+        <div className="forgetOrContainer">
+            {!forgetProcessing ?
+            <Button key={"forgetButton1"}
+                    buttonText={"Сбросить пароль"}
+                    buttonWidth={"100%"}
+                    buttonFunc={handleSubmit}/> : 
+            <Loader/>}
+            
+            <div className="forgetContainerDivider">
+                <div className="divider"></div>
+                <p>или</p>
+                <div className="divider"></div>
+            </div>
+
+            <Button key={"fogetButton2"}
+                    buttonText={"Назад"}
+                    buttonWidth={"100%"}
+                    buttonFunc={() => onChangeContent(1)}/>
+        </div>
+    </>)
 }

@@ -1,182 +1,154 @@
 .autorizationWrapper {
     position: relative;
     height: calc(100vh - 80px);
+    overflow: hidden;
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.autorizationContainer {
-    position: absolute;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity .5s ease, transform .5s ease;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.autorizationContainer.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.loginContainer {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--white);
-    border-radius: 20px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 20px;
-    width: 600px;
-    box-shadow: 0 5px 10px var(--black-shadow);
-}
-.loginContainerInputs,
-.registrationContainerInputs {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 150px;
-}
-.loginContainer h2,
-.registrationContainer h2 {
-    width: 100%;
-    position: absolute;
-    top: 65px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 9999;
-    color: var(--white);
-    text-align: center;
-}
-.loginContainer h2 span {
-    color: var(--blue);
-    font-size: 700;
-}
-.loginContainerImage,
-.registrationContainerImage {
+.authorizationStatusContainer {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
 }
-.loginContainerImage img,
-.registrationContainerImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.loginContainerImageBlur,
-.registrationContainerImageBlur {
+.authContent {
     position: absolute;
-    background-color: var(--glassmorph-transparent);
-    backdrop-filter: blur(3px);
-    width: 100%;
-    height: 100%;
+    transition: transform .4s ease, opacity .4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    user-select: none;
+    pointer-events: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 20px;
+    width: 600px;
+    box-shadow: 0 5px 10px var(--black-shadow);
+    z-index: 0;
 }
-.loginContainerBack {
-    margin-left: 40px;
+.authContent.active {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 999;
 }
-.forgetContainer {
+
+.authorizationTitle {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.authorizationTitle p:nth-child(1) span {
+    font-weight: 700;
+    color: var(--blue);
+}
+.authorizationTitle p:nth-child(1) {
+    cursor: pointer;
+}
+
+.loginContainerInputs,
+.registartionContainerInputs,
+.forgetContainerInputs,
+.resetPasswordInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.loginContainerForget {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: end;
-    margin-right: 20px;
-    margin-left: 20px;
 }
-.registrationContainer {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--white);
-    border-radius: 20px;
-    padding: 40px;
+
+.loginOrContainer,
+.registrationOrContainer,
+.forgetOrContainer {
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    gap: 20px;
-    width: 600px;
-    box-shadow: 0 5px 10px var(--black-shadow);
+    gap: 15px;
 }
-.partnerContainer {
+.registrationOrContainer .loaderContainer,
+.forgetOrContainer .loaderContainer,
+.resetOrContainer .loaderContainer {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
-.documentsCheckContainer {
+.loginContainerDivider,
+.registrationContainerDivider,
+.forgetContainerDivider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.registrationContainerDocuments {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-left: 20px;
+    gap: 10px;
     justify-content: start;
     align-items: start;
+    width: 100%;
 }
 .documentsCheck {
     display: flex;
     flex-direction: row;
     gap: 5px;
 }
-.orContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.dividerContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-.dividerContainer .hl {
-    width: 100%;
-    height: 1px;
-    background-color: var(--gray);
-}
-.createDeclineContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
 
-
-.loginContainerPopup {
+.confirmationEmailWrapper,
+.resetPasswordWrapper {
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-wrap: wrap;
+    gap: 20px;
     padding: 40px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    z-index: 9999;
-    border-radius: 20px 20px 0 0;
-    background-color: var(--bad-transparent);
-    backdrop-filter: blur(3px);
-    color: var(--white);
-    font-size: 1.25rem;
-    font-weight: 500;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity .3s ease, transform .3s ease;
+    background-color: var(--white);
+    border-radius: 20px;
+    width: 600px;
+    box-shadow: 0 5px 10px var(--black-shadow);
 }
-.loginContainerPopup.popupActive {
+.emailStatus,
+.resetStatus {
+    text-align: center;
+}
+
+.authorizationStatusContainer {
+    transform: translateY(-20px);
+    opacity: 0;
+    z-index: 9999;
+    transition: transform .4s ease, opacity .4s ease;
+    width: 600px;
+}
+.authorizationStatusContainer.visible {
     opacity: 1;
     transform: translateY(0);
 }
-.loginContainerPopup.popupGood {
-    background-color: var(--good-transparent);
+.authorizationStatusContainer .statusMessage {
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.authorizationStatusContainer .error {
+    background-color: var(--bad);
+}
+.authorizationStatusContainer .success {
+    background-color: var(--good);
 }

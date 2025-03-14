@@ -27,6 +27,7 @@
         flex: 1 1 50%;
     }
     .footerCred {
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;

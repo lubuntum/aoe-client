@@ -67,6 +67,7 @@
     transition: all .2s ease;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 .footerSocials a:hover .svgIcon {
     color: var(--blue);

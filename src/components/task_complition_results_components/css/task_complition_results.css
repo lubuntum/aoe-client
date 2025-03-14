@@ -30,6 +30,8 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
 }
 .taskComplitionExamAudio {
     padding-top: 40px;
@@ -47,4 +49,26 @@
     padding-bottom: 5px;
     gap: 20px;
     width: 100%;
+}
+
+.examComplitionOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.examComplitionOptions p {
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+}
+.examCabinetLink {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }

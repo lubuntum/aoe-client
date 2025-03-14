@@ -4,7 +4,7 @@ import "./css/task_complition_results_media.css"
 import { ReactComponent as DownloadIcon } from "../../res/icons/download_24dp_gi.svg"
 import { ReactComponent as LinkIcon } from "../../res/icons/link_24dp_gi.svg"
 
-import { useAsyncError, useLocation } from "react-router-dom"
+import { useAsyncError, useLocation, useNavigate } from "react-router-dom"
 import { HeaderMain } from "../header_components/HeaderMain"
 import { useEffect, useState } from "react"
 import { getTasksByVariantId, getVariantById } from "../../modules/api_modules/variantAPI"
@@ -15,8 +15,11 @@ import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
+import routes from "../../routes"
 
 export const ExamComplitionResultsPage = () => {
+    const { isAuth } = useAuth()
+    const navigate = useNavigate()
     const query = new URLSearchParams(useLocation().search)
     const examId = query.get('examId')
     const variantId = query.get('variantId')
@@ -75,19 +78,29 @@ export const ExamComplitionResultsPage = () => {
                                         </div>
                                     </div>
                                 </>))}
-                                <div className="taskComplitionOptions">
-                                    <Button key={0}
-                                            buttonPadding={"0 20px"}
-                                            buttonType={"block"}
-                                            buttonIcon={<DownloadIcon className="svgIcon"/>}
-                                            buttonText={"Скачать"}
-                                            buttonFunc={()=>{}}/>
-                                    <Button key={1}
-                                            buttonPadding={"0 20px"}
-                                            buttonIcon={<LinkIcon className="svgIcon"/>}
-                                            buttonText={"Cсылка"}
-                                            isCopyButton={true}
-                                            buttonFunc={shareTask}/>
+                                <div className="examComplitionOptions">
+                                    <div className="taskComplitionOptions">
+                                        <Button key={"examComplitionButton1"}
+                                                buttonPadding={"0 20px"}
+                                                buttonType={"block"}
+                                                buttonIcon={<DownloadIcon className="svgIcon"/>}
+                                                buttonText={"Скачать"}
+                                                buttonFunc={()=>{}}/>
+                                        <Button key={"examComplitionButton2"}
+                                                buttonPadding={"0 20px"}
+                                                buttonIcon={<LinkIcon className="svgIcon"/>}
+                                                buttonText={"Cсылка"}
+                                                isCopyButton={true}
+                                                buttonFunc={shareTask}/>
+                                    </div>
+                                    {isAuth && 
+                                    <div className="examCabinetLink">
+                                        <p>Вы можете увидеть свои сохраненные записи и отправить их на проверку из личного кабинета, выбрав нужный ВАРИАНТ и ЭКЗАМЕН</p>
+                                        <Button key={"examComplitionButton3"}
+                                                buttonPadding={"0 20px"}
+                                                buttonText={"Личный кабинет"}
+                                                buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>
+                                    </div>}
                                 </div>
                             </>}
                         </div>

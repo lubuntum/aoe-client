@@ -1,62 +1,64 @@
-@media (max-width: 735px) {
-    .loginContainer,
-    .registrationContainer {
-        width: 500px;
+@media (max-width: 768px) {
+    .authContent {
+        width: 100%;
+        box-shadow: 0 0 0 transparent;
+    }
+    .authorizationStatusContainer {
+        width: 100%;
+    }
+    .authorizationStatusContainer .statusMessage {
+        font-size: .875rem;
+        text-align: center;
+        padding: 10px;
     }
 }
-@media (max-width: 638px) {
+
+@media (max-width: 500px) {
+    .authContent button span {
+        font-size: .875rem;
+    }
     .autorizationWrapper {
         height: calc(100vh - 40px);
     }
-    .autorizationContainer {
-        width: 100%;
-    }
-    .loginContainer,
-    .registrationContainer {
-        width: 100%;
+    .authContent {
         padding: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
-    .loginContainerInputs,
-    .registrationContainerInputs {
-        margin-top: 105px;
+    .authorizationTitle {
+        display: flex;
+        flex-direction: column;
     }
-    .loginContainer h2,
-    .registrationContainer h2 {
-        top: 40px;
-        font-size: 1.25rem;
-    }
-    .loginContainerImage,
-    .registrationContainerImage {
-        height: 100px;
-    }
-    .forgetContainer {
-        margin: 0;
-        font-size: 0.825rem;
-    }
-    .forgetContainer button span {
-        font-size: 0.825rem;
-    }
-    .documentsCheckContainer {
-        margin: 0;
-        gap: 10px;
-    }
-    .documentsCheck {
-        gap: 5px;
-        font-size: 0.825rem;
-    }
-    .documentsCheck button span {
-        font-size: 0.825rem;
-    }
-    .orContainer {
-        gap: 10px;
-    }
-    .orContainer .hl {
+    .authorizationTitle p:nth-child(2) {
         display: none;
     }
-
-    .loginContainerPopup {
-        height: 100px;
-        font-size: 1rem;
-        font-weight: 400;
+    .authorizationTitle p:nth-child(3) {
+        font-size: 1.25rem;
+    }
+    .loginContainerForget {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 15px;
+        font-size: .875rem;
+    }
+    .loginContainerForget button span {
+        font-size: .875rem;
+    }
+    .documentsCheck {
+        font-size: .875rem;
+        gap: 3px;
+    }
+    .documentsCheck button span {
+        font-size: .875rem;
+    }
+    .authContent input {
+        font-size: .875rem;
+    }
+    .loginContainerDivider,
+    .registrationContainerDivider,
+    .forgetContainerDivider {
+        font-size: .875rem;
     }
 }

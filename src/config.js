@@ -6,7 +6,7 @@ export const AUTH_VARIANTS_AVAILABLE = 5
 
 export const GUEST_NAME = "Гость"
 //Линк сервера
-export const SERVER_API_URL = "https://192.168.18.17:8080"
+export const SERVER_API_URL = "http://localhost:8080"
 //Роуты для валидации
 export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"

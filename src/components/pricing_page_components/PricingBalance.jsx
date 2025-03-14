@@ -3,8 +3,13 @@ import { Tooltip } from "../reusible_components/Tooltip"
 import { InputField } from "../reusible_components/InputField"
 import { useCallback, useState } from "react"
 import { createPayment } from "../../modules/api_modules/paymentAPI"
+import { useAuth } from "../../modules/auth_modules/AuthProvider.js"
+import { useNavigate } from "react-router-dom"
+import routes from "../../routes.js"
 
 export const PricingBalance = ({className}) => {
+    const { isAuth } = useAuth()
+    const navigate = useNavigate()
     const [value, setValue] = useState("")
     const [valuePlaceholder, setValuePlaceholder] = useState("Своя сумма")
     const handleChange = (event) => {
@@ -49,7 +54,7 @@ export const PricingBalance = ({className}) => {
                             buttonType={"outline"}
                             buttonWidth={"100%"}
                             buttonText={"Пополнить на 50₽"}
-                            buttonFunc={()=>handleStaticButtonClick(50)}/>
+                            buttonFunc={()=>{isAuth ? handleStaticButtonClick(50) : navigate(routes.AUTORIZATION)}}/>
                 </div>
                 <div className="pricingBalanceItem">
                     <div className="pricingBalanceName">
@@ -60,7 +65,7 @@ export const PricingBalance = ({className}) => {
                             buttonType={"outline"}
                             buttonWidth={"100%"}
                             buttonText={"Пополнить на 200₽"}
-                            buttonFunc={()=>handleStaticButtonClick(200)}/>
+                            buttonFunc={()=>{isAuth ? handleStaticButtonClick(200) : navigate(routes.AUTORIZATION)}}/>
                 </div>
                 <div className="pricingBalanceItem">
                     <div className="pricingBalanceName">
@@ -71,7 +76,7 @@ export const PricingBalance = ({className}) => {
                             buttonType={"outline"}
                             buttonWidth={"100%"}
                             buttonText={"Пополнить на 700₽"}
-                            buttonFunc={()=>handleStaticButtonClick(700)}/>
+                            buttonFunc={()=>{isAuth ? handleStaticButtonClick(700) : navigate(routes.AUTORIZATION)}}/>
                 </div>
                 <div className="pricingBalanceSumItem">
                     <div className="pricingBalanceName">
@@ -88,7 +93,7 @@ export const PricingBalance = ({className}) => {
                         </div>
                         <Button key={"pricingBalanceButton3"}
                                 buttonText={"Пополнить"}
-                                buttonFunc={()=>handleCustomerButtonClick(value)}/>
+                                buttonFunc={()=>{isAuth ? handleCustomerButtonClick(value) : navigate(routes.AUTORIZATION)}}/>
                     </div>
                 </div>
             </div>

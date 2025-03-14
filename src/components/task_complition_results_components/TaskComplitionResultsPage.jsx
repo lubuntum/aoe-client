@@ -5,7 +5,7 @@ import { ReactComponent as DownloadIcon } from "../../res/icons/download_24dp_gi
 import { ReactComponent as LinkIcon } from "../../res/icons/link_24dp_gi.svg"
 
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { getTaskByTaskId } from "../../modules/api_modules/taskAPI"
 import { getCustomerTaskByCustomerTaskId } from "../../modules/api_modules/resultAPI"
 import { HeaderMain } from "../header_components/HeaderMain"
@@ -15,12 +15,15 @@ import { SERVER_API_URL } from "../../config"
 import { PageTitle } from "../reusible_components/PageTitle"
 import { Button } from "../reusible_components/Button"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
+import routes from "../../routes"
 /** TODO сделать API к получению getTaskByTaskId и getCustomerTaskByCustomerTaskId 
  * Затем сделать API для получения CustomerTasks для панели результатов по заданию
  * Сделать транскрибацию react-speech-recognition во время записи ответа
 */
 
 export const TaskComplitionResultsPage = () => {
+    const { isAuth } = useAuth()
+    const navigate = useNavigate()
     const query = new URLSearchParams(useLocation().search)
     const taskId = query.get('taskId')
     const customerTaskId = query.get('customerTaskId')
@@ -65,19 +68,25 @@ export const TaskComplitionResultsPage = () => {
                                     <p>Ваша запись:</p>
                                     <audio controls src={`${SERVER_API_URL}/${customerTask.audioPath}`}></audio>
                                     <div className="taskComplitionOptions">
-                                        <Button key={0}
+                                        <Button key={"taskComplitionButton0"}
                                                 buttonPadding={"0 20px"}
                                                 buttonType={"block"}
                                                 buttonIcon={<DownloadIcon className="svgIcon"/>}
                                                 buttonText={"Скачать"}
                                                 buttonFunc={()=>{}}/>
-                                        <Button key={1}
+                                        <Button key={"taskComplitionButton1"}
                                                 buttonPadding={"0 20px"}
                                                 buttonIcon={<LinkIcon className="svgIcon"/>}
                                                 buttonText={"Cсылка"}
                                                 buttonFunc={shareTask}
                                                 isCopyButton={true}/>
                                     </div>
+                                    {isAuth && <>
+                                    <p>Вы можете увидеть свои сохраненные записи и отправить их на проверку из личного кабинета, выбрав нужный ВАРИАНТ и ЗАДАНИЕ</p>
+                                    <Button key={"taskComplitionButton3"}
+                                            buttonPadding={"0 20px"}
+                                            buttonText={"Личный кабинет"}
+                                            buttonFunc={()=>{navigate(routes.ACCOUNT)}}/></>}
                                 </div>
                             </>}
                         </div>

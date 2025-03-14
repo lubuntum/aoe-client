@@ -1,37 +1,57 @@
 import "./css/autorization_page.css"
 import "./css/autorization_page_media.css"
 
-import { useState } from "react"
-import { useLocation } from "react-router-dom"
-import routes from "../../routes"
+import { useEffect, useState } from "react"
 import { LoginContainer } from "./LoginContainer"
 import { RegistrationContainer } from "./RegistrationContainer"
 import { ForgetPasswordContainer } from "./ForgetPasswordContainer"
+import { useNavigate } from "react-router-dom"
+import routes from "../../routes"
+import authStatuses from "../../modules/auth_modules/authStatuses"
 
 export const AutorizationPage = () => {
-    const location = useLocation()
-    const [loginToggle, setLoginToggle] = useState(true)
-    const [registrationConfirm, setRegistrationConfirm] = useState(false)
-    const [forgetPassword, setForgetPassword] = useState(false)
-    const handleToggle = () => {
-        setLoginToggle(!loginToggle)
+    const [currentContent, setCurrentContent] = useState(1)
+    const [authorizationStatus, setAuthorizationStatus] = useState(null)
+    const navigate = useNavigate()
+
+    const handleChangeContent = (newContent) => {
+        setCurrentContent(newContent)
+        setAuthorizationStatus(null)
     }
-    console.log(forgetPassword)
-    return (<>
+
+    const handleReturnHome = () => {
+        navigate(routes.HOME)
+    }
+
+    return (
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="autorizationWrapper">
-                    {forgetPassword ? <ForgetPasswordContainer setForgetPassword={setForgetPassword}/> :
-                        location.pathname !== routes.PARTNERSHIP_AUTHORIZATION ?
-                        <>
-                            <LoginContainer handleToggle={handleToggle} loginToggle={loginToggle} setLoginToggle={setLoginToggle} registrationConfirm={registrationConfirm} setForgetPassword={setForgetPassword}/>
-                            <RegistrationContainer handleToggle={handleToggle} loginToggle={loginToggle} setLoginToggle={setLoginToggle} setRegistrationConfirm={setRegistrationConfirm}/>
-                        </> :
-    
-                        <RegistrationContainer setRegistrationConfirm={setRegistrationConfirm}/>
-                    }
+                    <div className={`authorizationStatusContainer ${authorizationStatus ? "visible" : ""}`}>
+                        {authorizationStatus && (
+                            <div className={`statusMessage ${authorizationStatus.type}`}>
+                                {authorizationStatus.message}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className={`authContent ${currentContent === 1 ? 'active' : ''}`}>
+                        <LoginContainer onChangeContent={handleChangeContent} 
+                                        handleReturnHome={handleReturnHome}
+                                        setAuthorizationStatus={setAuthorizationStatus}/>
+                    </div>
+                    <div className={`authContent ${currentContent === 2 ? 'active' : ''}`}>
+                        <RegistrationContainer onChangeContent={handleChangeContent} 
+                                               handleReturnHome={handleReturnHome}
+                                               setAuthorizationStatus={setAuthorizationStatus}/>
+                    </div>
+                    <div className={`authContent ${currentContent === 3 ? 'active' : ''}`}>
+                        <ForgetPasswordContainer onChangeContent={handleChangeContent} 
+                                                 handleReturnHome={handleReturnHome}
+                                                 setAuthorizationStatus={setAuthorizationStatus}/>
+                    </div>
                 </div>
             </div>
         </div>
-    </>)
+    )
 }

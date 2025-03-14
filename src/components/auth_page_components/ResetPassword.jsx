@@ -6,83 +6,111 @@ import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
 import { Button } from "../reusible_components/Button"
 import routes from "../../routes"
 import { InputField } from "../reusible_components/InputField"
-import "./css/email_confirmation_page.css"
-import "./css/autorization_page.css"
-import "./css/autorization_page_media.css"
 import { resetPasswordForCustomer } from "../../modules/api_modules/authAPI"
-const localStatuses = {
-    PASSWORDS_NOT_EQUAL : "NOT_EQUAL"
-}
+import authStatuses from "../../modules/auth_modules/authStatuses"
+
 export const ResetPassword = () => {
-    const location = useLocation()
-    const [status, setStatus] = useState(statuses.IDLE)
     const navigate = useNavigate()
-    const [password, setPassword] = useState("")
-    const [repeatPassword, setRepeatPassword] = useState("")
+    const location = useLocation()
+
     const tokenRef = useRef()
-    useEffect(()=>{
+
+    const [resetPassword, setResetPassword] = useState()
+    const [resetRepeatPassword, setResetRepeatPassword] = useState()
+
+    const [resetStatus, setResetStatus] = useState("")
+    const [resetProcessing, setResetProcessing] = useState(false)
+
+    const handleReturnHome = () => {
+        navigate(routes.HOME)
+    }
+
+    useEffect(() => {
         const params = new URLSearchParams(location.search)
-        if (!params.get("token")){
-            setStatus(statuses.ERROR)
+        if (!params.get("token")) {
+            setResetStatus(authStatuses.ERROR_RESET_ERROR)
             return
         }
         tokenRef.current = params.get("token")
     }, [])
-    const passHandler = (e, value, setValue) => {
-        e.target.value === value 
-            ? setStatus(statuses.IDLE) 
-            : setStatus(localStatuses.PASSWORDS_NOT_EQUAL)
-        setValue(e.target.value)
-    }
-    
-    const resetPassword = async () => {
-        try{
-            const response = await resetPasswordForCustomer(password, tokenRef.current)
-            if (response.data) setStatus(statuses.SUCCESS)
-        } catch(err) {
-            setStatus(statuses.ERROR)
+
+    const handleSubmit = async() => {
+        setResetProcessing(true)
+        const validResult = validPassword()
+        if (validResult) {
+            setResetStatus(validResult)
+            setResetProcessing(false)
+            return
+        }
+        try {
+            const response = await resetPasswordForCustomer(resetPassword, tokenRef.current)
+            if (response.data) {
+                setResetStatus(authStatuses.SUCCESS_RESET_SUCCESS)
+            }
+        } catch (err) {
+            setResetStatus(authStatuses.ERROR_RESET_ERROR)
+        } finally {
+            setResetProcessing(false)
         }
     }
 
-    return(
-    <div className="statusWrapper">
-        <div className={`authorizationContainer active`}>
-            <div className="loginContainerBack">
-                <Button key={"resetPasswordTitleButton"}
-                        buttonText="Логин"
-                        buttonType="link"
-                        buttonFunc={()=>{navigate(routes.AUTORIZATION)}}/>
-            </div>
-            <div className="loginContainer">
-                {status === statuses.SUCCESS && 
-                    <div className="loginContainerPopup popupActive popupGood"> Пароль успешно сброшен</div>}
-                {status === localStatuses.PASSWORDS_NOT_EQUAL && 
-                    <div className="loginContainerPopup popupActive"> Пароли не совпадают</div>}
-                {status === localStatuses.ERROR && 
-                    <div className="loginContainerPopup popupActive">Произошла ошибка</div>}
-                {status === statuses.IDLE && 
-                    <h2>Восстановление пароля</h2>}
-                <div className="loginContainerImage">
-                    {status === statuses.IDLE &&
-                    <div className="loginContainerImageBlur"></div>}
-                    <img src="https://img.freepik.com/premium-photo/people-generating-images-using-artificial-intelligence-laptop_23-2150794312.jpg?w=1380"></img>
+    const validPassword = () => {
+        if (!resetPassword || !resetRepeatPassword)
+            return authStatuses.ERROR_REG_FIELDS_ARE_EMPTY
+
+        if (resetPassword.length < 5)
+            return authStatuses.ERROR_PASS_NOT_VALID
+
+        if (resetPassword !== resetRepeatPassword)
+            return authStatuses.ERROR_PASS_NOT_EQUAL
+
+        return null
+    }
+
+    return (
+        <div className="sectionWrapper">
+            <div className="contentWrapper">
+                <div className="autorizationWrapper">
+                    <div className={`authorizationStatusContainer ${resetStatus ? "visible" : ""}`}>
+                        {resetStatus && (
+                            <div className={`statusMessage ${resetStatus.type}`}>
+                                {resetStatus.message}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="resetPasswordWrapper">
+                        <div className="authorizationTitle">
+                            <p onClick={() => {handleReturnHome()}}>TestMy<span>Eng</span></p>
+                            <p>&gt;</p>
+                            <p>Новый пароль</p>
+                        </div>
+
+                        <div className="resetPasswordInputs">
+                            <InputField key={"resetPasswordInput0"}
+                                        inputType={"password"}
+                                        inputValue={resetPassword}
+                                        inputPlaceholder={"Пароль"}
+                                        inputOnChange={(e)=>{setResetPassword(e.target.value)}}/>
+
+                            <InputField key={"resetPasswordInput1"}
+                                        inputType={"password"}
+                                        inputValue={resetRepeatPassword}
+                                        inputPlaceholder={"Повторите пароль"}
+                                        inputOnChange={(e)=>{setResetRepeatPassword(e.target.value)}}/>
+                        </div>
+
+                        <div className="resetOrContainer">
+                            {!resetProcessing ?
+                            <Button key={"resetPasswordButton0"}
+                                    buttonText={"Подтвердить"}
+                                    buttonWidth={"100%"}
+                                    buttonFunc={handleSubmit}/> : 
+                            <Loader/>}
+                        </div>
+                    </div>
                 </div>
-                <div className="loginContainerInputs">
-                    <InputField inputType="password"
-                                inputValue={password}
-                                inputPlaceholder="Новый пароль"
-                                inputOnChange={(e) => {passHandler(e, repeatPassword, setPassword)}}/>
-                    <InputField inputType="password"
-                                inputValue={repeatPassword}
-                                inputPlaceholder="Повторите пароль"
-                                inputOnChange={(e) => {passHandler(e, password, setRepeatPassword)}}/>
-                </div>
-                <Button key={"loginButton1"}
-                    buttonType={status === statuses.SUCCESS ? "block" : ""}
-                    buttonText={status.SUCCESS ? "сброшено" : "сбросить"}
-                    buttonWidth={"100%"}
-                    buttonFunc={()=>{resetPassword()}}/>
             </div>
         </div>
-    </div>)
+    )
 }

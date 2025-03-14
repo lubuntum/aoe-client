@@ -38,8 +38,8 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                         <div className="footerLogo footerColumn">
                             <p className="logo">TestMy<span>Eng</span></p>
                             <div className="footerSocials">
-                                <a href="#"><TelegramIcon className="svgIcon"/></a>
-                                <a href="#"><VKIcon className="svgIcon"/></a>
+                                <a onClick={()=>{window.open("https://t.me/aoe_channel1", "_blank")}}><TelegramIcon className="svgIcon"/></a>
+                                <a onClick={()=>{window.open("https://vk.com/academy_oe", "_blank")}}><VKIcon className="svgIcon"/></a>
                             </div>
                         </div>
                         <div className="footerAbout footerColumn">
@@ -59,7 +59,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                             <p>Контакты</p>
                             <p><span>ФИО: </span>Осипов Вячеслав Сергеевич</p>
                             <p><span>Email: </span>osipowvs@gmail.com</p>
-                            <p><span>Тел.: </span>+7(902)014-3737</p>
+                            <p><span>Тел.: </span>+7(906) 190 10-50</p>
                             <p><span>ИНН: </span>1900012716</p>
                         </div>
                     </div>

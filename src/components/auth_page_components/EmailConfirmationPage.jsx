@@ -1,22 +1,23 @@
+import "./css/autorization_page.css"
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
-import { Loader } from "../reusible_components/Loader"
-import "./css/email_confirmation_page.css"
+import { useLocation, useNavigate } from "react-router-dom"
 import { confirmCustomerEmailRequest } from "../../modules/api_modules/emailAPI"
-const statuses = {
-    IDLE:"IDLE",
-    SUCCESS:"SUCCESS",
-    ERROR:"ERROR"
-}
-export const EmailConfirmationPage = () => {
-    const [token, setToken] = useState(null)
-    const [status, setStatus] = useState(statuses.IDLE)
-    const location = useLocation()
+import authStatuses from "../../modules/auth_modules/authStatuses"
+import routes from "../../routes"
 
-    useEffect(()=>{
+export const EmailConfirmationPage = () => {
+    const [confirmationStatus, setConfirmationStatus] = useState("")
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const handleReturnHome = () => {
+        navigate(routes.HOME)
+    }
+
+    useEffect(() => {
         const queryParams = new URLSearchParams(location.search)
-        if (!queryParams.get("token")){
-            setStatus(statuses.ERROR)
+        if (!queryParams.get("token")) {
+            setConfirmationStatus(authStatuses.ERROR_CONFIRMATION_ERROR)
             return
         }
         confirmCustomerEmail(queryParams.get("token"))
@@ -25,20 +26,30 @@ export const EmailConfirmationPage = () => {
     const confirmCustomerEmail = async(token) => {
         try {
             const response = await confirmCustomerEmailRequest(token)
-            setStatus(statuses.SUCCESS)
-        } catch(err) {
-            if(err && err.response)
-                console.error(err.response.data.message)
-            setStatus(statuses.ERROR)
+            setConfirmationStatus(authStatuses.SUCCESS_CONFIRMATION_SUCCESS)
+        } catch (err) {
+            console.error("Failed to confirm email", err)
+            setConfirmationStatus(authStatuses.SUCCESS_CONFIRMATION_SUCCESS)
         }
-        
     }
 
     return (
-        <div className="statusWrapper">
-            {status === statuses.IDLE && <Loader/>}
-            {status === statuses.ERROR && <p className="errorStatus">Some error occurred</p>}
-            {status === statuses.SUCCESS && <p className="successStatus">Your email successfully confirmed, now you can freely enter to your account</p>}
+        <div className="sectionWrapper">
+            <div className="contentWrapper">
+                <div className="autorizationWrapper">
+                    <div className="confirmationEmailWrapper">
+                        <div className="authorizationTitle">
+                            <p onClick={() => {handleReturnHome()}}>TestMy<span>Eng</span></p>
+                            <p>&gt;</p>
+                            <p>Подтверждение</p>
+                        </div>
+                        
+                        <dvi className="emailStatus">
+                            {confirmationStatus.message}
+                        </dvi>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
