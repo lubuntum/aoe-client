@@ -20,7 +20,9 @@ import { FooterMain } from "../footer_components/FooterMain"
 
 import { ReactComponent as SettingsIcon } from "../../res/icons/manufacturing_24dp_gi.svg"
 import { ReactComponent as PartnerIcon } from "../../res/icons/handshake_24dp_gi.svg"
+import { ReactComponent as StatisticsIcon} from "../../res/icons/monitoring_24dp.svg"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
+import { ActivityStatisticsComponent } from "./statistics_components/ActivityStatisticsComponent"
 
 export const AdminPage = () => {
     const [currentContent, setCurrentContent] = useState(1)
@@ -52,6 +54,7 @@ export const AdminPage = () => {
         2:{component: AdminPartners, title: "Партнеры"},
         3:{component: AdminPrompts, title: "Промпты"},
         4:{component: AdminPricing, title: "Тарифы"},
+        5:{component: ActivityStatisticsComponent, title: "Статистика"}
     }
 
     const CurrentComponent = AdminContentComponents[currentContent]
@@ -60,7 +63,8 @@ export const AdminPage = () => {
         {name: "Варианты", icon: <SettingsIcon className="svgIcon"/>}, 
         {name: "Партнеры", icon: <PartnerIcon className="svgIcon"/>}, 
         {name: "Промпты", icon: <SettingsIcon className="svgIcon"/>}, 
-        {name: "Финансы", icon: <SettingsIcon className="svgIcon"/>}]
+        {name: "Финансы", icon: <SettingsIcon className="svgIcon"/>}, 
+        {name: "Статистика", icon: <StatisticsIcon className="svgIcon"/>}]
 
     return (<>
         {!isAdmin ? <p>Not found 404</p> : <>

@@ -6,7 +6,7 @@ export const AUTH_VARIANTS_AVAILABLE = 5
 
 export const GUEST_NAME = "Гость"
 //Линк сервера
-export const SERVER_API_URL = "http://localhost:8080"
+export const SERVER_API_URL = "https://192.168.18.17:8080"
 //Роуты для валидации
 export const API_REGISTRATION = "/api/auth/registration"
 export const API_LOGIN = "/api/auth/login"
@@ -56,6 +56,8 @@ export const API_ADMIN_UPDATE_TASK_TYPE = "/api/admin/update-prompt"
 
 export const API_ADMIN_ADD_BALANCE_TO_CUSTOMER = "/api/admin/add-balance-to-customer"
 export const API_ADMIN_GET_CUSTOMER_ID_BY_EMAIL = "/api/admin/customer-id-by-email"
+
+export const API_ADMIN_GET_ACTIVITY_STATISTICS = "/api/activity-statistics"
 
 //subscriptions
 export const API_SUBSCRIPTION_GET_ALL_VALID = "/api/subscription/valid-subscriptions"
