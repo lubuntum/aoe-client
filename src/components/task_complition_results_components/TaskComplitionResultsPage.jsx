@@ -54,6 +54,11 @@ export const TaskComplitionResultsPage = () => {
         }
     }
 
+    const navigateToCheckResults = () => {
+        navigate(routes.ACCOUNT)
+        setTimeout(()=>{window.scrollTo({top: 650, behavior:"instant"})}, 100)
+    }
+
     return (<>
         <HeaderMain updateData={updateHeader} setUpdateData={setUpdateHeader}/>
         <div className='sectionWrapper'>
@@ -86,7 +91,7 @@ export const TaskComplitionResultsPage = () => {
                                     <Button key={"taskComplitionButton3"}
                                             buttonPadding={"0 20px"}
                                             buttonText={"Личный кабинет"}
-                                            buttonFunc={()=>{navigate(routes.ACCOUNT)}}/></>}
+                                            buttonFunc={navigateToCheckResults}/></>}
                                 </div>
                             </>}
                         </div>

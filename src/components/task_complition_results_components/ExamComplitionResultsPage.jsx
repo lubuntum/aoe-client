@@ -57,7 +57,10 @@ export const ExamComplitionResultsPage = () => {
             console.error("Failed copy", err)
         }
     }
-    
+    const navigateToCheckResults = () => {
+        navigate(routes.ACCOUNT)
+        setTimeout(()=>{window.scrollTo({top: 650, behavior:"instant"})}, 100)
+    }
     /**TODO сделать запрос получить все результаты по examId, и сами задания variantId */
     return (<>
         <HeaderMain/>
@@ -99,7 +102,7 @@ export const ExamComplitionResultsPage = () => {
                                         <Button key={"examComplitionButton3"}
                                                 buttonPadding={"0 20px"}
                                                 buttonText={"Личный кабинет"}
-                                                buttonFunc={()=>{navigate(routes.ACCOUNT)}}/>
+                                                buttonFunc={navigateToCheckResults}/>
                                     </div>}
                                 </div>
                             </>}
