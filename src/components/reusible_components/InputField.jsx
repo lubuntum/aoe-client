@@ -1,11 +1,26 @@
 import "./css/input.css"
+import {ReactComponent as VisibilityIcon} from "../../res/icons/visibility_24dp_gi.svg"
+import {ReactComponent as OffVisibilityIcon} from "../../res/icons/visibility_off_24dp_gi.svg"
 
 import React, { useState, useEffect } from 'react';
 
 const GOOD_PASS = "passwordGood";
 const MIDDLE_PASS = "passwordMiddle";
 const BAD_PASS = "passwordBad";
-
+const InputVisibilityComponent = ({setCustomType}) => {
+    const [isShow, setIsShow] = useState(false)
+    const onClickHandler = () => {
+        setIsShow(!isShow)
+        if (isShow)
+            setCustomType("text")
+        else setCustomType("password")
+    }
+    return (
+        <div className="visibility" onClick={onClickHandler}>
+            {isShow ? <VisibilityIcon/> : <OffVisibilityIcon/>}
+        </div>
+    )
+}
 export const checkPasswordStrength = (pass) => {
     if (!pass) return ""
     let strength = 0
@@ -27,7 +42,7 @@ export const InputField = ({inputType = "text",
                             hideIndicator = false}) => {
 
     const [passwordStrength, setPasswordStrength] = useState("")
-
+    const [customInputType, setCustomInputType] = useState(null)
     useEffect(() => {
         if (inputType === "password" && hideIndicator === false) {
             setPasswordStrength(checkPasswordStrength(inputValue))
@@ -37,7 +52,7 @@ export const InputField = ({inputType = "text",
     return (<>
         <div className="inputContainer">
             <input className="input"
-                   type={inputType}
+                   type={!customInputType ? inputType : customInputType}
                    value={inputValue}
                    placeholder={inputPlaceholder}
                    required
@@ -45,7 +60,11 @@ export const InputField = ({inputType = "text",
                    autoComplete="off"></input>
             
             {inputType === "password" && (
-                <div className={`strengthIndicator ${passwordStrength}`}></div>
+                <>
+                    <div className={`strengthIndicator ${passwordStrength}`}></div>
+                    <InputVisibilityComponent setCustomType={setCustomInputType} />
+                </>
+                
             )}
         </div>
     </>)
