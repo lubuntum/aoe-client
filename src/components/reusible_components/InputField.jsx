@@ -12,12 +12,12 @@ const InputVisibilityComponent = ({setCustomType}) => {
     const onClickHandler = () => {
         setIsShow(!isShow)
         if (isShow)
-            setCustomType("text")
-        else setCustomType("password")
+            setCustomType("password")
+        else setCustomType("text")
     }
     return (
         <div className="visibility" onClick={onClickHandler}>
-            {isShow ? <VisibilityIcon/> : <OffVisibilityIcon/>}
+            {isShow ? <OffVisibilityIcon/> : <VisibilityIcon/>}
         </div>
     )
 }
@@ -52,7 +52,7 @@ export const InputField = ({inputType = "text",
     return (<>
         <div className="inputContainer">
             <input className="input"
-                   type={!customInputType ? inputType : customInputType}
+                   type={customInputType ? customInputType : inputType}
                    value={inputValue}
                    placeholder={inputPlaceholder}
                    required
