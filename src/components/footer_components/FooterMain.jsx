@@ -70,7 +70,7 @@ export const FooterMain = React.memo(({onScrollToSection}) => {
                     </div>
                     <div className="footerCred">
                         <p>© ООО "Цифровые образовательные решения"</p>
-                        <p>build v1.6.21</p>
+                        <p>build v1.6.22</p>
                     </div>
                 </div>
             </div>
