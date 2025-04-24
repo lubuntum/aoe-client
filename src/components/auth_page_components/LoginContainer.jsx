@@ -2,13 +2,17 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
 import { InputField } from "../reusible_components/InputField"
+import { NewInput } from "../reusible_components/NewInput"
 import { Button } from "../reusible_components/Button"
+import { NewButton } from "../reusible_components/NewButton"
 import { Checkbox } from "../reusible_components/Checkbox"
 import { encryptData } from "../../modules/crypto_modules/cryptoData"
 import { decryptData } from "../../modules/crypto_modules/cryptoData"
 import authStatuses from "../../modules/auth_modules/authStatuses"
 import { useNavigate } from "react-router-dom"
 import routes from "../../routes"
+
+import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
 export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
     const { login } = useAuth()
@@ -73,58 +77,60 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizat
     }
 
     return (<>
-        <div className="authorizationTitle">
-            <p onClick={() => {handleReturnHome()}}>TestMy<span>Eng</span></p>
-            <p>&gt;</p>
-            <p>Вход</p>
+        <div className="authContentBackHome" onClick={() => handleReturnHome()}>
+            <CloseThinIcon className="svgIcon"/>
         </div>
-        <div className="loginContainerInputs">
-            <InputField key={"loginInput0"}
-                        inputType={"text"}
-                        inputValue={loginEmail}
-                        inputPlaceholder={"Электронная почта"}
-                        inputOnChange={(e) => {setLoginEmail(e.target.value)}}/>
 
-            <InputField key={"loginInput1"}
-                        inputType={"password"}
-                        inputValue={loginPassword}
-                        inputPlaceholder={"Пароль"}
-                        hideIndicator={true}
-                        inputOnChange={(e) => {setLoginpassword(e.target.value)}}/>
+        <div className="authContentTitle">
+            <p>Welcome back!</p>
         </div>
-        <div className="loginContainerForget">
+
+        <div className="authContentInputs">
+            <NewInput key={"loginInput0"}
+                      inputValue={loginEmail}
+                      inputType={"text"}
+                      inputPlaceholder={"электронная почта"}
+                      inputOnChange={(e) => {setLoginEmail(e.target.value)}}/>
+
+            <NewInput key={"loginInput1"}
+                      inputType={"password"}
+                      inputValue={loginPassword}
+                      inputPlaceholder={"пароль"}
+                      inputOnChange={(e) => {setLoginpassword(e.target.value)}}/>
+        </div>
+
+
+        <div className="authContentOptions">
             <Checkbox key={"loginCheckbox0"}
                         checkboxText={"Запомнить меня!"}
                         checkboxChecked={rememberMe}
                         checkboxOnChange={handleRememberMe}/>
 
-            <Button key={"loginButton0"}
-                    buttonType={"link"}
-                    buttonText={"Забыли пароль?"}
-                    buttonFunc={() => onChangeContent(3)}/>
+            <NewButton key={"loginButton0"}
+                       buttonType={"link"}
+                       buttonText={"Забыли пароль?"}
+                       buttonFunc={() => onChangeContent(3)}/>
         </div>
-        <div className="loginOrContainer">
-            <Button key={"loginButton1"}
-                    buttonText={"Войти"}
-                    buttonWidth={"100%"}
-                    buttonFunc={handleSubmit}/>
-            
-            <div className="loginContainerDivider">
-                <div className="divider"></div>
-                <p>или</p>
-                <div className="divider"></div>
+
+        <div className="authContentButtons">
+            <NewButton key={"loginButton1"}
+                       buttonText={"Войти"}
+                       buttonWidth={"100%"}
+                       buttonFunc={handleSubmit}/>
+
+            <div className="authContentCreateAccount">
+                <p>еще нет аккаунта?</p>
+                <NewButton key={"loginButton2"}
+                           buttonType={"link"}
+                           buttonText={"Создать аккаунт"}
+                           buttonFunc={() => onChangeContent(2)}/>
             </div>
 
-            <Button key={"loginButton2"}
-                    buttonText={"Создать аккаунт"}
-                    buttonWidth={"100%"}
-                    buttonFunc={() => onChangeContent(2)}/>
-
-            <Button key={"loginButton3"}
-                buttonText={"Хочу стать партнером!"}
-                buttonType={"link"}
-                buttonFunc={() => {navigate(routes.PARTNERSHIP_AUTHORIZATION)
-                                   onChangeContent(2)}}/>
+            <NewButton key={"loginButton3"}
+                       buttonType={"link"}
+                       buttonText={"Хочу стать партнером!"}
+                       buttonFunc={() => {navigate(routes.PARTNERSHIP_AUTHORIZATION)
+                                          onChangeContent(2)}}/>
         </div>
     </>)
 }

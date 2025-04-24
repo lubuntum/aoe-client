@@ -1,0 +1,57 @@
+.customButtonContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.customButtonContainer .customButton {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.125rem;
+    font-weight: 400;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--blue);
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px var(--neomorph-dark),
+                -4px -4px 8px var(--white);
+    transition: all .3s ease;
+    color: var(--white);
+}
+.customButton:hover {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+.customButtonContainer .tooltip,
+.customButtonContainer .copyMessage {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    text-align: center;
+    text-wrap: nowrap;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--white);
+    background-color: rgba(0, 0, 0, .8);
+}
+.customButtonContainer .customButton.link  {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+    border-bottom: 1px solid transparent;
+    transition: all .2s ease;
+    border-radius: 0;
+    color: var(--black);
+}
+.customButton.link:hover {
+    border-bottom: 1px solid var(--blue);
+    color: var(--blue);
+}

@@ -14,14 +14,17 @@
 }
 .sectionWrapper {
 	padding: 20px;
-	border-radius: 20px;
+	border-radius: 10px;
 	background-color: var(--background);
 }
 .contentWrapper {
 	margin: 0 auto;
 	max-width: 1440px;
 }
-
+.neumorphism {
+	box-shadow: 10px 10px 15px var(--neomorph-dark),
+				-10px -10px 15px rgba(255, 255, 255, .4);
+}
 
 @media (max-width: 500px) {
 	.pageWrapper {

@@ -1,0 +1,60 @@
+.customInputContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+.customInputContainer input {
+    background: none;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--black);
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--text-color);
+    transition: all .2s ease;
+}
+.customInputContainer .inputVisibility {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.customInputContainer .inputVisibility .svgIcon {
+    fill: var(--text-color);
+    transition: all .2s ease;
+}
+.inputVisibility:hover .svgIcon {
+    fill: var(--blue)
+}
+.customInput:hover {
+    border-bottom: 1px solid var(--blue);
+}
+.customInputContainer .customInput:focus,
+.customInputContainer .customInput:valid {
+    border-bottom: 1px solid var(--blue);
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: var(--text-color);
+    font-weight: 400;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: var(--text-color);
+    font-weight: 400;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: var(--text-color);
+    font-weight: 400;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--text-color);
+    font-weight: 400;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--text-color);
+    font-weight: 400;
+}
+::placeholder { /* Most modern browsers support this now. */
+    color: var(--text-color);
+    font-weight: 400;
+}

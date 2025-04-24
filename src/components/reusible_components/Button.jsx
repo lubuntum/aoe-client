@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "./css/button.css";
 import "./css/button_media.css";
 
 export const Button = ({ buttonType = "", buttonPadding = "", buttonWidth = "", buttonHeight = "", buttonIcon = null, buttonText, buttonFunc, isCopyButton, disabled}) => {

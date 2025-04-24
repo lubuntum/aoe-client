@@ -1,10 +1,6 @@
 .autorizationWrapper {
-    position: relative;
-    height: calc(100vh - 80px);
-    overflow: hidden;
     display: flex;
-    width: 100%;
-    flex-direction: column;
+    height: calc(100vh - 80px);
     justify-content: center;
     align-items: center;
 }
@@ -17,43 +13,71 @@
     transition: transform .4s ease, opacity .4s ease;
     opacity: 0;
     transform: translateY(20px);
-    user-select: none;
     pointer-events: none;
-
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 40px;
     background-color: var(--white);
-    border-radius: 20px;
-    width: 600px;
-    box-shadow: 0 5px 10px var(--black-shadow);
-    z-index: 0;
+    padding: 60px;
+    border-radius: 40px;
+    width: 650px;
 }
 .authContent.active {
     pointer-events: all;
     opacity: 1;
     transform: translateY(0);
     z-index: 999;
+    user-select: none;
 }
-
-.authorizationTitle {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-.authorizationTitle p:nth-child(1) span {
-    font-weight: 700;
-    color: var(--blue);
-}
-.authorizationTitle p:nth-child(1) {
+.authContentBackHome {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    z-index: 10px;
     cursor: pointer;
 }
+.authContentBackHome .svgIcon {
+    width: 40px;
+    height: 40px;
+    fill: var(--text-color);
+    transition: all .2s ease;
+}
+.authContentBackHome:hover .svgIcon {
+    fill: var(--blue);
+}
+.authContentTitle {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-color);
+}
+.authContentInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+.authContentOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.authContentButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+    margin-top: 40px;
+}
+.authContentCreateAccount {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 1.125rem;
+    color: var(--text-color);
+}
+
+
+
+
 
 .loginContainerInputs,
 .registartionContainerInputs,
@@ -62,12 +86,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-.loginContainerForget {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .loginOrContainer,

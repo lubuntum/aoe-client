@@ -19,8 +19,8 @@
     text-align: center;
     gap: 10px;
     color: var(--white);
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 400;
     transition: all .2s ease;
 }
 .button .svgIcon {
@@ -64,8 +64,8 @@
 .link span {
     border-bottom: 1px solid transparent;
     color: var(--black);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 400;
     transition: all .2s ease;
 }
 .link .svgIcon {

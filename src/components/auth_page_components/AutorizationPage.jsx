@@ -35,17 +35,17 @@ export const AutorizationPage = () => {
                         )}
                     </div>
 
-                    <div className={`authContent ${currentContent === 1 ? 'active' : ''}`}>
+                    <div className={`authContent ${currentContent === 1 ? 'active' : ''} neumorphism`}>
                         <LoginContainer onChangeContent={handleChangeContent} 
                                         handleReturnHome={handleReturnHome}
                                         setAuthorizationStatus={setAuthorizationStatus}/>
                     </div>
-                    <div className={`authContent ${currentContent === 2 ? 'active' : ''}`}>
+                    <div className={`authContent ${currentContent === 2 ? 'active' : ''} neumorphism`}>
                         <RegistrationContainer onChangeContent={handleChangeContent} 
                                                handleReturnHome={handleReturnHome}
                                                setAuthorizationStatus={setAuthorizationStatus}/>
                     </div>
-                    <div className={`authContent ${currentContent === 3 ? 'active' : ''}`}>
+                    <div className={`authContent ${currentContent === 3 ? 'active' : ''} neumorphism`}>
                         <ForgetPasswordContainer onChangeContent={handleChangeContent} 
                                                  handleReturnHome={handleReturnHome}
                                                  setAuthorizationStatus={setAuthorizationStatus}/>
