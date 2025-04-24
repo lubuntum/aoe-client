@@ -50,8 +50,8 @@
 .authContentInputs {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 20px;
+    margin-top: 30px;
 }
 .authContentOptions {
     display: flex;
@@ -62,10 +62,10 @@
 .authContentButtons {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     width: 100%;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 .authContentCreateAccount {
     display: flex;
@@ -73,6 +73,12 @@
     gap: 5px;
     font-size: 1.125rem;
     color: var(--text-color);
+}
+.authContentCheckboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 

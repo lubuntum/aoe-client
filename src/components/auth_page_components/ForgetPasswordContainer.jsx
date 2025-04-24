@@ -1,12 +1,15 @@
 import { useState } from "react"
-import { Button } from "../reusible_components/Button"
-import { InputField } from "../reusible_components/InputField"
-import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
-import authStatuses from "../../modules/auth_modules/authStatuses"
+
+import { NewInput } from "../reusible_components/NewInput"
+import { NewButton } from "../reusible_components/NewButton"
 import { Loader } from "../reusible_components/Loader"
-/**
- * TODO добавить компонент для перехода по ссылке и сброс самого пароля.
- */
+
+import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
+
+import authStatuses from "../../modules/auth_modules/authStatuses"
+
+import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
+
 export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
     const [forgetEmail, setForgetEmail] = useState()
     const [forgetProcessing, setForgetProcessing] = useState(false)
@@ -35,38 +38,35 @@ export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setA
     }
 
     return(<>
-        <div className="authorizationTitle">
-            <p onClick={() => {handleReturnHome()}}>TestMy<span>Eng</span></p>
-            <p>&gt;</p>
-            <p>Сброс пароля</p>
+        <div className="authContentBackHome" onClick={() => handleReturnHome()}>
+            <CloseThinIcon className="svgIcon"/>
         </div>
 
-        <div className="forgetContainerInputs">
-            <InputField key={"forgetInput0"}
-                        inputType={"text"}
-                        inputValue={forgetEmail}
-                        inputPlaceholder={"Электронная почта"}
-                        inputOnChange={(e) => {setForgetEmail(e.target.value)}}/>
+        <div className="authContentTitle">
+            <p>Reset password</p>
         </div>
 
-        <div className="forgetOrContainer">
-            {!forgetProcessing ?
-            <Button key={"forgetButton1"}
-                    buttonText={"Сбросить пароль"}
-                    buttonWidth={"100%"}
-                    buttonFunc={handleSubmit}/> : 
-            <Loader/>}
+        <div className="authContentInputs">
+            <NewInput key={"resetInput0"}
+                    inputValue={forgetEmail}
+                    inputType={"text"}
+                    inputPlaceholder={"электронная почта"}
+                    inputOnChange={(e) => {setForgetEmail(e.target.value)}}/>
+        </div>
+
+        <div className="authContentButtons">
+            <NewButton key={"resetButton0"}
+                       buttonText={"Сбросить пароль"}
+                       buttonWidth={"100%"}
+                       buttonFunc={handleSubmit}/>
             
-            <div className="forgetContainerDivider">
-                <div className="divider"></div>
-                <p>или</p>
-                <div className="divider"></div>
+            <div className="authContentCreateAccount">
+                <p>Передумали сбрасывать?</p>
+                <NewButton key={"resetButton1"}
+                           buttonType={"link"}
+                           buttonText={"Назад"}
+                           buttonFunc={() => onChangeContent(1)}/>
             </div>
-
-            <Button key={"fogetButton2"}
-                    buttonText={"Назад"}
-                    buttonWidth={"100%"}
-                    buttonFunc={() => onChangeContent(1)}/>
         </div>
     </>)
 }

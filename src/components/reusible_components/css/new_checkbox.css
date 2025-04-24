@@ -1,0 +1,48 @@
+.customCheckboxContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: start;
+}
+.customCheckboxInput {
+    display: none;
+}
+.customCheckboxLabel {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1.125rem;
+    transition: all .2s ease;
+}
+.customCheckboxLabel::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background-color: var(--white);
+    transition: all .2s ease;
+}
+.customCheckboxInput:checked + .customCheckboxLabel::before {
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+}
+.customCheckboxLabel:hover.customCheckboxLabel::before {
+    border: 1px solid var(--blue);
+}
+.customCheckboxLabel:hover {
+    color: var(--blue);
+}
+.customCheckboxContainer a {
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.customCheckboxContainer a:hover {
+    color: var(--blue);
+}

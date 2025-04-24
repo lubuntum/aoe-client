@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
-import { InputField } from "../reusible_components/InputField"
+import { useNavigate } from "react-router-dom"
+
 import { NewInput } from "../reusible_components/NewInput"
-import { Button } from "../reusible_components/Button"
 import { NewButton } from "../reusible_components/NewButton"
-import { Checkbox } from "../reusible_components/Checkbox"
+import { NewCheckbox } from "../reusible_components/NewCheckbox"
+
 import { encryptData } from "../../modules/crypto_modules/cryptoData"
 import { decryptData } from "../../modules/crypto_modules/cryptoData"
+
 import authStatuses from "../../modules/auth_modules/authStatuses"
-import { useNavigate } from "react-router-dom"
-import routes from "../../routes"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
@@ -101,15 +101,16 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizat
 
 
         <div className="authContentOptions">
-            <Checkbox key={"loginCheckbox0"}
-                        checkboxText={"Запомнить меня!"}
-                        checkboxChecked={rememberMe}
-                        checkboxOnChange={handleRememberMe}/>
+            <NewCheckbox key={"loginCheckbox0"}
+                         text={"Запомнить меня!"}
+                         checkboxChecked={rememberMe}
+                         checkboxOnChange={handleRememberMe}
+                         checkboxId={"rememberMeCheckbox"}/>
 
             <NewButton key={"loginButton0"}
                        buttonType={"link"}
                        buttonText={"Забыли пароль?"}
-                       buttonFunc={() => onChangeContent(3)}/>
+                       buttonFunc={() => onChangeContent(4)}/>
         </div>
 
         <div className="authContentButtons">
@@ -129,8 +130,7 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizat
             <NewButton key={"loginButton3"}
                        buttonType={"link"}
                        buttonText={"Хочу стать партнером!"}
-                       buttonFunc={() => {navigate(routes.PARTNERSHIP_AUTHORIZATION)
-                                          onChangeContent(2)}}/>
+                       buttonFunc={() => {onChangeContent(3)}}/>
         </div>
     </>)
 }
