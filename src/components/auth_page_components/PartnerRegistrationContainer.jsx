@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
@@ -7,6 +6,8 @@ import { NewCheckbox } from "../reusible_components/NewCheckbox"
 import { Loader } from "../reusible_components/Loader"
 
 import { getCurrentDate } from "../../modules/date_modules/currentDate"
+import { phoneNumberFormat } from "../utils/phoneNumberFormat"
+import { validateAuthData } from "../utils/validateAuthData"
 import { registration } from "../../modules/api_modules/authAPI"
 
 import routes from "../../routes"
@@ -14,7 +15,7 @@ import authStatuses from "../../modules/auth_modules/authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
+export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome, showMessage}) => {
     const [registrationProcessing, setRegistrationProcessing] = useState(false)
 
     const [registrationEmail, setRegistrationEmail] = useState("")
@@ -36,31 +37,6 @@ export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome,
         setUserAgreement(!userAgreement)
     }
 
-    const handleFormatPhoneNumber = (e) => {
-        const numbers = e.target.value.replace(/\D/g, '').substring(0, 11)
-        let formatted = ""
-        if (numbers.length === 0) 
-            return ""
-        formatted += "+"
-        formatted += numbers.charAt(0) === "7" ? "7" : numbers.charAt(0)
-        if(e.target.value === formatted) 
-            return ""
-        formatted += ""
-        if (numbers.length > 1) 
-            formatted += "(" + numbers.substring(1, 4)
-
-        if (numbers.length > 4) 
-            formatted += ")" + numbers.substring(4, 7)
-
-        if (numbers.length > 7) 
-            formatted += " " + numbers.substring(7, 9)
-
-        if (numbers.length > 9) 
-            formatted += "-" + numbers.substring(9, 11)
-
-        return formatted
-    }
-
     const assembleData = () => {
         return {"email": registrationEmail,
                 "name": registrationName,
@@ -74,51 +50,35 @@ export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome,
     }
 
     const handleSubmit = async() => {
+        const registrationData = {
+            registrationEmail,
+            registrationName,
+            registrationSecondName,
+            registrationPatronymic,
+            registrationPhoneNumber,
+            registrationPassword,
+            registrationRepeatPassword,
+            privacyPolice,
+            userAgreement
+        }
+
+        const validResult = validateAuthData(registrationData)
         setRegistrationProcessing(true)
-        const validResult = validData()
+
         if (validResult) {
             setRegistrationProcessing(false)
-            setAuthorizationStatus(validResult)
+            showMessage(validResult)
             return
         }
         try {
             const user = assembleData()
             const response = await registration(user)
             onChangeContent(1)
-            setRegistrationEmail("")
-            setRegistrationPassword("")
-            setRegistrationRepeatPassword("")
-            setRegistrationName("")
-            setRegistrationSecondName("")
-            setRegistrationPatronymic("")
-            setRegistrationPhoneNumber("")
-            setPrivacyPolice(false)
-            setUserAgreement(false)
         } catch (err) {
-            setAuthorizationStatus(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
+            showMessage(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
         } finally {
             setRegistrationProcessing(false)
         }
-    }
-
-    const validData = () => {
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if (!registrationEmail || !registrationName || !registrationSecondName || !registrationPatronymic || !registrationPhoneNumber || !registrationPassword || !registrationRepeatPassword) 
-            return authStatuses.ERROR_REG_FIELDS_ARE_EMPTY
-
-        if (!regex.test(registrationEmail)) 
-            return authStatuses.ERROR_EMAIL_NOT_VALID
-
-        if (registrationPassword.length < 5)
-            return authStatuses.ERROR_PASS_NOT_VALID
-
-        if (registrationPassword !== registrationRepeatPassword) 
-            return authStatuses.ERROR_PASS_NOT_EQUAL
-
-        if (!privacyPolice || !userAgreement) 
-            return authStatuses.ERROR_RULES_NOT_CHECKED
-
-        return null
     }
 
     return (<>
@@ -159,7 +119,7 @@ export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome,
                       inputValue={registrationPhoneNumber}
                       inputType={"text"}
                       inputPlaceholder={"номер телефона"}
-                      inputOnChange={(e) => {const formatted = handleFormatPhoneNumber(e) 
+                      inputOnChange={(e) => {const formatted = phoneNumberFormat(e) 
                                              setRegistrationPhoneNumber(formatted)}}/>
 
             <NewInput key={"PartnerRegInput5"}
@@ -194,10 +154,14 @@ export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome,
         </div>
 
         <div className="authContentButtons">
+            {!registrationProcessing ?
             <NewButton key={"PartnerRegButton0"}
                        buttonText={"Регистрация"}
                        buttonWidth={"100%"}
-                       buttonFunc={handleSubmit}/>
+                       buttonFunc={handleSubmit}/> : 
+            <div className="loaderProcessingContainer">
+                <Loader/>
+            </div>}
 
             <NewButton key={"PartnerRegButton2"}
                        buttonType={"link"}

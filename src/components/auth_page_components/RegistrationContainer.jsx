@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
@@ -7,14 +6,14 @@ import { NewCheckbox } from "../reusible_components/NewCheckbox"
 import { Loader } from "../reusible_components/Loader"
 
 import { getCurrentDate } from "../../modules/date_modules/currentDate"
+import { validateAuthData } from "../utils/validateAuthData"
 import { registration } from "../../modules/api_modules/authAPI"
 
 import routes from "../../routes"
 import authStatuses from "../../modules/auth_modules/authStatuses"
-
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const RegistrationContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
+export const RegistrationContainer = ({onChangeContent, handleReturnHome, showMessage}) => {
     const [registrationProcessing, setRegistrationProcessing] = useState(false)
 
     const [registrationEmail, setRegistrationEmail] = useState("")
@@ -45,49 +44,33 @@ export const RegistrationContainer = ({onChangeContent, handleReturnHome, setAut
     }
 
     const handleSubmit = async() => {
+        const registrationData = {
+            registrationEmail,
+            registrationName,
+            registrationSecondName,
+            registrationPassword,
+            registrationRepeatPassword,
+            privacyPolice,
+            userAgreement
+        }
+        const validResult = validateAuthData(registrationData)
         setRegistrationProcessing(true)
-        const validResult = validData()
+
         if (validResult) {
             setRegistrationProcessing(false)
-            setAuthorizationStatus(validResult)
+            showMessage(validResult)
             return
         }
+
         try {
             const user = assembleData()
             const response = await registration(user)
             onChangeContent(1)
-            setRegistrationEmail("")
-            setRegistrationPassword("")
-            setRegistrationRepeatPassword("")
-            setRegistrationName("")
-            setRegistrationSecondName("")
-            setPrivacyPolice(false)
-            setUserAgreement(false)
         } catch (err) {
-            setAuthorizationStatus(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
+            showMessage(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
         } finally {
             setRegistrationProcessing(false)
         }
-    }
-
-    const validData = () => {
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if (!registrationEmail || !registrationName || !registrationSecondName || !registrationPassword || !registrationRepeatPassword) 
-            return authStatuses.ERROR_REG_FIELDS_ARE_EMPTY
-
-        if (!regex.test(registrationEmail)) 
-            return authStatuses.ERROR_EMAIL_NOT_VALID
-
-        if (registrationPassword.length < 5)
-            return authStatuses.ERROR_PASS_NOT_VALID
-
-        if (registrationPassword !== registrationRepeatPassword) 
-            return authStatuses.ERROR_PASS_NOT_EQUAL
-
-        if (!privacyPolice || !userAgreement) 
-            return authStatuses.ERROR_RULES_NOT_CHECKED
-
-        return null
     }
 
     return (<>
@@ -150,10 +133,14 @@ export const RegistrationContainer = ({onChangeContent, handleReturnHome, setAut
         </div>
 
         <div className="authContentButtons">
+            {!registrationProcessing ?
             <NewButton key={"regButton0"}
                        buttonText={"Регистрация"}
                        buttonWidth={"100%"}
-                       buttonFunc={handleSubmit}/>
+                       buttonFunc={handleSubmit}/> : 
+            <div className="loaderProcessingContainer">
+                <Loader/>
+            </div>}
             
             <div className="authContentCreateAccount">
                 <p>уже есть аккаунт?</p>

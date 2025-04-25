@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
 }
-.customInputContainer input {
+.customInputContainer .customInput {
     background: none;
     font-size: 1.25rem;
     font-weight: 400;

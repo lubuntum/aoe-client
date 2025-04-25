@@ -14,11 +14,9 @@ import authStatuses from "../../modules/auth_modules/authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
+export const LoginContainer = ({onChangeContent, handleReturnHome, setStatus}) => {
     const { login } = useAuth()
     const { saveEmail } = useAuth()
-
-    const navigate = useNavigate()
 
     const [loginEmail, setLoginEmail] = useState()
     const [loginPassword, setLoginpassword] = useState()
@@ -54,7 +52,7 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizat
 
     const handleSubmit = async(e) => {
         if (!loginEmail || !loginPassword) {
-            setAuthorizationStatus(authStatuses.ERROR_LOGIN_FIELDS_ARE_EMPTY)
+            setStatus(authStatuses.ERROR_LOGIN_FIELDS_ARE_EMPTY)
             return
         }
         try {
@@ -69,10 +67,10 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setAuthorizat
             collectDataByToken(response.data.token)
         } catch (err) {
             if (err && err.status === 403) {
-                setAuthorizationStatus(authStatuses.ERROR_EMAIL_CONFIRMATION)
+                setStatus(authStatuses.ERROR_EMAIL_CONFIRMATION)
                 return
             }
-            setAuthorizationStatus(authStatuses.ERROR_WRONG_EMAIL_OR_PASS)
+            setStatus(authStatuses.ERROR_WRONG_EMAIL_OR_PASS)
         }
     }
 
