@@ -1,10 +1,9 @@
 import { useState } from "react"
+import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
 import { Loader } from "../reusible_components/Loader"
-
-import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
 
 import authStatuses from "../../modules/auth_modules/authStatuses"
 
@@ -31,6 +30,7 @@ export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setA
             const response = await resetPasswordEmailRequest(forgetEmail)
             setAuthorizationStatus(authStatuses.SUCCESS_FORGET_EMAIL_SEND)
             setForgetProcessing(false)
+            setForgetEmail("")
         } catch (err) {
             setAuthorizationStatus(authStatuses.ERROR_FORGET_EMAIL_FAILED)
             setForgetProcessing(false)
@@ -55,10 +55,14 @@ export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setA
         </div>
 
         <div className="authContentButtons">
+            {!forgetProcessing ? 
             <NewButton key={"resetButton0"}
                        buttonText={"Сбросить пароль"}
                        buttonWidth={"100%"}
-                       buttonFunc={handleSubmit}/>
+                       buttonFunc={handleSubmit}/> :
+            <div className="loaderProcessingContainer">
+                <Loader/>
+            </div>}
             
             <div className="authContentCreateAccount">
                 <p>Передумали сбрасывать?</p>

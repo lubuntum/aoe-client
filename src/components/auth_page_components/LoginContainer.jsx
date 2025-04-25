@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider"
 import { serverLogin } from "../../modules/api_modules/authAPI"
-import { useNavigate } from "react-router-dom"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
@@ -14,7 +13,7 @@ import authStatuses from "../../modules/auth_modules/authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const LoginContainer = ({onChangeContent, handleReturnHome, setStatus}) => {
+export const LoginContainer = ({onChangeContent, handleReturnHome, setNotification}) => {
     const { login } = useAuth()
     const { saveEmail } = useAuth()
 
@@ -39,7 +38,7 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setStatus}) =
                     setRememberMe(true)
                 }
             } catch (err) {
-                console.log("Failed to decrypt cred", err)
+                console.error("Failed to decrypt cred", err)
                 localStorage.removeItem("savedCred")
             }
         }
@@ -50,9 +49,9 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setStatus}) =
         login(token)
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async() => {
         if (!loginEmail || !loginPassword) {
-            setStatus(authStatuses.ERROR_LOGIN_FIELDS_ARE_EMPTY)
+            setNotification(authStatuses.ERROR_LOGIN_FIELDS_ARE_EMPTY)
             return
         }
         try {
@@ -67,10 +66,10 @@ export const LoginContainer = ({onChangeContent, handleReturnHome, setStatus}) =
             collectDataByToken(response.data.token)
         } catch (err) {
             if (err && err.status === 403) {
-                setStatus(authStatuses.ERROR_EMAIL_CONFIRMATION)
+                setNotification(authStatuses.ERROR_EMAIL_CONFIRMATION)
                 return
             }
-            setStatus(authStatuses.ERROR_WRONG_EMAIL_OR_PASS)
+            setNotification(authStatuses.ERROR_WRONG_EMAIL_OR_PASS)
         }
     }
 

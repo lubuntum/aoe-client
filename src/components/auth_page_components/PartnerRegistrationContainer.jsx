@@ -1,21 +1,20 @@
 import { useState } from "react"
+import { getCurrentDate } from "../../modules/date_modules/currentDate"
+import { phoneNumberFormat } from "../utils/phoneNumberFormat"
+import { validateAuthData } from "../utils/validateAuthData"
+import { registration } from "../../modules/api_modules/authAPI"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
 import { NewCheckbox } from "../reusible_components/NewCheckbox"
 import { Loader } from "../reusible_components/Loader"
 
-import { getCurrentDate } from "../../modules/date_modules/currentDate"
-import { phoneNumberFormat } from "../utils/phoneNumberFormat"
-import { validateAuthData } from "../utils/validateAuthData"
-import { registration } from "../../modules/api_modules/authAPI"
-
 import routes from "../../routes"
 import authStatuses from "../../modules/auth_modules/authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome, showMessage}) => {
+export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome, setNotification}) => {
     const [registrationProcessing, setRegistrationProcessing] = useState(false)
 
     const [registrationEmail, setRegistrationEmail] = useState("")
@@ -67,16 +66,27 @@ export const PartnerRegistrationContainer = ({onChangeContent, handleReturnHome,
 
         if (validResult) {
             setRegistrationProcessing(false)
-            showMessage(validResult)
+            setNotification(validResult)
             return
         }
+
         try {
             const user = assembleData()
             const response = await registration(user)
             onChangeContent(1)
+            setNotification(authStatuses.SUCCESS_REG_COMPLETE)
         } catch (err) {
-            showMessage(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
+            setNotification(authStatuses.ERROR_EMAIL_ALREADY_EXIST)
         } finally {
+            setRegistrationEmail("")
+            setRegistrationName("")
+            setRegistrationSecondName("")
+            setRegistrationPatronymic("")
+            setRegistrationPhoneNumber("")
+            setRegistrationPassword("")
+            setRegistrationRepeatPassword("")
+            setPrivacyPolice(false)
+            setUserAgreement(false)
             setRegistrationProcessing(false)
         }
     }
