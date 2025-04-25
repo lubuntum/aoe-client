@@ -1,10 +1,15 @@
 const SUCCESS_REG_COMPLETE = {
-    message: "Регистрация успешна! Мы отправили вам сообщение на почту для подтверждения аккаунта. Если сообщение не пришло, посмотрите в папке - Спам!",
+    message: "Регистрация успешна! Мы отправили вам сообщение на почту для подтверждения аккаунта. Если сообщение не пришло, посмотрите в папке - Спам.",
     type: "success"
 };
 
 const ERROR_REG_FIELDS_ARE_EMPTY = {
     message: "Для регистрации заполните все поля.",
+    type: "error"
+};
+
+const ERROR_RESET_FIELDS_ARE_EMPTY = {
+    message: "Для сброса пароля заполните все поля.",
     type: "error"
 };
 
@@ -91,6 +96,7 @@ const SUCCESS_RESET_SUCCESS = {
 const authStatuses = {
     SUCCESS_REG_COMPLETE,
     ERROR_REG_FIELDS_ARE_EMPTY,
+    ERROR_RESET_FIELDS_ARE_EMPTY,
     ERROR_LOGIN_FIELDS_ARE_EMPTY,
     ERROR_EMAIL_NOT_VALID,
     ERROR_EMAIL_ALREADY_EXIST,

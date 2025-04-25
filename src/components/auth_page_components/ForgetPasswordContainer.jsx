@@ -9,7 +9,7 @@ import authStatuses from "../../modules/auth_modules/authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
-export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setAuthorizationStatus}) => {
+export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setNotification}) => {
     const [forgetEmail, setForgetEmail] = useState()
     const [forgetProcessing, setForgetProcessing] = useState(false)
 
@@ -17,22 +17,22 @@ export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setA
         setForgetProcessing(true)
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if (!forgetEmail) {
-            setAuthorizationStatus(authStatuses.ERROR_FORGET_EMAIL_EMPTY)
+            setNotification(authStatuses.ERROR_FORGET_EMAIL_EMPTY)
             setForgetProcessing(false)
             return
         }
         if (!regex.test(forgetEmail)) {
-            setAuthorizationStatus(authStatuses.ERROR_EMAIL_NOT_VALID)
+            setNotification(authStatuses.ERROR_EMAIL_NOT_VALID)
             setForgetProcessing(false)
             return
         }
         try {
             const response = await resetPasswordEmailRequest(forgetEmail)
-            setAuthorizationStatus(authStatuses.SUCCESS_FORGET_EMAIL_SEND)
+            setNotification(authStatuses.SUCCESS_FORGET_EMAIL_SEND)
             setForgetProcessing(false)
             setForgetEmail("")
         } catch (err) {
-            setAuthorizationStatus(authStatuses.ERROR_FORGET_EMAIL_FAILED)
+            setNotification(authStatuses.ERROR_FORGET_EMAIL_FAILED)
             setForgetProcessing(false)
         }
     }

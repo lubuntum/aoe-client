@@ -19,6 +19,13 @@
     border-radius: 40px;
     width: 650px;
 }
+.resetContent {
+    position: absolute;
+    background-color: var(--white);
+    padding: 60px;
+    border-radius: 40px;
+    width: 650px;
+}
 .authContent.active {
     pointer-events: all;
     opacity: 1;
