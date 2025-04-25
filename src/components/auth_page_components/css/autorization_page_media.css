@@ -1,64 +1,60 @@
+@media (max-height: 900px) {
+    .authContent {
+        zoom: .9;
+    }
+}
+
 @media (max-width: 768px) {
     .authContent {
         width: 100%;
+        height: 100%;
         box-shadow: 0 0 0 transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        transform: translateY(0);
+        transition: transform .5s ease, opacity .5s ease;
+        border-radius: 0;
     }
-    .authorizationStatusContainer {
-        width: 100%;
-    }
-    .authorizationStatusContainer .statusMessage {
-        font-size: .875rem;
-        text-align: center;
-        padding: 10px;
+    .authContentButtons {
+        gap: 30px;
     }
 }
 
 @media (max-width: 500px) {
-    .authContent button span {
-        font-size: .875rem;
-    }
-    .autorizationWrapper {
-        height: calc(100vh - 40px);
-    }
     .authContent {
         padding: 20px;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-    .authorizationTitle {
-        display: flex;
-        flex-direction: column;
-    }
-    .authorizationTitle p:nth-child(2) {
-        display: none;
-    }
-    .authorizationTitle p:nth-child(3) {
-        font-size: 1.25rem;
-    }
-    .loginContainerForget {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: start;
-        gap: 15px;
         font-size: .875rem;
     }
-    .loginContainerForget button span {
-        font-size: .875rem;
+    .authContentBackHome {
+        right: 10px;
+        top: 30px;
     }
-    .documentsCheck {
-        font-size: .875rem;
-        gap: 3px;
+    .authContentTitle {
+        font-size: 1.875rem;
     }
-    .documentsCheck button span {
-        font-size: .875rem;
+    .authContentDescription {
+        font-size: 1rem;
+        gap: 20px;
     }
-    .authContent input {
-        font-size: .875rem;
+    .authContentInputs input {
+        gap: 20px;
+        font-size: 1rem !important;
     }
-    .loginContainerDivider,
-    .registrationContainerDivider,
-    .forgetContainerDivider {
-        font-size: .875rem;
+    .authContentOptions button,
+    .authContentOptions label {
+        font-size: 1rem !important;
+    }
+    .authContentButtons button {
+        font-size: 1rem !important;
+    }
+    .authContentCreateAccount {
+        font-size: 1rem !important;
+    }
+    .authContentCheckboxes button,
+    .authContentCheckboxes label,
+    .authContentCheckboxes a {
+        font-size: .875rem !important;
     }
 }

@@ -1,17 +1,20 @@
 import "./css/autorization_page.css"
 import "./css/autorization_page_media.css"
-import { useCallback, useState } from "react"
+
+import { useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast, Toaster } from "react-hot-toast"
-import routes from "../../routes"
 
 import { LoginContainer } from "./LoginContainer"
 import { RegistrationContainer } from "./RegistrationContainer"
 import { PartnerRegistrationContainer } from "./PartnerRegistrationContainer"
 import { ForgetPasswordContainer } from "./ForgetPasswordContainer"
 
+import routes from "../../routes"
+
 export const AutorizationPage = () => {
     const [currentContent, setCurrentContent] = useState(1)
+    const [toasterTopPosition, setToasterTopPosition] = useState("40px")
     const navigate = useNavigate()
 
     const handleChangeContent = useCallback((newContent) => {
@@ -21,6 +24,14 @@ export const AutorizationPage = () => {
     const handleReturnHome = useCallback(() => {
         navigate(routes.HOME)
     }, [navigate])
+    
+    const handleResize = () => {
+        if (window.innerWidth <= 768) {
+            setToasterTopPosition("10px")
+        } else {
+            setToasterTopPosition("40px")
+        }
+    }
 
     const handleToast = (notification) => {
         if (notification.type === "success") {
@@ -30,14 +41,21 @@ export const AutorizationPage = () => {
             toast.error(notification.message, {icon: false})
         }
     }
+
+    useEffect(() => {
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => { window.removeEventListener('resize', handleResize) }
+    }, [])
     
     return (
         <div className="sectionWrapper">
             <div className="contentWrapper">
                 <div className="autorizationWrapper">
                     <Toaster
-                        containerStyle={{position: "absolute", top: "40px"}}
+                        containerStyle={{position: "absolute", top: toasterTopPosition}}
                         toastOptions={{duration: 3000,
+                            className: "authToaster",
                             success: {
                                 style: {
                                     backgroundColor: "rgba(0, 190, 140, .8)",
@@ -45,7 +63,7 @@ export const AutorizationPage = () => {
                                     backdropFilter: "blur(3px)",
                                     maxWidth: "600px",
                                     width: "100%",
-                                    fontSize: "1.125rem",
+                                    fontSize: "1rem",
                                     textWrap: "nowrap",
                                     textAlign: "center"}},
                             error: {
@@ -55,7 +73,7 @@ export const AutorizationPage = () => {
                                     backdropFilter: "blur(3px)",
                                     maxWidth: "600px",
                                     width: "100%",
-                                    fontSize: "1.125rem",
+                                    fontSize: "1rem",
                                     textWrap: "nowrap",
                                     textAlign: "center"}}}}/>
 
