@@ -1,4 +1,5 @@
 import "./css/autorization_page.css"
+
 import { useCallback, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { confirmCustomerEmailRequest } from "../../modules/api_modules/emailAPI"

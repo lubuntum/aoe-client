@@ -3,6 +3,16 @@ const SUCCESS_REG_COMPLETE = {
     type: "success"
 };
 
+const SUCCESS_FORGET_EMAIL_SEND = {
+    message: "На вашу почту была отправлена ссылка на сброс пароля. Если сообщение не пришло, посмотрите в папке - Спам!",
+    type: "success"
+};
+
+const SUCCESS_RESET_SUCCESS = {
+    message: "Пароль успешно изменен!",
+    type: "success"
+};
+
 const ERROR_REG_FIELDS_ARE_EMPTY = {
     message: "Для регистрации заполните все поля.",
     type: "error"
@@ -63,11 +73,6 @@ const ERROR_FORGET_EMAIL_EMPTY = {
     type: "error"
 };
 
-const SUCCESS_FORGET_EMAIL_SEND = {
-    message: "На вашу почту была отправлена ссылка на сброс пароля. Если сообщение не пришло, посмотрите в папке - Спам!",
-    type: "success"
-};
-
 const ERROR_FORGET_EMAIL_FAILED = {
     message: "При отправке произошла ошибка. Попробуйте снова.",
     type: "error"
@@ -78,23 +83,15 @@ const ERROR_CONFIRMATION_ERROR = {
     type: "error"
 };
 
-const SUCCESS_CONFIRMATION_SUCCESS = {
-    message: "Ваша почта успешно подтверждена! Теперь вы можете начать подготовку к ЕГЭ.",
-    type: "success"
-};
-
 const ERROR_RESET_ERROR = {
     message: "При изменении пароля произошла непредвиденная ошибка.",
     type: "error"
 };
 
-const SUCCESS_RESET_SUCCESS = {
-    message: "Пароль успешно изменен!",
-    type: "success"
-};
-
 const authStatuses = {
     SUCCESS_REG_COMPLETE,
+    SUCCESS_RESET_SUCCESS,
+    SUCCESS_FORGET_EMAIL_SEND,
     ERROR_REG_FIELDS_ARE_EMPTY,
     ERROR_RESET_FIELDS_ARE_EMPTY,
     ERROR_LOGIN_FIELDS_ARE_EMPTY,
@@ -107,12 +104,9 @@ const authStatuses = {
     ERROR_EMAIL_CONFIRMATION,
     ERROR_WRONG_EMAIL_OR_PASS,
     ERROR_FORGET_EMAIL_EMPTY,
-    SUCCESS_FORGET_EMAIL_SEND,
     ERROR_FORGET_EMAIL_FAILED,
     ERROR_CONFIRMATION_ERROR,
-    SUCCESS_CONFIRMATION_SUCCESS,
     ERROR_RESET_ERROR,
-    SUCCESS_RESET_SUCCESS
 };
 
 export default authStatuses;
