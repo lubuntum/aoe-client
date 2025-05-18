@@ -34,6 +34,7 @@ import { EmailConfirmationPage } from './components/auth_page_components/EmailCo
 import { ResetPassword } from './components/auth_page_components/ResetPassword';
 import { AdminAddVariantPage } from './components/admin_page_components/variants_components/AdminAddVariantPage';
 import { AdminEditVariantPage } from './components/admin_page_components/variants_components/edit_variant/AdminEditVariantPage';
+import { TestingPage } from './components/testing_page_components/TestingPage';
 
 function App() {
     return (
@@ -72,6 +73,7 @@ const Main = () => {
                 <Route path={routes.RESET_PASSWORD}            element = {<ProtectedRoute component={<ResetPassword/>}/>}/>
                 <Route path={routes.ADD_VARIANT}               element = {<ProtectedRoute component={<AdminAddVariantPage/>}/>}/>
                 <Route path={routes.EDIT_VARIANT}              element = {<ProtectedRoute component={<AdminEditVariantPage/>}/>}/>
+                <Route path={routes.BETA_TEST}                 element = {<ProtectedRoute component={<TestingPage/>}/>}/>
             </Routes>
         </div>
     )

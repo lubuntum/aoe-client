@@ -16,6 +16,7 @@ const ADD_VARIANT = "/add-variant"
 const EDIT_VARIANT = "/edit-variant"
 const EMAIL_CONFIRM = "/confirmation"
 const RESET_PASSWORD = "/reset-password"
+const BETA_TEST = "/beta-test"
 const routes = {
     AUTORIZATION,
     HOME,
@@ -34,7 +35,8 @@ const routes = {
     ADD_VARIANT,
     EDIT_VARIANT,
     EMAIL_CONFIRM, 
-    RESET_PASSWORD
+    RESET_PASSWORD,
+    BETA_TEST
 }
 
 export default routes

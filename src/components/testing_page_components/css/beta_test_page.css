@@ -1,0 +1,37 @@
+.betaTestWrapper {
+    display: flex;
+    height: calc(100vh - 80px);
+    justify-content: center;
+    align-items: center;
+}
+.betaTestContainers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 1200px;
+    padding: 60px;
+    border-radius: 40px;
+    background-color: white;
+}
+.betaTestContainers p:not(:first-child) {
+    font-size: 1rem;
+    line-height: 25px;
+}
+.betaTestContainers p:nth-child(2),
+.betaTestContainers p:nth-child(4),
+.betaTestContainers p:nth-child(6),
+.betaTestContainers p:nth-child(9),
+.betaTestContainers p:nth-child(12),
+.betaTestContainers p:nth-child(13) {
+    font-weight: 600;
+}
+.betaTestContainers p:nth-child(7),
+.betaTestContainers p:nth-child(8) {
+    margin-left: 10px;
+}
+.betaTestInputs {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 20px 0;
+}
