@@ -1,0 +1,126 @@
+.footer {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 150px;
+    box-shadow: 0 16px 40px var(--shadow-color);
+    background-color: var(--accent-color);
+    padding: 40px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.footer_wrapper {
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer_logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.footer_logo p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.footer_logo p span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.footer_socials {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.footer_socials .svg_icon {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.footer_title {
+    display: flex;
+    align-items: start;
+}
+.footer_title p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.footer_body {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    max-width: 300px;
+}
+.footer_body p {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 400;
+}
+.footer_container .footer_body:last-child p {
+    padding: 5px 0;
+}
+.footer_body button,
+.footer_docs button {
+    color: var(--primary-color);
+    transition: all .2s ease;
+}
+.footer_docs button {
+    font-size: .875rem;
+}
+.footer_body button:hover,
+.footer_docs button:hover {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.footer_divider {
+    width: 100%;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.footer_bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer_docs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footer_meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.footer_meta p {
+    color: var(--primary-color);
+    font-size: .875rem;
+    font-weight: 300;
+}

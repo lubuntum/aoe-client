@@ -1,3 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+	padding-block: 0px;
+	padding-inline: 0px;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	list-style: none;
+	scroll-behavior: smooth;
+}
+
+.content_wrapper {
+	margin: 0 auto;
+	max-width: 1440px;
+}
+
+:root {
+	--small-fs: .875rem;
+	--default-fs: 1rem;
+	--medium-fs: 1.125rem;
+	--large-fs: 1.25rem;
+	--xxx-large-fs: 3rem;
+	--xxxx-large-fs: 5rem;
+}
+
+
+
 /*Стили для поля ввода*/
 .defInpContainer {
 	display: flex;

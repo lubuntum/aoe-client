@@ -1,5 +1,4 @@
 import './App.css';
-import "./common.css"
 import "./colors.css"
 import './btns.css'
 import "./components/reusible_components/css/scrollbar.css"
@@ -9,10 +8,11 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import ProtectedRoute from "./modules/auth_modules/ProtectedRoute"
 import AuthProvider from "./modules/auth_modules/AuthProvider"
 import { ScrollToTop } from "./components/reusible_components/ScrollToTop"
+import { Layout } from "./components/tme_reusable/Layout"
 
 import { PageTracking } from "./hooks/metrica/PageTracking"
 
-import { MainPage } from "./components/main_page_components/MainPage"
+import { MainPage } from "./components/tme_main/MainPage"
 import { AccountPage } from './components/account_page_components/AccountPage'
 import { AdminPage } from "./components/admin_page_components/AdminPage"
 import { PricingPage } from "./components/pricing_page_components/PricingPage"
@@ -51,7 +51,7 @@ const Main = () => {
     PageTracking()
 
     return (
-        <div className='pageWrapper'>
+        <Layout>
             <Routes>
                 <Route path='/*'                               element = {<p>404 NOT FOUND</p>} />
                 <Route path='/'                                element = {<Navigate to={routes.HOME} replace/>} />
@@ -75,7 +75,7 @@ const Main = () => {
                 <Route path={routes.EDIT_VARIANT}              element = {<ProtectedRoute component={<AdminEditVariantPage/>}/>}/>
                 <Route path={routes.BETA_TEST}                 element = {<ProtectedRoute component={<TestingPage/>}/>}/>
             </Routes>
-        </div>
+        </Layout>
     )
 }
 export default App;
