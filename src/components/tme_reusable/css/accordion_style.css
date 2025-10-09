@@ -1,0 +1,65 @@
+details p {
+    font-size: var(--fs-base);
+    padding: 40px 40px 0 40px;
+    font-weight: 400;
+}
+details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    height: 110px;
+    border-radius: 40px;
+    background-color: var(--primary-color);
+    box-shadow: 0 16px 40px var(--shadow-color);
+    user-select: none;
+    cursor: pointer;
+    font-size: var(--fs-lg);
+    color: var(--secondary-text-color);
+    font-weight: 400;
+}
+details summary::marker {
+    content: "";
+}
+details summary::after {
+    content: "+";
+    font-size: var(--fs-4xl);
+    line-height: 25px;
+    font-weight: 400;
+    color: var(--accent-color);
+    transition: transform .2s ease;
+}
+details[open] summary::after {
+    transform: rotate(45deg);
+}
+::details-content {
+    transition: height .3s ease, content-visibility .3s ease allow-discrete;
+    height: 0;
+    overflow: clip;
+}
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+
+    [open]::details-content {
+        height: auto;
+    }
+}
+
+
+@media (max-width: 1340px) {
+    details summary {
+        font-size: var(--fs-base);
+        padding: 30px 40px 30px 30px;
+        height: 100px;
+    }
+}
+@media (max-width: 996px) {
+    details summary {
+        font-size: var(--fs-sm);
+    }
+    details p {
+        font-size: var(--fs-sm);
+    }
+}

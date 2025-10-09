@@ -1,4 +1,4 @@
-import "./btn_style.css"
+import "./css/btn_style.css"
 
 export const BtnLink = ({btnText, btnFunc, btnDis}) => {
     const handleClick = (event) => {

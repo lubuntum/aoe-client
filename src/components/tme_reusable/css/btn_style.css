@@ -8,13 +8,13 @@
     --btn-text-color: white;
     --btn-text-disable-color: #bcbcbc;
 
+    --btn-ghost-icon-color: #9d9d9d;
+
+    --btn-error-like-color: #ef476f;
+
     --btn-size-small: 0 1.875rem;
     --btn-size-medium: 0 2.5rem;
     --btn-size-large: 0 3.125rem;
-
-    --btn-font-small: .875rem;
-    --btn-font-medium: 1rem;
-    --btn-font-large: 1.125rem;
 }
 
 .btn {
@@ -26,7 +26,7 @@
     padding: var(--btn-size-medium);
     border: none;
     border-radius: 50px;
-    font-size: var(--btn-font-medium);
+    font-size: var(--fs-base);
     font-weight: 400;
     text-decoration: none;
     cursor: pointer;
@@ -78,4 +78,27 @@
 }
 .btn_icon:hover {
     background-color: var(--btn-primary-hover);
+}
+
+
+
+.btn_like {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+}
+.btn_like .svg_icon {
+    fill: var(--btn-ghost-icon-color);
+    transition: all .2s ease;
+}
+.btn_like:hover .svg_icon {
+    fill: var(--btn-error-like-color);
+}
+
+
+@media (max-width: 996px) {
+    .btn {
+        font-size: var(--fs-sm);
+    }
 }

@@ -24,11 +24,11 @@
     cursor: pointer;
 }
 .header_logo p {
-    font-size: 1.5rem;
+    font-size: var(--font-large-xx);
     font-weight: 500;
 }
 .header_logo p span {
-    font-size: 1.5rem;
+    font-size: var(--font-large-xx);
     font-weight: 600;
     color: var(--accent-color);
 }

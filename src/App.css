@@ -18,13 +18,21 @@
 }
 
 :root {
-	--small-fs: .875rem;
-	--default-fs: 1rem;
-	--medium-fs: 1.125rem;
-	--large-fs: 1.25rem;
-	--xxx-large-fs: 3rem;
-	--xxxx-large-fs: 5rem;
+	--fs-xs: 0.75rem;     /* 12px */
+	--fs-sm: 0.875rem;    /* 14px */
+	--fs-base: 1rem;      /* 16px */
+	--fs-lg: 1.125rem;    /* 18px */
+	--fs-xl: 1.25rem;     /* 20px */
+	--fs-2xl: 1.5rem;     /* 24px */
+	--fs-3xl: 1.875rem;   /* 30px */
+	--fs-4xl: 2.25rem;    /* 36px */
+	--fs-5xl: 3rem;       /* 48px */
+	--fs-6xl: 4.75rem;    /* 76px */
 }
+
+
+
+
 
 
 

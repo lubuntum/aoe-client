@@ -1,4 +1,5 @@
 import "./footer_style.css"
+import "./footer_media_style.css"
 
 import { useNavigate } from "react-router-dom"
 

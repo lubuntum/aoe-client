@@ -1,4 +1,5 @@
 import "./header_style.css"
+import "./header_media_style.css"
 
 import { useNavigate } from "react-router-dom"
 
@@ -28,9 +29,9 @@ export const Header = () => {
             </div>
 
             <div className="header_login_logout">
-                {!isAuth && <Btn btnText={"Войти"} btnFunc={()=>navigate(routes.AUTORIZATION)}/>}
-                {isAuth && <BtnLink btnText={"Личный кабинет"} btnFunc={()=>navigate(routes.ACCOUNT)}/>}
-                {isAuth && <BtnIcon btnIcon={<LogoutI className="svg_icon"/>} btnFunc={logout}/>}
+                {isAuth && <Btn btnText={"Войти"} btnFunc={()=>navigate(routes.AUTORIZATION)}/>}
+                {!isAuth && <BtnLink btnText={"Личный кабинет"} btnFunc={()=>navigate(routes.ACCOUNT)}/>}
+                {!isAuth && <BtnIcon btnIcon={<LogoutI className="svg_icon"/>} btnFunc={logout}/>}
             </div>
         </div>
     </>)

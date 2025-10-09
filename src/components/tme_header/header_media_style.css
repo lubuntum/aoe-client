@@ -1,0 +1,11 @@
+@media (max-width: 1420px) {
+
+}
+@media (max-width: 1280px) {
+    .header_nav {
+        gap: 40px;
+    }
+    .header_login_logout {
+        gap: 10px;
+    }
+}
