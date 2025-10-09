@@ -11,7 +11,7 @@ import { Footer } from "../tme_footer/Footer.jsx"
 
 export const MainPage = () => {
     return (<>
-        
+        <Header/>
         
         <div className="content_wrapper">
             <div className="main_page_wrapper">
@@ -27,6 +27,6 @@ export const MainPage = () => {
             </div>
         </div>
 
-        
+        <Footer/>
     </>)
 }
