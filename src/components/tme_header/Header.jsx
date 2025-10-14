@@ -95,40 +95,40 @@ export const Header = () => {
             </div>
 
             <div className="header_desktop_nav">
-                <BtnLink btnText={"Главная"} btnFunc={()=>navigate(routes.HOME)}/>
+                <BtnLink btnText={"Главная"}            btnFunc={()=>navigate(routes.HOME)}/>
 
                 <BtnLink btnText={"Преимущества"}/>
 
                 <BtnLink btnText={"Как пользоваться"}/>
 
-                <BtnLink btnText={"Варианты"} btnFunc={()=>navigate(routes.TASK)}/>
+                <BtnLink btnText={"Варианты"}           btnFunc={()=>navigate(routes.TASK)}/>
             </div>
 
             <div className="header_desktop_buttons">
-                {!isAuth && <Btn btnText={"Войти"} btnFunc={()=>navigate(routes.AUTORIZATION)}/>}
+                {!isAuth && <Btn btnText={"Войти"}                              btnFunc={()=>navigate(routes.AUTORIZATION)}/>}
 
-                {isAuth && <BtnLink btnText={"Личный кабинет"} btnFunc={()=>navigate(routes.ACCOUNT)}/>}
+                {isAuth && <BtnLink btnText={"Личный кабинет"}                  btnFunc={()=>navigate(routes.ACCOUNT)}/>}
 
-                {isAuth && <BtnIcon btnIcon={<LogoutI className="svg_icon"/>} btnFunc={logout}/>}
+                {isAuth && <BtnIcon btnIcon={<LogoutI className="svg_icon"/>}   btnFunc={logout}/>}
             </div>
             
             <div className="header_mobile_buttons">
                 <BtnIcon btnIcon={<MenuI className="svg_icon"/>} btnFunc={toggleDropdown}/>
 
                 <div className={`header_dropdown ${isDropdownOpen ? "header_dropdown_open" : ""}`} ref={dropdownRef}>
-                    <BtnLink btnText={"Главная"} btnFunc={()=>{navigate(routes.HOME); closeDropdown()}}/>
+                    <BtnLink btnText={"Главная"}                     btnFunc={()=>{navigate(routes.HOME); closeDropdown()}}/>
 
-                    <BtnLink btnText={"Преимущества"} btnFunc={()=>{closeDropdown()}}/>
+                    <BtnLink btnText={"Преимущества"}                btnFunc={()=>{closeDropdown()}}/>
 
-                    <BtnLink btnText={"Как пользоваться"} btnFunc={()=>{closeDropdown()}}/>
+                    <BtnLink btnText={"Как пользоваться"}            btnFunc={()=>{closeDropdown()}}/>
 
-                    <BtnLink btnText={"Варианты"} btnFunc={()=>{navigate(routes.TASK); closeDropdown()}}/>
+                    <BtnLink btnText={"Варианты"}                    btnFunc={()=>{navigate(routes.TASK); closeDropdown()}}/>
 
-                    {!isAuth && <BtnLink btnText={"Войти"} btnFunc={()=>{navigate(routes.AUTORIZATION); closeDropdown()}}/>}
+                    {!isAuth && <BtnLink btnText={"Войти"}           btnFunc={()=>{navigate(routes.AUTORIZATION); closeDropdown()}}/>}
 
-                    {isAuth && <BtnLink btnText={"Личный кабинет"} btnFunc={()=>{navigate(routes.ACCOUNT); closeDropdown()}}/>}
+                    {isAuth && <BtnLink btnText={"Личный кабинет"}   btnFunc={()=>{navigate(routes.ACCOUNT); closeDropdown()}}/>}
 
-                    {isAuth && <BtnLink btnText={"Выход"} btnFunc={()=>{logout(); closeDropdown()}}/>}
+                    {isAuth && <BtnLink btnText={"Выход"}            btnFunc={()=>{logout(); closeDropdown()}}/>}
                 </div>
             </div>
             
