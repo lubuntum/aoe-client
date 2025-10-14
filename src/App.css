@@ -12,6 +12,10 @@
 	scroll-behavior: smooth;
 }
 
+html, body {
+	height: 100%;
+}
+
 .content_wrapper {
 	margin: 0 auto;
 	max-width: 1440px;

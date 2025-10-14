@@ -23,6 +23,7 @@
 
 .footer_info {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -39,12 +40,12 @@
     cursor: pointer;
 }
 .footer_logo p {
-    font-size: 1.5rem;
+    font-size: var(--fs-2xl);
     font-weight: 500;
     color: var(--primary-color);
 }
 .footer_logo p span {
-    font-size: 1.5rem;
+    font-size: var(--fs-2xl);
     font-weight: 600;
     color: var(--primary-color);
 }
@@ -64,7 +65,7 @@
     align-items: start;
 }
 .footer_title p {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 500;
     color: var(--primary-color);
 }
@@ -77,7 +78,7 @@
 }
 .footer_body p {
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: var(--fs-base);
     font-weight: 400;
 }
 .footer_container .footer_body:last-child p {
@@ -121,6 +122,6 @@
 }
 .footer_meta p {
     color: var(--primary-color);
-    font-size: .875rem;
+    font-size: var(--fs-sm);
     font-weight: 300;
 }

@@ -5,7 +5,7 @@ export const SectionGuide = () => {
 
             <div className="main_guide_container">
                 <div className="main_guide_item">
-                    <h1>01</h1>
+                    <h2>01</h2>
 
                     <div className="main_guide_text">
                         <p className="main_guid_title">Создай аккаунт</p>
@@ -14,7 +14,7 @@ export const SectionGuide = () => {
                 </div>
 
                 <div className="main_guide_item">
-                    <h1>02</h1>
+                    <h2>02</h2>
 
                     <div className="main_guide_text">
                         <p className="main_guid_title">Ознакомся с вариантами</p>
@@ -23,7 +23,7 @@ export const SectionGuide = () => {
                 </div>
 
                 <div className="main_guide_item">
-                    <h1>03</h1>
+                    <h2>03</h2>
 
                     <div className="main_guide_text">
                         <p className="main_guid_title">Проходи задания / экзамены</p>
@@ -32,7 +32,7 @@ export const SectionGuide = () => {
                 </div>
 
                 <div className="main_guide_item">
-                    <h1>04</h1>
+                    <h2>04</h2>
 
                     <div className="main_guide_text">
                         <p className="main_guid_title">Отправляй на проверку</p>

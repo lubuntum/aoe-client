@@ -3,66 +3,79 @@
 }
 
 
-.main_page_wrapper section:first-child {
-    padding-top: 100px;
-}
-.main_page_wrapper section:not(:first-child) {
-    padding-top: 150px;
-}
-.main_advantages_section {
-    padding-top: 110px !important;
-}
-.main_page_wrapper section h1 {
-    font-size: var(--fs-5xl);
-    font-weight: 500;
-    text-align: center;
-}
-.main_page_wrapper section h4 {
-    font-size: var(--fs-xl);
-    font-weight: 400;
-    text-align: center;
-    line-height: 35px;
-}
-
-
 .main_banner_section {
     height: calc(100vh - 80px);
-    padding: 40px;
+}
+
+.main_banner_section,
+.main_advantages_section,
+.main_video_section,
+.main_guide_section,
+.main_faq_section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 80px 0 40px 0;
+    align-items: center;
 }
+.main_banner_section h1,
+.main_advantages_section h1,
+.main_video_section h1,
+.main_guide_section h1,
+.main_faq_section h1 {
+    font-size: var(--fs-4xl);
+    font-weight: 500;
+    text-align: center;
+    width: 70%;
+    text-transform: uppercase;
+}
+.main_banner_section h4,
+.main_advantages_section h4,
+.main_video_section h4,
+.main_guide_section h4,
+.main_faq_section h4 {
+    font-size: var(--fs-lg);
+    font-weight: 400;
+    text-align: center;
+    line-height: 30px;
+    width: 80%;
+}
+
+
+
+
 .main_banner_info_container {
     display: flex;
     flex-direction: row;
+    gap: 40px;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .main_banner_info_item {
     display: flex;
     flex-direction: column;
-    width: 380px;
-}
-.main_page_wrapper .main_banner_info_item h1 {
-    font-size: var(--fs-6xl);
-    font-weight: 300;
-    color: var(--accent-color);
-    line-height: 70px;
-}
-.main_page_wrapper .main_banner_info_item h4 {
-    font-size: var(--fs-lg);
-    color: var(--secondary-text-color);
-    font-weight: 500;
-}
-.main_page_wrapper  .main_banner_info_item p {
     text-align: center;
-    line-height: 25px;
+    gap: 10px;
+}
+.main_banner_info_item div h2 {
+    font-size: var(--fs-5xl);
+    font-weight: 500;
+    color: var(--accent-color);
+}
+.main_banner_info_item div p {
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--secondary-text-color);
+}
+.main_banner_info_item p {
     font-size: var(--fs-base);
     color: var(--secondary-text-color);
+    text-align: center;
+    line-height: 30px;
 }
 .main_banner_info_divider {
-    height: 260px;
+    height: calc(100% + 20px);
     width: 2px;
     background-color: var(--secondary-text-color);
     transform: rotate(10deg);
@@ -71,18 +84,30 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 75px;
     width: 100%;
 }
 
 
 
-.main_video_contaner {
+.main_video_container {
     width: 100%;
-    height: 750px;
     background-color: gray;
-    border-radius: 40px;
+    border-radius: 20px;
     box-shadow: 0 16px 40px var(--shadow-color);
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+}
+.main_video_container_vertical {
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    background-color: gray;
+    box-shadow: 0 16px 40px var(--shadow-color);
+    border-radius: 20px;
 }
 
 
@@ -161,7 +186,7 @@
 .main_advantages_variants_item .advantage_counter {
     font-size: var(--fs-5xl);
     color: var(--accent-color);
-    font-weight: 700;
+    font-weight: 600;
 }
 .main_advantages_likes_container {
     display: flex;
@@ -190,17 +215,15 @@
     border-radius: 40px;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
     padding: 40px;
 }
-.main_guide_item h1 {
-    font-size: var(--fs-6xl) !important;
+.main_guide_item h2 {
+    font-size: var(--fs-6xl);
     color: var(--accent-color);
-    font-weight: 300 !important;
+    font-weight: 300;
     line-height: 60px;
-    text-align: start !important;
     min-width: 105px;
-    padding-right: 20px;
 }
 .main_guide_text {
     display: flex;
@@ -210,6 +233,7 @@
 }
 .main_guid_title {
     font-size: var(--fs-lg);
+    color: var(--accent-color);
     text-transform: uppercase;
     line-height: 20px;
     font-weight: 500;

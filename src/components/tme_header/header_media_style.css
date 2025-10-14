@@ -1,11 +1,29 @@
-@media (max-width: 1420px) {
-
-}
-@media (max-width: 1280px) {
-    .header_nav {
-        gap: 40px;
+@media (max-width: 1240px) {
+    .header_desktop_nav {
+        gap: 50px;
     }
-    .header_login_logout {
-        gap: 10px;
+}
+
+@media (max-width: 996px) {
+    .header_fixed {
+        padding: 10px;
+    }
+    .header_desktop_nav,
+    .header_desktop_buttons {
+        display: none;
+    }
+    .header_mobile_nav,
+    .header_mobile_buttons {
+        display: block;
+    }
+    .header_logo p {
+        font-size: var(--fs-xl);
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 640px) {
+    .header_fixed {
+        top: 10px;
     }
 }

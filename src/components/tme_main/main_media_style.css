@@ -1,273 +1,312 @@
-@media (max-width: 1700px) {
-    /*Медиа к контенту преимуществ (<= 1700px)*/
+@media (max-width: 1640px) {
     .main_advantages_container {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
         width: 1440px;
     }
     .main_advantages_item {
-        flex: 0 0 30%;
+        flex: 0 1 30%;
     }
     .main_advantages_item:nth-child(1) {
         order: 4;
     }
 }
 
-@media (max-width: 1480px) {
-    /*Медиа к заголовкам секций (<= 1480px)*/
-    .main_page_wrapper section h1 {
-        font-size: var(--fs-4xl);
-    }
-    .main_page_wrapper section h4 {
-        font-size: var(--fs-lg);
-    }
-
-    /*Медиа к контенту баннера (<= 1480px)*/
-    .main_page_wrapper .main_banner_info_item h1 {
-        font-size: var(--fs-5xl);
-        line-height: 40px;
-    }
-    .main_page_wrapper .main_banner_info_item h4 {
-        font-size: var(--fs-base);
-    }
-    .main_page_wrapper  .main_banner_info_item p {
-        font-size: var(--fs-base);
-        padding-top: 20px;
-    }
-
+@media (max-width: 1440px) {
     .main_advantages_container {
         width: auto;
     }
 
-    /*Медиа к контенту гайда (<= 1480px)*/
     .main_guide_item {
-        padding: 30px;
-        gap: 10px;
-    }
-    .main_guid_title {
-        font-size: var(--fs-base);
-    }
-    .main_guide_text p:last-child {
-        font-size: var(--fs-sm);
+        flex: 1 1 50%;
     }
 }
 
-@media (max-width: 1340px) {
-    /*Медиа к заголовкам секций (<= 1340px)*/
-    .main_page_wrapper section h4 {
-        font-size: var(--fs-lg);
-        line-height: 25px;
+@media (max-width: 1390px) {
+    .main_advantages_container,
+    .main_guide_container,
+    .main_accordion_container {
+        padding-top: 40px;
     }
 
-    /*Медиа к контенту баннера (<= 1340px)*/
-    .main_banner_info_container {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 60px;
-    }
-    .main_banner_info_item  {
-        flex: 0 0 40%;
-    }
     .main_banner_info_divider {
         display: none;
     }
-
-    /*Медиа к контенту гайда (<= 1340px)*/
-    .main_guide_item {
-        gap: 0;
-        align-items: center;
+    .main_banner_info_container {
+        flex-wrap: wrap;
+        gap: 40px;
     }
-    .main_guide_item h1 {
-        font-size: var(--fs-5xl) !important;
-        padding-right: 0;
-        min-width: 80px;
-        line-height: 50px;
+    .main_banner_info_item {
+        flex: 0 0 40%;
     }
 }
 
 @media (max-width: 1240px) {
-    /*Медиа к контенту преимуществ (<= 1240px)*/
-    .main_advantages_container {
-        width: auto;
-    }
-    .main_advantages_item {
-        flex: 0 1 40%;
-        height: 340px !important;
-    }
-    .main_advantages_item:nth-child(1) {
-        order: 4;
-    }
-    .main_advantages_item img {
-        width: 100px !important;
-        height: 100px !important;
-    }
-    .main_advantages_variants_item img {
-        width: 40px !important;
-        height: 40px !important;
-    }
-}
-
-@media (max-width: 1190px) {
-    /*Медиа к контенту гайда (<= 1190px)*/
-    .main_guide_item  {
-        flex: 1 1 100%;
-    }
-    .main_guide_text {
-        justify-content: space-between;
-    }
-}
-
-@media (max-width: 1060px) {
-    /*Медиа к заголовкам секций (<= 1060px)*/
-    .main_page_wrapper section:first-child {
-        padding-top: 60px;
-    }
-    .main_page_wrapper section:not(:first-child) {
-        padding-top: 100px;
-    }
-    .main_advantages_section {
-        padding-top: 60px !important;
-    }
-
-    /*Медиа к контенту баннера (<= 1060px)*/
-    .main_banner_info_container {
-        gap: 40px;
-    }
-    .main_banner_subtitle {
-        font-size: var(--fs-sm) !important;
-    }
-    .main_banner_info_item  {
-        flex: 0 0 100%;
-        max-width: 500px;
-    }
-    .main_page_wrapper .main_banner_info_item h1 {
-        font-size: var(--fs-4xl);
-        line-height: 40px;
-    }
-    .main_page_wrapper .main_banner_info_item h4 {
-        font-size: var(--fs-sm);
-    }
-    .main_page_wrapper  .main_banner_info_item p {
-        font-size: var(--fs-sm);
-    }
-
-    /*Медиа к контенту преимуществ (<= 1060px)*/
-    .main_advantages_item {
-        padding: 30px;
-    }
-    .main_advantages_item p {
-        font-size: var(--fs-sm);
-    }
-    .main_advantages_variants_item .advantage_counter {
-        font-size: var(--fs-4xl);
-        font-weight: 600;
-    }
-    .main_advantages_likes_container p {
-        font-size: var(--fs-sm);
-        line-height: 10px;
-    }
-}
-
-@media (max-width: 996px) {
-    /*Медиа к заголовкам секций (<= 996px)*/
-    .main_page_wrapper section {
-        padding-top: 60px;
-    }
-    .main_page_wrapper section h1 {
+    .main_banner_section h1,
+    .main_advantages_section h1,
+    .main_video_section h1,
+    .main_guide_section h1,
+    .main_faq_section h1 {
         font-size: var(--fs-3xl);
+        width: 100%;
     }
-    .main_page_wrapper section h4 {
+    .main_banner_section h4,
+    .main_advantages_section h4,
+    .main_video_section h4,
+    .main_guide_section h4,
+    .main_faq_section h4 {
+        width: 90%;
+        line-height: 30px;
+    }
+    .main_banner_info_item {
+        gap: 5px;
+    }
+    .main_banner_info_item div h2 {
+        font-size: var(--fs-4xl);
+    }
+    .main_banner_info_item div p {
+        font-size: var(--fs-base);
+    }
+    .main_banner_info_item p {
         font-size: var(--fs-base);
         line-height: 25px;
     }
 
-    /*Медиа к контенту баннера (<= 996px)*/
-    .main_page_wrapper .main_banner_info_item h1 {
+    .main_advantages_item {
+        flex: auto;
+        height: 360px !important;
+    }
+    .main_advantages_item:nth-child(1),
+    .main_advantages_item:nth-child(5) {
+        height: 320px !important;
+    }
+    .main_advantages_variants_item .advantage_counter {
         font-size: var(--fs-4xl);
+        font-weight: 500;
+    }
+
+    .main_guid_title {
+        font-size: var(--fs-base);
+    }
+    .main_guide_text p:last-child {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1080px) {
+    .main_advantages_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+            "item3 item3"
+            "item2 item4"
+            "item1 item5";
+        gap: 40px;
+        width: 70%;
+    }
+
+    .main_advantages_item:nth-child(1) { 
+        grid-area: item1;
+        width: 100% !important;
+    }
+    .main_advantages_item:nth-child(2) { 
+        grid-area: item2;
+        width: 100% !important; 
+    }
+    .main_advantages_item:nth-child(3) { 
+        grid-area: item3; 
+        width: 100% !important;
+    }
+    .main_advantages_item:nth-child(4) {
+        grid-area: item4; 
+        width: 100% !important;
+    }
+    .main_advantages_item:nth-child(5) { 
+        grid-area: item5; 
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 1060px) {
+    .main_banner_section h1,
+    .main_advantages_section h1,
+    .main_video_section h1,
+    .main_guide_section h1,
+    .main_faq_section h1 {
+        font-size: var(--fs-2xl);
+        width: 80%;
+    }
+    .main_banner_section h4,
+    .main_advantages_section h4,
+    .main_video_section h4,
+    .main_guide_section h4,
+    .main_faq_section h4 {
+        font-size: var(--fs-base);
+        width: 80%;
+        line-height: 25px;
+    }
+
+
+}
+
+@media (max-width: 996px) {
+    .main_banner_section,
+    .main_advantages_section,
+    .main_video_section,
+    .main_guide_section,
+    .main_faq_section {
+        padding: 40px 0 40px 0;
+    }
+    .main_banner_section h1,
+    .main_advantages_section h1,
+    .main_video_section h1,
+    .main_guide_section h1,
+    .main_faq_section h1 {
+        font-size: var(--fs-2xl);
+        width: 80%;
+    }
+    .main_banner_section h4,
+    .main_advantages_section h4,
+    .main_video_section h4,
+    .main_guide_section h4,
+    .main_faq_section h4 {
+        font-size: var(--fs-base);
+        width: 80%;
+    }
+    .main_banner_info_container {
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    .main_banner_info_item {
+        flex: 0 1 80%;
+    }
+    .main_banner_info_item div h2 {
+        font-size: var(--fs-3xl);
+    }
+    .main_banner_info_item div p {
+        font-size: var(--fs-base);
+    }
+    .main_banner_info_item p {
+        font-size: var(--fs-base);
+    }
+
+    .main_advantages_container {
+        width: 100%;
+    }
+    .main_advantages_item {
+        height: 320px !important;
+    }
+    .main_advantages_item:not(:nth-child(3)) img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .main_advantages_variants_item .advantage_counter {
+        font-size: var(--fs-3xl);
+    }
+
+    .main_guide_item h2 {
+        font-size: var(--fs-5xl);
+        min-width: 70px;
         line-height: 40px;
     }
-    .main_page_wrapper .main_banner_info_item h4 {
+    .main_guide_text p:last-child {
+        width: 100%;
         font-size: var(--fs-sm);
     }
-    .main_page_wrapper  .main_banner_info_item p {
+}
+
+@media (max-width: 748px) {
+    .main_banner_section,
+    .main_advantages_section,
+    .main_video_section,
+    .main_guide_section,
+    .main_faq_section {
+        padding: 40px 0 40px 0;
+        height: auto;
+        gap: 30px;
+    }
+    .main_advantages_container,
+    .main_guide_container,
+    .main_accordion_container {
+        padding-top: 0;
+    }
+    .main_banner_section h1,
+    .main_advantages_section h1,
+    .main_video_section h1,
+    .main_guide_section h1,
+    .main_faq_section h1 {
+        font-size: var(--fs-2xl);
+        width: 90%;
+    }
+    .main_banner_section h4,
+    .main_advantages_section h4,
+    .main_video_section h4,
+    .main_guide_section h4,
+    .main_faq_section h4 {
+        display: none;
+    }
+    .main_banner_info_container {
+        flex-wrap: wrap;
+        gap: 20px;
+        order: 2;
+    }
+    .main_banner_info_item {
+        flex: 0 1 100%;
+    }
+    .main_banner_info_item div h2 {
+        font-size: var(--fs-2xl);
+    }
+    .main_banner_info_item div p {
+        font-size: var(--fs-sm);
+    }
+    .main_banner_info_item p {
         font-size: var(--fs-sm);
     }
     .main_banner_buttons {
-        gap: 30px;
+        gap: 10px;
+        order: 1;
     }
 
-    /*Медиа к контенту видео (<= 996px)*/
-    .main_video_contaner {
-        padding-top: 40px;
+    .main_video_container {
+        display: none;
+    }
+    .main_video_container_vertical {
+        display: block;
     }
 
-    /*Медиа к контенту преимуществ (<= 996px)*/
+
     .main_advantages_container {
-        padding-top: 40px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas: 
+            "item3"
+            "item2"
+            "item4"
+            "item1"
+            "item5";
+        gap: 40px;
+        max-width: 400px;
+    }
+    .main_advantages_item {
+        width: 100% !important;
+        margin: 0 auto;
+        max-width: 400px;
+        max-height: 290px !important;
+    }
+    .main_advantages_item:not(:nth-child(3)) img {
+        width: 80px !important;
+        height: 80px !important;
     }
 
-    /*Медиа к контенту гайда (<= 996px)*/
-    .main_guide_container {
-        padding-top: 40px;
+    .main_guide_item {
+        padding: 30px 40px 30px 30px;
+    }
+    .main_guide_item h2 {
+        min-width: 65px;
+        line-height: 45px;
     }
     .main_guid_title {
         font-size: var(--fs-sm);
-    }
-
-    /*Медиа к контенту FAQ (<= 996px)*/
-    .main_accordion_container {
-        padding-top: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    /*Медиа к заголовкам секций (<= 768px)*/
-    .main_page_wrapper section h1 {
-        font-size: var(--fs-2xl);
-    }
-    
-    .main_page_wrapper  .main_banner_info_item p {
-        padding-top: 0;
-    }
-
-    /*Медиа к контенту преимуществ (<= 768px)*/
-    .main_advantages_item {
-        flex: 0 1 100%;
-        width: auto ;
-    }
-    .main_advantages_item:nth-child(1) {
-        order: 0;
-    }
-
-    /*Медиа к контенту видео (<= 768px)*/
-    .main_video_contaner {
-        padding-top: 20px;
-    }
-
-    /*Медиа к контенту преимуществ (<= 768px)*/
-    .main_advantages_container {
-        padding-top: 20px;
-    }
-
-    /*Медиа к контенту гайда (<= 768px)*/
-    .main_guide_container {
-        padding-top: 20px;
-    }
-
-    /*Медиа к контенту FAQ (<= 768px)*/
-    .main_accordion_container {
-        padding-top: 20px;
-    }
-}
-
-@media (max-width: 640px) {
-    .main_banner_info_item  {
-        flex: 0 0 100%;
-        max-width: auto;
-    }
-    .main_banner_subtitle {
-        display: none;
     }
 }

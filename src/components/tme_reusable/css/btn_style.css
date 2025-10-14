@@ -47,7 +47,7 @@
 
 .btn_link {
     background-color: transparent;
-    padding: 0;
+    padding: 0 !important;
     border-radius: 0;
 }
 .btn_link:hover {
@@ -68,7 +68,7 @@
 
 
 .btn_icon {
-    padding: 0;
+    padding: 0 !important;
     width: 40px;
     height: 40px;
     background-color: var(--btn-primary-color);
@@ -83,7 +83,7 @@
 
 
 .btn_like {
-    padding: 0;
+    padding: 0 !important;
     width: 40px;
     height: 40px;
     background-color: transparent;
@@ -97,8 +97,9 @@
 }
 
 
-@media (max-width: 996px) {
+@media (max-width: 1240px) {
     .btn {
+        padding: var(--btn-size-small);
         font-size: var(--fs-sm);
     }
 }

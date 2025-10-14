@@ -17,14 +17,13 @@
 .header_fixed:hover {
     box-shadow: 0 30px 40px var(--shadow-color);
 }
-
 .header_logo {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 .header_logo p {
-    font-size: var(--font-large-xx);
+    font-size: var(--fs-2xl);
     font-weight: 500;
 }
 .header_logo p span {
@@ -32,16 +31,18 @@
     font-weight: 600;
     color: var(--accent-color);
 }
-
-.header_nav {
+.header_desktop_nav {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 75px;
 }
-
-.header_login_logout {
+.header_desktop_buttons {
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+.header_mobile_nav,
+.header_mobile_buttons {
+    display: none;
 }

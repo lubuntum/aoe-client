@@ -4,11 +4,11 @@ details p {
     font-weight: 400;
 }
 details summary {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px;
-    height: 110px;
+    padding: 40px 80px 40px 40px;
     border-radius: 40px;
     background-color: var(--primary-color);
     box-shadow: 0 16px 40px var(--shadow-color);
@@ -22,6 +22,8 @@ details summary::marker {
     content: "";
 }
 details summary::after {
+    position: absolute;
+    right: 40px;
     content: "+";
     font-size: var(--fs-4xl);
     line-height: 25px;
@@ -48,18 +50,19 @@ details[open] summary::after {
 }
 
 
-@media (max-width: 1340px) {
+@media (max-width: 1240px) {
     details summary {
         font-size: var(--fs-base);
-        padding: 30px 40px 30px 30px;
-        height: 100px;
     }
 }
-@media (max-width: 996px) {
-    details summary {
-        font-size: var(--fs-sm);
-    }
+@media (max-width: 748px) {
     details p {
-        font-size: var(--fs-sm);
+        padding: 30px 30px 0 30px;
+    }
+    details summary {
+        padding: 30px 60px 30px 30px;
+    }
+    details summary::after {
+        right: 30px;
     }
 }

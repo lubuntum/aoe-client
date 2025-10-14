@@ -17,8 +17,6 @@ export const MainPage = () => {
             <div className="main_page_wrapper">
                 <SectionBanner/>
 
-                <SectionVideo/>
-
                 <SectionAdvantages/>
 
                 <SectionGuide/>
