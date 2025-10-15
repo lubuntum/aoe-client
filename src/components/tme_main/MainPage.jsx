@@ -14,15 +14,13 @@ export const MainPage = () => {
         <Header/>
         
         <div className="content_wrapper">
-            <div className="main_page_wrapper">
-                <SectionBanner/>
+            <SectionBanner/>
 
-                <SectionAdvantages/>
+            <SectionAdvantages/>
 
-                <SectionGuide/>
+            <SectionGuide/>
 
-                <SectionFaq/>
-            </div>
+            <SectionFaq/>
         </div>
 
         <Footer/>

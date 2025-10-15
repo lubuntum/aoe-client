@@ -222,7 +222,7 @@
     .main_video_section,
     .main_guide_section,
     .main_faq_section {
-        padding: 40px 0 40px 0;
+        padding: 40px 0 40px 0 !important;
         height: auto;
         gap: 30px;
     }
@@ -274,8 +274,7 @@
     .main_video_container_vertical {
         display: block;
     }
-
-
+    
     .main_advantages_container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto auto;

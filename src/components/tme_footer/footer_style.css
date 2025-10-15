@@ -95,7 +95,6 @@
 .footer_body button:hover,
 .footer_docs button:hover {
     color: var(--primary-color);
-    border-bottom: 1px solid var(--primary-color);
 }
 
 .footer_divider {

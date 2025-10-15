@@ -16,7 +16,7 @@ import { MainPage } from "./components/tme_main/MainPage"
 import { AccountPage } from './components/account_page_components/AccountPage'
 import { AdminPage } from "./components/admin_page_components/AdminPage"
 import { PricingPage } from "./components/pricing_page_components/PricingPage"
-import { VariantsPage } from "./components/variants_page_components/VariantsPage"
+import { VariantsPage } from "./components/tme_variants/VariantsPage"
 
 import { AutorizationPage } from './components/auth_page_components/AutorizationPage'
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage'
