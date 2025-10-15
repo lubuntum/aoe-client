@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { getVariantById } from "../../../../modules/api_modules/variantAPI"
 import { AdminAddVariantPage } from "../AdminAddVariantPage"
-import { Loader } from "../../../reusible_components/Loader"
 const variantEditStatuses = {
     IDLE:"IDLE",
     READY: "READY",
@@ -52,7 +51,7 @@ export const AdminEditVariantPage = () => {
     }
 
     return (<>
-        {status === variantEditStatuses.IDLE && <Loader />}
+        {status === variantEditStatuses.IDLE && <p>Загрузка</p>}
         {status === variantEditStatuses.READY && <AdminAddVariantPage variant={variant} loadEditedVariant={getVariantByIdForEdit}/>}
     </>)
 }

@@ -70,13 +70,6 @@
         grid-column-gap: 40px;
         grid-row-gap: 40px;
     }
-    .variant_card_container {
-        max-height: 310px;
-        height: 310px;
-    }
-    .variant_card_image {
-        height: 250px;
-    }
     .variant_card_info {
         padding: 0 30px;
     }
@@ -88,7 +81,10 @@
         padding-top: 10px;
     }
     .variant_card_container {
-        max-height: 320px;
-        height: 320px;
+        max-height: 290px;
+        height: 290px;
+    }
+    section:last-child button {
+        width: 100%;
     }
 }

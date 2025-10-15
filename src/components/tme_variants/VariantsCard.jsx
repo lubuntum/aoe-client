@@ -1,14 +1,30 @@
 import { BtnLink } from "../tme_reusable/BtnLink"
 
-import { ReactComponent as LockI } from "../../res/icons/lock_24dp_gi.svg"
+import { useEffect, useState } from "react"
+import { Loader } from "../tme_reusable/Loader"
 
-export const VariantsCard = ({isLocked = false}) => {
+import { ReactComponent as LockI } from "../../res/icons/lock_24dp_gi.svg"
+import { ReactComponent as BrokenI } from "../../res/icons/broken_image_24dp_gi.svg"
+
+export const VariantsCard = ({isLocked = false, imgUrl, isPreloaded}) => {
+    const [imageLoaded, setImageLoaded] = useState(isPreloaded)
+
+    useEffect(() => {
+        if (isPreloaded) {
+            setImageLoaded(true)
+        }
+    }, [isPreloaded])
+
+    const handleImageLoad = () => {
+        setImageLoaded(true)
+    }
+
     return (<>
-        
         <div className={`variant_card_container ${isLocked ? "variant_card_locked" : ""}`}>
             <div className="variant_card_content">
                 <div className="variant_card_image">
-                    <img src="https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg" alt="variant_image" loading="lazy" className={`${isLocked ? "image_locked" : ""}`}/>
+                    {imgUrl && <img src={imgUrl} alt="variant_image" onLoad={handleImageLoad} loading="lazy" className={`${isLocked ? "image_locked" : ""}`}/>}
+                    {!imgUrl && <BrokenI className="svg_icon"/>}
                 </div>
 
                 <div className="variant_card_info">

@@ -3,7 +3,6 @@ import { useMemo } from "react"
 import { useAuth } from "../../modules/auth_modules/AuthProvider.js"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../reusible_components/Button.jsx"
-import { Loader } from "../reusible_components/Loader.jsx"
 import routes from "../../routes.js"
 
 import { ReactComponent as LogoutIcon } from "../../res/icons/logout_24dp_gi.svg"
@@ -55,7 +54,7 @@ export const HeaderOptions = ({headerData}) => {
                                                                             buttonIcon={<AdminIcon className={"svgIcon"}/>} 
                                                                             buttonFunc={()=>navigate(routes.ADMIN)}/>}
                         </>
-                    ) : <Loader/>
+                    ) : <p>Загрузка</p>
                     }
                     <Button key={`logout0`}
                             buttonIcon={<LogoutIcon className={"svgIcon"}/>}dasd

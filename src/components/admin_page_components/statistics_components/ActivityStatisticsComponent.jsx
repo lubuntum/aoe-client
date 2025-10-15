@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getActivityStatistics } from "../../../modules/api_modules/statisticsAPI"
 import "../css/admin_statistics.css"
-import { Loader } from "../../reusible_components/Loader"
+
 const statuses = {
     IDLE: "IDLE", 
     ERROR: "ERROR",
@@ -45,7 +45,7 @@ export const ActivityStatisticsComponent = () => {
                         <p>Всего одобрено партнеров: {statistics.partnerStatistics.partners}</p>
                     </div>
                 </div>
-            </div> : <Loader/>}
+            </div> : <p>Загрузка</p>}
         
         </>
     )

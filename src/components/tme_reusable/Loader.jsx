@@ -1,8 +1,8 @@
-import "./css/loader.css"
+import "./css/loader_style.css"
 
 export const Loader = () => {
     return (<>
-        <div className="loaderContainer">
+        <div className="loader_container">
             <div className="loader"></div>
         </div>
     </>)

@@ -1,6 +1,7 @@
-.loaderContainer {
+.loader_container {
     position: relative;
     width: 25px;
+    height: 40px;
 }
 .loader::before,
 .loader::after {

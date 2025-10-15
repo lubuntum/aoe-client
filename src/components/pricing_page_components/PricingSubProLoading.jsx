@@ -1,10 +1,10 @@
-import { Loader } from "../reusible_components/Loader"
+
 
 export const PricingSubProLoading = ({className}) => {
     return (
         <div className={`pricingSubProContainer ${className}`}>
             <div className="pricingSubProWrapper">
-                <Loader/>
+                <p>Загрузка</p>
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import { useCallback, useEffect } from "react"
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 import routes from "../../../routes"
 import { Button } from "../../reusible_components/Button"
-import { Loader } from "../../reusible_components/Loader"
 
 export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) => {
     const { isAuth, checkAuth } = useAuth()
@@ -35,7 +34,7 @@ export const LessonUploadLoading = ({variant, endExamSession, endTaskSession}) =
             {isAuth ? 
             <div className="lessonUploadLoadingAuthContainer">
                 <div className="uploadLoader">
-                    <Loader/>
+                    <p>Загрузка</p>
                 </div>
                 <p>Данные загружаются на сервер, подождите!</p>
                 <p>После завершения, вас автоматически перекинет на страницу с результатами!</p>

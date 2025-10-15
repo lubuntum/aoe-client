@@ -19,7 +19,6 @@ import { sortCustomerTasks, sortDate, sortExams } from "../../../../modules/date
 import { AccountPopup } from "../../AccountPopup.jsx"
 
 import { Button } from "../../../reusible_components/Button.jsx"
-import { Loader } from "../../../reusible_components/Loader.jsx"
 import routes from "../../../../routes.js"
 import { getHeaderData } from "../../../../modules/api_modules/accountAPI.js"
 import { setNumberFormat } from "../../../../modules/number_formation_modules/setNumberFormat.js"
@@ -266,7 +265,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                             <td>
                                 <div className="resultsRecordsBodyExpress">
                                     {(exam.expressCheckStatus?.status !== null && exam.expressCheckStatus?.status === "checking") ? 
-                                        <Loader/> :
+                                        <p>Загрузка</p> :
                                     (exam.expressCheckStatus?.status !== null && exam.expressCheckStatus?.status === "completed") ? 
                                         `${setNumberFormat(exam?.expressTotalGrade)} / ${setNumberFormat(TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE)}` :
                                         "Не проверено"}
@@ -291,7 +290,7 @@ export const ResultsExamRecords = ({variant, examPicked, className, setContentPo
                             <td>
                                 <div className="resultsRecordsBodyExpert">
                                     {(exam.expertCheckStatus?.status !== null && exam.expertCheckStatus?.status === "checking") ? 
-                                        <Loader/> :
+                                        <p>Загрузка</p> :
                                     (exam.expertCheckStatus?.status !== null && exam.expertCheckStatus?.status === "completed") ? 
                                         `${exam?.expertTotalGrade} / ${TASKS_MAX_GRADE.TOTAL_TASK_MAX_GRADE}` :
                                         "Не проверено"}

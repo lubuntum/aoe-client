@@ -6,7 +6,6 @@ import { registration } from "../../modules/api_modules/authAPI"
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
 import { NewCheckbox } from "../reusible_components/NewCheckbox"
-import { Loader } from "../reusible_components/Loader"
 
 import routes from "../../routes"
 import authStatuses from "../../modules/auth_modules/authStatuses"
@@ -148,7 +147,7 @@ export const RegistrationContainer = ({onChangeContent, handleReturnHome, setNot
                        buttonWidth={"100%"}
                        buttonFunc={handleSubmit}/> : 
             <div className="loaderProcessingContainer">
-                <Loader/>
+                <p>Загрузка</p>
             </div>}
             
             <div className="authContentCreateAccount">

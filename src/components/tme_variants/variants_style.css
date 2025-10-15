@@ -42,6 +42,9 @@ section:first-child {
     grid-row-gap: 40px;
     width: 100%;
 }
+.variants_grid > * {
+    animation: fadeIn .3s ease-in-out;
+}
 
 .variant_card_container {
     display: flex;
@@ -60,10 +63,18 @@ section:first-child {
 }
 .variant_card_image {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     overflow: hidden;
     height: 250px;
     border-radius: 40px;
+}
+.variant_card_image .svg_icon {
+    width: 42px;
+    height: 42px;
+    fill: var(--disable-color);
 }
 .variant_card_image img {
     height: 100%;
@@ -130,4 +141,15 @@ section:first-child {
 }
 .variant_card_locked .variant_card_image::after {
     display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

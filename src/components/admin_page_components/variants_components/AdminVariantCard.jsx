@@ -5,7 +5,6 @@ import { deleteVariantData, updateVariantVisibility } from "../../../modules/api
 import { setNumberFormat } from "../../../modules/number_formation_modules/setNumberFormat"
 
 import { Button } from "../../reusible_components/Button" 
-import { Loader } from "../../reusible_components/Loader"
 
 import { ReactComponent as VisibilityOffIcon } from "../../../res/icons/visibility_off_24dp_gi.svg"
 import { ReactComponent as VisibilityOnIcon } from "../../../res/icons/visibility_24dp_gi.svg"
@@ -68,7 +67,7 @@ export const AdminVariantCard = ({index, variant, setVariants, downloadVariants}
             <div className="variantCardImage">
                 {imageExists ? 
                     <img src={imagePath} alt=""/> :
-                    <><Loader/><p>Finding Image</p></>}
+                    <><p>Загрузка</p><p>Finding Image</p></>}
             </div>
 
             <div className="variantCardOptionsWrapper">

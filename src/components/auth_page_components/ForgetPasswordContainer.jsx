@@ -3,7 +3,6 @@ import { resetPasswordEmailRequest } from "../../modules/api_modules/emailAPI"
 
 import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
-import { Loader } from "../reusible_components/Loader"
 
 import authStatuses from "../../modules/auth_modules/authStatuses"
 
@@ -61,7 +60,7 @@ export const ForgetPasswordContainer = ({onChangeContent, handleReturnHome, setN
                        buttonWidth={"100%"}
                        buttonFunc={handleSubmit}/> :
             <div className="loaderProcessingContainer">
-                <Loader/>
+                <p>Загрузка</p>
             </div>}
             
             <div className="authContentCreateAccount">
