@@ -2,7 +2,15 @@ import { useMemo, useState } from "react"
 import { MultipleSelector } from "../tme_reusable/MultipleSelector"
 import { Filter } from "./Filter"
 import { STATUS_TYPES, VariantAnswer } from "./VariantAnswer"
-
+/**
+ * 
+ * TODO
+ *  0. В личном кабинете отобразить данные пользователя (подгрузка и теперь их можно добавлять )
+    1. Определить какие поля испольщуются на сервере и в новом компоненте для ответов
+    2. Поместить тестовые обьекты в ansers проверить фильтрацию и тд что бы все отобрадалось
+    3. Добавить загрузук по сети
+    4. Сделать кнопку скопировать ссылку на вариант + скачать аудио файлы ответов
+*/
 export const SectionUserAnswers = () => {
     const [answers, setAnswers] = useState([]) // Массив ответов
     
