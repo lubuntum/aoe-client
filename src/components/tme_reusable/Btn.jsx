@@ -1,6 +1,6 @@
 import "./css/btn_style.css"
 
-export const Btn = ({btnText, btnFunc, btnDis}) => {
+export const Btn = ({btnText, btnFunc, btnDis, customClassName}) => {
     const handleClick = (event) => {
         if (btnFunc && !btnDis) {
             btnFunc()

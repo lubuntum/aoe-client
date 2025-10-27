@@ -8,8 +8,22 @@
 	--border-color: #c7c7c7;
 	--pure-dark-color: #000000;
 
+	--idle-color: #5C5C5C;
+	--idle-background-color: #E5E5E5;
+
+	--checking-color: #2B67D4;
+	--checking-background-color: #C7D5FA;
+
+	--done-color: #01A96C;
+	--done-background-color: #9FEED2;
+	--done-hover-color: #b2f3dc;
+
 	--warning-color: #f07c24;
 	--warning-background-color: #FFCF9F;
+
+	--error-color: #E45B40;
+	--error-background-color: #FFAF9E;
+
 
 
 

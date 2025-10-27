@@ -1,0 +1,290 @@
+.cabinet_section {
+    padding-top: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.cabinet_section h3 {
+    font-size: var(--fs-2xl);
+    font-weight: 500;
+    text-align: center;
+}
+.cabinet_user_info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    background-color: var(--primary-color);
+    box-shadow: 0 16px 40px var(--shadow-color);
+    border-radius: 40px;
+    padding: 40px;
+}
+.user_data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.user_data div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+.user_data div:nth-child(3),
+.user_data div:nth-child(4) {
+    width: 300px;
+}
+.user_data div p:first-child {
+    font-size: var(--fs-base);
+    font-weight: 500;
+}
+.user_data div p:last-child {
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+.user_save {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.cabinet_answer_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 40px;
+    width: 100%;
+}
+
+
+
+
+
+.answer_container {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: var(--primary-color);
+    box-shadow: 0 16px 40px var(--shadow-color);
+    border-radius: 50px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+    z-index: 10;
+}
+.answer_container:hover {
+    box-shadow: 0 30px 40px var(--shadow-color);
+}
+.answer_status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    position: relative;
+    cursor: help;
+}
+.answer_tooltip {
+    position: absolute;
+    top: -47px;
+    left: 0;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    margin-bottom: 8px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+}
+.answer_variant_name {
+    max-width: 180px;
+    width: 180px;
+}
+.answer_variant_name p {
+    font-size: var(--fs-base);
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.answer_tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+.answer_tags div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+.answer_tags p:first-child {
+    width: 80px;
+    font-size: var(--fs-sm);
+    color: var(--accent-color);
+    font-weight: 500;
+    text-transform: lowercase;
+}
+.answer_tags div p {
+    width: 90px;
+}
+.answer_tags div p {
+    font-size: var(--fs-sm);
+    color: var(--secondary-text-color);
+    text-transform: lowercase;
+}
+.answer_tags div .svg_icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--secondary-text-color);
+}
+.answer_options {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 20;
+}
+.answer_options button {
+    background-color: transparent !important;
+}
+.answer_options button .svg_icon {
+    fill: var(--accent-color);
+    transition: all .2s ease;
+}
+.answer_options button:hover .svg_icon {
+    fill: var(--accent-hover-color);
+}
+.answer_options button:nth-child(1) .svg_icon {
+    transform: rotate(-45deg);
+}
+.answer_results {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    z-index: 20;
+}
+.answer_results button {
+    width: 185px;
+}
+.answer_button_container.done button {
+    background-color: var(--done-background-color);
+    color: var(--done-color);
+    transition: all .2s ease;
+}
+.answer_button_container.done button:hover {
+    background-color: var(--done-hover-color);
+}
+
+
+
+
+
+.answer_filter_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.answer_filter_container .svg_icon {
+    fill: var(--secondary-text-color);
+}
+.filter_options {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.filter_options:last-child {
+    margin-right: 0;
+}
+.filter_options button {
+    background-color: transparent;
+    height: 40px;
+    border-radius: 50px;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: var(--fs-base);
+    transition: all .2s ease;
+}
+.filter_options:last-child button {
+    color: var(--error-color);
+}
+.filter_options button:hover {
+    color: var(--accent-color);
+}
+.filter_options:last-child button:hover {
+    color: var(--error-background-color);
+}
+.filter_options button.active {
+    color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+
+
+/*Цвет для статуса idle*/
+.answer_status--idle,
+.answer_tooltip--idle {
+    background-color: var(--idle-background-color);
+    color: var(--idle-color);
+}
+.answer_status--idle .svg_icon {
+    fill: var(--idle-color);
+}
+
+
+
+/*Цвет для статуса checking*/
+.answer_status--checking,
+.answer_tooltip--checking {
+    background-color: var(--checking-background-color);
+    color: var(--checking-color);
+}
+.answer_status--checking .svg_icon {
+    fill: var(--checking-color);
+}
+
+
+/*Цвет для статуса done*/
+.answer_status--done,
+.answer_tooltip--done {
+    background-color: var(--done-background-color);
+    color: var(--done-color);
+}
+.answer_status--done .svg_icon {
+    fill: var(--done-color);
+}
+
+
+/*Цвет для статуса warning*/
+.answer_status--warning,
+.answer_tooltip--warning {
+    background-color: var(--warning-background-color);
+    color: var(--warning-color);
+}
+.answer_status--warning .svg_icon {
+    fill: var(--warning-color);
+}
+
+
+/*Цвет для статуса error*/
+.answer_status--error,
+.answer_tooltip--error {
+    background-color: var(--error-background-color);
+    color: var(--error-color);
+}
+.answer_status--error .svg_icon {
+    fill: var(--error-color);
+}

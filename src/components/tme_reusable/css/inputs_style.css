@@ -1,0 +1,12 @@
+input {
+    position: relative;
+    height: 40px;
+    font-size: var(--fs-base);
+    outline: none;
+    transition: all .2s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+input:focus,
+input:valid {
+    border-bottom: 1px solid var(--accent-color);
+}
