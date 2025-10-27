@@ -32,6 +32,7 @@ export const API_AVAILABLE_VARIANTS_BY_PAGE = "/api/lesson/variants-pageable"
 export const API_VARIANT_TASKS_DATA = "/api/lesson/variant/%d/tasks"//получение заданий по варинату
 export const API_VARIANT = "/api/lesson/variant/%d"//получение варианта с тасками
 export const API_VARIANTS_AVAILABLE_COUNT = "/api/lesson/variants-available-count" //все видимые варианты для пользователя
+export const API_GET_VARIANTS = "/api/lesson/variants" //Просто получение всех вариантов
 export const API_SEND_EXAM_DATA = "/api/lesson/exam"//создание экзамена
 export const API_SEND_USER_TASK_DATA = "/api/lesson/user-task" //Отправка результата выполнения задания
 export const API_CUSTOMER_TASKS_BY_EXAM_DATA = "/api/lesson/result"

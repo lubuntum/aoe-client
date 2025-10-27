@@ -12,6 +12,7 @@ import { Btn } from "../tme_reusable/Btn"
 
 import { ReactComponent as FeedbackI } from "../../res/icons/feedback_24dp_gi.svg"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { getAvailableVariants, getVariants } from "../../modules/api_modules/variantAPI"
 
 // Функция предзагрузки изображений
 const preloadImage = (src) => {
@@ -26,48 +27,42 @@ const preloadImage = (src) => {
 export const VariantsPage = () => {
     const { isAuth } = useAuth()
 
-    const cards = [
-        {id: 1, authRequired: false, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 2, authRequired: false, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 3, authRequired: false, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 4, authRequired: false, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 5, authRequired: false, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-
-        {id: 6, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 7, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 8, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 9, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 10, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 11, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 12, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 13, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 14, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 15, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 16, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 17, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 18, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 19, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 20, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 21, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 22, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 23, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 24, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 25, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 26, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 27, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 28, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 29, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-        {id: 30, authRequired: true, image: "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg"},
-    ]
-
+    const [cards, setCards] = useState([])
     const [visibleCount, setVisibleCount] = useState(9)
     const [isLoading, setIsLoading] = useState(false)
     const [preloadedImages, setPreloadedImages] = useState(new Set())
 
-    // Предзагрузка всех изображений при монтировании компонента
+    useEffect(() => {
+        const loadVariants = async () => {
+            try {
+                const response = await getVariants()
+                console.log(response.data)
+                
+                // Process the cards based on authentication
+                const processedCards = (response.data || []).map((card, index) => {
+                    console.log(isAuth)
+                    if (isAuth) {
+                        // If user is authenticated, all cards are unlocked
+                        return { ...card, isLocked: false }
+                    } else {
+                        // If user is not authenticated, only first 4 cards are unlocked
+                        return { ...card, isLocked: index >= 5 }
+                    }
+                })
+                
+                setCards(processedCards)
+            } catch (error) {
+                console.error("Failed to load variants:", error)
+                setCards([])
+            }
+        }
+        loadVariants()
+    }, [isAuth]) // Add isAuth as dependency to reload when auth changes
+
+    // Предзагрузка всех изображений при изменении cards
     useEffect(() => {
         const preloadedAllImages = async () => {
-            const imageUrls = cards.map(card => card.image).filter(Boolean)
+            const imageUrls = cards.map(card => card.imagePath).filter(Boolean)
             try {
                 await Promise.allSettled(imageUrls.map(url => preloadImage(url)))
                 setPreloadedImages(new Set(imageUrls))
@@ -75,7 +70,10 @@ export const VariantsPage = () => {
                 console.warn("Some images failed to preload:", error)
             }
         }
-        preloadedAllImages()
+        
+        if (cards.length > 0) {
+            preloadedAllImages()
+        }
     }, [cards])
 
     // Видимые карточки с мемоизацией
@@ -90,7 +88,7 @@ export const VariantsPage = () => {
         setIsLoading(true)
 
         const nextCards = cards.slice(visibleCount, visibleCount + 9)
-        const nextImages = nextCards.map(card => card.image).filter(Boolean)
+        const nextImages = nextCards.map(card => card.imagePath).filter(Boolean)
 
         try {
             await Promise.allSettled(nextImages.map(url => preloadImage(url)))
@@ -126,7 +124,12 @@ export const VariantsPage = () => {
             <section>
                 <div className="variants_grid">
                     {visibleCards.map(card => (
-                        <VariantsCard key={card.id} isLocked={!isAuth && card.authRequired} imgUrl={card.image} isPreloaded={preloadedImages.has(card.image)}/>
+                        <VariantsCard 
+                            key={card.id} 
+                            card={card}
+                            imgUrl={card.imagePath} 
+                            isPreloaded={preloadedImages.has(card.imagePath)}
+                        />
                     ))}
                 </div>
             </section>
