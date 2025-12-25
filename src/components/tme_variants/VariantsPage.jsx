@@ -38,18 +38,13 @@ export const VariantsPage = () => {
                 const response = await getVariants()
                 console.log(response.data)
                 
-                // Process the cards based on authentication
                 const processedCards = (response.data || []).map((card, index) => {
-                    console.log(isAuth)
                     if (isAuth) {
-                        // If user is authenticated, all cards are unlocked
                         return { ...card, isLocked: false }
                     } else {
-                        // If user is not authenticated, only first 4 cards are unlocked
                         return { ...card, isLocked: index >= 5 }
                     }
                 })
-                
                 setCards(processedCards)
             } catch (error) {
                 console.error("Failed to load variants:", error)
@@ -57,7 +52,7 @@ export const VariantsPage = () => {
             }
         }
         loadVariants()
-    }, [isAuth]) // Add isAuth as dependency to reload when auth changes
+    }, [isAuth])
 
     // Предзагрузка всех изображений при изменении cards
     useEffect(() => {
