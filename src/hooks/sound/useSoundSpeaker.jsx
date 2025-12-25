@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export const useSound = (url) => {
+export const useSoundSpeaker = (url) => {
     const audioRef = useRef(new Audio(url))
     const actualEventRef = useRef()
     const handleEndedEvent = () => {
