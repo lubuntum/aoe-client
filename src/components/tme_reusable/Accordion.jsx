@@ -5,7 +5,7 @@ export const Accordion = ({summary, content, isConnected}) => {
         <details name={`${isConnected ? "connected_true" : ""}`}>
             <summary>{summary}</summary>
 
-            <p>{content}</p>
+            {content}
         </details>
     </>)
 }
