@@ -1,0 +1,360 @@
+.micro_check_title {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+.micro_check_title h2 {
+    font-size: var(--fs-2xl);
+    font-weight: 500;
+    user-select: none;
+}
+.micro_check_title p {
+    font-size: var(--fs-xl);
+    font-weight: 400;
+    text-align: center;
+    user-select: none;
+    line-height: 35px;
+}
+.micro_button_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    margin-top: 25px;
+}
+.micro_button_container span {
+    font-size: var(--fs-base);
+    font-weight: 400;
+    color: var(--secondary-text-color);
+}
+.mic_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background-color: lightgray;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+.mic_btn:hover {
+    transform: scale(1.05);
+}
+.mic_btn:active {
+    transform: scale(.90);
+}
+.mic_btn .svg_icon {
+    width: 80px;
+    height: 80px;
+    fill: gray;
+}
+.mic_btn--has_permission {
+    background-color: var(--done-background-color);
+    box-shadow: 0 5px 30px var(--done-background-color);
+}
+.mic_btn--has_permission .svg_icon {
+    fill: var(--done-color);
+}
+.mic_btn--no_permission {
+    background-color: var(--warning-background-color);
+    box-shadow: 0 5px 30px var(--warning-background-color);
+}
+.mic_btn--no_permission .svg_icon {
+    fill: var(--warning-color);
+}
+.mic_btn--recording {
+    background-color: var(--error-background-color);
+    animation: pulse 2s infinite;
+}
+.mic_btn--recording .svg_icon {
+    fill: var(--error-color);
+}
+
+.micro_check_audio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 25px;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, .7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+
+
+
+
+.timer_conatiner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    height: calc(100vh - 100px);
+    align-items: center;
+    justify-content: center;
+}
+.timer_progress_bar {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+}
+.timer_progress_bar svg {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+.progress_bar {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 6px;
+    animation: progress 5s forwards linear;
+}
+.progress_bar_back {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 5px;
+}
+@keyframes progress {
+    0% {
+        stroke-dashoffset: 0%;
+    }
+    100% {
+        stroke-dashoffset: 300%;
+    }
+}
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 385deg;
+}
+
+@property --hue {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+.timer_progress_bar_shdaow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    opacity: .3;
+    filter: blur(5px);
+    background: conic-gradient(var(--accent-color) var(--angle), transparent calc(var(--angle)));
+    animation: conicEffect 5s forwards linear;
+}
+.progress_bar_shadow_back {
+    position: absolute;
+    width: 91%;
+    height: 91%;
+    border-radius: 50%;
+    background: var(--primary-color);
+    filter: blur(5px);
+}
+@keyframes conicEffect {
+    0% {
+        --angle: 385deg;
+    }
+    100% {
+        --angle: 0deg;
+    }
+}
+.timer_digit {
+    font-size: var(--fs-4xl);
+    font-weight: 500;
+    z-index: 2;
+}
+.timer_message {
+    font-size: var(--fs-4xl);
+    font-weight: 400;
+}
+
+
+
+
+.task_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 75px;
+    height: calc(100vh - 100px);
+    align-items: center;
+    justify-content: space-between;
+}
+.task_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.task_number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--accent-color);
+    font-size: var(--fs-base);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.task_guide {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    text-align: justify;
+    align-items: start;
+    width: 100%;
+    line-height: 35px;
+}
+.task_guide span {
+    color: var(--accent-color);
+}
+.task_divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+.task_text {
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    text-align: justify;
+    align-items: start;
+    width: 100%;
+    line-height: 35px;
+}
+.task_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    font-size: var(--fs-lg);
+    font-weight: 500;
+}
+.task_img_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.task_img {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.task_img_title {
+    font-size: var(--fs-base);
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+}
+.task_image {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.task_image img {
+    width: 450px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 40px;
+}
+.task_icon {
+    width: 200px;
+    height: 200px;
+    margin-top: 40px;
+}
+.task_icon .svg_icon {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.track_container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--border-color);
+    border-radius: 50px;
+    bottom: 0;
+    height: 60px;
+    width: 280px;
+    overflow: hidden;
+    z-index: 1;
+    --animation-duration: 10s;
+}
+.track_container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    background: var(--accent-color);
+    animation: progress-decrease-transform linear forwards;
+    animation-duration: attr(data-duration s);
+    animation-play-state: running;
+}
+@keyframes progress-decrease-transform {
+    0% {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: left center;
+    }
+}
+.track_content {
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    z-index: 2;
+    padding-left: 15px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    border-radius: 50px;
+}
+.track_timer {
+    width: 45px;
+    text-align: center;
+    font-size: var(--fs-base);
+    font-weight: 500;
+}

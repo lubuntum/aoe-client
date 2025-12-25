@@ -1,26 +1,50 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export const useTimer = (sec, callback) => {
     const [time, setTime] = useState(sec)
     const timerIdRef = useRef(null)
+    const initialTimeRef = useRef(sec)
+
+    useEffect(() => {
+        initialTimeRef.current = sec
+        setTime(sec)
+    }, [])
+
     useEffect(()=>{
         if (time > 0) {
             timerIdRef.current = setInterval(()=> {
-                setTime(prev => prev - 1)
+                setTime(prev => {
+                    const newTime = prev - 1
+
+                    return newTime
+                })
             }, 1000)
-            return () => clearInterval(timerIdRef.current)
+
+            return () => {
+                if (timerIdRef.current) {
+                    clearInterval(timerIdRef.current)
+                }
+            }
         } else {
             callback()
         }
     }, [time, callback,timerIdRef])
-    const resetTimer = () => {
+
+    const resetTimer = useCallback(() => {
         setTime(sec)
-    }
-    
-    useEffect(()=>{
-        return () => {
-            if (timerIdRef.current) clearInterval(timerIdRef.current)
+
+        if (timerIdRef.current) {
+            clearInterval(timerIdRef.current)
         }
-    })
-    return {time, resetTimer}
+    }, [sec])
+
+    useEffect(() => {
+        return () => {
+            if (timerIdRef.current) {
+                clearInterval(timerIdRef.current)
+            }
+        }
+    }, [])
+
+    return { time, resetTimer }
 }

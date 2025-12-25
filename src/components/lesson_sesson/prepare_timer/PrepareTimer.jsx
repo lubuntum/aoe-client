@@ -2,10 +2,10 @@ import "./css/prepare_timer.css"
 import "./css/prepare_timer_media.css"
 
 import { useState, useEffect, useRef } from "react"
-import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker"
+import { useLessonSpeaker } from "../../../hooks/sound/OLD_useLessonSpeaker"
 import { stages } from "../lesson_session_page/LessonSessionPage"
 import { useTimer } from "../../../hooks/useTimer"
-import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker"
+import { useAudioSpeaker } from "../../../hooks/sound/OLD_useAudioSpeaker"
 import { speechUrls } from "../../../speechUrls"
 
 export const PrepareTimer = ({sec, stage, setStage, task}) => {

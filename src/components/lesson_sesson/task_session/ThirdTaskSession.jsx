@@ -4,13 +4,13 @@ import useLessonMediaRecorder from "../../../hooks/useLessonMediaRecorder";
 
 import { stages } from "../lesson_session_page/LessonSessionPage";
 import { TaskSessionPanel } from "./TaskBottomPanel";
-import { useLessonSpeaker } from "../../../hooks/speech/useLessonSpeaker";
+import { useLessonSpeaker } from "../../../hooks/sound/OLD_useLessonSpeaker";
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
 import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
-import { useSound } from "../../../hooks/sound/useSound";
+import { useSoundSpeaker } from "../../../hooks/sound/useSoundSpeaker";
 import notification from "../../../res/wavs/beep.wav"
-import { useAudioSpeaker } from "../../../hooks/sound/useAudioSpeaker";
+import { useAudioSpeaker } from "../../../hooks/sound/OLD_useAudioSpeaker";
 import { speechUrls } from "../../../speechUrls";
 import { SERVER_API_URL } from "../../../config";
 
@@ -20,7 +20,7 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(false)
     const {speak} = useLessonSpeaker()
     const {speakAudio} = useAudioSpeaker()
-    const {playAndEvent} = useSound(notification)
+    const {playAndEvent} = useSoundSpeaker(notification)
 
     const handleNextQuestion = async () => {
         await stopRecording()
