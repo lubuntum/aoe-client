@@ -13,14 +13,17 @@ import { Layout } from "./components/tme_reusable/Layout"
 import { PageTracking } from "./hooks/metrica/PageTracking"
 
 import { MainPage } from "./components/tme_main/MainPage"
-import { CabinetPage } from './components/tme_cabinet//CabinetPage'
-import { AdminPage } from "./components/admin_page_components/AdminPage"
-import { PricingPage } from "./components/pricing_page_components/PricingPage"
+import { CabinetPage } from './components/tme_cabinet/CabinetPage'
+import { SessionPage } from './components/tme_session/SessionPage'
 import { VariantsPage } from "./components/tme_variants/VariantsPage"
+import { SingleTaskResultPage } from './components/tme_result/SingleTaskResultPage'
+import { ExamResultPage } from './components/tme_result/ExamResultPage'
+
 
 import { AutorizationPage } from './components/auth_page_components/AutorizationPage'
 import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage'
-
+import { AdminPage } from "./components/admin_page_components/AdminPage"
+import { PricingPage } from "./components/pricing_page_components/PricingPage"
 import { ExamComplitionResultsPage } from "./components/task_complition_results_components/ExamComplitionResultsPage"
 import { TaskComplitionResultsPage } from "./components/task_complition_results_components/TaskComplitionResultsPage"
 
@@ -61,9 +64,9 @@ const Main = () => {
                 <Route path={routes.HOME}                      element = {<ProtectedRoute component={<MainPage/>}/>}/>
                 <Route path={routes.PRICING}                   element = {<ProtectedRoute component={<PricingPage/>}/>}/>
                 <Route path={routes.TASK}                      element = {<ProtectedRoute component={<VariantsPage/>}/>}/>
-                <Route path={routes.LESSON_SESSION}            element = {<ProtectedRoute component={<LessonSessionPage/>}/>}/>
-                <Route path={routes.RESULTS}                   element = {<ProtectedRoute component={<ExamComplitionResultsPage/>}/>}/>
-                <Route path={routes.TASK_RESULT}               element = {<ProtectedRoute component={<TaskComplitionResultsPage/>}/>}/>
+                <Route path={routes.LESSON_SESSION}            element = {<ProtectedRoute component={<SessionPage/>}/>}/>
+                <Route path={routes.TASK_RESULT}               element = {<ProtectedRoute component={<SingleTaskResultPage/>}/>}/>
+                <Route path={routes.RESULTS}                   element = {<ProtectedRoute component={<ExamResultPage/>}/>}/>
                 <Route path={routes.PARTNERSHIP_AUTHORIZATION} element = {<ProtectedRoute component={<AutorizationPage/>}/>}/>
                 <Route path={routes.PARTNER}                   element = {<ProtectedRoute component={<PartnerPage/>}/>}/>
                 <Route path={routes.USER_AGREEMENT}            element = {<ProtectedRoute component={<UserAgreement/>}/>}/>
