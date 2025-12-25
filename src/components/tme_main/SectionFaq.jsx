@@ -22,7 +22,7 @@ export const SectionFaq = () => {
             
             <div className="main_accordion_container">
                 {faqData.map((item, index) => (
-                    <Accordion summary={item.question} content={item.answer} isConnected={true}/>
+                    <Accordion summary={item.question} content={<p>{item.answer}</p>} isConnected={true}/>
                 ))}
             </div>
         </section>
