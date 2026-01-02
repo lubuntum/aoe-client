@@ -9,7 +9,7 @@ import { BtnLike } from "../tme_reusable/BtnLike"
 
 export const SectionAdvantages = () => {
     return (<>
-        <section className="main_advantages_section">
+        <section className="main_advantages_section" id="main_advantages_section">
             <h1>Преимущества нашего сервиса</h1>
 
             <div className="main_advantages_container">

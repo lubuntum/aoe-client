@@ -6,7 +6,7 @@ export const SectionBanner = () => {
     const navigate = useNavigate()
 
     return (<>
-        <section className="main_banner_section">
+        <section className="main_banner_section" id="main_banner_section">
             <h1>Сервис подготовки к устной части ЕГЭ по английскому языку</h1>
             
             <h4>Наш сервис создает атмосферу настоящего экзамена, помогая тебе уверенно чувствовать себя на ЕГЭ. Улучшай свои навыки говорения и добивайся максимальных результатов ЕГЭ вмести с нами!</h4>

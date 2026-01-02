@@ -1,6 +1,6 @@
 export const SectionGuide = () => {
     return (<>
-        <section className="main_guide_section">
+        <section className="main_guide_section" id="main_guide_section">
             <h1>Всего несколько шагов на пути к<br/>максимальному баллу в устной части ЕГЭ</h1>
 
             <div className="main_guide_container">

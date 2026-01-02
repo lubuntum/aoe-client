@@ -1,6 +1,6 @@
 export const SectionVideo = () => {
     return (<>
-        <section className="main_video_section">
+        <section className="main_video_section" id="main_video_section">
             <div className="main_video_container">
 
             </div>

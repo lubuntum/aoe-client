@@ -17,7 +17,7 @@ export const SectionFaq = () => {
     ]
 
     return (<>
-        <section className="main_faq_section">
+        <section className="main_faq_section" id="main_faq_section">
             <h1>Ответим на часто задаваемые вопросы</h1>
             
             <div className="main_accordion_container">
