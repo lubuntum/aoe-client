@@ -21,11 +21,8 @@ import { ExamResultPage } from './components/tme_result/ExamResultPage'
 
 
 import { AutorizationPage } from './components/auth_page_components/AutorizationPage'
-import { LessonSessionPage } from '../src/components/lesson_sesson/lesson_session_page/LessonSessionPage'
 import { AdminPage } from "./components/admin_page_components/AdminPage"
 import { PricingPage } from "./components/pricing_page_components/PricingPage"
-import { ExamComplitionResultsPage } from "./components/task_complition_results_components/ExamComplitionResultsPage"
-import { TaskComplitionResultsPage } from "./components/task_complition_results_components/TaskComplitionResultsPage"
 
 import { UserAgreement } from './components/documents_page_components/UserAgreement'
 import { PrivacyPolice } from './components/documents_page_components/PrivacyPolice'
@@ -53,7 +50,7 @@ function App() {
 const Main = () => {
     PageTracking()
 
-    return (
+    return (<>
         <Layout>
             <Routes>
                 <Route path='/*'                               element = {<p>404 NOT FOUND</p>} />
@@ -79,6 +76,6 @@ const Main = () => {
                 <Route path={routes.BETA_TEST}                 element = {<ProtectedRoute component={<TestingPage/>}/>}/>
             </Routes>
         </Layout>
-    )
+    </>)
 }
 export default App;

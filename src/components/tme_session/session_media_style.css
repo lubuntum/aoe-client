@@ -1,0 +1,183 @@
+@media (max-width: 1640px) {
+
+}
+
+@media (max-width: 1440px) {
+
+}
+
+@media (max-width: 1390px) {
+
+}
+
+@media (max-width: 1240px) {
+
+}
+
+@media (max-width: 1080px) {
+    .micro_check_title {
+        gap: 20px;
+    }
+    .micro_check_title p {
+        font-size: var(--fs-lg);
+        line-height: 30px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 996px) {
+    .micro_button_container {
+        margin-top: 0;
+        width: auto;
+    }
+    .micro_check_title p {
+        font-size: var(--fs-base);
+        line-height: 25px;
+        width: 80%;
+    }
+    .mic_btn {
+        width: 125px;
+        height: 125px;
+    }
+    .mic_btn .svg_icon {
+        width: 55px;
+        height: 55px;
+    }
+    .micro_check_audio {
+        margin-top: 0;
+        gap: 20px;
+        width: 500px;
+    }
+    .micro_check_audio audio {
+        width: 100%;
+    }
+    .micro_check_audio button {
+        width: 100%;
+    }
+
+    .timer_conatiner {
+        gap: 20px;
+    }
+    .timer_progress_bar {
+        height: 200px;
+        width: 200px;
+    }
+    .timer_digit {
+        font-size: var(--fs-3xl);
+        text-align: center;
+    }
+    .timer_message {
+        font-size: var(--fs-3xl);
+        text-align: center;
+    }
+
+    .task_container {
+        padding-top: 40px;
+        margin: 0 40px;
+    }
+    .task_guide {
+        font-size: var(--fs-base);
+        line-height: 30px;
+    }
+    .task_text {
+        font-size: var(--fs-base);
+        line-height: 30px;
+    }
+    .task_list {
+        font-size: var(--fs-base);
+    }
+    .task_img_container {
+        gap: 20px;
+    }
+    .task_icon {
+        width: 150px;
+        height: 150px;
+        margin-top: 20px;
+    }
+    
+    .track_container {
+        width: 250px;
+        opacity: .8;
+    }
+    .track_content p {
+        font-size: var(--fs-sm);
+    }
+    .track_timer {
+        font-size: var(--fs-sm);
+    }
+}
+
+@media (max-width: 748px) {
+    .micro_check_title p {
+        width: auto;
+    }
+    .micro_check_audio {
+        width: 300px;
+    }
+    .micro_check_audio audio {
+        width: 300px;
+    }
+    .micro_check_audio button {
+        width: 100%;
+    }
+
+    .timer_conatiner {
+        gap: 10px;
+    }
+    .timer_progress_bar {
+        height: 180px;
+        width: 180px;
+    }
+    .timer_digit {
+        font-size: var(--fs-2xl);
+    }
+    .timer_message {
+        font-size: var(--fs-2xl);
+        font-weight: 500;
+    }
+
+    .task_container {
+        padding-top: 40px;
+        margin: 0 20px;
+    }
+    .task_content {
+        padding-bottom: 80px;
+    }
+    .task_guide {
+        font-size: var(--fs-base);
+        line-height: 25px;
+    }
+    .task_text {
+        font-size: var(--fs-base);
+        line-height: 25px;
+    }
+    .task_img_container {
+        flex-direction: column;
+    }
+    .task_icon {
+        width: 125px;
+        height: 125px;
+        margin-top: 10px;
+    }
+    
+    .track_container {
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 560px) {
+    .task_image img {
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 400px) {
+    .task_image img {
+        width: 325px;
+        height: 225px;
+    }
+    .track_container {
+        width: calc(100% - 40px);
+    }
+}

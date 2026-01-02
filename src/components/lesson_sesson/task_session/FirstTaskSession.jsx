@@ -13,7 +13,6 @@ import { stages } from "../lesson_session_page/LessonSessionPage"
 import { TaskSessionPanel } from "./TaskBottomPanel"
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
-import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useCustomSpeechRecognition } from "../../../hooks/useCustomSpeechRecognition"
 
 export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { //blobRef + mЫicro hook
@@ -37,8 +36,8 @@ export const FirstTaskSession = ({task, stage, setStage, handleNextTask}) => { /
     return (<>
         {(stage === stages.reading || stage === stages.speak) && <TasksContentWrapper task={task}/>}
         {stage === stages.reading && 
-            <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={timersConfig.FIRST_TASK_READING_TIMER} stage={stage}/>}
+            <TaskSessionPanel btnText={"Skip"} nextAction={()=> {setStage(stages.prepare_speak)}} sec={""} stage={stage}/>}
         {stage === stages.speak && 
-            <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={timersConfig.FIRST_TASK_SPEAKING_TIMER} stage={stage}/>}
+            <TaskSessionPanel btnText={"Next"} nextAction={()=> {handleNextTaskWithSaveAudio()}} sec={""} stage={stage}/>}
     </>)
 }

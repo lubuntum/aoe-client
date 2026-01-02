@@ -4,8 +4,6 @@ import { stages } from "../lesson_session_page/LessonSessionPage"
 import { TaskSessionPanel } from "./TaskBottomPanel"
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
-import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
-
 export const FourthTaskSession = ({task, stage, setStage, handleNextTask}) => {
     const {audioBlobRef, startRecording, stopRecording} = useLessonMediaRecorder(true)
     const handleNextTaskWithSaveAudio = async () => {
@@ -18,8 +16,8 @@ export const FourthTaskSession = ({task, stage, setStage, handleNextTask}) => {
     return (<>
         <TasksContentWrapper task={task} />
         {stage === stages.reading && 
-            <TaskSessionPanel nextAction={()=>{setStage(stages.prepare_speak)}} btnText={"Skip"} sec={timersConfig.FOURTH_TASK_READING_TIMER} stage={stage}/>}
+            <TaskSessionPanel nextAction={()=>{setStage(stages.prepare_speak)}} btnText={"Skip"} sec={""} stage={stage}/>}
         {stage === stages.speak && 
-            <TaskSessionPanel nextAction={()=>{handleNextTaskWithSaveAudio()}} btnText={"Next"} sec={timersConfig.FOURTH_TASK_SPEAKING_TIMER} stage={stage}/>}
+            <TaskSessionPanel nextAction={()=>{handleNextTaskWithSaveAudio()}} btnText={"Next"} sec={""} stage={stage}/>}
     </>)
 }

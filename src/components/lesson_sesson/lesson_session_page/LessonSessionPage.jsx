@@ -19,7 +19,6 @@ import { useLessonSpeaker } from '../../../hooks/sound/OLD_useLessonSpeaker'
 import { createExamRequest, saveUserTaskRequest } from "../../../modules/api_modules/complitionScenarioAPI"
 import routes from '../../../routes'
 
-import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useAuth } from "../../../modules/auth_modules/AuthProvider"
 import { useAudioSpeaker } from "../../../hooks/sound/OLD_useAudioSpeaker"
 import { speechUrls } from "../../../speechUrls"
@@ -166,7 +165,7 @@ export const LessonSessionPage = () => {
 
                     {(microCheck && !isLoading) && (<>
                         {(stage === stages.prepare_reading || stage === stages.prepare_speak) ?
-                            <PrepareTimer sec={timersConfig.PREPARE_TIMER} 
+                            <PrepareTimer sec={""} 
                                           stage={stage} 
                                           setStage={setStage} 
                                           task={currentTask}/> : (<>

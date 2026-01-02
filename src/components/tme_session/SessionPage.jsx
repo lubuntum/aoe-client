@@ -1,4 +1,5 @@
 import "./session_style.css"
+import "./session_media_style.css"
 
 import { useLocation, useNavigate } from "react-router-dom"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -21,41 +22,6 @@ import { timerUtils } from "../../modules/timer_modules/sessionTimerConfig"
 import routes from "../../routes"
 
 /**
- * @typedef {Object} VariantData
- * @property {string} id - Идентификатор варианта
- * @property {number} [pickedTaskType] - Выбранный тип задания (если режим отдельного задания)
- */
-
-/**
- * @typedef {Object} Task
- * @property {string} id - Идентификатор задания
- * @property {number} taskType - Тип задания (1-4)
- * @property {boolean} [taskSession] - Флаг режима отдельного задания
- * @property {*} [data] - Данные задания
- */
-
-/**
- * @typedef {Object} AudioResult
- * @property {Blob} audio - Аудио-данные записи пользователя
- * @property {string} taskId - Идентификатор задания
- */
-
-/**
- * @typedef {Object} MicrophoneData
- * @property {*} [data] - Данные проверки микрофона
- */
-
-/**
- * @typedef {Object} CustomerTask
- * @property {string} id - Идентификатор записи о выполненном задании
- */
-
-/**
- * @typedef {Object} CustomerExam
- * @property {string} id - Идентификатор записи о выполненном экзамене
- */
-
-/**
  * Стадии прохождения заданий
  * @enum {number}
  */
@@ -70,42 +36,27 @@ export const STAGES = {
 /**
  * Компонент страницы сессии задания / экзамена
  * Управляет потоком прохождения
- * @returns {JSX.Element} - Компонент страницы сессии
+ * @returns {JSX.Element}
  */
 export const SessionPage = () => {
     const navigate = useNavigate()
     const location = useLocation()
     
-    // Получение текущего выбранного варианта
-    /** @type {VariantData} */
     const variant = location.state || {}
 
-    // Рефы
-    /** @type {React.MutableRefObject<AudioResult[]>} */
     const audioResultsRef = useRef([])
 
-    // Состояния
-    /** @type {[Task[], React.Dispatch<React.SetStateAction<Task[]>>]} */
     const [allTasks, setAllTasks] = useState([])
-    
-    /** @type {[Task|null, React.Dispatch<React.SetStateAction<Task|null>>]} */
     const [currentTask, setCurrentTask] = useState(null)
-    
-    /** @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]} */
     const [microphoneCheck, setMicrophoneCheck] = useState(false)
-    
-    /** @type {[number, React.Dispatch<React.SetStateAction<number>>]} */
     const [stage, setStage] = useState(STAGES.PREPARE_READING)
-    
-    /** @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]} */
     const [isLoading, setIsLoading] = useState(false)
 
-    // Хуки
     const { speak: speakTTS } = useLessonSpeaker()
     const { speakAudio } = useAudioSpeaker()
 
     /**
-     * Карта компонентов для рендеринга
+     * Карта компонентов для рендеринга заданий по типам
      * @type {Object<number, React.ComponentType>}
      */
     const tasksComponents = useMemo(() => ({
@@ -116,8 +67,36 @@ export const SessionPage = () => {
     }), [])
 
     /**
-     * Загружает задания по ID варианта
-     * @returns {Promise<void>}
+     * Удаляем Replain со страницы SessionPage чтобы он не мешал прохождению заданий
+     */
+    useEffect(() => {
+        // Скрываем виджет Replain на странице сессии
+        const style = document.createElement('style');
+        style.id = 'replain-hide';
+        style.innerHTML = `
+            .replain-widget,
+            [class*="replain"],
+            [id*="replain"] {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        return () => {
+            // Удаляем стиль при размонтировании
+            const styleElement = document.getElementById('replain-hide');
+            if (styleElement) {
+                styleElement.remove();
+            }
+        };
+    }, []);
+
+    /**
+     * Загружает задания для выбранного варианта
+     * Определяет текущее задание в зависимости от режима (экзамен или отдельное задание)
      */
     useEffect(() => {
         const loadTasks = async () => {
@@ -125,18 +104,15 @@ export const SessionPage = () => {
                 const response = await getTasksByVariantId(variant.id)
                 setAllTasks(response.data)
 
-                /** @type {Task|undefined} */
                 let foundTask
                 if (variant.pickedTaskType) {
                     foundTask = response.data.find(t => t.taskType === variant.pickedTaskType)
                     foundTask.taskSession = true
-
                 } else {
                     foundTask = response.data.find(t => t.taskType === 1)
                     foundTask.taskSession = false
                 }
                 setCurrentTask(foundTask)
-
             } catch (error) {
                 console.error("Failed to load tasks: ", error)
             }
@@ -148,76 +124,146 @@ export const SessionPage = () => {
     }, [variant.id, variant.pickedTaskType])
 
     /**
-     * Обработчик проверки микрофона
-     * @param {MicrophoneData} microphoneData - Данные полученные с проверки микрофона
-     * @returns {void}
+     * Обработчик завершения проверки микрофона
+     * @param {Object} microphoneData - Данные проверки микрофона
+     * @param {boolean} microphoneData.hasPermission - Есть ли разрешение на использование микрофона
+     * @param {string} microphoneData.testedAt - Время проверки
      */
     const handleMicrophoneCheck = useCallback((microphoneData) => {
-        console.log("Microphone data: ", microphoneData)
         setMicrophoneCheck(true)
         setStage(STAGES.PREPARE_READING)
     }, [setMicrophoneCheck, setStage])
 
     /**
      * Обработчик завершения таймера подготовки
-     * @returns {void}
+     * Переключает между стадиями подготовки и активного выполнения
      */
     const handlePreparationComplete = useCallback(() => {
-        if (stage === STAGES.PREPARE_READING)
+        if (stage === STAGES.PREPARE_READING) {
             setStage(STAGES.READING)
+        }
 
-        if (stage === STAGES.PREPARE_SPEAKING)
+        if (stage === STAGES.PREPARE_SPEAKING) {
             setStage(STAGES.SPEAKING)
+        }
     }, [stage])
 
     /**
-     * Обработчик завершения речи с сообщением об окончании теста
+     * Создает запись экзамена в системе
+     * @param {string} sessionKey - Токен сессии пользователя
+     * @returns {Promise<Object|undefined>} Данные созданного экзамена
+     */
+    const handleCreateExamEntry = useCallback(async (sessionKey) => {
+        try {
+            const response = await createExamRequest(variant.id, sessionKey)
+            return response.data
+        } catch (error) {
+            console.error("Failed to create exam entry: ", error)
+            return
+        }
+    }, [variant.id])
+
+    /**
+     * Сохраняет результат одного задания
+     * @param {string} sessionKey - Токен сессии пользователя
+     * @returns {Promise<Object>} Данные сохраненного задания
+     */
+    const handleSaveSingleTaskResult = useCallback(async (sessionKey) => {
+        const response = await saveUserTaskRequest(
+            null,
+            audioResultsRef.current[0].taskId,
+            audioResultsRef.current[0].audio,
+            sessionKey,
+        )
+        return response.data
+    }, [])
+
+    /**
+     * Сохраняет результаты всех заданий экзамена
+     * @param {string} sessionKey - Токен сессии пользователя
+     * @param {Object} customerExam - Данные экзамена
+     */
+    const handleSaveMultipleTasksResults = useCallback(async (sessionKey, customerExam) => {
+        const uploadPromises = audioResultsRef.current.map((audioBlobData) => 
+            saveUserTaskRequest(customerExam?.id, audioBlobData.taskId, audioBlobData.audio, sessionKey)
+        )
+        await Promise.all(uploadPromises)
+    }, [])
+
+    /**
+     * Завершает сессию отдельного задания
+     * Сохраняет результат и перенаправляет на страницу результатов задания
+     */
+    const handleEndTaskSession = useCallback(async () => {
+        setIsLoading(true)
+
+        try {
+            const sessionKey = localStorage.getItem("token")
+            if (!sessionKey) throw new Error("Not authenticated")
+
+            const customerTask = await handleSaveSingleTaskResult(sessionKey)
+            const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
+            navigate(resultUrl)
+        } catch (error) {
+            console.error("Task session end error: ", error)
+        } finally {
+            setIsLoading(false)
+        }
+    }, [currentTask, navigate, handleSaveSingleTaskResult])
+
+    /**
+     * Завершает сессию полного экзамена
+     * Сохраняет все результаты и перенаправляет на страницу результатов экзамена
+     */
+    const handleEndExamSession = useCallback(async () => {
+        setIsLoading(true)
+
+        try {
+            const sessionKey = localStorage.getItem("token")
+            if (!sessionKey) throw new Error("Not authenticated")
+
+            const customerExam = await handleCreateExamEntry(sessionKey)
+            await handleSaveMultipleTasksResults(sessionKey, customerExam)
+            const resultUrl = `/results?variantId=${variant.id}&examId=${customerExam.id}`
+            navigate(resultUrl)
+        } catch (error) {
+            console.error("Exam session end error: ", error)
+        } finally {
+            setIsLoading(false)
+        }
+    }, [variant.id, navigate, handleCreateExamEntry, handleSaveMultipleTasksResults])
+
+    /**
+     * Воспроизводит сообщение об окончании теста
      * @param {Function} [callback] - Функция для выполнения после сообщения
-     * @returns {Promise<void>}
      */
     const handleEndSpeech = useCallback((callback) => {
         const endMessage = async () => {
             if (!speechUrls.TEST_END) {
                 console.warn("End speech: No audio URL found, using TTS")
-                await new Promise((res, rej) => {
+                await new Promise((resolve, reject) => {
                     speakTTS("This is the end of the test", (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
-                console.log("End speech: TTS callback executed")
                 if (callback) callback()
                 return
             }
 
             try {
-                await new Promise((res, rej) => {
+                await new Promise((resolve, reject) => {
                     speakAudio(speechUrls.TEST_END, (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
-                console.log("End speech: Audio URL callback executed")
                 if (callback) callback()
-
             } catch (error) {
-                console.error("End speech: Audio URL error occured, fallback to TTS")
-                await new Promise((res, rej) => {
+                console.error("End speech: Audio URL error occurred, fallback to TTS")
+                await new Promise((resolve, reject) => {
                     speakTTS("This is the end of the test", (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
-                console.log("End speech: TTS callback executed")
                 if (callback) callback()
             }
         }
@@ -226,9 +272,11 @@ export const SessionPage = () => {
     }, [speakTTS, speakAudio])
 
     /**
-     * Переход к следующему заданию или завершение сессии
-     * @param {AudioResult} audioResult - Результат аудиозаписи
-     * @returns {void}
+     * Обработчик перехода к следующему заданию или завершения сессии
+     * Сохраняет аудио результат и определяет следующий шаг
+     * @param {Object} audioResult - Результат аудиозаписи задания
+     * @param {Blob} audioResult.audio - Аудио данные записи
+     * @param {string} audioResult.taskId - Идентификатор задания
      */
     const handleNextTask = useCallback((audioResult) => {
         audioResultsRef.current.push(audioResult)
@@ -245,108 +293,12 @@ export const SessionPage = () => {
 
         setCurrentTask(allTasks.find(t => t.taskType === currentTask.taskType + 1))
         setStage(STAGES.PREPARE_READING)
-    }, [currentTask, allTasks, variant.pickedTaskType, handleEndSpeech])
+    }, [currentTask, allTasks, variant.pickedTaskType, handleEndSpeech, handleEndTaskSession, handleEndExamSession])
 
     /**
-     * Создание записи экзамена
-     * @param {string} sessionKey - Токен сессии
-     * @returns {Promise<CustomerExam|undefined>} Данные экзамена
-     */
-    const handleCreteExamEntry = useCallback(async (sessionKey) => {
-        try {
-            const response = await createExamRequest(variant.id, sessionKey)
-            return response.data
-
-        } catch (error) {
-            console.error("Failed to create exam entry: ", error)
-            return
-        }
-    }, [variant.id])
-
-    /**
-     * Завершение сессии задания
-     * @returns {Promise<void>}
-     */
-    const handleEndTaskSession = useCallback(async () => {
-        setIsLoading(true)
-
-        try {
-            const sessionKey = localStorage.getItem("token")
-            if (!sessionKey)
-                throw new Error("Not authenticated")
-
-            /** @type {CustomerTask} */
-            const customerTask = await handleSaveSingleTaskResult(sessionKey)
-            const resultUrl = `${routes.TASK_RESULT}?customerTaskId=${customerTask.id}&taskId=${currentTask.id}`
-            navigate(resultUrl)
-
-        } catch (error) {
-            console.error("Task session end error: ", error)
-
-        } finally {
-            setIsLoading(false)
-        }
-    }, [currentTask, navigate])
-
-    /**
-     * Завершение сессии экзамена
-     * @returns {Promise<void>}
-     */
-    const handleEndExamSession = useCallback(async () => {
-        setIsLoading(true)
-
-        try {
-            const sessionKey = localStorage.getItem("token")
-            if (!sessionKey)
-                throw new Error("Not authenticated")
-
-            /** @type {CustomerExam} */
-            const customerExam = await handleCreteExamEntry(sessionKey)
-            await handleSaveMultipleTasksResults(sessionKey, customerExam)
-            const resultUrl = `/results?variantId=${variant.id}&examId=${customerExam.id}`
-            navigate(resultUrl)
-
-        } catch (error) {
-            console.error("Exam session end error: ", error)
-
-        } finally {
-            setIsLoading(false)
-        }
-    }, [variant.id, navigate])
-
-    /**
-     * Сохранение результатов одного задания
-     * @param {string} sessionKey - Токен сессии
-     * @returns {Promise<CustomerTask>} Данные сохраненного задания
-     */
-    const handleSaveSingleTaskResult = useCallback(async (sessionKey) => {
-        const response = await saveUserTaskRequest(
-            null,
-            audioResultsRef.current[0].taskId,
-            audioResultsRef.current[0].audio,
-            sessionKey,
-        )
-
-        return response.data
-    }, [])
-
-    /**
-     * Сохранение результатов всех заданий
-     * @param {string} sessionKey - Токен сессии
-     * @param {CustomerExam} customerExam - Данные экзамена
-     * @returns {Promise<void>}
-     */
-    const handleSaveMultipleTasksResults = useCallback(async (sessionKey, customerExam) => {
-        const uploadPromises = audioResultsRef.current.map((audioBlobData) => 
-            saveUserTaskRequest(customerExam?.id, audioBlobData.taskId, audioBlobData.audio, sessionKey)
-        )
-
-        await Promise.all(uploadPromises)
-    }, [])
-
-    /**
-     * Определяет текущий компонент задания на основе типа задания
-     * @returns {JSX.Element|null} - Компонент задания или null
+     * Определяет текущий компонент задания для рендеринга
+     * Возвращает компонент задания или null, если условия не выполнены
+     * @type {JSX.Element|null}
      */
     const handleCurrentTaskComponent = useMemo(() => {
         if (!currentTask || !microphoneCheck || isLoading || !tasksComponents[currentTask.taskType]) 
@@ -360,45 +312,53 @@ export const SessionPage = () => {
         }
 
         if (stage === STAGES.READING || stage === STAGES.SPEAKING) {
-            return (<TaskComponent 
-                     key={`task-${currentTask.id}-stage-${stage}`}
-                     task={currentTask}
-                     stage={stage}
-                     setStage={setStage}
-                     handleNextTask={handleNextTask}/>)
+            return (
+                <TaskComponent 
+                    key={`task-${currentTask.id}-stage-${stage}`}
+                    task={currentTask}
+                    stage={stage}
+                    setStage={setStage}
+                    handleNextTask={handleNextTask}
+                />
+            )
         }
 
         return null
-                 
-    }, [currentTask, stage, setStage, handleNextTask, tasksComponents])
+    }, [currentTask, stage, setStage, handleNextTask, tasksComponents, microphoneCheck, isLoading])
 
     /**
-     * Определяет, какой компонент рендерить на основе состояний
-     * @returns {JSX.Element} - Компонент для отображения
+     * Определяет, какой компонент рендерить на основе текущего состояния
+     * @type {JSX.Element}
      */
     const handleRenderComponent = useMemo(() => {
         // Этап проверки микрофона
-        if (!microphoneCheck)
-            return <MicroPerfomanceCheck
-                    onComplete={handleMicrophoneCheck}/>
+        if (!microphoneCheck) {
+            return <MicroPerfomanceCheck onComplete={handleMicrophoneCheck}/>
+        }
 
-        // Этап подготовки (5 сек таймер)
-        if (stage === STAGES.PREPARE_READING || stage === STAGES.PREPARE_SPEAKING)
-            return <PreparationTimer
+        // Этап подготовки перед чтением/говорением
+        if (stage === STAGES.PREPARE_READING || stage === STAGES.PREPARE_SPEAKING) {
+            return (
+                <PreparationTimer
                     duration={timerUtils.getPreparationTimer(currentTask.taskType)}
                     stage={stage}
                     setStage={setStage}
                     task={currentTask}
-                    onComplete={handlePreparationComplete}/>
+                    onComplete={handlePreparationComplete}
+                />
+            )
+        }
 
+        // Активный этап выполнения задания
         return handleCurrentTaskComponent
-    }, [microphoneCheck, isLoading, stage, currentTask, handleCurrentTaskComponent, handleMicrophoneCheck, handlePreparationComplete])
+    }, [microphoneCheck, stage, currentTask, handleCurrentTaskComponent, handleMicrophoneCheck, handlePreparationComplete])
 
-    return (<>
-        <Header/>
-
-        <div className="content_wrapper">
-            {handleRenderComponent}
-        </div>
-    </>)
+    return (
+        <>
+            <Header/>
+            <div className="content_wrapper">
+                {handleRenderComponent}
+            </div>
+        </>
+    )
 }

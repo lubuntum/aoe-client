@@ -7,7 +7,6 @@ import { TaskSessionPanel } from "./TaskBottomPanel";
 import { useLessonSpeaker } from "../../../hooks/sound/OLD_useLessonSpeaker";
 import { TasksContentWrapper } from "./TasksContentWrapper"
 
-import timersConfig from "../../../modules/timer_modules/configScenarioTimers"
 import { useSoundSpeaker } from "../../../hooks/sound/useSoundSpeaker";
 import notification from "../../../res/wavs/beep.wav"
 import { useAudioSpeaker } from "../../../hooks/sound/OLD_useAudioSpeaker";
@@ -71,10 +70,10 @@ export const ThirdTaskSession = ({task, stage, setStage, handleNextTask}) => {
     return (<>
             <TasksContentWrapper task={task}/>
             {stage === stages.reading &&(<>
-                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={timersConfig.THIRD_TASK_READING_TIMER} stage={stage}/></>)}
+                <TaskSessionPanel btnText={"Skip"} nextAction={()=>{}} sec={""} stage={stage}/></>)}
             {(stage === stages.speak && !studentAnswering) && (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={timersConfig.THIRD_TASK_CHANGE_QUESTION} stage={stage}/></>)}
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {}} sec={""} stage={stage}/></>)}
             {(stage === stages.speak && studentAnswering) && (<>
-                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={timersConfig.THIRD_TASK_SPEAKING_TIMER} stage={stage}/></>)}
+                <TaskSessionPanel key={questionNumber} btnText={"Next"} nextAction={()=> {handleNextQuestion()}} sec={""} stage={stage}/></>)}
     </>)
 }

@@ -10,125 +10,73 @@ import { STAGES } from "./SessionPage"
 import { SERVER_API_URL } from "../../config"
 
 /**
- * @typedef {Object} TaskContentTopicThree
- * @property {string} [taskGuide] - Руководство по выполнению задания
- * @property {string[]} [speaker] - Текст вступления/речи спикера
- * @property {string} [speakerRecord] - Путь к аудио-записи вступления
- * @property {string[]} [questions] - Список вопросов
- * @property {string[]} [questionRecords] - Пути к аудио-записям вопросов
- */
-
-/**
- * @typedef {Object} Task
- * @property {number} taskType - Тип задания (1-4)
- * @property {string} id - Идентификатор задания
- * @property {TaskContentTopicThree} taskContent - Содержание задания
- * @property {number} [questionNumber] - Номер текущего вопроса
- * @property {boolean} [hideQuestions] - Флаг скрытия вопросов
- */
-
-/**
- * @typedef {Object} ThirdTaskProps
- * @property {Task} task - Данные задания
- * @property {number} stage - Текущая стадия выполнения задания (из STAGES)
- * @property {function(stage: number): void} setStage - Функция установки стадии
- * @property {function(audioResult: {audio: Blob, taskId: string}): void} handleNextTask - Обработчик перехода к следующему заданию
- */
-
-/**
- * Компонент 3 задания (Вопросы после прослушивания аудио)
- * @param {ThirdTaskProps} props - Свойства компонента
- * @returns {JSX.Element} Компонент 3 задания
+ * Компонент третьего задания (вопросы после прослушивания аудио)
+ * @param {Object} props - Свойства компонента
+ * @param {Object} props.task - Данные задания
+ * @param {Object} props.task.taskContent - Содержание задания
+ * @param {string} props.task.taskContent.taskGuide - Руководство по выполнению
+ * @param {string[]} props.task.taskContent.speaker - Текст вступления
+ * @param {string} props.task.taskContent.speakerRecord - Путь к аудио-записи вступления
+ * @param {string[]} props.task.taskContent.questions - Список вопросов
+ * @param {string[]} props.task.taskContent.questionRecords - Пути к аудио-записям вопросов
+ * @param {string} props.task.id - Идентификатор задания
+ * @param {number} props.stage - Текущая стадия выполнения
+ * @param {function(number): void} props.setStage - Функция установки стадии
+ * @param {function({audio: Blob, taskId: string}): void} props.handleNextTask - Обработчик перехода к следующему заданию
+ * @returns {JSX.Element}
  */
 export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
-    /** @type {[number, React.Dispatch<React.SetStateAction<number>>]} */
     const [questionNumber, setQuestionNumber] = useState(0)
-    
-    /** @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]} */
     const [isSpeaking, setIsSpeaking] = useState(false)
-    
-    /** @type {[number, React.Dispatch<React.SetStateAction<number>>]} */
     const [timerKey, setTimerKey] = useState(0)
-    
-    /** @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]} */
     const [isTimerActive, setIsTimerActive] = useState(false)
 
     const { audioBlobRef, startRecording, stopRecording } = useLessonMediaRecorder(false)
-
     const { speak: speakTTS } = useLessonSpeaker()
     const { speakAudio } = useAudioSpeaker()
     const { playAndEvent } = useSoundSpeaker(notification)
 
-    /**
-     * Озвучивание вступления/информации от спикера
-     * @returns {Promise<void>}
-     */
     const speakIntroduction = useCallback(async () => {
         if (!task.taskContent.speakerRecord) {
             console.warn("Question 3: No audio URL for introduction found, using TTS")
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 speakTTS(task.taskContent.speaker[0], (error) => {
-                    if (error) {
-                        rej(error)
-                    } else {
-                        res()
-                    }
+                    error ? reject(error) : resolve()
                 })
             })
-            console.log("Question 3: TTS callback executed")
             setStage(STAGES.PREPARE_SPEAKING)
             return
         }
 
         try {
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 speakAudio(`${SERVER_API_URL}/${task.taskContent.speakerRecord}`, (error) => {
-                    if (error) {
-                        rej(error)
-                    } else {
-                        res()
-                    }
+                    error ? reject(error) : resolve()
                 })
             })
-            console.log("Question 3: Audio URL callback executed")
             setStage(STAGES.PREPARE_SPEAKING)
-
         } catch (error) {
             console.error("Question 3: Audio URL error occured, fallback to TTS")
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 speakTTS(task.taskContent.speaker[0], (error) => {
-                    if (error) {
-                        rej(error)
-                    } else {
-                        res()
-                    }
+                    error ? reject(error) : resolve()
                 })
             })
-            console.log("Question 3: TTS fallback executed")
             setStage(STAGES.PREPARE_SPEAKING)
         }
     }, [task, speakAudio, speakTTS, setStage])
 
-    /**
-     * Озвучивание текущего вопроса
-     * @returns {Promise<void>}
-     */
     const speakQuestion = useCallback(async () => {
         if (!task.taskContent.questionRecords) {
             console.warn("Question 3: No audio URLS for questions found, using TTS")
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 playAndEvent(() => {
                     speakTTS(task.taskContent.questions[questionNumber], (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
             })
             playAndEvent(() => {
-                console.log("Question 3: TTS callback executed")
                 setIsSpeaking(true)
                 setIsTimerActive(true)
                 setTimerKey(prev => prev + 1)
@@ -138,40 +86,29 @@ export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
         }
 
         try {
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 playAndEvent(() => {
                     speakAudio(`${SERVER_API_URL}/${task.taskContent.questionRecords[questionNumber]}`, (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
             })
             playAndEvent(() => {
-                console.log("Question 3: Audio URL callback executed")
                 setIsSpeaking(true)
                 setIsTimerActive(true)
                 setTimerKey(prev => prev + 1)
                 startRecording()
             })
-
         } catch (error) {
             console.error("Question 3: Audio URL error occured, fallback to TTS")
-            await new Promise((res, rej) => {
+            await new Promise((resolve, reject) => {
                 playAndEvent(() => {
                     speakTTS(task.taskContent.questions[questionNumber], (error) => {
-                        if (error) {
-                            rej(error)
-                        } else {
-                            res()
-                        }
+                        error ? reject(error) : resolve()
                     })
                 })
             })
             playAndEvent(() => {
-                console.log("Question 3: TTS fallback executed")
                 setIsSpeaking(true)
                 setIsTimerActive(true)
                 setTimerKey(prev => prev + 1)
@@ -180,10 +117,6 @@ export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
         }
     }, [task, questionNumber, playAndEvent, speakAudio, speakTTS, startRecording])
 
-    /**
-     * Обработчик перехода к следующему вопросу или завершению задания
-     * @returns {Promise<void>}
-     */
     const handleNextQuestion = useCallback(async () => {
         await stopRecording()
 
@@ -200,10 +133,6 @@ export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
         setIsTimerActive(false)
     }, [stopRecording, audioBlobRef, task, questionNumber, handleNextTask])
 
-    /**
-     * Эффект для управления стадиями и логикой задания
-     * @returns {void}
-     */
     useEffect(() => {
         if (stage === STAGES.READING) {
             task.hideQuestions = true
@@ -211,20 +140,18 @@ export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
             speakIntroduction()
         }
 
-        if (stage === STAGES.SPEAKING)
+        if (stage === STAGES.SPEAKING) {
             task.questionNumber = questionNumber
+        }
 
-        if (stage === STAGES.SPEAKING && !isSpeaking)
+        if (stage === STAGES.SPEAKING && !isSpeaking) {
             speakQuestion()
+        }
     }, [stage, task, questionNumber, speakIntroduction, speakQuestion, isSpeaking])
 
-    return (<>
+    return (
         <div className="task_container">
             <div className="task_content">
-                <div className="task_number">
-                    Task {task?.taskType}
-                </div>
-
                 <div className="task_guide">
                     <span>GUIDE:</span> {task?.taskContent?.taskGuide || "No guide available"}
                 </div>
@@ -236,18 +163,41 @@ export const ThirdTask = ({ task, stage, setStage, handleNextTask }) => {
                 </div>
 
                 <div className="task_list">
-                    {!task.hideQuestions && task.taskContent.questions.map((item, i) => (<div>{i + 1}. {item}</div>))}
+                    {!task.hideQuestions && task.taskContent.questions.map((item, i) => (
+                        <div key={i}>{i + 1}. {item}</div>
+                    ))}
                 </div>
             </div>
 
             {stage === STAGES.READING && 
-                <TimerTrack key={timerKey} timerActive={isTimerActive} task={task} stage={stage} action={ () => {} }/>}
+                <TimerTrack 
+                    key={timerKey} 
+                    timerActive={isTimerActive} 
+                    task={task} 
+                    stage={stage} 
+                    action={() => {}} 
+                />
+            }
 
-            {(stage === STAGES.SPEAKING && !isSpeaking) &&
-                <TimerTrack key={timerKey} timerActive={isTimerActive} task={task} stage={stage} action={ () => {} }/>}
+            {stage === STAGES.SPEAKING && !isSpeaking &&
+                <TimerTrack 
+                    key={timerKey} 
+                    timerActive={isTimerActive} 
+                    task={task} 
+                    stage={stage} 
+                    action={() => {}} 
+                />
+            }
             
-            {(stage === STAGES.SPEAKING && isSpeaking) &&
-                <TimerTrack key={timerKey} timerActive={isTimerActive} task={task} stage={stage} action={ () => {handleNextQuestion()} }/>}
+            {stage === STAGES.SPEAKING && isSpeaking &&
+                <TimerTrack 
+                    key={timerKey} 
+                    timerActive={isTimerActive} 
+                    task={task} 
+                    stage={stage} 
+                    action={handleNextQuestion} 
+                />
+            }
         </div>
-    </>)
+    )
 }

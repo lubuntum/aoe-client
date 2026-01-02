@@ -69,7 +69,7 @@ export const timerUtils = {
     },
 
     // Получить время на ответ
-    getReadingTime: (assigmentId) => {
+    getSpeakingTime: (assigmentId) => {
         const config = timerUtils.getAssigmentConfig(assigmentId)
         return config?.speakingTime || 5
     },
