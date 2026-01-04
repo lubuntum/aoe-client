@@ -1,70 +1,77 @@
 .loader_container {
-    position: relative;
-    width: 25px;
+    width: 60px;
     height: 40px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.loader::before,
-.loader::after {
+
+/*Loader copied from uiverse.io by dovatgabriel (Thanks)*/
+.leap_loader {
+    --loader-size: 40px;
+    --loader-speed: 2s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--loader-size);
+    height: var(--loader-size);
+}
+
+.leap_loader--dot {
     position: absolute;
     top: 0;
-    content: "";
-}
-.loader::before {
-    left: -10px;
-}
-.loader::after  {
-    left: 10px;
-    -webkit-animation-delay: 0.32s !important;
-    animation-delay: 0.32s !important;
-}
-.loader::before,
-.loader::after,
-.loader {
-    background-color: var(--blue);
-    border-radius: 50px;
-    -webkit-animation: loaderKeys .8s infinite ease;
-    animation: loaderKeys .8s infinite ease;
-    width: 6px;
-    height: 16px;
-}
-.loader {
-    text-indent: -9999rem;
-    margin: auto;
-    position: absolute;
-    right: calc(50% - 3px);
-    top: calc(50% - 8px);
-    -webkit-animation-delay: .16s !important;
-    animation-delay: .16s !important;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
 }
 
-@-webkit-keyframes loaderKeys {
-    0%,
-    80%,
+.leap_loader--dot::before {
+    content: '';
+    display: block;
+    height: calc(var(--loader-size) * 0.22);
+    width: calc(var(--loader-size) * 0.22);
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    will-change: transform;
+}
+
+.leap_loader--dot:nth-child(1) {
+    animation: leapAnimation var(--loader-speed) ease infinite;
+}
+
+.leap_loader--dot:nth-child(2) {
+    transform: translateX(calc(var(--loader-size) * 0.4));
+    animation: leapAnimation var(--loader-speed) ease calc(var(--loader-speed) / -1.5) infinite;
+}
+
+.leap_loader--dot:nth-child(3) {
+    transform: translateX(calc(var(--uib-size) * 0.8)) rotate(0deg);
+    animation: leapAnimation var(--loader-speed) ease calc(var(--loader-speed) / -3) infinite;
+}
+
+@keyframes leapAnimation {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    33.333% {
+        transform: translateX(0) rotate(180deg);
+    }
+
+    66.666% {
+        transform: translateX(calc(var(--loader-size) * -0.4)) rotate(180deg);
+    }
+
+    99.999% {
+        transform: translateX(calc(var(--loader-size) * -0.8)) rotate(180deg);
+    }
+
     100% {
-        opacity: .75;
-        box-shadow: 0 0 var(--blue);
-        height: 16px;
-    }
-
-    40% {
-        opacity: 1;
-        box-shadow: 0 -5px var(--blue);
-        height: 20px;
+        transform: translateX(0) rotate(0deg);
     }
 }
-@keyframes loaderKeys {
-    0%,
-    80%,
-    100% {
-        opacity: .75;
-        box-shadow: 0 0 var(--blue);
-        height: 16px;
-    }
-
-    40% {
-        opacity: 1;
-        box-shadow: 0 -5px var(--blue);
-        height: 20px;
-    }
-}
-
