@@ -1,12 +1,34 @@
-input {
+.field_container {
     position: relative;
     height: 40px;
+}
+.field_container input {
+    height: 100%;
+    width: 100%;
     font-size: var(--fs-base);
     outline: none;
     transition: all .2s ease;
     border-bottom: 1px solid var(--border-color);
 }
-input:focus,
-input:valid {
+.field_container input::placeholder {
+    color: var(--secondary-text-color);
+    font-weight: 400;
+}
+.field_container input:focus,
+.field_container input:hover,
+.field_container input:valid {
     border-bottom: 1px solid var(--accent-color);
+}
+.field_container .svg_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
+    transition: all .2s ease;
+    fill: var(--border-color);
+}
+.field_container .svg_icon:hover,
+.field_container .svg_icon:active {
+    fill: var(--accent-hover-color);
 }
