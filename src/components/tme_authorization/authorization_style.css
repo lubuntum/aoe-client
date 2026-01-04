@@ -1,0 +1,84 @@
+.authorization_forms_container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 40px);
+    justify-content: center;
+    align-items: center;
+}
+.authorization_form {
+    position: absolute;
+    transition: all .4s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    user-select: none;
+}
+.authorization_form.active_form {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 999;
+}
+
+.authorization_container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 600px;
+}
+.authorization_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.authorization_header span {
+    font-size: var(--fs-4xl);
+    font-weight: 300;
+    color: var(--secondary-text-color);
+}
+.authorization_header .svg_icon {
+    width: 60px;
+    height: 60px;
+    fill: var(-border-color);
+    transition: all .2s ease;
+    cursor: pointer;
+}
+.authorization_header .svg_icon:hover {
+    fill: var(--accent-hover-color);
+}
+
+.authorization_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.authorization_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.authorization_signup_options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+}
+
+.authorization_description {
+    font-size: var(--fs-base);
+    font-weight: 400;
+    line-height: 25px;
+    padding: 10px 20px;
+}
+
+.authorization_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.authorization_buttons button:first-child {
+    width: 100%;
+}

@@ -9,7 +9,7 @@ import { NewInput } from "../reusible_components/NewInput"
 import { NewButton } from "../reusible_components/NewButton"
 
 import routes from "../../routes"
-import authStatuses from "../../modules/auth_modules/authStatuses"
+import authStatuses from "../../modules/auth_modules/OLD_authStatuses"
 
 import { ReactComponent as CloseThinIcon } from "../../res/icons/close_thin_24dp_gi.svg"
 
@@ -34,7 +34,7 @@ export const ResetPassword = () => {
             return
         }
         tokenRef.current = params.get("token")
-    }, [])
+    }, [location.search])
 
     const handleSubmit = async() => {
         const passwordsData = {
