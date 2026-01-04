@@ -58,9 +58,7 @@ export const ResetPassword = () => {
     }, [])
 
     /**
-     * Эффект для скрытия виджета Replain на странице сброса пароля
-     * Добавляет стили для скрытия всех элементов Replain при монтировании компонента
-     * и удаляет их при размонтировании
+     * Удаляем Replain со страницы SessionPage чтобы он не мешал прохождению заданий
      */
     useEffect(() => {
         // Скрываем виджет Replain на странице сессии
@@ -70,15 +68,16 @@ export const ResetPassword = () => {
             .replain-widget,
             [class*="replain"],
             [id*="replain"] {
-                display: none !important
-                visibility: hidden !important
-                opacity: 0 !important
-                pointer-events: none !important
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
             }
         `
         document.head.appendChild(style)
 
         return () => {
+            // Удаляем стиль при размонтировании
             const styleElement = document.getElementById('replain-hide')
             if (styleElement) {
                 styleElement.remove()

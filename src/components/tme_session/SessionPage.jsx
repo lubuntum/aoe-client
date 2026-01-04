@@ -71,8 +71,8 @@ export const SessionPage = () => {
      */
     useEffect(() => {
         // Скрываем виджет Replain на странице сессии
-        const style = document.createElement('style');
-        style.id = 'replain-hide';
+        const style = document.createElement('style')
+        style.id = 'replain-hide'
         style.innerHTML = `
             .replain-widget,
             [class*="replain"],
@@ -82,17 +82,17 @@ export const SessionPage = () => {
                 opacity: 0 !important;
                 pointer-events: none !important;
             }
-        `;
-        document.head.appendChild(style);
+        `
+        document.head.appendChild(style)
         
         return () => {
             // Удаляем стиль при размонтировании
-            const styleElement = document.getElementById('replain-hide');
+            const styleElement = document.getElementById('replain-hide')
             if (styleElement) {
-                styleElement.remove();
+                styleElement.remove()
             }
-        };
-    }, []);
+        }
+    }, [])
 
     /**
      * Загружает задания для выбранного варианта

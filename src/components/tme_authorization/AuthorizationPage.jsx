@@ -1,7 +1,7 @@
 import "./authorization_style.css"
 import "./authorization_media_style.css"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { LogIn } from "./LogIn"
 import { SignUp } from "./SignUp"
 import { ForgotPassword } from "./ForgotPassword"
@@ -18,30 +18,31 @@ import toast from "react-hot-toast"
 export const AuthorizationPage = () => {
     const navigate = useNavigate()
     const [currentForm, setCurrentForm] = useState(0)
-    const styleRef = useRef()
 
     /**
-     * Удаляем Replain со страницы AuthorizationPage
+     * Удаляем Replain со страницы SessionPage чтобы он не мешал прохождению заданий
      */
     useEffect(() => {
+        // Скрываем виджет Replain на странице сессии
         const style = document.createElement('style')
         style.id = 'replain-hide'
         style.innerHTML = `
             .replain-widget,
             [class*="replain"],
             [id*="replain"] {
-                display: none !important
-                visibility: hidden !important
-                opacity: 0 !important
-                pointer-events: none !important
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
             }
         `
         document.head.appendChild(style)
-        styleRef.current = style
-
+        
         return () => {
-            if (styleRef.current) {
-                styleRef.current.remove()
+            // Удаляем стиль при размонтировании
+            const styleElement = document.getElementById('replain-hide')
+            if (styleElement) {
+                styleElement.remove()
             }
         }
     }, [])
