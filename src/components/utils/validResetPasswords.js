@@ -1,4 +1,4 @@
-import authStatuses from "../../modules/auth_modules/authStatuses"
+import authStatuses from "../../modules/auth_modules/OLD_authStatuses"
 
 export const validResetPasswords = (data) => {
     if (!data.resetPassword || !data.resetRepeatPassword)
