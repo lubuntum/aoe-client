@@ -235,7 +235,7 @@ export const SingleTaskResultPage = () => {
             return <div className="task-error">Неизвестный тип задания</div>
         }
 
-        return <TaskComponent task={currentTask} />
+        return <TaskComponent task={currentTask} audio={audioUrl}/>
     }, [currentTask])
 
     return (<>
@@ -253,14 +253,6 @@ export const SingleTaskResultPage = () => {
                         <BtnLink btnText={"Скачать"} btnFunc={handleDownload} />
                     </div>
                 </div>
-
-                {audioUrl && (
-                    <div className="task_result_audio_player">
-                        <audio controls src={audioUrl} preload="metadata">
-                            Ваш браузер не поддерживает воспроизведение аудиофайла
-                        </audio>
-                    </div>
-                )}
 
                 <div className="task_result_accordion_container">
                     <Accordion summary={`Задание ${currentTask?.taskType}`} content={renderTaskDetails} isConnected={true} />

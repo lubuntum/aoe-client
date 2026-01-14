@@ -1,6 +1,6 @@
-export const FirstTaskDetails = ({ task }) => {
+export const FirstTaskDetails = ({ key, task, audio }) => {
     return (<>
-        <div className="task_details_container accordion">
+        <div key={key} className="task_details_container accordion">
             <div className="task_details_content">
                 <div className="task_details_guide">
                     <span>GUIDE:</span> {task?.taskContent?.taskGuide || "No guide available"}
@@ -11,6 +11,13 @@ export const FirstTaskDetails = ({ task }) => {
                 <div className="task_details_text">
                     {task?.taskContent?.taskText || "No text available"}
                 </div>
+
+                {audio &&
+                <div className="task_details_audio">
+                    <audio controls src={audio} preload="metadata">
+                        Ваш браузер не поддерживает воспроизведение аудиофайла
+                    </audio>
+                </div>}
             </div>
         </div>
     </>)

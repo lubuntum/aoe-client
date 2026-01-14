@@ -82,7 +82,10 @@ export const ExamResultPage = () => {
 
         const merged = tasks.map((task) => {
             const customerTask = customerTasks.find(cT => cT.taskId === task.id)
-            return { task, customerTask }
+            return { 
+                task, 
+                customerTask,
+                audioSrc: customerTask?.audioPath ? `${SERVER_API_URL}/${customerTask.audioPath.replace(/^\/+/, '')}` : null }
         }).filter(item => item.customerTask)
 
         return merged.sort((a, b) => a.task.taskType - b.task.taskType)
@@ -143,11 +146,11 @@ export const ExamResultPage = () => {
     /**
      * Формирует полный URL для аудиофайлов
      * @callback
-     * @param {string} audiiPath - Относительный путь к аудиофайлу
+     * @param {string} audioPath - Относительный путь к аудиофайлу
      * @returns {string|null} Полный URL аудиофайла или null при отсутствии пути
      */
-    const audioUrl = useCallback((audiiPath) => {
-        return audiiPath ? `${SERVER_API_URL}/${audiiPath.replace(/^\/+/, '')}` : null
+    const audioUrl = useCallback((audioPath) => {
+        return audioPath ? `${SERVER_API_URL}/${audioPath.replace(/^\/+/, '')}` : null
     }, [])
 
     /**
@@ -181,7 +184,7 @@ export const ExamResultPage = () => {
      * @param {Object} task - Объект задания
      * @returns {JSX.Element|null} Компонент с деталями задания или null
      */
-    const renderTaskDetails = useCallback((task) => {
+    const renderTaskDetails = useCallback((task, audioSrc) => {
         if (!task?.taskType) return null
 
         const TaskComponent = TASK_DETAIL_COMPONENTS[task.taskType]
@@ -191,7 +194,7 @@ export const ExamResultPage = () => {
             return <div className="task-error">Неизвестный тип задания</div>
         }
 
-        return <TaskComponent task={task} />
+        return <TaskComponent task={task} audio={audioSrc}/>
     }, [])
 
     return (<>
@@ -212,21 +215,11 @@ export const ExamResultPage = () => {
 
                 <div className="task_result_exam_container">
                     {mergedResults.map((item, index) => {
-                        const { task, customerTask } = item
-                        const audioSrc = customerTask?.audioPath ? audioUrl(customerTask.audioPath) : null
+                        const { task, customerTask, audioSrc } = item
 
                         return (<>
-                            {audioSrc && (
-                                <div className="task_result_audio_player">
-                                    <audio controls src={audioSrc} preload="metadata">
-                                        Ваш браузер не поддерживает воспроизведение аудиофайла
-                                    </audio>
-                                </div>
-                            )}
-
                             <div className="task_result_accordion_container">
-                                <Accordion summary={`Задание ${task?.taskType}`} content={renderTaskDetails(task)} isConnected={true}
-                                />
+                                <Accordion summary={`Задание ${task?.taskType}`} content={renderTaskDetails(task, audioSrc)} isConnected={true}/>
                             </div>
                         </>)
                     })}

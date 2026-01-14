@@ -29,16 +29,8 @@
 .task_result_exam_container .task_result_audio_player:not(:first-child) {
     padding-top: 100px;
 }
-.task_result_audio_player {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    align-items: center;
-    padding-top: 20px;
-}
 .task_result_accordion_container {
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 
@@ -87,4 +79,11 @@
     gap: 40px;
     align-items: center;
     justify-content: center;
+}
+.task_details_audio {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
 }
